@@ -4,6 +4,7 @@ Servers
 ### Eclipse ###
 semeProject_3Team/Servers
 .classpath
+semiProject_3Team/.classpath
 .project
 .metadata
 bin/
@@ -28,7 +29,7 @@ local.properties
 
 # CDT-specific (C/C++ Development Tooling)
 .cproject
-
+Libraries
 # CDT- autotools
 .autotools
 

@@ -69,10 +69,11 @@ Boolean isUser = false;
 		<nav class="nav justify-content-center">
 			<li class="nav-item"><a class="nav-link active"
 				aria-current="page" href="#">카테고리</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">펀딩하기</a></li>
+			<li class="nav-item"><a class="nav-link" href="project_list.jsp">펀딩하기</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">랭킹</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">이용가이드</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">자유게시판</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">공지게시판</a></li>
 		</nav>
 	</div>
 </header>
