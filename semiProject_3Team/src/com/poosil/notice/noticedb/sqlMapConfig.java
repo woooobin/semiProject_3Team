@@ -36,6 +36,4 @@ public class sqlMapConfig {
 		return sqlSessionFactory;
 	}
 	
-	
-	
 }
