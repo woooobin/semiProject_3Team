@@ -33,7 +33,11 @@ public class NoticeController extends HttpServlet {
 		
 		if(command.equals("list")) {
 			
+			List<NoticeDto> list = biz.selectList();
 			
+			request.setAttribute("list", list);
+			
+			dispatch(request, response, "notice/list.jsp");
 			
 		}
 		
