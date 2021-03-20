@@ -31,15 +31,85 @@ public class NoticeController extends HttpServlet {
 		NoticeBiz biz = new NoticeBizImpl();
 		String command = request.getParameter("command");
 		
-		if(command.equals("list")) {
-			
+		//  메인 페이지에서 눌렀을때 작동하도록 메인페이지쪽 controller에서 만들어야함
+		    if(command.equals("list")) {
+		
 			List<NoticeDto> list = biz.selectList();
-			
+			// 이게 맞을까? 이거 물어봐야함.
+			NoticeDto dto = new NoticeDto();
 			request.setAttribute("list", list);
+			if(dto != null) {	
+				if(dto.getUserrole().equals("ADMIN")) {
+					dispatch(request, response, "notice/adminlist.jsp");
+				} else if (dto.getUserrole().equals("USER")) {
+					dispatch(request, response, "notice/userlist.jsp");
+				}
+			} 
 			
-			dispatch(request, response, "notice/list.jsp");
+		} else if(command.equals("select")) {
+			int noticeseq = Integer.parseInt(request.getParameter("noticeseq"));
 			
+			NoticeDto dto = biz.selectOne(noticeseq);
+			
+			request.setAttribute("dto", dto);
+			
+			dispatch(request, response, "notice/select.jsp");
+			
+		} else if(command.equals("insertform")) {
+			dispatch(request, response, "notice/insert.jsp");
+			
+		} else if(command.equals("insertres")) {
+			// 이거도 스트링인가?
+			String option = request.getParameter("option");
+			String noticetitle = request.getParameter("noticetitle");
+			String noticecontent = request.getParameter("noticecontent");
+			
+			NoticeDto dto = new NoticeDto(0, null, noticetitle, noticecontent, null, null);
+			int res = biz.insert(dto);
+			
+			if(res > 0) {
+				response.sendRedirect("notice.do?command=list");
+			} else {
+				response.sendRedirect("notice.do?command=insertform");
+			}
+			
+		} else if(command.equals("updateform")) {
+			int noticeseq = Integer.parseInt(request.getParameter("noticeseq"));
+			
+			NoticeDto dto = biz.selectOne(noticeseq);
+			
+			request.setAttribute("dto", dto);
+			
+			dispatch(request, response, "notice/update.jsp");
+			
+		} else if(command.equals("updateres")) {
+			int noticeseq = Integer.parseInt(request.getParameter("noticeseq"));
+			String option = request.getParameter("option");
+			String noticetitle = request.getParameter("noticetitle");
+			String noticecontent = request.getParameter("noticecontent");
+			
+			NoticeDto dto = new NoticeDto(noticeseq, null, noticetitle, noticecontent, null, null);
+			
+			int res = biz.update(dto);
+			
+			if(res > 0) {
+				response.sendRedirect("notice.do?command=select&noticeseq"+noticeseq);
+			} else {
+				response.sendRedirect("notice.do?command=updateform&noticeseq"+noticeseq);
+			}
+			
+		} else if (command.equals("delete")) {
+			int noticeseq = Integer.parseInt(request.getParameter("noticeseq"));
+			int res = biz.delete(noticeseq);
+			if(res > 0) {
+				dispatch(request, response, "mvc.do?command=list");
+			} else {
+				dispatch(request, response, "mvc.do?command=select&noticeseq="+noticeseq);
+			}
 		}
+		
+		
+		
 		
 		
 	}

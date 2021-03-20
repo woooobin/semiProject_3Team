@@ -73,7 +73,7 @@ Boolean isUser = false;
 			<li class="nav-item"><a class="nav-link" href="#">랭킹</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">이용가이드</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">자유게시판</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">공지게시판</a></li>
+			<li class="nav-item"><a class="nav-link" href="notice.do?command=list">공지게시판</a></li>
 		</nav>
 	</div>
 </header>
