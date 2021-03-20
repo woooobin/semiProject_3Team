@@ -1,0 +1,25 @@
+
+CREATE TABLE PROJECTS(
+	projectId NUMBER(30),
+	userId VARCHAR2 (30),
+	projectMainTitle VARCHAR2(100),
+	projectSubTitle VARCHAR2(100),
+	thumbImage VARCHAR2(100),
+	projectCategory VARCHAR2(30),
+	projectStartDate DATE,
+	projectEndDate DATE ,
+	shippingStartDate DATE,
+	detailDesc VARCHAR2(4000),
+	createdAt DATE,
+	updatedAt DATE,
+	address VARCHAR2(100),
+	lattitude VARCHAR2(30),
+	longitude VARCHAR2(30),
+	province VARCHAR2(30),
+	goalPrice NUMBER,
+	totalPrice NUMBER,
+	soldCount NUMBER,
+	likeCount NUMBER,
+	CONSTRAINT PROJECT_PK PRIMARY KEY (projectId),
+	CONSTRAINT PROJECT_USER_FK FOREIGN KEY (userId) REFERENCES MEMBERS (userId)
+);
