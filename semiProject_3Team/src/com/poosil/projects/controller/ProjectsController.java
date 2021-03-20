@@ -1,4 +1,4 @@
-package com.poosil.projects.projectsController;
+package com.poosil.projects.controller;
 
 import java.io.IOException;
 import java.util.List;
