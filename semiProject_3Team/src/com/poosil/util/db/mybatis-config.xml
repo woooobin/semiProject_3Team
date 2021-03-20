@@ -27,5 +27,6 @@
   <mappers>
     <mapper resource="com/poosil/notice/noticedb/notice-mapper.xml"/>
     <mapper resource="com/poosil/projects/db/projects-mapper.xml"/>
+    <mapper resource="com/poosil/members/db/member-mapper.xml"/>
   </mappers>
 </configuration>
