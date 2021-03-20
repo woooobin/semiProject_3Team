@@ -17,7 +17,7 @@
 	<table border="1">
 		<tr>
 			<th>작성자</th>
-			<td>${dto.userid }</td>
+			<td>${dto.usernickname }</td>
 		</tr>
 		<tr>
 			<th>제목</th>
@@ -31,8 +31,8 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="right">
-				<input type="button" value="수정" onclick="location.href='notice.do?command=updateform&seq=${dto.noticeseq}'">
-				<input type="button" value="삭제" onclick="location.href='notice.do?command=delete&seq=${dto.noticeseq}'">
+				<input type="button" value="수정" onclick="location.href='notice.do?command=updateform&noticeseq=${dto.noticeseq}'">
+				<input type="button" value="삭제" onclick="location.href='notice.do?command=delete&noticeseq=${dto.noticeseq}'">
 				<input type="button" value="목록" onclick="location.href='notice.do?command=list'">
 			</td>
 		</tr>

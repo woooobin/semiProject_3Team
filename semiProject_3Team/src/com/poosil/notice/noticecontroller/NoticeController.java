@@ -33,15 +33,15 @@ public class NoticeController extends HttpServlet {
 		
 		//  메인 페이지에서 눌렀을때 작동하도록 메인페이지쪽 controller에서 만들어야함
 		    if(command.equals("list")) {
-		
+		    String userrole = request.getParameter("userrole");
 			List<NoticeDto> list = biz.selectList();
 			// 이게 맞을까? 이거 물어봐야함.
-			NoticeDto dto = new NoticeDto();
+			NoticeDto dto = new NoticeDto(0, null, null, null, userrole, null, null);
 			request.setAttribute("list", list);
 			if(dto != null) {	
 				if(dto.getUserrole().equals("ADMIN")) {
 					dispatch(request, response, "notice/adminlist.jsp");
-				} else if (dto.getUserrole().equals("USER")) {
+				} else {
 					dispatch(request, response, "notice/userlist.jsp");
 				}
 			} 
@@ -64,7 +64,7 @@ public class NoticeController extends HttpServlet {
 			String noticetitle = request.getParameter("noticetitle");
 			String noticecontent = request.getParameter("noticecontent");
 			
-			NoticeDto dto = new NoticeDto(0, null, noticetitle, noticecontent, null, null);
+			NoticeDto dto = new NoticeDto(0, null, noticetitle, noticecontent, null, null, null);
 			int res = biz.insert(dto);
 			
 			if(res > 0) {
@@ -88,7 +88,7 @@ public class NoticeController extends HttpServlet {
 			String noticetitle = request.getParameter("noticetitle");
 			String noticecontent = request.getParameter("noticecontent");
 			
-			NoticeDto dto = new NoticeDto(noticeseq, null, noticetitle, noticecontent, null, null);
+			NoticeDto dto = new NoticeDto(noticeseq, null, noticetitle, noticecontent, null, null, null);
 			
 			int res = biz.update(dto);
 			

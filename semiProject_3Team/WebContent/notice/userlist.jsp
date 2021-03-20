@@ -35,7 +35,7 @@
 					<tr>
 						<td>${dto.noticeseq }</td>
 						<td>${dto.userid }</td>
-						<td><a href="notice.do?command=select&seq=${dto.noticeseq }">${dto.noticetitle }</a></td>
+						<td><a href="notice.do?command=select&noticeseq=${dto.noticeseq }">${dto.noticetitle }</a></td>
 						<td>${dto.regdate }</td>
 					</tr>
 				</c:forEach>
