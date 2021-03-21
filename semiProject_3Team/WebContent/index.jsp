@@ -17,9 +17,6 @@
     
     <title>Hello, world!</title>
 </head>
-<script type="text/javascript">
-location.href = "examples/main-page.html";
-</script>
 <body>
 <%@ include file="./ui/header.jsp" %>
 <div class="container">
