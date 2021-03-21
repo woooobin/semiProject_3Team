@@ -6,5 +6,50 @@
 	<select id="selectList" resultType="ProjectDto">
 	SELECT * FROM PROJECTS
 	</select>
+	
+	<insert id="insertProject" parameterType="HashMap">
+		<selectKey keyProperty="projectId" resultType="int" order="BEFORE">
+			( SELECT PROJECT_SEQ.NEXTVAL FROM DUAL )
+		</selectKey>
+	
+		INSERT INTO PROJECTS ( 
+		projectId, 
+		userId, 
+		projectMainTitle, 
+		projectSubTitle,
+		thumbImage,
+		projectCategory, 
+		projectStartDate,
+		projectEndDate,
+		shippingStartDate,
+		detailDesc
+		 ) VALUES (
+			#{projectId}, 
+			#{userId},
+			#{projectMainTitle},
+			#{projectSubTitle},
+			#{thumbImage}, 
+			#{projectCategory},
+			#{projectStartDate}, 
+			#{projectEndDate},
+			#{shippingStartDate}, 
+			#{detailDesc}
+		)
+	</insert>
+	
+	<insert id="insertProjectItems" parameterType="java.util.List">
+		INSERT INTO PROJECTITEM (projectItemSeq, projectItemName, projectItemDesc, shippingFee, quantity, thumbImage, projectId) VALUES 
+		<foreach collection="list" item="item" separator=" , ">
+		(
+			PROJECT_ITEM_SEQ.NEXTVAL,
+		 	#{item.projectItemName},
+			#{item.projectItemDesc} ,
+			#{item.shippingFee},
+			#{item.quantity},
+			#{item.thumbImage},
+			#{item.projectId}
+		) 
+		</foreach>
+	</insert>
 </mapper>
 

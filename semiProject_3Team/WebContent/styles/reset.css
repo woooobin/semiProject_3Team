@@ -18,7 +18,7 @@ label,button{cursor:pointer}a:link {color:#696f74; text-decoration:none}a:visite
 .clearfix:after{display: block;clear: both;content: "";}
 
 
-button, html input[type="button"], /* 1 */ input[type="reset"], input[type="submit"] {margin:0;padding:0;outline:none;border:none; -webkit-appearance: button; /* 2 */ cursor: pointer; /* 3 */ }
+button, html input[type="button"], /* 1 */ input[type="reset"], input[type="submit"]{margin:0;padding:0;outline:none; -webkit-appearance: button; /* 2 */ cursor: pointer; /* 3 */ }
 
 
 
