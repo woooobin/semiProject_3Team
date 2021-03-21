@@ -12,7 +12,11 @@
  	width:100%;
 	display:flex;
  	justify-content:space-between;
+ 	flex-wrap:nowrap;
  }
+ 
+ 
+ 
 .half{
 	width:45%;
 }

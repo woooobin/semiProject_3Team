@@ -113,11 +113,14 @@ response.setContentType("text/html; charset=UTF-8");
 			$.ajax({ // ajax를 통해 파일 업로드 처리
 				data: { "command": "insertProject", "data": JSON.stringify(data) },
 				type: "POST",
-				dataType: "text",
+				dataType: "json",
 				url: "project.do",
 				success: function (resData) { // 처리가 성공할 경우
 					// 에디터에 이미지 출력
-					console.log("upload Success =", resData)
+					console.log("upload Success =", resData.result)
+					if(resData.result == "success"){
+						location.href="project.do?command=selectList";
+					}
 				},
 				error: function (error) {
 					console.log("error=", error)

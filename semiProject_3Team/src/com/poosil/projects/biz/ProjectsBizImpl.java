@@ -27,6 +27,11 @@ public class ProjectsBizImpl implements ProjectsBiz{
 		// TODO Auto-generated method stub
 		return dao.insertProjectItems(list);
 	}
+	@Override
+	public ProjectDto selectOne(int projectId) {
+		// TODO Auto-generated method stub
+		return dao.selectOne(projectId);
+	}
 	
 	
 

@@ -22,4 +22,5 @@ public interface ProjectDao {
 			String detailDesc
 		);
 	public int insertProjectItems(List<ProjectItemDto> list);
+	public ProjectDto selectOne(int projectId);
 }

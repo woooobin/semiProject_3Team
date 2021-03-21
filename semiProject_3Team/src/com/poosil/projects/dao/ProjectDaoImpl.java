@@ -95,5 +95,24 @@ public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao{
 		return result;
 	}
 
+	@Override
+	public ProjectDto selectOne(int projectId) {
+		SqlSession session = null;
+		
+		ProjectDto dto = new ProjectDto();
+		try {
+			session = getSqlSessionFactory().openSession(true);
+			dto = session.selectOne("projects-mapper.selectOne",projectId);
+			
+			System.out.println("select project items succeed" + dto );
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		session.close();
+		return dto;
+	}
+	
 	
 }

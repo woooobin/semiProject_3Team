@@ -66,6 +66,8 @@ public class ProjectsController extends HttpServlet {
 			String projectEndDate = jsonData.get("projectEndDate").getAsString();
 			String detailDesc = jsonData.get("detailDesc").getAsString();
 			
+			System.out.println(goalPrice);
+			
 			Map<String, Integer> resultMap = biz.insertProject("test1", projectMainTitle, projectSubTitle, thumbImage, goalPrice, projectCategory, projectStartDate, projectEndDate, shippingStartDate,detailDesc);
 			
 			// ================= end project
@@ -75,6 +77,7 @@ public class ProjectsController extends HttpServlet {
 			// 어레이를 여기에 담아주었다. 
 			JsonArray projectItemsArray= projectItems.getAsJsonArray();
 			
+			JsonObject result = new JsonObject();
 			
 			if(resultMap.get("result")>0) {
 				Integer projectId = resultMap.get("projectId");
@@ -100,18 +103,31 @@ public class ProjectsController extends HttpServlet {
 			
 				if(insertProjectItemsRes > 0) {
 					System.out.println("projectItems 저장 성공~");
+					result.addProperty("result","success");
+					
 				}else {
 					System.out.println("projectItems 저장 실패 ~");
+					result.addProperty("result","failed");
 				}
 			}else {
 				System.out.println("db저장 실패 ");
 			}
 			
-			JsonObject result = new JsonObject();
-			result.addProperty("result","성공");
-
 			response.getWriter().append(result + "");
+
+			
+			// =============== end select List ===============//
+		}else if(command.equals("selectOne")) {
+			int projectId = Integer.parseInt(request.getParameter("projectId"));
+			System.out.println(projectId);
+			ProjectDto dto = biz.selectOne(projectId);
+			
+			System.out.println("dto = "+dto);
+			request.setAttribute("dto", dto);
+			
+			dispatch(request, response, "project_selectOne.jsp");
 		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
