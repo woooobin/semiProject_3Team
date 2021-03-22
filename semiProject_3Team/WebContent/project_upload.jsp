@@ -48,7 +48,6 @@ response.setContentType("text/html; charset=UTF-8");
 				callbacks: { // 콜백을 사용
 					// 이미지를 업로드할 경우 이벤트를 발생
 					onImageUpload: function (files, editor, welEditable) {
-
 						sendFile(files[0], this);
 					}
 				}
@@ -118,8 +117,8 @@ response.setContentType("text/html; charset=UTF-8");
 				success: function (resData) { // 처리가 성공할 경우
 					// 에디터에 이미지 출력
 					console.log("upload Success =", resData.result)
-					if(resData.result == "success"){
-						location.href="project.do?command=selectList";
+					if (resData.result == "success") {
+						location.href = "project.do?command=selectList";
 					}
 				},
 				error: function (error) {
