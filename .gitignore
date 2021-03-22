@@ -1,10 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse,java
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java
-
 Servers
 ### Eclipse ###
 semeProject_3Team/Servers
 .classpath
+semiProject_3Team/.classpath
 .project
 .metadata
 bin/

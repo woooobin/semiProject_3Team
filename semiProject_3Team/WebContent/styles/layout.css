@@ -1,0 +1,22 @@
+.lft{
+	float:left;
+}
+.rgt{
+	float:right;
+}
+
+/* 
+	50% 차지하게 하는 레이아
+ */
+ .layout_wrap{
+ 	width:100%;
+	display:flex;
+ 	justify-content:space-between;
+ 	flex-wrap:nowrap;
+ }
+ 
+ 
+ 
+.half{
+	width:45%;
+}
