@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	
 	<jsp:forward page="notice.do?command=list"></jsp:forward>
 	

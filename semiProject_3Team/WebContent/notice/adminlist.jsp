@@ -10,10 +10,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="./styles/reset.css" rel="stylesheet">
+  	<!-- Bootstrap CSS -->
+    <link href="./styles/bootstrap.min.css" rel="stylesheet" >
 <title>Insert title here</title>
 </head>
 <body>
-	<table border="1">
+<%@ include file="../ui/header.jsp" %>
+	<table border="1" style="margin-left: auto; margin-right: auto;">
 		<col width="50">
 		<col width="100">
 		<col width="500">
@@ -35,7 +39,7 @@
 					<tr>
 						<td>${dto.noticeseq }</td>
 						<td>${dto.userid }</td>
-						<td><a href="notice.do?command=select&seq=${dto.noticeseq }">${dto.noticetitle }</a></td>
+						<td><a href="notice.do?command=select&noticeseq=${dto.noticeseq }">${dto.noticetitle }</a></td>
 						<td>${dto.regdate }</td>
 					</tr>
 				</c:forEach>

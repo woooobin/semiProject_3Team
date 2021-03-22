@@ -8,15 +8,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="./styles/reset.css" rel="stylesheet">
+  	<!-- Bootstrap CSS -->
+    <link href="./styles/bootstrap.min.css" rel="stylesheet" >
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="../ui/header.jsp" %>
 <jsp:useBean id="dto" class="com.poosil.notice.noticedto.NoticeDto" scope="request"></jsp:useBean>
 	<h1></h1>
 	
 	<form action="notice.do" method="post">
 		<input type="hidden" name="command" value="updateres">
-		<table border="1">
+		<table border="1" style="margin-left: auto; margin-right: auto;">
 			<tr>
 				<th>분류</th>
 				<td><select name="option" >
@@ -31,7 +35,7 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea rows="10" cols="60" name="noticecontent" value='<jsp:getProperty property="noticetitle" name="dto"/>'></textarea></td>
+				<td><textarea rows="10" cols="60" name="noticecontent"><jsp:getProperty property="noticecontent" name="dto"/></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">

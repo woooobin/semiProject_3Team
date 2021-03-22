@@ -8,13 +8,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="./styles/reset.css" rel="stylesheet">
+  	<!-- Bootstrap CSS -->
+    <link href="./styles/bootstrap.min.css" rel="stylesheet" >
 <title>Insert title here</title>
 </head>
 <body>
-	
+<%@ include file="../ui/header.jsp" %>
 	<h1></h1>
 	
-	<table border="1">
+	<table border="1" style="margin-left: auto; margin-right: auto;">
 		<tr>
 			<th>작성자</th>
 			<td>${dto.usernickname }</td>
