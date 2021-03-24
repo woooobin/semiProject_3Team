@@ -26,6 +26,8 @@ $(document).ready(function(){
 <%@ include file="./ui/header.jsp"%>
 <h1> select One</h1>
 <c:set var="dto" value="${requestScope.dto}"/>
+
+<a href="chatting.jsp"> chatting </a>
 projectId = ${dto.projectId}
 projectMainTitle = ${dto.projectMainTitle}
 projectSubTitle = ${dto.projectSubTitle }

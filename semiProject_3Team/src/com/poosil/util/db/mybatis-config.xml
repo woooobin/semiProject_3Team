@@ -9,6 +9,8 @@
 	<typeAliases>
   	 	<typeAlias type="com.poosil.notice.noticedto.NoticeDto" alias="NoticeDto"/>
   	 	<typeAlias type="com.poosil.projects.dto.ProjectDto" alias="ProjectDto"/>
+  	 	<typeAlias type="com.poosil.projects.dto.ProjectItemDto" alias="ProjectItemDto"/>
+  	 	<typeAlias type="com.poosil.projects.dto.HashtagDto" alias="HashtagDto"/>
   	 </typeAliases>
   	 
   <environments default="development">

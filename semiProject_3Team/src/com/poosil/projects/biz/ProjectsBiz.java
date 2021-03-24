@@ -6,6 +6,7 @@ import java.util.Map;
 import com.poosil.projects.dto.ProjectDto;
 import com.poosil.projects.dto.ProjectItemDto;
 
+
 public interface ProjectsBiz {
 	public List<ProjectDto> selectList();
 	
@@ -23,4 +24,7 @@ public interface ProjectsBiz {
 		);
 	public int insertProjectItems(List<ProjectItemDto> list);
 	public ProjectDto selectOne(int projectId);
+	
+	
+	public int insertHashtags (List<String> hashtags, int projectId);
 }

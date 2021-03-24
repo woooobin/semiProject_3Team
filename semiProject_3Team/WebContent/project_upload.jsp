@@ -23,6 +23,7 @@ response.setContentType("text/html; charset=UTF-8");
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 	<script type="text/javascript">
+	
 		/* summernote에서 이미지 업로드시 실행할 함수 */
 		function sendFile(file, editor) {
 			// 파일 전송을 위한 폼생성
@@ -95,7 +96,10 @@ response.setContentType("text/html; charset=UTF-8");
 					thumbImage: x.querySelector(".thumbnailImage").value,
 				}
 			});
-			console.log(projectItems);
+			
+			/* const hashtags = $("#hashtags").textContent().match(/#[^\s#]+/g); */
+			const hashtags = document.getElementById("hashtags").value.match(/#[^\s#]+/g).join(",");
+			console.log(hashtags)
 			const data = {
 				projectMainTitle: $("#projectMainTitle").val(),
 				thumbnailImage: $("#thumbnailImage").val(),
@@ -106,7 +110,8 @@ response.setContentType("text/html; charset=UTF-8");
 				projectCategory: $("#projectCategory").val(),
 				projectEndDate: $("#projectEndDate").val(),
 				detailDesc: $(".detailDesc").val(),
-				projectItems: projectItems
+				projectItems: projectItems,
+				hashtags : hashtags
 			};
 			console.log(data)
 			$.ajax({ // ajax를 통해 파일 업로드 처리
@@ -186,7 +191,7 @@ response.setContentType("text/html; charset=UTF-8");
 					<input type="file" class="imageInput" />
 					<input type="text" class="thumbnailImage" name="thumbImage" />
 					<br />
-					<input type="text" name="shippingFee" placeholder="배송비" class="form-control shippingFee" />
+					<input type="text" name="shippingFee" placeholder="배송비" value="3000" class="form-control shippingFee" />
 
 					<input type="number" name="quantity" placeholder="수량" value="5" class="form-control quantity" />
 				</div>
@@ -198,7 +203,12 @@ response.setContentType("text/html; charset=UTF-8");
 				placeholder="write something"></textarea>
 			<br />
 			<br />
-			<input type="text" placeholder="사용할 해쉬태그를 #으로 구분하여 입력" name="hashtags" id="hashtags" class="form-control" />
+			<input 
+				type="text" 
+				placeholder="사용할 해쉬태그를 #으로 구분하여 입력" 
+				name="hashtags" 
+				id="hashtags" 
+				class="form-control"  />
 			<br />
 			<br />
 
