@@ -60,7 +60,7 @@ Boolean isUser = false;
 						aria-current="page" href="mypage.jsp">mypage</a></li>
 				</nav>
 
-				<%
+				<% 
 				}
 				%>
 

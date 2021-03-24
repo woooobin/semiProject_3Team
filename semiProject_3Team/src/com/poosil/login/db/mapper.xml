@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.poosil.login.mapper">
+
+
+
+<select id="selectList" resultType="loginDto">
+
+SELECT USERID, PASSWORD,USEREMAIL,USERPHONE,ADDRESS,ADDRESSLATITUDE,ADDRESSLONGITUDE,USERROLE,ISSELLER,SELLERSOPT,AVATAR,USERNICKNAME,USERNAME
+FROM MEMBERS
+
+
+</select>
+
+<select id="selectalluser" resultType="loginDto">
+SELECT USERID, PASSWORD,USEREMAIL,USERPHONE,ADDRESS,ADDRESSLATITUDE,ADDRESSLONGITUDE,USERROLE,ISSELLER,SELLERSOPT,AVATAR,USERNICKNAME,USERNAME
+FROM MEMBERS
+
+</select>
+
+<select id="login" parameterType="HashMap" resultType="loginDto">
+
+SELECT USERID,USERROLE,ISSELLER
+FROM MEMBERS 
+WHERE USERID = #{userid} 
+AND PASSWORD = #{password}
+
+
+</select>
+
+<select id="idcheck" parameterType="String" resultType="int">
+SELECT COUNT(*)
+FROM MEMBERS
+WHERE USERID = #{userid}
+</select>
+
+<select id="myinfo" parameterType="String" resultType="loginDto">
+SELECT USERID,USEREMAIL,USERPHONE,ADDRESS,USERROLE,ISSELLER,SELLERSOPT,AVATAR,USERNICKNAME,USERNAME
+FROM MEMBERS
+WHERE USERID = #{USERID}
+
+</select>
+
+<insert id="signup" parameterType="loginDto" >
+INSERT INTO MEMBERS (USERID,PASSWORD,USEREMAIL,USERPHONE,ADDRESS,USERROLE,ISSELLER,AVATAR,USERNAME) 
+VALUES(#{userid},#{password},#{useremail},#{userphone},#{address},'USER',#{isseller},#{avatar}, #{username})
+
+</insert>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
