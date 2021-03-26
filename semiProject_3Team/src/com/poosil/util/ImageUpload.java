@@ -30,23 +30,24 @@ public class ImageUpload extends HttpServlet {
 
 			throws ServletException, IOException {
 
-		// 게시글 원글 등록 처리용 컨트롤러
+		// 寃뚯떆湲� �썝湲� �벑濡� 泥섎━�슜 而⑦듃濡ㅻ윭
 		System.out.println("hrere");
 		request.setCharacterEncoding("utf-8");
-		// 업로드할 파일의 용량 제한 : 10Mbyte로 제한한다면
+		// �뾽濡쒕뱶�븷 �뙆�씪�쓽 �슜�웾 �젣�븳 : 10Mbyte濡� �젣�븳�븳�떎硫�
 
 		int maxSize = 1024 * 1024 * 10;
 
 		RequestDispatcher view = null;
 
 		String root = request.getSession().getServletContext().getRealPath("/");
+		System.out.println(root);
 
-		// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
+		// �뾽濡쒕뱶�릺�뒗 �뙆�씪�씠 ���옣�맆 �뤃�뜑紐낃낵 寃쎈줈 �뿰寃� 泥섎━
 
 		String savePath = root + "image";
 
-		// web/board_upload 로 지정함
-		// request 를 MultipartRequest 객체로 변환함
+		// web/board_upload 濡� 吏��젙�븿
+		// request 瑜� MultipartRequest 媛앹껜濡� 蹂��솚�븿
 
 		MultipartRequest mrequest = new MultipartRequest(request, savePath, maxSize, "UTF-8",
 				new DefaultFileRenamePolicy());
@@ -54,8 +55,8 @@ public class ImageUpload extends HttpServlet {
 		
 		Enumeration files = mrequest.getFileNames();
 		
-		String str = (String) files.nextElement(); // 파일 이름을 받아와 string으로 저장
-		String originFileName = mrequest.getFilesystemName(str); // 업로드 된 파일 이름 가져옴
+		String str = (String) files.nextElement(); // �뙆�씪 �씠由꾩쓣 諛쏆븘�� string�쑝濡� ���옣
+		String originFileName = mrequest.getFilesystemName(str); // �뾽濡쒕뱶 �맂 �뙆�씪 �씠由� 媛��졇�샂
 		
 		System.out.println(originFileName);
 

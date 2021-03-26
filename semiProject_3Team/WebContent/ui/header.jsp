@@ -34,6 +34,9 @@ h1 a {
 <%
 Boolean isUser = false;
 //나중에 유저 인지 아닌지 여기다가 세팅해서 가꼬와
+String userrole = "ADMIN";
+String userId = "WOOBINTEST";
+String userNickname = "ADMIN";
 %>
 <header>
 
@@ -73,7 +76,7 @@ Boolean isUser = false;
 			<li class="nav-item"><a class="nav-link" href="#">랭킹</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">이용가이드</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">자유게시판</a></li>
-			<li class="nav-item"><a class="nav-link" href="notice.do?command=list&userrole=${dto.userrole }">공지게시판</a></li>
+			<li class="nav-item"><a class="nav-link" href="notice.do?command=list&userrole=${userrole }">공지게시판</a></li>
 		</nav>
 	</div>
 </header>

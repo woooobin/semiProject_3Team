@@ -26,10 +26,9 @@ public class NoticeDao extends sqlMapConfig {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-		
-		session.close();
-		
+		} finally {
+			session.close();
+		}
 		return list;
 	}
 	
@@ -109,4 +108,19 @@ public class NoticeDao extends sqlMapConfig {
 		
 		return count;
 	}
+	
+	public int getTotalCount() {
+		int total = 0;
+		
+		try {
+			SqlSession session = getSqlSessionFactory().openSession(false);
+			//total = session.selectList(arg0, arg1, arg2);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return total;
+	}
+	
 }

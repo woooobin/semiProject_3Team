@@ -34,17 +34,19 @@ public class NoticeController extends HttpServlet {
 		//  메인 페이지에서 눌렀을때 작동하도록 메인페이지쪽 controller에서 만들어야함
 		    if(command.equals("list")) {
 		    String userrole = request.getParameter("userrole");
+		    String userId= request.getParameter("userId");
+		    String usernickname = request.getParameter("usernickname");
 			List<NoticeDto> list = biz.selectList();
 			// 이게 맞을까? 이거 물어봐야함.
-			NoticeDto dto = new NoticeDto(0, null, null, null, userrole, null, null);
+			NoticeDto dto = new NoticeDto(0, userId, null, null, userrole, null, usernickname);
 			request.setAttribute("list", list);
 			if(dto != null) {	
 				if(dto.getUserrole().equals("ADMIN")) {
 					dispatch(request, response, "notice/adminlist.jsp");//notice/adminlist.jsp
 				} else {
-					dispatch(request, response, "notice/userlist.jsp");//notice/userlist.jsp
+					dispatch(request, response, "notice/adminlist.jsp");//notice/userlist.jsp
 				}
-			} 
+			}
 			
 		} else if(command.equals("select")) {
 			int noticeseq = Integer.parseInt(request.getParameter("noticeseq"));
