@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
+import javax.servlet.RequestDispatcher;  
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +39,7 @@ public class logincontroller extends HttpServlet {
 			String userid = request.getParameter("userid");
 			String password = request.getParameter("password");
 
-			HttpSession session = request.getSession();
+			HttpSession session = request.getSession();  
 
 			loginDto dto = biz.login(userid, password);
 
