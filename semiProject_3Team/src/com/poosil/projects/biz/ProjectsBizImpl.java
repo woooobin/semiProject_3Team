@@ -81,6 +81,10 @@ public class ProjectsBizImpl implements ProjectsBiz{
 		
 		return insertProjectHashtagRes;
 	}
+	@Override
+	public List<ProjectItemDto> selectProjectItems(int projectId) {
+		return dao.selectProjectItems(projectId);
+	}
 	
 	
 

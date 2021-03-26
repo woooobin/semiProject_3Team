@@ -28,5 +28,7 @@ public interface ProjectDao {
 	public int insertHashtags (List<HashtagDto> hashtags);
 	
 	public int insertProjectHashtags (List<String> hashtagList, int projectId) ;
+	
+	public List<ProjectItemDto> selectProjectItems (int projectId);
 
 }

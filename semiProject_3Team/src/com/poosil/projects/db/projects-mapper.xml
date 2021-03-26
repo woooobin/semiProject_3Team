@@ -110,7 +110,17 @@
 		)
 	</insert>
 	
+	<select id="selectProjectItems" parameterType="int" resultType="ProjectItemDto">
+		SELECT 
+			PROJECTITEMSEQ, PROJECTITEMNAME, PROJECTITEMDESC, SHIPPINGFEE, QUANTITY, THUMBIMAGE, PROJECTID, PRICE 
+		FROM PROJECTIEM
+		WHERE PROJECTID = #{projectId}
+	</select>
 	
+	<select id="selectProjectHashtags" parameterType="int" resultType="HashtagDto" >
+	SELECT HASHTAGNAME, HASHTAGSEQ FROM HASHTAG WHERE HASHTAGSEQ IN 
+		(SELECT HASHTAGSEQ FROM PROJECTHASHTAG WHERE PROJECTID = #{projectId} )
+	</select>
 	
 </mapper>
 

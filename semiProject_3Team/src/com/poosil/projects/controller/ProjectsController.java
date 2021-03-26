@@ -22,9 +22,6 @@ import com.poosil.projects.biz.ProjectsBizImpl;
 import com.poosil.projects.dto.ProjectDto;
 import com.poosil.projects.dto.ProjectItemDto;
 
-/**
- * Servlet implementation class ProjectsController
- */
 @WebServlet("/project.do")
 public class ProjectsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -109,14 +106,11 @@ public class ProjectsController extends HttpServlet {
 
 				int insertProjectItemsRes = biz.insertProjectItems(list);
 
-				
-				
 				if(hashtags.size() > 0) {
 					// hashtag가 디비에 들어오게 되면 디비에 업로드 한다. 
 					int insertHashtagsRes = biz.insertHashtags(hashtags, projectId);
 					System.out.println("insertHashtagsRes = " + insertHashtagsRes); // 성
 				}
-				
 				
 				if (insertProjectItemsRes > 0) {
 					System.out.println("projectItems 저장 성공~");
@@ -135,12 +129,17 @@ public class ProjectsController extends HttpServlet {
 			// =============== end select List ===============//
 		} else if (command.equals("selectOne")) {
 			int projectId = Integer.parseInt(request.getParameter("projectId"));
-			System.out.println(projectId);
+			// System.out.println(projectId);
 			ProjectDto dto = biz.selectOne(projectId);
 
 			System.out.println("dto = " + dto);
 			request.setAttribute("dto", dto);
-
+			
+			List<ProjectItemDto> projectItems = new ArrayList<ProjectItemDto>();
+			
+			projectItems = biz.selectProjectItems(projectId);
+			request.setAttribute("projectItems", projectItems);
+			
 			dispatch(request, response, "project_selectOne.jsp");
 		}
 

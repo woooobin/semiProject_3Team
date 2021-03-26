@@ -27,4 +27,6 @@ public interface ProjectsBiz {
 	
 	
 	public int insertHashtags (List<String> hashtags, int projectId);
+	
+	public List<ProjectItemDto> selectProjectItems (int projectId);
 }
