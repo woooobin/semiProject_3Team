@@ -51,6 +51,8 @@ Boolean isUser = false;
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="login.jsp">login</a></li>
 					<li class="nav-item"><a class="nav-link" href="signup.jsp">sign up</a></li>
+					<li class="nav-item"><a class="nav-link" href="orderpage.jsp">결제</a></li>
+					<li class="nav-item"><a class="nav-link" href="shoppingcart.jsp">장바구니</a></li>
 				</nav>
 				<%
 				} else {
