@@ -1,3 +1,4 @@
+<%@page import="com.poosil.login.dto.loginDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -5,6 +6,10 @@ request.setCharacterEncoding("UTF-8");
 %>
 <%
 response.setContentType("text/html; charset=UTF-8");
+%>
+
+<% 
+loginDto dto = (loginDto)session.getAttribute("dto");
 %>
 <style>
 header {
@@ -32,24 +37,25 @@ h1 a {
 </style>
 
 <%
-Boolean isUser = false;
+Boolean isLoggedIn = dto!= null;
 //나중에 유저 인지 아닌지 여기다가 세팅해서 가꼬와
+//isloggedin은 로그인 여부이다. 
 %>
 <header>
 
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4">
-				<li class="nav-item"><a class="nav-link active"
-					aria-current="page" href="#">로고 </a></li>
+				<li class="nav-item">
+					<a class="nav-link active"aria-current="page" href="index.jsp">로고 </a>
+				</li>
 			</div>
 			<div class="col-md-4 offset-md-4 col-auto">
 				<%
-				if (!isUser) {
+				if (!isLoggedIn) {
 				%>
 				<nav class="nav">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="login.jsp">login</a></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="login.jsp">login</a></li>
 					<li class="nav-item"><a class="nav-link" href="signup.jsp">sign up</a></li>
 					<li class="nav-item"><a class="nav-link" href="orderpage.jsp">결제</a></li>
 					<li class="nav-item"><a class="nav-link" href="shoppingcart.jsp">장바구니</a></li>
@@ -57,9 +63,11 @@ Boolean isUser = false;
 				<%
 				} else {
 				%>
-				<nav>
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="mypage.jsp">mypage</a></li>
+				<nav class="nav">
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="login.do?command=mypage&userrole=<%=dto.getUserrole()%>">mypage</a></li>
+					<li class="nav-item"><a class="nav-link" href="login.do?command=logout">logout</a></li>
+					<li class="nav-item"><a class="nav-link" href="orderpage.jsp">결제</a></li>
+					<li class="nav-item"><a class="nav-link" href="shoppingcart.jsp">장바구니</a></li>
 				</nav>
 
 				<% 
@@ -79,3 +87,15 @@ Boolean isUser = false;
 		</nav>
 	</div>
 </header>
+
+
+
+
+
+
+
+
+
+
+
+
