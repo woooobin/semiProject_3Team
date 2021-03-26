@@ -16,7 +16,7 @@
   	
   	<insert id="insert" parameterType="map">
   		INSERT INTO NOTICE
-  		VALUES(NOTICESEQ.NEXTVAL,#{userid}, #{noticetitle}, #{noticecontent}, SYSDATE)
+  		VALUES(NOTICESEQ.NEXTVAL, #{userid}, #{noticetitle}, #{noticecontent}, #{userrole}, SYSDATE, #{usernickname})
   	</insert>
   	
   	<update id="update" parameterType="map">
@@ -37,7 +37,11 @@
   				#{noticeseq}
   			</foreach>
   	</delete>
-  
+  	
+  	<select id="totalCount" resultType="NoticeDto">
+  		SELECT COUNT(*) 
+  		FROM NOTICE
+  	</select>
   	
   
 </mapper>

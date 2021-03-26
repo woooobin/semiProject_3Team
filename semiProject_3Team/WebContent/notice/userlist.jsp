@@ -21,16 +21,6 @@
 <body>
 <%@ include file="../ui/header.jsp" %>
 	<table border="1" style="margin-left: auto; margin-right: auto;">
-		<col width="50">
-		<col width="100">
-		<col width="500">
-		<col width="100">
-		<tr>
-			<th>번호</th>
-			<th>작성자</th>
-			<th>제목</th>
-			<th>작성일</th>
-		</tr>
 		<c:choose>
 			<c:when test="${empty list }">
 				<tr>
@@ -39,15 +29,32 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${list }" var="dto">
+					<tr><td><input type="hidden" value="${dto.noticeseq }"><br/></td></tr>
 					<tr>
-						<td>${dto.noticeseq }</td>
-						<td>${dto.userid }</td>
-						<td><a href="notice.do?command=select&noticeseq=${dto.noticeseq }">${dto.noticetitle }</a></td>
-						<td>${dto.regdate }</td>
+						<td style="color: #00FFCC; font-size: 12px;">공지</td>
+					</tr>
+					<tr>
+						<td style="font-size: 24pt;"><a href="notice.do?command=select&noticeseq=${dto.noticeseq }">${dto.noticetitle }</a></td>
+					</tr>
+					<tr>
+					<c:out value="${dto.usernickname }"> </c:out>
+						<td style="color: #CCCCCC; font-size: 12px">${dto.usernickname }  ${dto.regdate }</td>
+					</tr>
+					<tr><td><br/></td></tr>
+					<tr>
+						<td style="border-bottom: 1px solid #CCCCCC;"></td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-	</table>
+		</table>
+		<table>
+			<br/>
+			<ul class="pagination justify-content-center">
+				<li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
+				<li class="page-item"><a class="page-link" href="notice.do?command=list&page=1">다음</a></li>
+			</ul>
+		</table>
+	
 </body>
 </html>

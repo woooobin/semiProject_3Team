@@ -34,17 +34,19 @@ public class NoticeController extends HttpServlet {
 		//  메인 페이지에서 눌렀을때 작동하도록 메인페이지쪽 controller에서 만들어야함
 		    if(command.equals("list")) {
 		    String userrole = request.getParameter("userrole");
+		    String userId= request.getParameter("userId");
+		    String usernickname = request.getParameter("usernickname");
 			List<NoticeDto> list = biz.selectList();
 			// 이게 맞을까? 이거 물어봐야함.
-			NoticeDto dto = new NoticeDto(0, null, null, null, userrole, null, null);
+			NoticeDto dto = new NoticeDto(0, userId, null, null, userrole, null, usernickname);
 			request.setAttribute("list", list);
 			if(dto != null) {	
 				if(dto.getUserrole().equals("ADMIN")) {
 					dispatch(request, response, "notice/adminlist.jsp");//notice/adminlist.jsp
 				} else {
-					dispatch(request, response, "notice/userlist.jsp");//notice/userlist.jsp
+					dispatch(request, response, "notice/adminlist.jsp");//notice/userlist.jsp
 				}
-			} 
+			}
 			
 		} else if(command.equals("select")) {
 			int noticeseq = Integer.parseInt(request.getParameter("noticeseq"));
@@ -59,12 +61,11 @@ public class NoticeController extends HttpServlet {
 			dispatch(request, response, "notice/insert.jsp");
 			
 		} else if(command.equals("insertres")) {
-			// 이거도 스트링인가?
-			String option = request.getParameter("option");
+			String userid = request.getParameter("userid");
 			String noticetitle = request.getParameter("noticetitle");
 			String noticecontent = request.getParameter("noticecontent");
 			
-			NoticeDto dto = new NoticeDto(0, null, noticetitle, noticecontent, null, null, null);
+			NoticeDto dto = new NoticeDto(0, userid, noticetitle, noticecontent, "ADMIN", null, "nickname");
 			int res = biz.insert(dto);
 			
 			if(res > 0) {
@@ -84,7 +85,6 @@ public class NoticeController extends HttpServlet {
 			
 		} else if(command.equals("updateres")) {
 			int noticeseq = Integer.parseInt(request.getParameter("noticeseq"));
-			String option = request.getParameter("option");
 			String noticetitle = request.getParameter("noticetitle");
 			String noticecontent = request.getParameter("noticecontent");
 			
@@ -93,9 +93,9 @@ public class NoticeController extends HttpServlet {
 			int res = biz.update(dto);
 			
 			if(res > 0) {
-				response.sendRedirect("notice.do?command=select&noticeseq"+noticeseq);
+				response.sendRedirect("notice.do?command=select&noticeseq="+noticeseq);
 			} else {
-				response.sendRedirect("notice.do?command=updateform&noticeseq"+noticeseq);
+				response.sendRedirect("notice.do?command=updateform&noticeseq="+noticeseq);
 			}
 			
 		} else if (command.equals("delete")) {

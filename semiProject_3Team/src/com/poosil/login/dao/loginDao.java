@@ -15,15 +15,15 @@ import com.poosil.util.db.SqlMapConfig;
 public class loginDao extends SqlMapConfig {
 
 	/*
-	 * 관리자(ADMIN) 기능 1. 회원 전체 정보 확인 (탈퇴한 회원도 확인) 2. 회원 전체 정보 확인 (MYENABLED='Y'인 ->
-	 * 탈퇴 안한 회원들의 정보) 3. 회원 등급 조정 (ADMIN <-> USER)
+	 * 愿�由ъ옄(ADMIN) 湲곕뒫 1. �쉶�썝 �쟾泥� �젙蹂� �솗�씤 (�깉�눜�븳 �쉶�썝�룄 �솗�씤) 2. �쉶�썝 �쟾泥� �젙蹂� �솗�씤 (MYENABLED='Y'�씤 ->
+	 * �깉�눜 �븞�븳 �쉶�썝�뱾�쓽 �젙蹂�) 3. �쉶�썝 �벑湲� 議곗젙 (ADMIN <-> USER)
 	 */
 
-	// 1. 전체 정보
+	// 1. �쟾泥� �젙蹂�
 	
 	private String namespace ="com.poosil.login.mapper.";
 	
-	//관리자 유저조회
+	//愿�由ъ옄 �쑀��議고쉶
 	public List<loginDto> selectAllUser() {
 		
 		List<loginDto> list = new ArrayList<loginDto>();
@@ -63,7 +63,7 @@ public class loginDao extends SqlMapConfig {
 		
 	}
 
-	// 2. 전체 정보(탈퇴 안한)(삭제예정)
+	// 2. �쟾泥� �젙蹂�(�깉�눜 �븞�븳)(�궘�젣�삁�젙)
 	public List<loginDto> selectEnabledUser() {
 		return null;
 //		Connection con = getConnection();
@@ -75,10 +75,10 @@ public class loginDao extends SqlMapConfig {
 //
 //		try {
 //			pstm = con.prepareStatement(sql);
-//			System.out.println("3. query 준비 : " + sql);
+//			System.out.println("3. query 以�鍮� : " + sql);
 //
 //			rs = pstm.executeQuery();
-//			System.out.println("4. qeury 실행 및 리턴");
+//			System.out.println("4. qeury �떎�뻾 諛� 由ы꽩");
 //			while (rs.next()) {
 //				loginDto dto = new loginDto();
 //				dto.setUserid(rs.getString(1));;
@@ -100,13 +100,13 @@ public class loginDao extends SqlMapConfig {
 //			e.printStackTrace();
 //		} finally {
 //			close(rs, pstm, con);
-//			System.out.println("5. db 종료");
+//			System.out.println("5. db 醫낅즺");
 //		}
 //
 //		return list;
 	}
 
-	// 3. 회원 등급 조정(삭제예정)
+	// 3. �쉶�썝 �벑湲� 議곗젙(�궘�젣�삁�젙)
 	public int updateRole(String userid , String userole) {
 		
 				
@@ -114,7 +114,7 @@ public class loginDao extends SqlMapConfig {
 	
 
 	}
-	//1.로그인
+	//1.濡쒓렇�씤
 	public loginDto login(String userid ,String password ) {
 		
 		SqlSession session =null;
@@ -134,7 +134,7 @@ public class loginDao extends SqlMapConfig {
 		}finally {
 			session.close();
 		}
-		System.out.println("db종료");
+		System.out.println("db醫낅즺");
 				
 		return dto;
 	
@@ -142,7 +142,7 @@ public class loginDao extends SqlMapConfig {
 	}
 
 
-	// 2. 중복체크
+	// 2. 以묐났泥댄겕
 	public int idCheck(String userid) {
 		
 		SqlSession session = null;
@@ -162,7 +162,7 @@ public class loginDao extends SqlMapConfig {
 
 	}
 
-	// 3. 회원가입
+	// 3. �쉶�썝媛��엯
 	public int insertUser(loginDto dto) {
 		
 		int res =0;
@@ -177,13 +177,13 @@ public class loginDao extends SqlMapConfig {
 		
 	}
 
-	// 4. 정보 조회(수정전)
+	// 4. �젙蹂� 議고쉶(�닔�젙�쟾)
 	public loginDto selectUser(String userid) {
 		
 		return null;
 	}
 
-	// 5. 정보 수정(수정전)
+	// 5. �젙蹂� �닔�젙(�닔�젙�쟾)
 	public int updateUser(loginDto dto) {
 		
 		
@@ -203,10 +203,10 @@ public class loginDao extends SqlMapConfig {
 //			pstm.setString(3, dto.getMyphone());
 //			pstm.setString(4, dto.getMyemail());
 //			pstm.setInt(5, dto.getMyno());
-//			System.out.println("3. query 준비 : " + sql);
+//			System.out.println("3. query 以�鍮� : " + sql);
 //
 //			res = pstm.executeUpdate();
-//			System.out.println("4. query 실행 및 리턴");
+//			System.out.println("4. query �떎�뻾 諛� 由ы꽩");
 //			if (res > 0) {
 //				commit(con);
 //			}
@@ -214,13 +214,13 @@ public class loginDao extends SqlMapConfig {
 //			e.printStackTrace();
 //		} finally {
 //			close(pstm, con);
-//			System.out.println("5. db 종료");
+//			System.out.println("5. db 醫낅즺");
 //		}
 
 //		return res;
 //	}
 
-	// 6. 회원 탈퇴 (update)
+	// 6. �쉶�썝 �깉�눜 (update)
 	public loginDto deleteUser(String userid) {
 		
 		return null;
@@ -235,10 +235,10 @@ public class loginDao extends SqlMapConfig {
 //		try {
 //			pstm = con.prepareStatement(sql);
 //			
-//			System.out.println("3. query 준비 : " + sql);
+//			System.out.println("3. query 以�鍮� : " + sql);
 //			
 //			res = pstm.executeUpdate();
-//			System.out.println("4. query 실행 및 리턴");
+//			System.out.println("4. query �떎�뻾 諛� 由ы꽩");
 //			if (res > 0) {
 //				commit(con);
 //			}

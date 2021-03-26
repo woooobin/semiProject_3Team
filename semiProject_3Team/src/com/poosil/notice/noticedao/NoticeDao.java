@@ -26,10 +26,9 @@ public class NoticeDao extends SqlMapConfig {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-		
-		session.close();
-		
+		} finally {
+			session.close();
+		}
 		return list;
 	}
 	
@@ -56,7 +55,7 @@ public class NoticeDao extends SqlMapConfig {
 		int res = 0;
 		
 		try {
-			SqlSession session = getSqlSessionFactory().openSession(false);
+			SqlSession session = getSqlSessionFactory().openSession(true);
 			res = session.insert("noticemapper.insert", dto);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -70,7 +69,7 @@ public class NoticeDao extends SqlMapConfig {
 		int res = 0;
 		
 		try {
-			SqlSession session = getSqlSessionFactory().openSession(false);
+			SqlSession session = getSqlSessionFactory().openSession(true);
 			res = session.update("noticemapper.update", dto);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -84,7 +83,7 @@ public class NoticeDao extends SqlMapConfig {
 		int res = 0;
 		
 		try {
-			SqlSession session = getSqlSessionFactory().openSession(false);
+			SqlSession session = getSqlSessionFactory().openSession(true);
 			res = session.delete("noticemapper.delete", noticeseq);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -109,4 +108,19 @@ public class NoticeDao extends SqlMapConfig {
 		
 		return count;
 	}
+	
+	public int getTotalCount() {
+		int total = 0;
+		
+		try {
+			SqlSession session = getSqlSessionFactory().openSession(false);
+			//total = session.selectList(arg0, arg1, arg2);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return total;
+	}
+	
 }
