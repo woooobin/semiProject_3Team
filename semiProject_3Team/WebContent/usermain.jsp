@@ -28,7 +28,7 @@
 %>
 
 <body>
-
+	<h1><%=dto.getAvatar() %></h1>
 	<div>
 		<h1><%=dto.getUserid() %>MyPage</h1>
 		<a href="login.do?command=logout">logout</a>

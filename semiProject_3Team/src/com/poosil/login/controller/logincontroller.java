@@ -57,7 +57,7 @@ public class logincontroller extends HttpServlet {
 
 			} else {
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('로그인 실패'); location.href='index.html';</script>");
+				out.println("<script>alert('로그인 실패'); location.href='login.jsp';</script>");
 				out.flush();
 
 			}
@@ -138,6 +138,8 @@ public class logincontroller extends HttpServlet {
 			//String usernickname = request.getParameter("usernickname");
 			String username = request.getParameter("username");
 			
+			
+			
 			loginDto dto = new loginDto();
 			dto.setUserid(userid);
 			dto.setPassword(password);
@@ -149,17 +151,17 @@ public class logincontroller extends HttpServlet {
 			dto.setUsername(username);
 			int res = biz.insertUser(dto);
 			
-
 			if (res > 0) {
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('회원가입 성공!'); location.href='login.html';</script>");
 				out.flush();
-			} else {
+			}else {
 				PrintWriter out = response.getWriter();
 				out.println(
 						"<script>alert('회원가입 실패!'); location.href='login.do?command=signupform';</script>");
 				out.flush();
 			}
+			
 		}else if(command.equals("myinfo")) {
 			String userid = request.getParameter("userid");
 			System.out.println(userid);

@@ -88,7 +88,8 @@
 			</tr>
 			<tr>
 				<th>프로필사진</th>
-				<td><input type="text" name="avatar" required="required" onclick="idCheckProc();" /></td>
+				<td><input type="text" name="avatar" required="required" onclick="idCheckProc();"  />
+				</td>
 			</tr>
 			<tr>
 				<td>

@@ -104,7 +104,30 @@ body {
   text-align: center;
 }
 </style>
+
+ <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+    
 <body width="100%" height="100%">
+   <script type="text/javascript">	
+    Kakao.init("d785007a1b76ece9b8555123982ff2f0");
+    
+    function kakaoLogin() {
+		Kakao.Auth.login({
+			scope:'profile,account_email,birthday',
+			success: function(authObj) {
+				console.log(authObj);
+				alert(JSON.stringify(authObj));
+			},
+			fail: function(authObj){
+				alert(JSON.stringify(err));
+			}
+		});
+	}
+    
+    </script> 	
+    
+    
     <form action="login.do" method="post" class="loginForm">
       <h2>Login</h2>
       <div class="idForm">
@@ -117,12 +140,44 @@ body {
       <input type="submit" class="btn" value="login"/>
      
       <div class="bottomText">
-        Don't you have ID? <a href="#">sign up</a>
+        Don't you have ID? <a href="signup.jsp">sign up</a>
       </div>
-      
+      <a href="javascript:kakaoLogin();" > <img src="kakaologoinimg/kakao_login_small.png"></a>
     </form>
+   
+    
     
   </body>
 
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
