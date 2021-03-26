@@ -27,7 +27,7 @@ public class loginDao extends SqlMapConfig {
 
 	// 1. 전체 정보
 	
-	private String namespace ="com.poosil.login.login-mapper.";
+	private String namespace ="com.poosil.login.mapper.";
 	
 	//관리자 유저조회
 	public List<loginDto> selectAllUser() {

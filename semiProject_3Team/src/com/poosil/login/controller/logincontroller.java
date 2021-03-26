@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;  
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +39,7 @@ public class logincontroller extends HttpServlet {
 			String userid = request.getParameter("userid");
 			String password = request.getParameter("password");
 
-			HttpSession session = request.getSession();  
+			HttpSession session = request.getSession();
 
 			loginDto dto = biz.login(userid, password);
 
@@ -48,31 +48,42 @@ public class logincontroller extends HttpServlet {
 				// 일반적으로 로그인 정보 session에 담는다. 만료되기 전 까지 페이지 전체에 적용 가능. request 보다 session에.
 				session.setAttribute("dto", dto);
 				// 만료되는 시간 설정 (default: 30분)
+
 				if (dto.getUserrole().equals("ADMIN")) {
-					dispatch(request, response, "adminmain.jsp");
+					dispatch(request, response, "index.jsp");
 				} else if (dto.getUserrole().equals("USER")) {
-					dispatch(request, response, "usermain.jsp");
-
+					dispatch(request, response, "index.jsp");
 				}
-
 			} else {
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('로그인 실패'); location.href='login.jsp';</script>");
 				out.flush();
-
 			}
 
-		}else if(command.equals("adminback")){
+		} else if (command.equals("mypage")) {
+
+			System.out.println("제발");
+			String userrole = request.getParameter("userrole");
+			System.out.println(userrole);
+			if (userrole.equals("ADMIN")) {
+				response.sendRedirect("adminmain.jsp");
+				// dispatch(request, response, "adminmain.jsp");
+			} else if (userrole.equals("USER")) {
+				response.sendRedirect("usermain.jsp");
+				// dispatch(request, response, "usermain.jsp");
+			}
+
+		} else if (command.equals("adminback")) {
 			dispatch(request, response, "adminmain.jsp");
-			
-		}else if(command.equals("userback")) {
+
+		} else if (command.equals("userback")) {
 			dispatch(request, response, "usermain.jsp");
 		} else if (command.equals("logout")) {
 			HttpSession session = request.getSession();
 			// session scope에서 값 삭제 (만료)
 			// 클라이언트 하나(브라우저 하나)를 관리하는게 session 하나.
 			session.invalidate();
-			response.sendRedirect("login.jsp");
+			response.sendRedirect("index.jsp");
 
 		} else if (command.equals("listall")) {
 			// 1. 보내준 값이 있니?
@@ -114,7 +125,7 @@ public class logincontroller extends HttpServlet {
 			response.sendRedirect("signup.jsp");
 
 		} else if (command.equals("idchk")) {
-			
+
 			String userid = request.getParameter("userid");
 			int result = biz.idCheck(userid);
 			System.out.println(userid);
@@ -130,16 +141,14 @@ public class logincontroller extends HttpServlet {
 			String useremail = request.getParameter("useremail");
 			int userphone = Integer.parseInt(request.getParameter("userphone"));
 			String address = request.getParameter("address");
-			//String addresslatitude = request.getParameter("addresslatitude");
-			//String addresslongitude = request.getParameter("addresslongitude");
+			// String addresslatitude = request.getParameter("addresslatitude");
+			// String addresslongitude = request.getParameter("addresslongitude");
 			String isseller = request.getParameter("isseller");
-			//String sellersopt = request.getParameter("sellersopt");
+			// String sellersopt = request.getParameter("sellersopt");
 			String avatar = request.getParameter("avatar");
-			//String usernickname = request.getParameter("usernickname");
+			// String usernickname = request.getParameter("usernickname");
 			String username = request.getParameter("username");
-			
-			
-			
+
 			loginDto dto = new loginDto();
 			dto.setUserid(userid);
 			dto.setPassword(password);
@@ -150,25 +159,24 @@ public class logincontroller extends HttpServlet {
 			dto.setAvatar(avatar);
 			dto.setUsername(username);
 			int res = biz.insertUser(dto);
-			
+
 			if (res > 0) {
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('회원가입 성공!'); location.href='login.html';</script>");
 				out.flush();
-			}else {
+			} else {
 				PrintWriter out = response.getWriter();
-				out.println(
-						"<script>alert('회원가입 실패!'); location.href='login.do?command=signupform';</script>");
+				out.println("<script>alert('회원가입 실패!'); location.href='login.do?command=signupform';</script>");
 				out.flush();
 			}
-			
-		}else if(command.equals("myinfo")) {
+
+		} else if (command.equals("myinfo")) {
 			String userid = request.getParameter("userid");
 			System.out.println(userid);
 			loginDto dto = biz.selectMy(userid);
-			
-			request.setAttribute("dto",dto );
-			
+
+			request.setAttribute("dto", dto);
+
 			System.out.println(dto);
 			dispatch(request, response, "myinfo.jsp");
 		}
