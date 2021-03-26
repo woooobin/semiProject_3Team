@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%
+	pageEncoding="UTF-8"%>
+<%
 request.setCharacterEncoding("UTF-8");
 %>
 <%
@@ -23,25 +23,41 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<%@ include file="./ui/header.jsp"%>
-<h1> select One</h1>
-<c:set var="dto" value="${requestScope.dto}"/>
-projectId = ${dto.projectId}
-projectMainTitle = ${dto.projectMainTitle}
-projectSubTitle = ${dto.projectSubTitle }
-thumbImage = <img src="${dto.thumbImage}" width="100"/>
+	<%@ include file="./ui/header.jsp"%>
+	<h1>select One</h1>
+	<c:set var="dto" value="${requestScope.dto}" />
+	<%-- <c:set var="projectItems" value="${requestScope.projectItems}" /> --%>
 
-		goalPrice = ${dto.goalPrice }
-		totalPrice = ${dto.totalPrice }
-		soldCount = ${dto.soldCount }
-		likeCount= ${dto.likeCount },
-		${dto.projectCategory },
-		
-		
-		<div class="description"></div>
-		projectStartDate  = ${dto.projectStartDate },
-	projectEndDate = 	${dto.projectEndDate }
-		
 
+	<a href="chatting.jsp"> chatting </a> projectId = ${dto.projectId}
+	projectMainTitle = ${dto.projectMainTitle} projectSubTitle =
+	${dto.projectSubTitle } thumbImage =
+	<img src="${dto.thumbImage}" width="100" /> goalPrice = ${dto.goalPrice }
+	totalPrice = ${dto.totalPrice } soldCount = ${dto.soldCount }
+	likeCount= ${dto.likeCount }, ${dto.projectCategory },
+
+
+	<div class="description"></div>
+	projectStartDate = ${dto.projectStartDate }, projectEndDate =
+	${dto.projectEndDate }
+
+	<c:choose>
+		<c:when test="${empty projectItems}">
+			<tr>
+				<td colspan="4" align="center">========== no content ==========</td>
+			</tr>
+		</c:when>
+		<c:otherwise>
+			<c:forEach items="${projectItems}" var="projectItem">
+				<p>projectItemName = ${projectItem.projectItemName}</p>
+				<p>projectItemSeq = ${projectItem.projectItemSeq}</p>
+				<p>projectItemDesc = ${projectItem.projectItemDesc}</p>
+				<p>shippingFee = ${projectItem.shippingFee}</p>
+				<p>quantity = ${projectItem.quantity}</p>
+				<p>thumbImage = ${projectItem.thumbImage}</p>
+				<p>${projectItem.projectId}</p>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>

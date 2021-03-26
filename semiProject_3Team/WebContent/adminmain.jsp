@@ -17,7 +17,7 @@
 	우리는 : http 1.1 
 		
 */%>
-
+<!-- com.poosil.login.dto.loginDto -->
 <%@page import="com.poosil.login.dto.loginDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

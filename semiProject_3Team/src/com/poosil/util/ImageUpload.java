@@ -31,7 +31,7 @@ public class ImageUpload extends HttpServlet {
 			throws ServletException, IOException {
 
 		// 게시글 원글 등록 처리용 컨트롤러
-		System.out.println("hrere");
+		
 		request.setCharacterEncoding("utf-8");
 		// 업로드할 파일의 용량 제한 : 10Mbyte로 제한한다면
 
@@ -40,7 +40,7 @@ public class ImageUpload extends HttpServlet {
 		RequestDispatcher view = null;
 
 		String root = request.getSession().getServletContext().getRealPath("/");
-
+//		System.out.println(root);
 		// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
 
 		String savePath = root + "image";

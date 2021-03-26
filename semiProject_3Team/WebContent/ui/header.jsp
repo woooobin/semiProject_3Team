@@ -51,6 +51,8 @@ Boolean isUser = false;
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="login.jsp">login</a></li>
 					<li class="nav-item"><a class="nav-link" href="signup.jsp">sign up</a></li>
+					<li class="nav-item"><a class="nav-link" href="orderpage.jsp">결제</a></li>
+					<li class="nav-item"><a class="nav-link" href="shoppingcart.jsp">장바구니</a></li>
 				</nav>
 				<%
 				} else {
@@ -73,7 +75,7 @@ Boolean isUser = false;
 			<li class="nav-item"><a class="nav-link" href="#">랭킹</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">이용가이드</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">자유게시판</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">공지게시판</a></li>
+			<li class="nav-item"><a class="nav-link" href="notice.do?command=list&userrole=">공지게시판</a></li>
 		</nav>
 	</div>
 </header>

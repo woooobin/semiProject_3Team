@@ -20,4 +20,14 @@
   	<url-pattern>/login.do</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>PAY</servlet-name>
+  	<servlet-class>com.poosil.pay.controller.PayController</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>PAY</servlet-name>
+  	<url-pattern>/pay.do</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
