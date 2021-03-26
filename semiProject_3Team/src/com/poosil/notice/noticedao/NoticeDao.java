@@ -5,10 +5,10 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.poosil.notice.noticedb.sqlMapConfig;
 import com.poosil.notice.noticedto.NoticeDto;
+import com.poosil.util.db.SqlMapConfig;
 
-public class NoticeDao extends sqlMapConfig {
+public class NoticeDao extends SqlMapConfig {
 	
 	public List<NoticeDto> selectList(){
 		

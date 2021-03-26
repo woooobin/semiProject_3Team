@@ -113,7 +113,7 @@
 	<select id="selectProjectItems" parameterType="int" resultType="ProjectItemDto">
 		SELECT 
 			PROJECTITEMSEQ, PROJECTITEMNAME, PROJECTITEMDESC, SHIPPINGFEE, QUANTITY, THUMBIMAGE, PROJECTID, PRICE 
-		FROM PROJECTIEM
+		FROM PROJECTITEM
 		WHERE PROJECTID = #{projectId}
 	</select>
 	
