@@ -60,20 +60,13 @@ response.setContentType("text/html; charset=UTF-8");
 </head>
 
 <body>
-<%@ include file="../ui/header.jsp" %>
+
 </br>
-   
+   	<jsp:useBean id="dto" class="com.poosil.notice.noticedto.NoticeDto" scope="request"></jsp:useBean>
     <form action="notice.do" method="post">
     	<input type="hidden" name="command" value="insertres">
+    	<input type="hidden" name="userid" value='<jsp:getProperty property="userid" name="dto"/>'>
     	<table border="1" style="margin-left: auto; margin-right: auto;">
-    		<tr>
-				<th>분류</th>
-				<td><select name="option" >
-					<option value="all">전체</option>
-					<option value="notice">공지</option>
-					<option value="event">이벤트</option>
-				</select></td>
-			</tr>
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="noticetitle" placeholder="writer title here" /></td>
@@ -85,7 +78,7 @@ response.setContentType("text/html; charset=UTF-8");
 			<tr>
 				<td colspan="2" align="right">
 					 <input type="submit" value="작성" />
-					 <input type="button" value="취소" onclick="notice.do?command=list" />
+					 <input type="button" value="취소" onclick="location.href='notice.do?command=list'" />
 				</td>
 			</tr>
        </table> 

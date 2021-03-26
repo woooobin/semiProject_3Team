@@ -8,10 +8,10 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.poosil.notice.noticedb.sqlMapConfig;
 import com.poosil.notice.noticedto.NoticeDto;
+import com.poosil.util.db.SqlMapConfig;
 
-public class NoticeDao extends sqlMapConfig {
+public class NoticeDao extends SqlMapConfig {
 	
 	public List<NoticeDto> selectList(){
 		
@@ -55,7 +55,7 @@ public class NoticeDao extends sqlMapConfig {
 		int res = 0;
 		
 		try {
-			SqlSession session = getSqlSessionFactory().openSession(false);
+			SqlSession session = getSqlSessionFactory().openSession(true);
 			res = session.insert("noticemapper.insert", dto);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -69,7 +69,7 @@ public class NoticeDao extends sqlMapConfig {
 		int res = 0;
 		
 		try {
-			SqlSession session = getSqlSessionFactory().openSession(false);
+			SqlSession session = getSqlSessionFactory().openSession(true);
 			res = session.update("noticemapper.update", dto);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -83,7 +83,7 @@ public class NoticeDao extends sqlMapConfig {
 		int res = 0;
 		
 		try {
-			SqlSession session = getSqlSessionFactory().openSession(false);
+			SqlSession session = getSqlSessionFactory().openSession(true);
 			res = session.delete("noticemapper.delete", noticeseq);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

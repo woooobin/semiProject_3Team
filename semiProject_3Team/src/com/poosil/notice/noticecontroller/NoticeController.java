@@ -61,12 +61,11 @@ public class NoticeController extends HttpServlet {
 			dispatch(request, response, "notice/insert.jsp");
 			
 		} else if(command.equals("insertres")) {
-			// 이거도 스트링인가?
-			String option = request.getParameter("option");
+			String userid = request.getParameter("userid");
 			String noticetitle = request.getParameter("noticetitle");
 			String noticecontent = request.getParameter("noticecontent");
 			
-			NoticeDto dto = new NoticeDto(0, null, noticetitle, noticecontent, null, null, null);
+			NoticeDto dto = new NoticeDto(0, userid, noticetitle, noticecontent, "ADMIN", null, "nickname");
 			int res = biz.insert(dto);
 			
 			if(res > 0) {
@@ -86,7 +85,6 @@ public class NoticeController extends HttpServlet {
 			
 		} else if(command.equals("updateres")) {
 			int noticeseq = Integer.parseInt(request.getParameter("noticeseq"));
-			String option = request.getParameter("option");
 			String noticetitle = request.getParameter("noticetitle");
 			String noticecontent = request.getParameter("noticecontent");
 			
@@ -95,9 +93,9 @@ public class NoticeController extends HttpServlet {
 			int res = biz.update(dto);
 			
 			if(res > 0) {
-				response.sendRedirect("notice.do?command=select&noticeseq"+noticeseq);
+				response.sendRedirect("notice.do?command=select&noticeseq="+noticeseq);
 			} else {
-				response.sendRedirect("notice.do?command=updateform&noticeseq"+noticeseq);
+				response.sendRedirect("notice.do?command=updateform&noticeseq="+noticeseq);
 			}
 			
 		} else if (command.equals("delete")) {

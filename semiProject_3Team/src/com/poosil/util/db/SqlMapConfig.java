@@ -8,13 +8,13 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 public class SqlMapConfig {
-private SqlSessionFactory sqlSessionFactory;
-	
+	private SqlSessionFactory sqlSessionFactory;
+
 	public SqlSessionFactory getSqlSessionFactory() {
-		
+
 		String resource = "com/poosil/util/db/mybatis-config.xml";
 		Reader reader = null;
-		
+
 		try {
 			reader = Resources.getResourceAsReader(resource);
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
@@ -29,8 +29,7 @@ private SqlSessionFactory sqlSessionFactory;
 				e.printStackTrace();
 			}
 		}
-		
-		
+
 		return sqlSessionFactory;
 	}
 }

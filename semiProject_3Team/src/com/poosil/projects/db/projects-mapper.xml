@@ -13,7 +13,7 @@
 		projectCategory, 
 		projectStartDate,
 		projectEndDate
-	 FROM PROJECTS
+	FROM PROJECTS
 	ORDER BY projectId DESC
 	</select>
 	<select id="selectOne" resultType="ProjectDto" parameterType="int">
@@ -87,5 +87,57 @@
 		) 
 		</foreach>
 	</insert>
+	
+	<select id="selectExistHashtags" parameterType="String" resultType="String"> 
+		SELECT HASHTAGNAME FROM HASHTAG WHERE 
+		HASHTAGNAME = #{hashtagName}
+	</select>
+	
+	
+	<insert id="insertHashtags" parameterType="String">
+		INSERT INTO HASHTAG ( hashtagSeq , hashtagName ) VALUES
+		(
+			HASHTAG_SEQ.NEXTVAL,
+			#{ hashtagName }
+		)
+	</insert>
+		
+	<insert id="insertProjectHashtags" parameterType="HashMap">
+		INSERT INTO PROJECTHASHTAG (PROJECTHASHTAGSEQ, HASHTAGSEQ, PROJECTID ) VALUES (
+			PROJECT_HASHTAG_SEQ.NEXTVAL , 
+			(SELECT HASHTAGSEQ FROM HASHTAG WHERE HASHTAGNAME = #{ hashtagName } ),
+			#{projectId}
+		)
+	</insert>
+	
+	<select id="selectProjectItems" parameterType="int" resultType="ProjectItemDto">
+		SELECT 
+			PROJECTITEMSEQ, PROJECTITEMNAME, PROJECTITEMDESC, SHIPPINGFEE, QUANTITY, THUMBIMAGE, PROJECTID, PRICE 
+		FROM PROJECTITEM
+		WHERE PROJECTID = #{projectId}
+	</select>
+	
+	<select id="selectProjectHashtags" parameterType="int" resultType="HashtagDto" >
+	SELECT HASHTAGNAME, HASHTAGSEQ FROM HASHTAG WHERE HASHTAGSEQ IN 
+		(SELECT HASHTAGSEQ FROM PROJECTHASHTAG WHERE PROJECTID = #{projectId} )
+	</select>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

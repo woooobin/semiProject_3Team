@@ -30,8 +30,8 @@ public class ImageUpload extends HttpServlet {
 
 			throws ServletException, IOException {
 
-		// 寃뚯떆湲� �썝湲� �벑濡� 泥섎━�슜 而⑦듃濡ㅻ윭
-		System.out.println("hrere");
+		// 게시글 원글 등록 처리용 컨트롤러
+		
 		request.setCharacterEncoding("utf-8");
 		// �뾽濡쒕뱶�븷 �뙆�씪�쓽 �슜�웾 �젣�븳 : 10Mbyte濡� �젣�븳�븳�떎硫�
 
@@ -40,9 +40,8 @@ public class ImageUpload extends HttpServlet {
 		RequestDispatcher view = null;
 
 		String root = request.getSession().getServletContext().getRealPath("/");
-		System.out.println(root);
-
-		// �뾽濡쒕뱶�릺�뒗 �뙆�씪�씠 ���옣�맆 �뤃�뜑紐낃낵 寃쎈줈 �뿰寃� 泥섎━
+//		System.out.println(root);
+		// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
 
 		String savePath = root + "image";
 

@@ -61,22 +61,15 @@ response.setContentType("text/html; charset=UTF-8");
 
 <body>
 <%@ include file="../ui/header.jsp" %>
-</br>
-   
-    <form action="notice.do" method="post">
+<br/>
+	<jsp:useBean id="dto" class="com.poosil.notice.noticedto.NoticeDto" scope="request"></jsp:useBean>
+	<form action="notice.do" method="post">
     	<input type="hidden" name="command" value="updateres">
+    	<input type="hidden" name="noticeseq" value='<jsp:getProperty property="noticeseq" name="dto"/>'/>
     	<table border="1" style="margin-left: auto; margin-right: auto;">
-    		<tr>
-				<th>분류</th>
-				<td><select name="option" >
-					<option value="all">전체</option>
-					<option value="notice">공지</option>
-					<option value="event">이벤트</option>
-				</select></td>
-			</tr>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="noticetitle" placeholder="writer title here" value='<jsp:getProperty property="noticetitle" name="dto"/>'/></td>
+				<td><input type="text" name="noticetitle" value='<jsp:getProperty property="noticetitle" name="dto"/>'/></td>
 			</tr>
 			<tr>
 				<th style="vertical-align: middle;">내용</th>
@@ -91,5 +84,4 @@ response.setContentType("text/html; charset=UTF-8");
        </table> 
     </form>
 </body>
-
 </html>
