@@ -14,6 +14,7 @@ import com.poosil.util.db.SqlMapConfig;
 
 
 
+
 public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
 	public List<ProjectDto> selectList() {
 
@@ -214,4 +215,24 @@ public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
 		return projectItems;
 	}
 
+	public List<HashtagDto > selectProjectHashtag ( int projectId ){
+		SqlSession session = null;
+
+		List<HashtagDto> projectHashtags = new ArrayList<HashtagDto>();
+		try {
+			session = getSqlSessionFactory().openSession(true);
+			
+			projectHashtags = session.selectList("projects-mapper.selectProjectHashtags", projectId);
+			
+			System.out.println(" selectProjectHashtags succeed " + projectHashtags );
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		session.close();
+		
+		return projectHashtags;
+		
+	}
 }

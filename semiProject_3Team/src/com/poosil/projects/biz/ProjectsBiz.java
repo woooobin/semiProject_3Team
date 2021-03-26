@@ -3,6 +3,7 @@ package com.poosil.projects.biz;
 import java.util.List;
 import java.util.Map;
 
+import com.poosil.projects.dto.HashtagDto;
 import com.poosil.projects.dto.ProjectDto;
 import com.poosil.projects.dto.ProjectItemDto;
 
@@ -29,4 +30,5 @@ public interface ProjectsBiz {
 	public int insertHashtags (List<String> hashtags, int projectId);
 	
 	public List<ProjectItemDto> selectProjectItems (int projectId);
+	public List<HashtagDto> selectProjectHashtags(int projectId);
 }

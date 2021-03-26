@@ -85,6 +85,10 @@ public class ProjectsBizImpl implements ProjectsBiz{
 	public List<ProjectItemDto> selectProjectItems(int projectId) {
 		return dao.selectProjectItems(projectId);
 	}
+	@Override
+	public List<HashtagDto> selectProjectHashtags(int projectId) {
+		return dao.selectProjectHashtag(projectId);
+	}
 	
 	
 

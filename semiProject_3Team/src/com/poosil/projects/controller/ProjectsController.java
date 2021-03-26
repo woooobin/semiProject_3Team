@@ -19,6 +19,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.poosil.projects.biz.ProjectsBiz;
 import com.poosil.projects.biz.ProjectsBizImpl;
+import com.poosil.projects.dto.HashtagDto;
 import com.poosil.projects.dto.ProjectDto;
 import com.poosil.projects.dto.ProjectItemDto;
 
@@ -129,16 +130,22 @@ public class ProjectsController extends HttpServlet {
 			// =============== end select List ===============//
 		} else if (command.equals("selectOne")) {
 			int projectId = Integer.parseInt(request.getParameter("projectId"));
-			// System.out.println(projectId);
+			
 			ProjectDto dto = biz.selectOne(projectId);
 
 			System.out.println("dto = " + dto);
+			
 			request.setAttribute("dto", dto);
 			
 			List<ProjectItemDto> projectItems = new ArrayList<ProjectItemDto>();
 			
 			projectItems = biz.selectProjectItems(projectId);
 			request.setAttribute("projectItems", projectItems);
+
+			List<HashtagDto> projectHashtags = new ArrayList<HashtagDto>();
+			projectHashtags = biz.selectProjectHashtags(projectId);
+			
+			request.setAttribute("projectHashtags", projectHashtags);
 			
 			dispatch(request, response, "project_selectOne.jsp");
 		}

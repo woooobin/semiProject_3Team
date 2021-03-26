@@ -1,16 +1,10 @@
 package com.poosil.login.dao;
 
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.websocket.Session;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -27,7 +21,7 @@ public class loginDao extends SqlMapConfig {
 
 	// 1. 전체 정보
 	
-	private String namespace ="com.poosil.login.login-mapper.";
+	private String namespace ="com.poosil.login.mapper.";
 	
 	//관리자 유저조회
 	public List<loginDto> selectAllUser() {
