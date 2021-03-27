@@ -106,7 +106,8 @@ body {
 </style>
 
  <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     
 <body width="100%" height="100%">
    <script type="text/javascript">	
@@ -124,8 +125,8 @@ body {
 			}
 		});
 	}
-    
-    </script> 	
+    </script> 
+ 
     
     
     <form action="login.do" method="post" class="loginForm">
@@ -142,9 +143,24 @@ body {
       <div class="bottomText">
         Don't you have ID? <a href="signup.jsp">sign up</a>
       </div>
+       <div id="naver_id_login">
+       
+       </div> 
       <a href="javascript:kakaoLogin();" > <img src="kakaologoinimg/kakao_login_small.png"></a>
+  		
     </form>
    
+    <!-- 네이버 로그인 -->
+  <script type="text/javascript">
+  	var naver_id_login = new naver_id_login("x_5pD8D2hV0OEmqLImlt", "http://localhost:8787/semiProject_3Team/naverlogincallback.jsp");
+  	var state = naver_id_login.getUniqState();
+  	naver_id_login.setButton("green", 3,40);
+  	naver_id_login.setDomain("http://localhost:8787");
+  	naver_id_login.setState(state);
+  	naver_id_login.setPopup();
+  	naver_id_login.init_naver_id_login();
+  </script>	
+    
     
     
   </body>

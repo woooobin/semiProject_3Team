@@ -50,9 +50,12 @@ public class logincontroller extends HttpServlet {
 				// 만료되는 시간 설정 (default: 30분)
 
 				if (dto.getUserrole().equals("ADMIN")) {
+					session.setAttribute("sessionID", userid);
 					dispatch(request, response, "index.jsp");
 				} else if (dto.getUserrole().equals("USER")) {
+					session.setAttribute("sessionID", userid);
 					dispatch(request, response, "index.jsp");
+					
 				}
 			} else {
 				PrintWriter out = response.getWriter();
@@ -140,6 +143,7 @@ public class logincontroller extends HttpServlet {
 			String password = request.getParameter("password");
 			String useremail = request.getParameter("useremail");
 			int userphone = Integer.parseInt(request.getParameter("userphone"));
+			System.out.println(request.getParameter("userphone"));
 			String address = request.getParameter("address");
 			// String addresslatitude = request.getParameter("addresslatitude");
 			// String addresslongitude = request.getParameter("addresslongitude");
@@ -154,6 +158,7 @@ public class logincontroller extends HttpServlet {
 			dto.setPassword(password);
 			dto.setUseremail(useremail);
 			dto.setUserphone(userphone);
+			
 			dto.setAddress(address);
 			dto.setIsseller(isseller);
 			dto.setAvatar(avatar);
@@ -162,7 +167,7 @@ public class logincontroller extends HttpServlet {
 
 			if (res > 0) {
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('회원가입 성공!'); location.href='login.html';</script>");
+				out.println("<script>alert('회원가입 성공!'); location.href='index.jsp';</script>");
 				out.flush();
 			} else {
 				PrintWriter out = response.getWriter();
@@ -170,7 +175,7 @@ public class logincontroller extends HttpServlet {
 				out.flush();
 			}
 
-		} else if (command.equals("myinfo")) {
+		} else if (command.equals("userupdate")) {
 			String userid = request.getParameter("userid");
 			System.out.println(userid);
 			loginDto dto = biz.selectMy(userid);
@@ -178,7 +183,7 @@ public class logincontroller extends HttpServlet {
 			request.setAttribute("dto", dto);
 
 			System.out.println(dto);
-			dispatch(request, response, "myinfo.jsp");
+			dispatch(request, response, "userupdate.jsp");
 		}
 
 	}

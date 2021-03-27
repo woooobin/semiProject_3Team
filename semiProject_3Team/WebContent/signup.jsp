@@ -9,6 +9,7 @@
   	<!-- Bootstrap CSS -->
     <link href="./styles/bootstrap.min.css" rel="stylesheet" >
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	
 	function idCheckProc() {
@@ -32,6 +33,32 @@
 			open("login.do?command=idchk&userid="+userid, "", "width=200, height=200");
 		}
 	}
+	$(document).ready(function () {
+		$(".imageInput").on("change", function () {
+
+			data = new FormData();
+			data.append("uploadFile", $(this)[0].files[0]);
+
+			const currentInput = $(this);
+			$.ajax({ // ajax를 통해 파일 업로드 처리
+				data: data,
+				type: "POST",
+				url: "imageUpload.do",
+				cache: false,
+				contentType: false,
+				processData: false,
+				success: function (data) { // 처리가 성공할 경우
+					// 에디터에 이미지 출력
+					console.log("succes =", data)
+					const url = "image/" + JSON.parse(data).url;
+
+					/* $(".imageInput").eq(this).val(url) */
+					currentInput.next().val(url);
+				}
+			});
+		})
+	});
+
 </script>
 </head>
 <body>
@@ -88,7 +115,11 @@
 			</tr>
 			<tr>
 				<th>프로필사진</th>
-				<td><input type="text" name="avatar" required="required" onclick="idCheckProc();"  />
+				<td><!--<input type="text" name="avatar" required="required" onclick="idCheckProc();"  />-->
+				<div>
+						<input type="file" class="imageInput"  />
+						<input type="text" id="thumbnailImage" name="avatar" />
+					</div>
 				</td>
 			</tr>
 			<tr>
