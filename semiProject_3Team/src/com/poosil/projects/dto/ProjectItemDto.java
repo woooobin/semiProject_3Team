@@ -8,12 +8,12 @@ public class ProjectItemDto {
 	private int quantity;
 	private String thumbImage;
 	private int projectId;
-	
+	private int price;
 	
 	public ProjectItemDto() {};
 	
 	public ProjectItemDto(int projectItemSeq, String projectItemName, String projectItemDesc, int shippingFee,
-			int quantity, String thumbImage, int projectId) {
+			int quantity, String thumbImage, int projectId, int price) {
 		super();
 		this.projectItemSeq = projectItemSeq;
 		this.projectItemName = projectItemName;
@@ -22,8 +22,8 @@ public class ProjectItemDto {
 		this.quantity = quantity;
 		this.thumbImage = thumbImage;
 		this.projectId = projectId;
+		this.price = price;
 	}
-	
 	
 	public int getProjectItemSeq() {
 		return projectItemSeq;
@@ -67,7 +67,11 @@ public class ProjectItemDto {
 	public void setProjectId(int projectId) {
 		this.projectId = projectId;
 	}
-	
-	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	
 }

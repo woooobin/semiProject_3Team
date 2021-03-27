@@ -98,9 +98,9 @@ public class ProjectsController extends HttpServlet {
 					int shippingFee = projectItemsArray.get(i).getAsJsonObject().get("shippingFee").getAsInt();
 					int quantity = projectItemsArray.get(i).getAsJsonObject().get("quantity").getAsInt();
 					String ItemThumbImage = projectItemsArray.get(i).getAsJsonObject().get("thumbImage").getAsString();
-
+					int price = projectItemsArray.get(i).getAsJsonObject().get("price").getAsInt();
 					ProjectItemDto dto = new ProjectItemDto(0, projectItemName, projectItemDesc, shippingFee, quantity,
-							ItemThumbImage, projectId);
+							ItemThumbImage, projectId, price);
 
 					list.add(dto);
 				}

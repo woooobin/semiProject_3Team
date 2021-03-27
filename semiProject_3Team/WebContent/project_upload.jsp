@@ -94,6 +94,7 @@ response.setContentType("text/html; charset=UTF-8");
 					shippingFee: x.querySelector(".shippingFee").value,
 					quantity: x.querySelector(".quantity").value,
 					thumbImage: x.querySelector(".thumbnailImage").value,
+					price : x.querySelector(".price").value
 				}
 			});
 			
@@ -192,7 +193,7 @@ response.setContentType("text/html; charset=UTF-8");
 					<input type="text" class="thumbnailImage" name="thumbImage" />
 					<br />
 					<input type="text" name="shippingFee" placeholder="배송비" value="3000" class="form-control shippingFee" />
-
+					<input type="text" name="price" placeholder="물품의 가격" class="form-control price"/>
 					<input type="number" name="quantity" placeholder="수량" value="5" class="form-control quantity" />
 				</div>
 			</div>
