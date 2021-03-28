@@ -14,6 +14,10 @@
 <body>
 
     <h1>mypage</h1>
+    
+    <div>
+    	<a href="pay.do?comman=custompaylist">개인 결제 내역 조회</a>
+    </div>
 </body>
 
 </html>
