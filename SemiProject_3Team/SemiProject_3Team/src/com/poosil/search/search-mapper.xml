@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="search-mapper">
+	
+
+	<select id="searchList" resultType="ProjectDto">
+		SELECT *
+		FROM PROJECTS
+		<choose>
+			<when test="searchOption == 'all'">
+				WHERE (projectMainTitle LIKE '%' || #{keyword} || '%'
+				OR projectSubTitle LIKE '%' || #{keyword} || '%'
+				OR projectCategory LIKE '%' || #{keyword} || '%')
+			</when>
+			<otherwise>
+				WHERE ${searchOption} LIKE '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+		ORDER BY projectId DESC
+	</select>
+	
+	<!-- 조회수 -->
+	<update id = "viewcount" parameterType="ProjectDto">
+		UPDATE PROJECTS
+		SET HIT = HIT + 1
+		WHERE NO = #{NO}
+	</update>
+
+</mapper>
