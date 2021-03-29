@@ -5,31 +5,25 @@
 <%@page import="com.poosil.login.dto.loginDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
-<%
-	response.setContentType("text/html; charset=UTF-8");
-%>
+<%	request.setCharacterEncoding("UTF-8");%>
+<%  response.setContentType("text/html; charset=UTF-8");%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 </head>
-<%
-	loginDto dto = (loginDto)session.getAttribute("dto");
-	System.out.println(dto);
-	if (dto == null) {
-		pageContext.forward("index.html");
-	}
-%>
+
+<%loginDto dto = (loginDto)session.getAttribute("dto");%>
 
 <body>
 	<h1>MyPage</h1>
-	<h2><%=dto.getUserid() %>님, 환영합니다.</h2>
+	<h2><%=dto.getUserid() %>
+	<%session.setAttribute("userid", request.getAttribute("userid"));%><%session.setAttribute("password", request.getAttribute("password"));%>	
+	님, 환영합니다.</h2>
 	<div>
 	<input type="button" value="MainPage" onclick="location.href='index.jsp'"/>
 	</div>
@@ -37,10 +31,10 @@
 		</tr>
 			<tr>
 			<th>프로필사진</th>
-			<td><%=dto.getAvatar() %></td>
+			<td><img alt="프로필사진" src="<%=dto.getAvatar() %>"></td>
 		</tr>
 		<tr>
-			<th>닉네임 </th>
+			<th>닉네임 </th>	
 			<td><%=dto.getUsernickname() %> </td>
 		</tr>
 		
@@ -57,13 +51,9 @@
 			<th>주소 </th>
 			<td><%=dto.getAddress() %></td>
 		</tr>
-			<tr>
-			<th>구매자&판매자</th>
-			<td><%=dto.getIsseller() %></td>
-			<tr>
-			<td colspan="2" align="right">
-				<input type="button" value="정보 수정" onclick="location.href=login.do?=command=userupdate"/>
-				<input type="button" value="회원 탈퇴" onclick="location.href=''"/>
+			
+			<td colspan="2" align="left">
+				<input type="button" value="정보 수정" onclick="location.href='login.do?command=userupdate&userid=<%=dto.getUserid() %>'"/>
 			</td>
 		</tr>
 		</tr>
@@ -72,16 +62,10 @@
 		<a href="login.do?command=logout">logout</a>
 	</div>
 	<div>
-		<a href="login.do?command=myinfo&userid=<%=dto.getUserid()%>">내 정보 조회</a>
-	</div>
-	<div>
-		<a href="login.do?command=myupdate">내 정보 수정</a>
-	</div>
-	<div>
 		<a href=" ">결제 내역 보기</a>
 	</div>
 	<div>
-		<a href="login.do?command=mydelete">회원 탈퇴</a>
+		<a href="login.do?command=userdelete&userid=<%=dto.getUserid() %>">회원 탈퇴</a>
 	</div>
 	
 

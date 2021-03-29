@@ -125,8 +125,9 @@ body {
 			}
 		});
 	}
+   
     </script> 
- 
+  	
     
     
     <form action="login.do" method="post" class="loginForm">
@@ -154,7 +155,7 @@ body {
   <script type="text/javascript">
   	var naver_id_login = new naver_id_login("x_5pD8D2hV0OEmqLImlt", "http://localhost:8787/semiProject_3Team/naverlogincallback.jsp");
   	var state = naver_id_login.getUniqState();
-  	naver_id_login.setButton("green", 3,40);
+  	naver_id_login.setButton("green", 1,40);
   	naver_id_login.setDomain("http://localhost:8787");
   	naver_id_login.setState(state);
   	naver_id_login.setPopup();

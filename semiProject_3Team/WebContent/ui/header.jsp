@@ -64,7 +64,7 @@ Boolean isLoggedIn = dto!= null;
 				} else {
 				%>
 				<nav class="nav">
-					<li class="nav-item"><a class="nav-link active" aria-current="page" href="login.do?command=mypage&userrole=<%=dto.getUserrole()%>">mypage</a></li>
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="login.do?command=mypage&userrole=<%=dto.getUserrole()%>&userid=<%=dto.getUserid()%>">mypage</a></li>
 					<li class="nav-item"><a class="nav-link" href="login.do?command=logout">logout</a></li>
 					<li class="nav-item"><a class="nav-link" href="orderpage.jsp">결제</a></li>
 					<li class="nav-item"><a class="nav-link" href="shoppingcart.jsp">장바구니</a></li>

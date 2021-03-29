@@ -10,11 +10,11 @@ public class loginDto {
 	private String addresslatitude;
 	private String addresslongitude;
 	private String userrole;
-	private String isseller;
 	private String sellersOpt;
 	private String avatar;
 	private String usernickname;
 	private String username;
+	private String userenabled;
 	
 	
 	public loginDto() {
@@ -24,8 +24,8 @@ public class loginDto {
 
 
 	public loginDto(String userid, String password, String useremail, int userphone, String address,
-			String addresslatitude, String addresslongitude, String userrole, String isseller, String sellersOpt,
-			String avatar, String usernickname, String username) {
+			String addresslatitude, String addresslongitude, String userrole, String sellersOpt, String avatar,
+			String usernickname, String username, String userenabled) {
 		super();
 		this.userid = userid;
 		this.password = password;
@@ -35,11 +35,11 @@ public class loginDto {
 		this.addresslatitude = addresslatitude;
 		this.addresslongitude = addresslongitude;
 		this.userrole = userrole;
-		this.isseller = isseller;
 		this.sellersOpt = sellersOpt;
 		this.avatar = avatar;
 		this.usernickname = usernickname;
 		this.username = username;
+		this.userenabled = userenabled;
 	}
 
 
@@ -123,16 +123,6 @@ public class loginDto {
 	}
 
 
-	public String getIsseller() {
-		return isseller;
-	}
-
-
-	public void setIsseller(String isseller) {
-		this.isseller = isseller;
-	}
-
-
 	public String getSellersOpt() {
 		return sellersOpt;
 	}
@@ -172,6 +162,15 @@ public class loginDto {
 		this.username = username;
 	}
 
+
+	public String getUserenabled() {
+		return userenabled;
+	}
+
+
+	public void setUserenabled(String userenabled) {
+		this.userenabled = userenabled;
+	}
 	
 
 }

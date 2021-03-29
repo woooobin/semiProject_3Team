@@ -148,7 +148,7 @@ public class loginDao extends SqlMapConfig {
 	}
 
 
-	// 2. 중복체크
+	// 2. id중복체크
 	public int idCheck(String userid) {
 		
 		SqlSession session = null;
@@ -157,6 +157,25 @@ public class loginDao extends SqlMapConfig {
 		try {
 			session = getSqlSessionFactory().openSession(false);
 			result = session.selectOne(namespace+"idcheck",userid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return  result ;
+		
+		
+
+	}
+	//2.1email 중복체크
+	public int emailCheck(String useremail) {
+		
+		SqlSession session = null;
+		
+		int result =0;
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			result = session.selectOne(namespace+"emailcheck",useremail);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -192,8 +211,17 @@ public class loginDao extends SqlMapConfig {
 	// 5. 정보 수정(수정전)
 	public int updateUser(loginDto dto) {
 		
+		int res =0;
+		SqlSession session = null;
+		try {
+			session = getSqlSessionFactory().openSession(true);
+			res = session.update(namespace+"userupdate",dto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		return 0;
+		
+		return res;
 	}
 //		Connection con = getConnection();
 //		String sql = " UPDATE MYMEMBER " 
@@ -227,9 +255,33 @@ public class loginDao extends SqlMapConfig {
 //	}
 
 	// 6. 회원 탈퇴 (update)
-	public loginDto deleteUser(String userid) {
+	public int deleteUser(String userid) {
 		
-		return null;
+		int res =0;
+		SqlSession session = null;
+		try {
+			session = getSqlSessionFactory().openSession(true);
+			res = session.update(namespace+"userdelete",userid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return res;
+	}
+	public int enabledout(String userenabled) {
+		int res= 0;
+		SqlSession session =null;
+		try {
+			session = getSqlSessionFactory().openSession(true);
+			res =session.update(namespace+"enabledout",userenabled);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return res;
+	
 	}
 		
 	

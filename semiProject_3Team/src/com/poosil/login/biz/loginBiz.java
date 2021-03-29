@@ -32,6 +32,10 @@ public class loginBiz {
 	public int idCheck(String userid) {
 		return dao.idCheck(userid);
 	}
+	public int emailCheck(String useremail) {
+		
+		return dao.emailCheck(useremail);
+	}
 	
 	public int insertUser(loginDto dto) {
 		return dao.insertUser(dto);
@@ -45,8 +49,11 @@ public class loginBiz {
 		return dao.updateUser(dto);
 	}
 	
-	public loginDto deleteUser(String userid) {
+	public int deleteUser(String userid) {
 		return dao.deleteUser(userid);
 	}
-
+	public int enabledout(String userenabled) {
+		return dao.enabledout(userenabled);
+	}
+	
 }
