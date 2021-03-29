@@ -40,7 +40,7 @@ public class ImageUpload extends HttpServlet {
 		RequestDispatcher view = null;
 
 		String root = request.getSession().getServletContext().getRealPath("/");
-//		System.out.println(root);
+		System.out.println(root);
 		// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
 
 		String savePath = root + "image";

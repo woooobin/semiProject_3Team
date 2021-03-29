@@ -34,13 +34,13 @@
 			<th>주소</th>
 			<th>전화번호</th>
 			<th>이메일</th>
-			<th>판매여부</th>
 			<th>유저등급</th>
 			<th>위도</th>
 			<th>경도</th>
 			<th>옵션</th>
 			<th>닉네임</th>
 			<th>프로필사진</th>
+			<th>탈퇴여부</th>
 		</tr>
 <%
 	for (loginDto dto : list) {
@@ -52,13 +52,14 @@
 		<td><%=dto.getAddress() %></td>
 		<td><%=dto.getUserphone() %></td>
 		<td><%=dto.getUseremail() %></td>
-		<td><%=dto.getIsseller() %></td>
 		<td><%=dto.getUserrole() %></td>
 		<td><%=dto.getAddresslatitude() %></td>
 		<td><%=dto.getAddresslongitude() %></td>
 		<td><%=dto.getSellersOpt() %></td>
 		<td><%=dto.getUsernickname() %></td>
-		<td><%=dto.getAvatar() %></td>
+		<td> <img src="<%=dto.getAvatar() %>"></td>
+		<td><%=dto.getUserenabled() %></td>
+		
 		
 	</tr>
 <%

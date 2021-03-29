@@ -9,6 +9,7 @@
   	<!-- Bootstrap CSS -->
     <link href="./styles/bootstrap.min.css" rel="stylesheet" >
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	
 	function idCheckProc() {
@@ -16,10 +17,6 @@
 		if (chk == 'n') {
 			alert("id 중복체크를 해주세요!");
 			document.getElementsByName("userid")[0].focus();
-		}
-		
-		var seller =document.getElementsByName("isseller")
-		if(seller == '구매자'){	
 		}
 	}
 	
@@ -32,6 +29,42 @@
 			open("login.do?command=idchk&userid="+userid, "", "width=200, height=200");
 		}
 	}
+	function emailCheck() {
+		var useremail = document.getElementsByName("useremail")[0].value;
+		
+		if (useremail == null || useremail.trim() == "") {
+			alert("이메일를 입력해 주세요!");
+		} else {
+			open("login.do?command=emailchk&useremail="+useremail, "", "width=200, height=200");
+		}
+	}
+	$(document).ready(function () {
+
+		$(".imageInput").on("change", function () {
+
+			data = new FormData();
+			data.append("uploadFile", $(this)[0].files[0]);
+
+			const currentInput = $(this);
+			$.ajax({ // ajax를 통해 파일 업로드 처리
+				data: data,
+				type: "POST",
+				url: "imageUpload.do",
+				cache: false,
+				contentType: false,
+				processData: false,
+				success: function (data) { // 처리가 성공할 경우
+					// 에디터에 이미지 출력
+					console.log("succes =", data)
+					const url = "image/" + JSON.parse(data).url;
+
+					/* $(".imageInput").eq(this).val(url) */
+					currentInput.next().val(url);
+				}
+			});
+		})
+	});
+
 </script>
 </head>
 <body>
@@ -63,13 +96,8 @@
 				<td><input type="text" name="username" required="required" onclick="idCheckProc();" /></td>
 			</tr>
 			<tr>
-				<th>구매자&후원자</th>
-				<td><select name ="isseller" required="required" onclick="idCheckProc();""> 
-				<option value="">선택 </option>
-				<option value="Y">구매자</option>
-				<option value="N">판매자</option>
-				  </select> </td>
-				<!-- <td><input type="text" name="isseller" required="required" onclick="idCheckProc();" /></td>-->
+				<th>닉네임</th>
+				<td><input type="text" name="usernickname" required="required" onclick="idCheckProc();" /></td>
 			</tr>
 			<tr>
 				<th>주소</th>
@@ -84,11 +112,18 @@
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td><input type="text" name="useremail" required="required" onclick="idCheckProc();" /></td>
+				<td>
+					<input type="text" name="useremail" required="required" title="e" />
+					<input type="button" value="중복체크" onclick="emailCheck();" /> 
+				</td>
 			</tr>
 			<tr>
 				<th>프로필사진</th>
-				<td><input type="text" name="avatar" required="required" onclick="idCheckProc();"  />
+				<td><!--<input type="text" name="avatar" required="required" onclick="idCheckProc();"  />-->
+				<div>
+						<input type="file" class="imageInput"  />
+						<input type="text" id="thumbnailImage" name="avatar" />
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -101,7 +136,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
-					<input type="submit" value="가입" />
+					<input type="submit"  value="가입" />
 					<!-- form 태그에 버튼 태그 왠만해선 쓰지 말기. submit 이벤트 발생하기 때문에. -->
 				</td>
 			</tr>
