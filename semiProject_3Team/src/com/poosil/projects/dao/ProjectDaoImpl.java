@@ -238,4 +238,24 @@ public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
 		return projectHashtags;
 		
 	}
+
+	@Override
+	public List<ProjectDto> selectProjectsWithHashtag(int hashtagseq) {
+		SqlSession session = null;
+
+		List<ProjectDto> projects = new ArrayList<ProjectDto>();
+		
+		try {
+			session = getSqlSessionFactory().openSession(true);
+			
+			System.out.print("hashtagseq = " + hashtagseq);
+			projects = session.selectList("projects-mapper.selectProjectsWHashtags", hashtagseq);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		session.close();
+		return projects;
+	}
 }

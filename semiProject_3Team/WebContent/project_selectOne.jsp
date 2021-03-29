@@ -62,7 +62,7 @@ response.setContentType("text/html; charset=UTF-8");
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${projectHashtags}" var="projectHashtag">
-								<a href="#">${ projectHashtag.hashtagName }</a>
+								<a href="project.do?command=selectWHashtag&hashtagSeq=${ projectHashtag.hashtagSeq }">${ projectHashtag.hashtagName }</a>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>

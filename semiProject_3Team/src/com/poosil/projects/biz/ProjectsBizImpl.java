@@ -89,6 +89,11 @@ public class ProjectsBizImpl implements ProjectsBiz{
 	public List<HashtagDto> selectProjectHashtags(int projectId) {
 		return dao.selectProjectHashtag(projectId);
 	}
+	@Override
+	public List<ProjectDto> selectProjectsWithHashtag(int hashtagseq) {
+		// TODO Auto-generated method stub
+		return dao.selectProjectsWithHashtag(hashtagseq);
+	}
 	
 	
 

@@ -32,4 +32,6 @@ public interface ProjectDao {
 	public List<ProjectItemDto> selectProjectItems (int projectId);
 
 	public List<HashtagDto> selectProjectHashtag ( int projectId ) ;
+	
+	public List<ProjectDto> selectProjectsWithHashtag(int hashtagseq);
 }
