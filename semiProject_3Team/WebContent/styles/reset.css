@@ -1,0 +1,24 @@
+@charset "utf-8"; 
+html,body{width:100%; height:100%}
+html,body,div,span,object,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,em,img,ins,q,strong,sub,sup,b,i,dl,dt,dd,ol,ul,li,a,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0; padding:0;border:0;vertical-align:baseline;-webkit-text-size-adjust:none;/*세로모드에서 가로모드로 전환할때 텍스트가 약간 커지는 현상 방지*/}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{display: block}
+ul,ol,li,dl{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before, blockquote:after, q:before, q:after{content:'';content:none}
+a,a:link,a:hover,a:active {text-decoration:none;cursor: pointer;}
+em,i,address{font-style:normal;font-weight:normal}
+table{border-collapse:collapse; border-spacing:0}
+img,fieldset{border:0}
+legend,caption{position:absolute;left:-99999px;}
+textarea{resize:none}
+textarea,input{-webkit-border-radius:1px;-webkit-appearance:none /*form요소의 기본 스타일을 없앰*/ }
+label,button{cursor:pointer}a:link {color:#696f74; text-decoration:none}a:visited {color:#696f74; text-decoration:none}a:hover   {color:#486d9b; text-decoration:none}a:active  {color:#486d9b; text-decoration:none}body {overflow-y:scroll;color:#696f74;font-size:0.8em;font-family:'Nanum Gothic',돋움,dotum,굴림,gulim,sans-serif,Helvetica,AppleGothic;line-height:1.25em}
+.text-center{height:100px;line-height:100px;text-align:center;}
+.clearfix{*zoom:1;}
+.clearfix:after{display: block;clear: both;content: "";}
+
+
+button, html input[type="button"], /* 1 */ input[type="reset"], input[type="submit"]{margin:0;padding:0;outline:none; -webkit-appearance: button; /* 2 */ cursor: pointer; /* 3 */ }
+
+
+
