@@ -47,11 +47,11 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-		<tr>
-			<td colspan="4" align="right">
-				<input type="button" value="글작성" onclick="location.href='notice.do?command=insertform'" >
-			</td>
-		</tr>
+			<tr>
+				<td colspan="4" align="right">
+					<input type="button" value="글작성" onclick="location.href='notice.do?command=insertform'" >
+				</td>
+			</tr>
 		</table>
 		<table>
 			<br/>

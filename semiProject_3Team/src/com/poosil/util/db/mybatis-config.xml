@@ -10,7 +10,7 @@
 		<typeAlias type="com.poosil.projects.dto.ProjectItemDto" alias="ProjectItemDto" />
 		<typeAlias type="com.poosil.projects.dto.HashtagDto" alias="HashtagDto" />
 		<typeAlias type="com.poosil.login.dto.loginDto" />
-		
+		<typeAlias type="com.poosil.free.dto.FreeBoardDto" alias="FreeBoardDto" />
 	</typeAliases>
 
 	<environments default="development">
@@ -31,5 +31,6 @@
 		<mapper resource="com/poosil/projects/db/projects-mapper.xml" />
 		<mapper resource="com/poosil/members/db/member-mapper.xml" />
 		<mapper resource="com/poosil/login/db/login-mapper.xml"/>
+		<mapper resource="com/poosil/free/db/free-mapper.xml"/>
 	</mappers>
 </configuration>

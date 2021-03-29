@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="freeboardmapper">
+  
+	<select id="selectList" resultType="FreeBoardDto">
+		SELECT * FROM FREEBOARD
+		ORDER BY FREEBOARDSEQ DESC
+	</select>
+  	
+  	<select id="selectOne" parameterType="int" resultType="FreeBoardDto">
+  		SELECT FREEBOARDSEQ, USERID, FREEBOARDTITLE, FREEBOARDCONTENT, REGDATE, READCOUNT
+  		FROM FREEBOARD
+  		WHERE FREEBOARDSEQ = #{freeboardseq}
+  	</select>
+  	
+  	<insert id="insert" parameterType="map">
+  		INSERT INTO FREEBOARD
+  		VALUES(FREEBOARDSEQ.NEXTVAL, #{userid}, #{freeboardtitle}, #{freeboardcontent}, SYSDATE, 0)
+  	</insert>
+  	
+  	<update id="update" parameterType="map">
+  		UPDATE FREEBOARD
+  		SET FREEBOARDTITLE = #{freeboardtitle}, FREEBOARDCONTENT = #{freeboardcontent}
+  		WHERE FREEBOARDSEQ = #{freeboardseq}
+  	</update>
+  	
+  	<delete id="delete" parameterType="int">
+  		DELECT FROM FREEBOARD
+  		WHERE FREEBOARDSEQ = #{freeboardseq}	
+  	</delete>
+</mapper>
