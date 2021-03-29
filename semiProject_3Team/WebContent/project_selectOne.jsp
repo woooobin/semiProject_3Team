@@ -30,6 +30,12 @@ response.setContentType("text/html; charset=UTF-8");
 	onload = function() {
 		document.querySelector(".description").innerHTML = `${dto.detailDesc }`;
 	}
+	function openWin() {
+		var url = "chatting.jsp";
+		var title = "customerCenter";
+		var prop = "top=200px,left=600px,width=400px,height=400px";
+		window.open(url,"", prop);
+	}
 	
 </script>
 </head>
@@ -93,7 +99,7 @@ response.setContentType("text/html; charset=UTF-8");
 
 					<div class="project-detail-sub-nav">
 						<button>like</button>
-						<button onclick="location.href='chatting.jsp'">채팅</button>
+						<button onclick="openWin()">채팅</button>
 						<button>share</button>
 					</div>
 				</div>

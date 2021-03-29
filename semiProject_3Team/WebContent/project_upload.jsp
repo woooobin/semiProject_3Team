@@ -196,6 +196,34 @@ response.setContentType("text/html; charset=UTF-8");
 					<input type="text" name="price" placeholder="물품의 가격" class="form-control price"/>
 					<input type="number" name="quantity" placeholder="수량" value="5" class="form-control quantity" />
 				</div>
+				<div class="lft projectsItem">
+					<input type="text" placeholder="상품의 메인 이름" name="projectItemName"
+						class="form-control projectItemName" value="projectItemnameasdfasdf" />
+					<br />
+					<input type="text" placeholder="상품의 구성 내역" name="projectItemDesc"
+						class="form-control projectItemDesc" value="projectItemnameasdfasdf" />
+					<br />
+					<input type="file" class="imageInput" />
+					<input type="text" class="thumbnailImage" name="thumbImage" />
+					<br />
+					<input type="text" name="shippingFee" placeholder="배송비" value="3000" class="form-control shippingFee" />
+					<input type="text" name="price" placeholder="물품의 가격" class="form-control price"/>
+					<input type="number" name="quantity" placeholder="수량" value="5" class="form-control quantity" />
+				</div>
+				<div class="lft projectsItem">
+					<input type="text" placeholder="상품의 메인 이름" name="projectItemName"
+						class="form-control projectItemName" value="projectItemnameasdfasdf" />
+					<br />
+					<input type="text" placeholder="상품의 구성 내역" name="projectItemDesc"
+						class="form-control projectItemDesc" value="projectItemnameasdfasdf" />
+					<br />
+					<input type="file" class="imageInput" />
+					<input type="text" class="thumbnailImage" name="thumbImage" />
+					<br />
+					<input type="text" name="shippingFee" placeholder="배송비" value="3000" class="form-control shippingFee" />
+					<input type="text" name="price" placeholder="물품의 가격" class="form-control price"/>
+					<input type="number" name="quantity" placeholder="수량" value="5" class="form-control quantity" />
+				</div>
 			</div>
 			<br />
 			<br />

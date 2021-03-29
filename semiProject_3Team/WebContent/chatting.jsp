@@ -38,5 +38,6 @@
       webSocket.close();	
     }	
   </script>	
+  <textarea id="messageTextArea" rows="10" cols="50"></textarea>
 </body>	
 </html>
