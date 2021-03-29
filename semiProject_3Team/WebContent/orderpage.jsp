@@ -20,32 +20,40 @@
 				<td></td>
 			</tr>
 			<tr>
+				<th>상품 번호</th>
+				<td><textarea rows="2" cols="25" name="projectItemSeq"></textarea></td>
+			</tr>
+			<tr>
+				<th>상품 명</th>
+				<td><textarea rows="2" cols="25" name="projectName"></textarea></td>
+			</tr>			
+			<tr>
 				<th>수량</th>
-				<td></td>
+				<td><textarea rows="2" cols="25" name="quantity"></textarea></td>
+			</tr>
+			<tr>
+				<th>총 가격</th>
+				<td><textarea rows="2" cols="25" name="price"></textarea></td>
+			</tr>
+			<tr>
+				<th>ID</th>
+				<td><textarea rows="2" cols="25" name="userId"></textarea></td>
 			</tr>
 			<tr>
 				<th>받는사람 이름</th>
-				<td><textarea rows="2" cols="25" name="userid"></textarea></td>
-			</tr>
-			<tr>
-				<th>상품 번호</th>
-				<td>대진이의 사랑</td>
+				<td><textarea rows="2" cols="25" name="name"></textarea></td>
 			</tr>
 			<tr>
 				<th>받는 사람 주소</th>
 				<td><textarea rows="2" cols="25" name="address"></textarea></td>
 			</tr>
 			<tr>
-				<th>번호</th>
+				<th>핸드폰 번호</th>
 				<td><textarea rows="2" cols="25" name="phone"></textarea></td>
 			</tr>
 			<tr>
-				<th>총 가격</th>
-				<td>200000</td>
-			</tr>
-			<tr>
 				<th>주문 날짜</th>
-				<td><textarea rows="2" cols="25" name="orderdate"></textarea></td>
+				<td></td>
 			</tr>
 			
 			<tr align="right">

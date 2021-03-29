@@ -1,3 +1,5 @@
+<%@page import="com.poosil.pay.dto.PayDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -10,23 +12,37 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<%
+	List<PayDto> list = (List<PayDto>) request.getAttribute("list");
+%>
 <body>
 
 	<h1>결제 내역</h1>
 		<table border="1">
 			<tr>
-				<th>주문자명</th>
-				<th>상품명</th>
+				<th>주문번호</th>
+				<th>유저id</th>
+				<th>상품번호</th>
 				<th>수량</th>
-				<th>총가격</th>
+				<th>가격</th>
+				<th>주문날짜</th>
 			</tr>
+<%
+	for (PayDto dto : list) {
+%>
 			
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td><%=dto.getOrderSeq() %></td>
+				<td><%=dto.getUserId() %></td>
+				<td><%=dto.getProjectItemSeq() %></td>
+				<td><%=dto.getQuantity() %></td>
+				<td><%=dto.getPrice() %></td>
+				<td><%=dto.getOrderDate() %></td>
 			</tr>
+			
+<%
+	}
+%>
 			
 			<tr>
 				<td colspan="4" align="right">
@@ -34,8 +50,6 @@
 				</td>
 			</tr>
 		</table>
-
-
 
 </body>
 </html>

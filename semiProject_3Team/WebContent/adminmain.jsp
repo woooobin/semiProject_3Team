@@ -53,6 +53,10 @@
 	<div>
 		<a href="login.do?command=listall">회원 목록 조회</a>
 	</div>
+	
+	<div>
+		<a href="pay.do?command=adminpaylist">총 결제 내역</a>
+	</div>
 
 </body>
 </html>
