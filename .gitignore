@@ -94,7 +94,7 @@ local.properties
 .rar
 
 # specific folder need to add (library .jar)
-!/semiProject_3Team/semiProject_3Team/WebContent/WEB-INF/lib/
+!/semiProject_3Team/semiProject_3Team/WebContent/WEB-INF/lib/*
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid
