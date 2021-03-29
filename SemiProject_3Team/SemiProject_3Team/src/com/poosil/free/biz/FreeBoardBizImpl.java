@@ -34,6 +34,13 @@ public class FreeBoardBizImpl implements FreeBoardBiz {
 		return dao.update(dto);
 	}
 
+
+	@Override
+	public int readcount(int freeboardseq) {
+		
+		return dao.readcount(freeboardseq);
+	}
+
 	@Override
 	public int delete(int freeboardseq) {
 		// TODO Auto-generated method stub

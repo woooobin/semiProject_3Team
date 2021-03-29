@@ -78,6 +78,21 @@ public class FreeBoardDaoImpl extends SqlMapConfig implements FreeBoardDao {
 		
 		return res;
 	}
+	
+	@Override
+	public int readcount(int freeboardseq) {
+		int res = 0;
+		
+		try {
+			SqlSession session = getSqlSessionFactory().openSession(true);
+			res = session.update("freeboardmapper.readcount", freeboardseq);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 
 	@Override
 	public int delete(int freeboardseq) {

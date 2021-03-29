@@ -46,6 +46,13 @@
 					</tr>
 				</c:forEach>
 			</c:otherwise>
+			<c:when test="${sessionScope.sessionID != null }">
+				<tr>
+					<td colspan="4" align="right">
+						<input type="button" value="글작성" onclick="location.href='free.do?command=insertform'" >
+					</td>
+				</tr>
+			</c:when>
 		</c:choose>
 	</table>
 </body>

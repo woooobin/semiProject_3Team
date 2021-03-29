@@ -62,7 +62,7 @@ response.setContentType("text/html; charset=UTF-8");
 <body>
 <%@ include file="../ui/header.jsp" %>
 <br/>
-	
+	<jsp:useBean id="dto" class="com.poosil.notice.noticedto.NoticeDto" scope="request"></jsp:useBean>
 	<form action="free.do" method="post">
     	<input type="hidden" name="command" value="updateres">
     	<input type="hidden" name="freeboardseq" value='<jsp:getProperty property="freeboardseq" name="dto"/>'/>

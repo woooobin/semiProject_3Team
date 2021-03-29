@@ -10,6 +10,7 @@ public interface FreeBoardBiz {
 	public FreeBoardDto selectOne(int freeboardseq);
 	public int insert(FreeBoardDto dto);
 	public int update(FreeBoardDto dto);
+	public int readcount(int freeboardseq);
 	public int delete(int freeboardseq);
 	
 }

@@ -24,6 +24,12 @@
   		WHERE FREEBOARDSEQ = #{freeboardseq}
   	</update>
   	
+  	<update id="readcount" parameterType="map">
+  		UPDATE FREEBOARD
+  		SET READCOUNT = READCOUNT + 1 
+  		WHERE FREEBOARDSEQ = #{freeboardseq}
+  	</update>
+  	
   	<delete id="delete" parameterType="int">
   		DELECT FROM FREEBOARD
   		WHERE FREEBOARDSEQ = #{freeboardseq}	
