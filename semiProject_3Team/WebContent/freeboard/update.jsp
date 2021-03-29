@@ -60,25 +60,25 @@ response.setContentType("text/html; charset=UTF-8");
 </head>
 
 <body>
-
-<br>
-   	<jsp:useBean id="dto" class="com.poosil.notice.noticedto.NoticeDto" scope="request"></jsp:useBean>
-    <form action="notice.do" method="post">
-    	<input type="hidden" name="command" value="insertres">
-    	<input type="hidden" name="userid" value='<jsp:getProperty property="userid" name="dto"/>'>
+<%@ include file="../ui/header.jsp" %>
+<br/>
+	<jsp:useBean id="dto" class="com.poosil.notice.noticedto.NoticeDto" scope="request"></jsp:useBean>
+	<form action="free.do" method="post">
+    	<input type="hidden" name="command" value="updateres">
+    	<input type="hidden" name="freeboardseq" value='<jsp:getProperty property="freeboardseq" name="dto"/>'/>
     	<table border="1" style="margin-left: auto; margin-right: auto;">
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="noticetitle" placeholder="writer title here" /></td>
+				<td><input type="text" name="freeboardtitle" value='<jsp:getProperty property="freeboardtitle" name="dto"/>'/></td>
 			</tr>
 			<tr>
 				<th style="vertical-align: middle;">내용</th>
-				<td><textarea rows="30" cols="100" name="noticecontent" id="summernote" placeholder="write something"></textarea></td>
+				<td><textarea rows="30" cols="100" name="freeboardcontent" id="summernote" placeholder="write something"><jsp:getProperty property="noticecontent" name="dto"/></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
-					 <input type="submit" value="작성" />
-					 <input type="button" value="취소" onclick="location.href='notice.do?command=list'" />
+					 <input type="submit" value="수정" />
+					 <input type="button" value="취소" onclick="free.do?command=select&freeboardseq=${dto.freeboardseq}" />
 				</td>
 			</tr>
        </table> 

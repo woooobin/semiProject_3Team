@@ -44,7 +44,7 @@ public class NoticeController extends HttpServlet {
 				if(dto.getUserrole().equals("ADMIN")) {
 					dispatch(request, response, "notice/adminlist.jsp");//notice/adminlist.jsp
 				} else {
-					dispatch(request, response, "notice/adminlist.jsp");//notice/userlist.jsp
+					dispatch(request, response, "notice/userlist.jsp");//notice/userlist.jsp
 				}
 			}
 			
@@ -102,9 +102,9 @@ public class NoticeController extends HttpServlet {
 			int noticeseq = Integer.parseInt(request.getParameter("noticeseq"));
 			int res = biz.delete(noticeseq);
 			if(res > 0) {
-				dispatch(request, response, "mvc.do?command=list");
+				dispatch(request, response, "notice.do?command=list");
 			} else {
-				dispatch(request, response, "mvc.do?command=select&noticeseq="+noticeseq);
+				dispatch(request, response, "notice.do?command=select&noticeseq="+noticeseq);
 			}
 		}
 		

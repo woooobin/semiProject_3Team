@@ -38,10 +38,6 @@
   			</foreach>
   	</delete>
   	
-  	<select id="totalCount" resultType="NoticeDto">
-  		SELECT COUNT(*) 
-  		FROM NOTICE
-  	</select>
   	
   
 </mapper>

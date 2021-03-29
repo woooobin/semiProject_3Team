@@ -4,6 +4,7 @@
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html; charset=UTF-8");
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,7 @@
 	<table border="1" style="margin-left: auto; margin-right: auto;">
 		<tr>
 			<th>작성자</th>
-			<td>${dto.usernickname }</td>
+			<td>${dto.userid }</td>
 		</tr>
 		<tr>
 			<th>제목</th>
@@ -32,13 +33,24 @@
 				<textarea rows="10" cols="60" readonly="readonly">${dto.noticecontent }</textarea>
 			</td>
 		</tr>
-		<tr>
-			<td colspan="2" align="right">
-				<input type="button" value="수정" onclick="location.href='notice.do?command=updateform&noticeseq=${dto.noticeseq}'">
-				<input type="button" value="삭제" onclick="location.href='notice.do?command=delete&noticeseq=${dto.noticeseq}'">
-				<input type="button" value="목록" onclick="location.href='notice.do?command=list'">
-			</td>
-		</tr>
+		<c:choose>
+			<c:when test="${dto.userrole == 'ADMIN' }">
+				<tr>
+					<td colspan="2" align="right">
+						<input type="button" value="수정" onclick="location.href='notice.do?command=updateform&noticeseq=${dto.noticeseq}'">
+						<input type="button" value="삭제" onclick="location.href='notice.do?command=delete&noticeseq=${dto.noticeseq}'">
+						<input type="button" value="목록" onclick="location.href='notice.do?command=list'">
+					</td>
+				</tr>
+			</c:when>
+			<c:otherwise>
+				<tr>
+					<td colspan="2" align="right">
+						<input type="button" value="목록" onclick="location.href='notice.do?command=list'">
+					</td>
+				</tr>
+			</c:otherwise>
+		</c:choose>
 	</table>
 </body>
 </html>
