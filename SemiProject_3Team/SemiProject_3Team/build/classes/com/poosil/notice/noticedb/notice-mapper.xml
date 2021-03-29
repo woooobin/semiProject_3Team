@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="noticemapper">
+  
+	<select id="selectList" resultType="NoticeDto">
+		SELECT NOTICESEQ, USERID, NOTICETITLE, NOTICECONTENT, REGDATE
+		FROM NOTICE
+		ORDER BY NOTICESEQ DESC
+	</select>
+  	
+  	<select id="selectOne" parameterType="int" resultType="NoticeDto">
+  		SELECT NOTICESEQ, USERID, NOTICETITLE, NOTICECONTENT, REGDATE
+		FROM NOTICE
+		WHERE NOTICESEQ = #{noticeseq}
+  	</select>
+  	
+  	<insert id="insert" parameterType="map">
+  		INSERT INTO NOTICE
+  		VALUES(NOTICESEQ.NEXTVAL, #{userid}, #{noticetitle}, #{noticecontent}, #{userrole}, SYSDATE, #{usernickname})
+  	</insert>
+  	
+  	<update id="update" parameterType="map">
+  		UPDATE NOTICE
+  		SET NOTICETITLE = #{noticetitle}, NOTICECONTENT = #{noticecontent}
+  		WHERE NOTICESEQ = #{noticeseq}
+  	</update>
+  	
+  	<delete id="delete" parameterType="int">
+  		DELECT FROM NOTICE
+  		WHERE NOTICESEQ = #{noticeseq}	
+  	</delete>
+  	
+  	<delete id="multiDelete" parameterType="map">
+  			DELETE FROM NOITCE
+  			WHERE NOTICESEQ IN
+  			<foreach collection="seqs" item="seq" open="(" separator="," close=")">
+  				#{noticeseq}
+  			</foreach>
+  	</delete>
+  	
+  	
+  
+</mapper>
