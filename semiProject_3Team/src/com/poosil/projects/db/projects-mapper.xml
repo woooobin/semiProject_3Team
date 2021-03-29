@@ -122,6 +122,10 @@
 		(SELECT HASHTAGSEQ FROM PROJECTHASHTAG WHERE PROJECTID = #{projectId} )
 	</select>
 	
+	<select id="selectProjectsWHashtags" parameterType="int" resultType="ProjectDto" >
+	SELECT PROJECTID, PROJECTMAINTITLE FROM PROJECTS WHERE PROJECTID IN
+		( SELECT PROJECTID FROM PROJECTHASHTAG WHERE HASHTAGSEQ = #{hashtagseq})
+	</select>
 </mapper>
 
 

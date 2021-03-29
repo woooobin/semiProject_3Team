@@ -148,6 +148,12 @@ public class ProjectsController extends HttpServlet {
 			request.setAttribute("projectHashtags", projectHashtags);
 			
 			dispatch(request, response, "project_selectOne.jsp");
+		}else if(command.equals("selectWHashtag")) {
+			int hashtagSeq = Integer.parseInt(request.getParameter("hashtagSeq"));
+			
+			List<ProjectDto> resultList = biz.selectProjectsWithHashtag(hashtagSeq);
+			request.setAttribute("projects", resultList);
+			dispatch(request, response, "project_hashtags.jsp");
 		}
 
 	}

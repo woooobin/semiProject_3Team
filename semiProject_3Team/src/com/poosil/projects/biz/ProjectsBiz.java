@@ -31,4 +31,5 @@ public interface ProjectsBiz {
 	
 	public List<ProjectItemDto> selectProjectItems (int projectId);
 	public List<HashtagDto> selectProjectHashtags(int projectId);
+	public List<ProjectDto> selectProjectsWithHashtag(int hashtagseq);
 }
