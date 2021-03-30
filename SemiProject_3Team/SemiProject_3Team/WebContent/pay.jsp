@@ -30,6 +30,7 @@
 	System.out.println("address = " + address);
 	int phone = Integer.parseInt(request.getParameter("phone"));
 	System.out.println("phone = " + phone);
+	
 %>
 <body>
 <form action="pay.do" method="post" id="formdata">

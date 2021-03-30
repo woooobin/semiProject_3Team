@@ -10,7 +10,8 @@ public interface PayDao {
 
 public List<PayDto> adminPaymentList();
 public int insertadminPayment(PayDto dto);
-public List<PayDto> customerPaymentList();
+public List<PayDto> customerPaymentList(String userId);
 public ProjectItemDto selectProjectItem(int projectItemSeq);
+public int updateTotalPrice(PayDto dto);
 
 }

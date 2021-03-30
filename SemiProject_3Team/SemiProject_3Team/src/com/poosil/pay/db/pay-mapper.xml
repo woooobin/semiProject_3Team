@@ -22,10 +22,11 @@
   		ORDER BY ORDERSEQ DESC
   	</select>
   	
-  	<select id="customerPaymentList" resultMap="PayMap">
-  		SELECT QUANTITY, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, ORDERDATE
+  	<select id="customerPaymentList" parameterType="PayDto" resultType="PayDto">
+  		SELECT ORDERSEQ, QUANTITY, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, ORDERDATE
   		FROM ORDERPAGE
   		WHERE USERID = #{userId}
+  		ORDER BY ORDERDATE DESC
   	</select>
   	
   	<insert id="insertadminPayment" parameterType="PayDto">
@@ -38,6 +39,13 @@
   		FROM PROJECTITEM
   		WHERE PROJECTITEMSEQ = #{projectItemSeq}
   	</select>
+  	
+  	
+  	<update id="updateTotalPrice" parameterType="PayDto">
+  		UPDATE PROJECTS SET TOTALPRICE = #{totalPrice} + #{price} 
+  		WHERE PROJECTID = (SELECT PROJECTID FROM PROJECTITEM 
+  		WHERE PROJECTITEMSEQ = #{projectItemSeq})
+  	</update>
   	
 
   </mapper>

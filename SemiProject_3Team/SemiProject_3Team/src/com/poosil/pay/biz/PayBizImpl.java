@@ -21,19 +21,33 @@ public class PayBizImpl implements PayBiz {
 		
 		return dao.insertadminPayment(dto);
 	}
-
+	
+	
 	@Override
-	public List<PayDto> customerPaymentList() {
+	public List<PayDto> customerPaymentList(String userId) {
 		
-		return dao.customerPaymentList();
+		return dao.customerPaymentList(userId);
 	}
-
+	
 	@Override
 	public ProjectItemDto selectProjectItem(int projectItemSeq) {
 		
 		return dao.selectProjectItem(projectItemSeq);
 	}
-	
+
+	@Override
+	public int updateTotalPrice(PayDto dto) {
+		// TODO Auto-generated method stub
+		return dao.updateTotalPrice(dto);
+	}
+
+	/*
+	@Override
+	public PayDto customerPayment(String userId) {
+		// TODO Auto-generated method stub
+		return dao.customerPayment(userId);
+	}
+	*/
 	
 
 }

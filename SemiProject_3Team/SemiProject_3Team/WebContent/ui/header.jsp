@@ -61,7 +61,6 @@ String userNickname = "ADMIN";
 				<nav class="nav">
 					<li class="nav-item"><a class="nav-link active" aria-current="page" href="login.jsp">login</a></li>
 					<li class="nav-item"><a class="nav-link" href="signup.jsp">sign up</a></li>
-					<li class="nav-item"><a class="nav-link" href="pay.do?command=orderpage">결제</a></li>
 				</nav>
 				<%
 				} else {
@@ -69,7 +68,6 @@ String userNickname = "ADMIN";
 				<nav class="nav">
 					<li class="nav-item"><a class="nav-link active" aria-current="page" href="login.do?command=mypage&userrole=<%=dto.getUserrole()%>&userid=<%=dto.getUserid()%>">mypage</a></li>
 					<li class="nav-item"><a class="nav-link" href="login.do?command=logout">logout</a></li>
-					<li class="nav-item"><a class="nav-link" href="pay.do?command=orderpage&userid=<%=dto.getUserid() %>"> 결제</a></li>
 				</nav>
 
 				<% 

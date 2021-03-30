@@ -36,8 +36,6 @@
 				<th>주문번호</th>
 				<td></td>
 			</tr>
-
-
 			<tr>
 				<th>상품 번호</th>
 				<td><textarea rows="2" cols="25" name="projectItemSeq"><%=projectitemdto.getProjectItemSeq() %></textarea></td>
@@ -70,6 +68,7 @@
 				<th>핸드폰 번호</th>
 				<td><textarea rows="2" cols="25" name="phone"><%=logindto.getUserphone() %></textarea></td>
 			</tr>
+
 			<tr>
 				<th>주문 날짜</th>
 				<td></td>
