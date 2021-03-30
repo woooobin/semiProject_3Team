@@ -47,7 +47,47 @@
 				</tr>
 			</c:otherwise>
 		</c:choose>
-		
+	
 	</table>
+	<h4>Comments</h4>
+	<c:choose>
+	<c:forEach begin="1" end="${cdeo.titletab }">
+		&nbsp;
+	</c:forEach>
+	<table>
+		<c:when test="${empty clist }">
+			<tr>
+			</tr>
+		</c:when>
+		<c:otherwise>
+			<c:forEach items="${clist }" var="cdto">
+					<tr align="left">
+						<td>${cdto.userid }  </td>
+					<c:if test="${sessionScope.sessionID != null">
+						<td><button onclick="recomment();">답글하기</button></td>
+					</c:if>
+						<td> 작성 날짜 : ${cdto.regdate }</td>
+					<c:if test="${sessionScope.sessionID == cdto.userid }">
+						<td><button onclick="update();">수정</button><button  onclick="delete();">삭제</button></td>
+					</c:if>
+					</tr>
+					<tr>
+						<td><textarea rows="3" cols="60" readonly="readonly">${cdto.commentcontent }</textarea></td>
+					</tr>
+					<tr>
+						<td>
+							<input type="submit" value="댓글 등록">&nbsp;&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td style="border-bottom: 1px solid #CCCCCC;"></td>
+					</tr>
+			</c:forEach>
+		</c:otherwise>
+	</table>
+	</c:choose>
+<script type="text/javascript">
+	
+</script>
 </body>
 </html>

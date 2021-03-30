@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="commentboardmapper">
+  
+	<select id="selectList" resultType="CommentDto">
+		SELECT * FROM COMMENTBOARD
+		ORDER BY COMMENTNO DESC, GROUPSEQ
+	</select>
+  	
+  	<insert id="insert" parameterType="map">
+  		INSERT INTO FREEBOARD
+  		VALUES(FREEBOARDSEQ.NEXTVAL, #{userid}, #{freeboardtitle}, #{freeboardcontent}, SYSDATE, 0)
+  	</insert>
+  
+  	<update id="update" parameterType="map">
+  		UPDATE COMMENTBOARD
+  		SET COMMENTCONTENT = #{commentcontent}
+  		WHERE COMMENTNO = #{commentno}	
+  	</update>
+  	
+  	<delete id="delete" parameterType="int">
+  		DELECT FROM COMMENTBOARD
+  		WHERE COMMENTNO = #{commentno}	
+  	</delete>
+  	
+  	<insert id="answerInsert" parameterType="map">
+  		INSERT INTO COMMENTBOARD
+  		VALUSE(
+  				COMMENTNOSEQ.NEXTVAL,
+  				(SELECT COMMENTNO FROM COMMENTBOARD WHERE COMMENTNO = #{groupno}),
+				(SELECT GROUPSEQ FROM COMMENTBOARD WHERE COMMENTNO = #{groupseq}) + 1,
+				(SELECT TITLETAB +1 FROM COMMENTBOARD WHERE COMMENTNO = #{titletab}),
+				#{freeboardseq}, #{userid}, #{commentcontent}, SYSDATE		
+  				)
+  	</insert>
+  	
+  	
+  	<update id="answerUpdate" parameterType="map">
+  		UPDATE COMMENTBOARD
+  		SET GROUPSEQ = GROUPSEQ +1
+  		WHERE GROUPNO = (SELECT GROUPNO FROM COMMENTBOARD WHERE COMMENTNO = #{groupno})
+  		AND GROUPSEQ > (SELECT GROUPSEQ FROM COMMENTBOARD WHERE COMMENTNO = #{groupseq})
+  	</update>
+  	
+</mapper>

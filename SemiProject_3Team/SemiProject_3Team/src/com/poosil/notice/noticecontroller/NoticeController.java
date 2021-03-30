@@ -31,13 +31,11 @@ public class NoticeController extends HttpServlet {
 		NoticeBiz biz = new NoticeBizImpl();
 		String command = request.getParameter("command");
 		
-		//  메인 페이지에서 눌렀을때 작동하도록 메인페이지쪽 controller에서 만들어야함
 		    if(command.equals("list")) {
 		    String userrole = request.getParameter("userrole");
 		    String userId= request.getParameter("userId");
 		    String usernickname = request.getParameter("usernickname");
 			List<NoticeDto> list = biz.selectList();
-			// 이게 맞을까? 이거 물어봐야함.
 			NoticeDto dto = new NoticeDto(0, userId, null, null, userrole, null, usernickname);
 			request.setAttribute("list", list);
 			if(dto != null) {	
