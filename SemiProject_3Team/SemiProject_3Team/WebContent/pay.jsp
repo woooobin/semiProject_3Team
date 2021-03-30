@@ -38,7 +38,7 @@
  
  $(function(){
      var IMP = window.IMP; 
-     IMP.init('가맹점 식별 코드'); //필요하신분 김대진 문의  
+     IMP.init('imp88679730'); //필요하신분 김대진 문의  
      var msg;
 
  	IMP.request_pay({

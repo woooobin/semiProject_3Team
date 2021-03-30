@@ -81,7 +81,7 @@ public class PayDaoImpl extends SqlMapConfig implements PayDao {
 		try {
 			session = getSqlSessionFactory().openSession(true);
 			
-			projectitemdto = session.selectOne(namespace+"selectProjectItem");
+			projectitemdto = session.selectOne(namespace+"selectProjectItem", projectItemSeq);
 			System.out.println("select projectitemdto =" + projectitemdto);
 		} catch (Exception e) {
 			e.printStackTrace();

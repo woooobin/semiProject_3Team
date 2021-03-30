@@ -19,6 +19,7 @@
   	<select id="adminPaymentList" resultMap="PayMap">
   		SELECT ORDERSEQ, QUANTITY, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, ORDERDATE
   		FROM ORDERPAGE 
+  		ORDER BY ORDERSEQ DESC
   	</select>
   	
   	<select id="customerPaymentList" resultMap="PayMap">

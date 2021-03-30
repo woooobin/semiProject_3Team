@@ -113,7 +113,7 @@ public class PayController extends HttpServlet {
 				System.out.println("projectItemSeq 2 = " + projectitemdto.getProjectItemSeq());
 				request.setAttribute("projectitemdto", projectitemdto);
 				
-				response.sendRedirect("orderpage.jsp");
+				dispatch(request, response, "orderpage.jsp");
 				
 			}
 				
