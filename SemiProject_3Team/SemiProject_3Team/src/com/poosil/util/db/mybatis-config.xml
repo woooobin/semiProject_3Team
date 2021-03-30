@@ -11,6 +11,7 @@
 		<typeAlias type="com.poosil.projects.dto.HashtagDto" alias="HashtagDto" />
 		<typeAlias type="com.poosil.login.dto.loginDto" />
 		<typeAlias type="com.poosil.free.dto.FreeBoardDto" alias="FreeBoardDto" />
+		<typeAlias type="com.poosil.pay.dto.PayDto" alias="PayDto"/>
 	</typeAliases>
 
 	<environments default="development">
@@ -32,5 +33,6 @@
 		<mapper resource="com/poosil/members/db/member-mapper.xml" />
 		<mapper resource="com/poosil/login/db/login-mapper.xml"/>
 		<mapper resource="com/poosil/free/db/free-mapper.xml"/>
+		<mapper resource="com/poosil/pay/db/pay-mapper.xml"/>
 	</mappers>
 </configuration>
