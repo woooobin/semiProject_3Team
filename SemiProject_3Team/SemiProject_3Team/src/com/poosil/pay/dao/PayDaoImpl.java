@@ -2,14 +2,16 @@ package com.poosil.pay.dao;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.poosil.pay.dto.PayDto;
-import com.poosil.pay.db.SqlMapConfig_Pay;
+import com.poosil.util.db.SqlMapConfig;
 
-public class PayDaoImpl extends SqlMapConfig_Pay implements PayDao {
+
+public class PayDaoImpl extends SqlMapConfig implements PayDao {
 	private String namespace = "paymapper.";
 
 	@Override

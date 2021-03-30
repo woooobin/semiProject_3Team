@@ -121,7 +121,7 @@ response.setContentType("text/html; charset=UTF-8");
 											</p>
 											<p>${projectItem.quantity}개중(수량- 팔린갯수 )개 남음</p>
 											<p>${projectItem.price}</p>
-											<button href="#">projectItemseq =
+											<button href="pay.do?command=orderpage&userid=${ userid}&projectItemSeq=${ projectItemSeq}">projectItemseq =
 												${projectItem.projectItemSeq} 후원하기</button>
 											<span class="icon"><img
 												src="${projectItem.thumbImage}" /></span>

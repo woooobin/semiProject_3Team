@@ -1,3 +1,4 @@
+<%@page import="com.poosil.login.dto.loginDto"%>
 <%@page import="com.poosil.pay.dto.PayDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -13,6 +14,7 @@
 <title>Insert title here</title>
 </head>
 <%
+	loginDto logindto = (loginDto)session.getAttribute("logindto"); 
 	List<PayDto> list = (List<PayDto>) request.getAttribute("list");
 %>
 <body>
