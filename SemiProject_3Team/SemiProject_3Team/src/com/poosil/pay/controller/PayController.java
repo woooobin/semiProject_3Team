@@ -99,21 +99,21 @@ public class PayController extends HttpServlet {
 				HttpSession session = request.getSession();
 				
 				String userid = request.getParameter("userid");
-				//세션에서 가져오는 값은 다 오브젝트 
-				loginDto logindto = loginbiz.selectMy(userid);
 				
-				session.setAttribute("logindto", logindto);
+				//세션에서 가져오는 값은 다 오브젝트 
+				loginDto dto = loginbiz.selectMy(userid);
+				//System.out.println("userid = " + dto.getUserid());
+				session.setAttribute("dto", dto);
 				
 				//상품 정보 가져오기
-				/*
-				int projectId = Integer.parseInt(request.getParameter("projectId"));
 				
-				List<ProjectItemDto> projectItems = new ArrayList<ProjectItemDto>();
-				projectItems = projectbiz.selectProjectItems(106);
-				request.setAttribute("projectItems", projectItems);
-				*/
+				int projectItemSeq = Integer.parseInt(request.getParameter("projectItemSeq"));
+				System.out.println("projectItemSeq 1 =" + projectItemSeq );
+				ProjectItemDto projectitemdto = biz.selectProjectItem(projectItemSeq);
+				System.out.println("projectItemSeq 2 = " + projectitemdto.getProjectItemSeq());
+				request.setAttribute("projectitemdto", projectitemdto);
+				
 				response.sendRedirect("orderpage.jsp");
-				
 				
 			}
 				

@@ -5,6 +5,7 @@ import java.util.List;
 import com.poosil.pay.dao.PayDao;
 import com.poosil.pay.dao.PayDaoImpl;
 import com.poosil.pay.dto.PayDto;
+import com.poosil.projects.dto.ProjectItemDto;
 
 public class PayBizImpl implements PayBiz {
 
@@ -25,6 +26,12 @@ public class PayBizImpl implements PayBiz {
 	public List<PayDto> customerPaymentList() {
 		
 		return dao.customerPaymentList();
+	}
+
+	@Override
+	public ProjectItemDto selectProjectItem(int projectItemSeq) {
+		
+		return dao.selectProjectItem(projectItemSeq);
 	}
 	
 	

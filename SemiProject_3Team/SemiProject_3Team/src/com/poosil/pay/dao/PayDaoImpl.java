@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.poosil.pay.dto.PayDto;
+import com.poosil.projects.dto.ProjectItemDto;
 import com.poosil.util.db.SqlMapConfig;
 
 
@@ -68,6 +69,26 @@ public class PayDaoImpl extends SqlMapConfig implements PayDao {
 		}
 		
 		return list;
+	}
+
+	@Override
+	public ProjectItemDto selectProjectItem(int projectItemSeq) {
+		SqlSession session = null;
+		
+		ProjectItemDto projectitemdto = new ProjectItemDto();
+		
+		
+		try {
+			session = getSqlSessionFactory().openSession(true);
+			
+			projectitemdto = session.selectOne(namespace+"selectProjectItem");
+			System.out.println("select projectitemdto =" + projectitemdto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return projectitemdto;
 	}
 	
 	

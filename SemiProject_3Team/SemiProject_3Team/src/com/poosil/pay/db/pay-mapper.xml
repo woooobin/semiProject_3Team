@@ -32,5 +32,11 @@
   		VALUES(ORDERSEQ.NEXTVAL, #{quantity}, #{userId}, #{projectItemSeq}, #{address}, #{phone}, #{totalPrice}, #{price}, SYSDATE)
   	</insert>
   	
+  	<select id="selectProjectItem" parameterType="int" resultType="ProjectItemDto">
+  		SELECT PROJECTITEMSEQ, PROJECTITEMNAME, QUANTITY, PROJECTID, PRICE
+  		FROM PROJECTITEM
+  		WHERE PROJECTITEMSEQ = #{projectItemSeq}
+  	</select>
+  	
 
   </mapper>
