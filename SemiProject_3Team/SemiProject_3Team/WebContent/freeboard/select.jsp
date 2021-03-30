@@ -29,12 +29,25 @@
 				<textarea rows="10" cols="60" readonly="readonly">${dto.freeboardcontent }</textarea>
 			</td>
 		</tr>
+		<c:choose>
+			<c:when test="${sessionScope.sessionID == dto.userid}">
+				<tr>
+					<td colspan="2" align="right">
+						<input type="button" value="수정" onclick="location.href='free.do?command=updateform&noticeseq=${dto.noticeseq}'">
+						<input type="button" value="삭제" onclick="location.href='free.do?command=delete&noticeseq=${dto.noticeseq}'">
+						<input type="button" value="목록" onclick="location.href='free.do?command=list'">
+					</td>
+				</tr>
+			</c:when>
+			<c:otherwise>
+				<tr>
+					<td colspan="2" align="right">
+						<input type="button" value="목록" onclick="location.href='free.do?command=list'">
+					</td>
+				</tr>
+			</c:otherwise>
+		</c:choose>
 		
-		<tr>
-			<td colspan="2" align="right">
-				<input type="button" value="목록" onclick="location.href='free.do?command=list'">
-			</td>
-		</tr>
 	</table>
 </body>
 </html>

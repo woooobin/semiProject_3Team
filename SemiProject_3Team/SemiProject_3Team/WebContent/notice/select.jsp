@@ -34,7 +34,7 @@
 			</td>
 		</tr>
 		<c:choose>
-			<c:when test="${dto.userrole == 'ADMIN' }">
+			<c:when test="${sessionScope.sessionrole == 'ADMIN'  }">
 				<tr>
 					<td colspan="2" align="right">
 						<input type="button" value="수정" onclick="location.href='notice.do?command=updateform&noticeseq=${dto.noticeseq}'">
