@@ -84,7 +84,7 @@ String userNickname = "ADMIN";
 			<li class="nav-item"><a class="nav-link" href="project.do?command=selectList">펀딩하기</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">랭킹</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">이용가이드</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">자유게시판</a></li>
+			<li class="nav-item"><a class="nav-link" href="free.do?command=list">자유게시판</a></li>
 			<li class="nav-item"><a class="nav-link" href="notice.do?command=list&userrole=${userrole }">공지게시판</a></li>
 		</nav>
 	</div>

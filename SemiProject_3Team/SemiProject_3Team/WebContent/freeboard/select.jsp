@@ -16,7 +16,7 @@
 </head>
 <body>
 <%@ include file="../ui/header.jsp" %>
-<% %>
+<% String sessionID = (String)session.getAttribute("sessionID"); %>
 	<h2>${dto.freeboardtitle }</h2>
 	
 	<table border="1" style="margin-left: auto; margin-right: auto;">
@@ -30,7 +30,7 @@
 			</td>
 		</tr>
 		<c:choose>
-			<c:when test="${sessionScope.sessionID == dto.userid}">
+			<c:when test="${sessionID == dto.userid}">
 				<tr>
 					<td colspan="2" align="right">
 						<input type="button" value="수정" onclick="location.href='free.do?command=updateform&noticeseq=${dto.noticeseq}'">
@@ -47,14 +47,13 @@
 				</tr>
 			</c:otherwise>
 		</c:choose>
-	
 	</table>
 	<h4>Comments</h4>
-	<c:choose>
 	<c:forEach begin="1" end="${cdeo.titletab }">
 		&nbsp;
 	</c:forEach>
-	<table>
+	<table border="1">
+		<c:choose>
 		<c:when test="${empty clist }">
 			<tr>
 			</tr>
@@ -62,32 +61,69 @@
 		<c:otherwise>
 			<c:forEach items="${clist }" var="cdto">
 					<tr align="left">
-						<td>${cdto.userid }  </td>
-					<c:if test="${sessionScope.sessionID != null">
-						<td><button onclick="recomment();">답글하기</button></td>
+						<td>
+						<input type="hidden" value="${cdto.commentno }">
+						<input type="hidden" name="parentcommentno" value="${cdto.commentno }">
+						${cdto.userid }  
+						</td>
+					<c:if test="${sessionID != null}">
+						<td>
+							<input type="button" id="answer" value="답글하기" onclick="location.href='comment.do?command=answerproc&commentno=${cdto.commentno}'">
+						</td>
 					</c:if>
 						<td> 작성 날짜 : ${cdto.regdate }</td>
-					<c:if test="${sessionScope.sessionID == cdto.userid }">
-						<td><button onclick="update();">수정</button><button  onclick="delete();">삭제</button></td>
-					</c:if>
-					</tr>
-					<tr>
-						<td><textarea rows="3" cols="60" readonly="readonly">${cdto.commentcontent }</textarea></td>
-					</tr>
-					<tr>
-						<td>
-							<input type="submit" value="댓글 등록">&nbsp;&nbsp;
+					<c:if test="${sessionID == cdto.userid }">
+						<td align="right">
+							<input type="button" id="insert" value="수정" onclick="location.href='comment.do?command=update&commentno=${cdto.commentno}">
+							<input type="button" value="삭제" onclick="location.href='comment.do?command=delete&commentno=${cdto.commentno}'">
+							&nbsp;&nbsp;<br/>
 						</td>
+					</c:if>
 					</tr>
 					<tr>
 						<td style="border-bottom: 1px solid #CCCCCC;"></td>
 					</tr>
 			</c:forEach>
 		</c:otherwise>
+		</c:choose>
 	</table>
-	</c:choose>
-<script type="text/javascript">
 	
+	<table id="contenttable">
+		<tr>
+			<td><textarea rows="3" cols="60" readonly="readonly">${cdto.commentcontent }</textarea></td>
+		</tr>
+		<tr>
+			<td>
+				<input type="submit" value="댓글 등록">&nbsp;&nbsp;
+			</td>
+		</tr>
+	</table>
+<script type="text/javascript">
+$(function(){
+	$("#answer").onclick(function(){
+		$.ajax({
+			url:"comment.do",
+			data: "command="answerProc,
+			dataType: 
+			success: function(data){
+				
+				}
+			});
+		});
+	});
+$(function(){
+	$("#insert").onclick(function(){
+		$.ajax({
+			url:"comment.do"
+			type:'post',
+			data:,
+			dataType:
+			success: function(data){
+				}	
+			});
+		});
+	});
+
 </script>
 </body>
 </html>
