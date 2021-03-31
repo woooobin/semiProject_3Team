@@ -30,6 +30,7 @@
 	System.out.println("address = " + address);
 	int phone = Integer.parseInt(request.getParameter("phone"));
 	System.out.println("phone = " + phone);
+	
 %>
 <body>
 <form action="pay.do" method="post" id="formdata">
@@ -38,7 +39,7 @@
  
  $(function(){
      var IMP = window.IMP; 
-     IMP.init('가맹점 식별 코드'); //필요하신분 김대진 문의  
+     IMP.init('imp88679730'); //필요하신분 김대진 문의  
      var msg;
 
  	IMP.request_pay({

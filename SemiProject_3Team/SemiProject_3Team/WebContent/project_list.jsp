@@ -1,3 +1,4 @@
+<%@page import="com.poosil.pay.dto.PayDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -6,6 +7,8 @@ request.setCharacterEncoding("UTF-8");
 <%
 response.setContentType("text/html; charset=UTF-8");
 %>
+
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -53,7 +56,7 @@ response.setContentType("text/html; charset=UTF-8");
 									<span class="graph_val" style="display:inline-block;width:calc(${dto.totalPrice} / ${dto.goalPrice} * 100)%"></span>
 									</div>
 								</div>
-								<p>총 금액 : ${dto.totalPrice}</p>
+								<p>총 금액 :${dto.totalPrice} </p>
 								<p class="percent"></p>
 							</div>
 						</a>

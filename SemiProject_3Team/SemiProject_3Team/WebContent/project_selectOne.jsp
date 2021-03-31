@@ -6,6 +6,9 @@ request.setCharacterEncoding("UTF-8");
 <%
 response.setContentType("text/html; charset=UTF-8");
 %>
+<%
+loginDto logindto = (loginDto)session.getAttribute("dto"); 
+%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -121,7 +124,7 @@ response.setContentType("text/html; charset=UTF-8");
 											</p>
 											<p>${projectItem.quantity}개중(수량- 팔린갯수 )개 남음</p>
 											<p>${projectItem.price}</p>
-											<button href="pay.do?command=orderpage&userid=${ userid}&projectItemSeq=${ projectItemSeq}">projectItemseq =
+											<button onclick="location.href='pay.do?command=orderpage&userid=<%=logindto.getUserid() %>&projectItemSeq=${ projectItem.projectItemSeq}'">projectItemseq =
 												${projectItem.projectItemSeq} 후원하기</button>
 											<span class="icon"><img
 												src="${projectItem.thumbImage}" /></span>
