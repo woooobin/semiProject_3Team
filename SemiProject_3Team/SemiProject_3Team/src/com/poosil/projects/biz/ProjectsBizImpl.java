@@ -20,15 +20,17 @@ public class ProjectsBizImpl implements ProjectsBiz{
 	@Override
 	public Map<String, Integer>  insertProject(String userId, String projectMainTitle, String projectSubTitle, String thumbImage,
 			String goalPrice, String projectCategory, String projectStartDate, String projectEndDate,
-			String shippingStartDate, String detailDesc) {
+			String shippingStartDate, String detailDesc, String address,String latitude,String longitude,String province) {
 		// TODO Auto-generated method stub
-		return dao.insertProject(userId,projectMainTitle,projectSubTitle,thumbImage,goalPrice,projectCategory,projectStartDate,projectEndDate,shippingStartDate,detailDesc);
+		return dao.insertProject(userId,projectMainTitle,projectSubTitle,thumbImage,goalPrice,projectCategory,projectStartDate,projectEndDate,shippingStartDate,detailDesc,address,latitude,longitude,province);
 	}
+	
 	@Override
 	public int insertProjectItems(List<ProjectItemDto> list) {
 		// TODO Auto-generated method stub
 		return dao.insertProjectItems(list);
 	}
+	
 	@Override
 	public ProjectDto selectOne(int projectId) {
 		// TODO Auto-generated method stub

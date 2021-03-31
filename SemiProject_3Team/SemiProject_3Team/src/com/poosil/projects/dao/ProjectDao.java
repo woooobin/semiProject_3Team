@@ -19,7 +19,8 @@ public interface ProjectDao {
 			String projectStartDate,
 			String projectEndDate,
 			String shippingStartDate,
-			String detailDesc
+			String detailDesc,
+			String address,String latitude,String longitude,String province
 		);
 	public int insertProjectItems(List<ProjectItemDto> list);
 	public ProjectDto selectOne(int projectId);

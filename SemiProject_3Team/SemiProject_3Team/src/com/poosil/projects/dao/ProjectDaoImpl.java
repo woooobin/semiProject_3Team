@@ -39,7 +39,7 @@ public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
 	@Override
 	public Map<String, Integer> insertProject(String userId, String projectMainTitle, String projectSubTitle,
 			String thumbImage, String goalPrice, String projectCategory, String projectStartDate, String projectEndDate,
-			String shippingStartDate, String detailDesc) {
+			String shippingStartDate, String detailDesc,String address,String latitude,String longitude,String province) {
 
 		SqlSession session = null;
 		Map<String, Integer> resultMap = new HashMap<String, Integer>();
@@ -55,6 +55,10 @@ public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
 		param.put("projectEndDate", projectEndDate);
 		param.put("shippingStartDate", shippingStartDate);
 		param.put("detailDesc", detailDesc);
+		param.put("address", address);
+		param.put("latitude", latitude);
+		param.put("longitude", longitude);
+		param.put("province", province);
 
 		try {
 			session = getSqlSessionFactory().openSession(true);
@@ -83,7 +87,26 @@ public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
 		int result = 0;
 		try {
 			session = getSqlSessionFactory().openSession(true);
-			result = session.insert("projects-mapper.insertProjectItems", list);
+			/**
+			 * #{item.projectItemName},
+			#{item.projectItemDesc} ,
+			#{item.shippingFee},
+			#{item.quantity},
+			#{item.thumbImage},
+			#{item.projectId}
+			 */
+			for(ProjectItemDto dto : list) {
+				Map<String, String> param = new HashMap<String, String>();
+				
+				param.put("projectItemName", dto.getProjectItemName());
+				param.put("projectItemDesc", dto.getProjectItemDesc());
+				param.put("shippingFee", dto.getShippingFee()+"");
+				param.put("quantity", dto.getQuantity()+"");
+				param.put("thumbImage", dto.getThumbImage()+"");
+				param.put("projectId", dto.getProjectId()+"");
+				
+				result += session.insert("projects-mapper.insertProjectItems", param);
+			}
 
 			System.out.println("insert project items succeed" + result);
 
