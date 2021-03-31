@@ -14,17 +14,17 @@ response.setContentType("text/html; charset=UTF-8");
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="./styles/reset.css" rel="stylesheet">
-<link href="./styles/bootstrap.min.css" rel="stylesheet">
-<link href="./styles/project_list.css" rel="stylesheet">
+<link href="styles/reset.css" rel="stylesheet">
+<link href="styles/bootstrap.min.css" rel="stylesheet">
+<link href="styles/project_list.css" rel="stylesheet">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
-	<%@ include file="./ui/header.jsp"%>
+	<%@ include file="../ui/header.jsp"%>
 	
 	<div class="container">
-	<a href="./project_upload.jsp">upload</a>
+	<a href="project_upload.jsp">upload</a>
 		<div class="project_nav row">
 			<span class="col"><button class="project_nav_province">전체</button></span>
 			<span class="col"><button class="project_nav_province">서울</button></span>

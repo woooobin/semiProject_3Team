@@ -53,7 +53,6 @@ public class ProjectsController extends HttpServlet {
 			JsonObject jsonData = element.getAsJsonObject(); // 파싱된 json을 jsonObject 로 가져옴
 
 			// =============== 쓸 수 있는 형태로 변환 완료 =============== //
-
 			String projectMainTitle = jsonData.get("projectMainTitle").getAsString();
 			String thumbImage = jsonData.get("thumbnailImage").getAsString();
 			String goalPrice = jsonData.get("goalPrice").getAsString();
@@ -63,11 +62,15 @@ public class ProjectsController extends HttpServlet {
 			String projectCategory = jsonData.get("projectCategory").getAsString();
 			String projectEndDate = jsonData.get("projectEndDate").getAsString();
 			String detailDesc = jsonData.get("detailDesc").getAsString();
+			String address = jsonData.get("address").getAsString();
+			String latitude = jsonData.get("latitude").getAsString();
+			String longitude = jsonData.get("longtitude").getAsString();
+			String province = jsonData.get("province").getAsString();
 
-			// System.out.println(goalPrice);
+			 System.out.println(address+latitude+longitude+province);
 
 			Map<String, Integer> resultMap = biz.insertProject("test1", projectMainTitle, projectSubTitle, thumbImage,
-					goalPrice, projectCategory, projectStartDate, projectEndDate, shippingStartDate, detailDesc);
+					goalPrice, projectCategory, projectStartDate, projectEndDate, shippingStartDate, detailDesc,address,latitude,longitude, province);
 
 			// ================= end project
 
@@ -130,12 +133,12 @@ public class ProjectsController extends HttpServlet {
 			// =============== end select List ===============//
 		} else if (command.equals("selectOne")) {
 			int projectId = Integer.parseInt(request.getParameter("projectId"));
-			
+			System.out.println("in selectOne" + projectId);
 			ProjectDto dto = biz.selectOne(projectId);
 
 			System.out.println("dto = " + dto);
 			
-			request.setAttribute("dto", dto);
+			request.setAttribute("projectDto", dto);
 			
 			List<ProjectItemDto> projectItems = new ArrayList<ProjectItemDto>();
 			

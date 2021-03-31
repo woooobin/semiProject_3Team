@@ -13,8 +13,9 @@
 		projectCategory, 
 		projectStartDate,
 		projectEndDate
+		
 	FROM PROJECTS
-	ORDER BY projectId DESC
+	ORDER BY CREATEDAT DESC
 	</select>
 	<select id="selectOne" resultType="ProjectDto" parameterType="int">
 	SELECT 
@@ -29,7 +30,11 @@
 		projectCategory,
 		detailDesc, 
 		projectStartDate,
-		projectEndDate
+		projectEndDate,
+		address,
+		latitude,
+		longitude,
+		province
 		FROM PROJECTS 
 		WHERE projectId = #{projectId}
 	</select>
@@ -52,6 +57,10 @@
 		likeCount,
 		soldCount,
 		detailDesc,
+		address,
+		latitude,
+		longitude,
+		province,
 		createdAt,
 		updatedAt
 		 ) VALUES (
@@ -68,24 +77,26 @@
 			0,
 			0,
 			#{detailDesc},
+			#{address},
+			#{latitude},
+			#{longitude },
+			#{province},
 			SYSDATE,
 			SYSDATE
 		)
 	</insert>
 	
-	<insert id="insertProjectItems" parameterType="java.util.List">
+	<insert id="insertProjectItems" parameterType="HashMap">
 		INSERT INTO PROJECTITEM (projectItemSeq, projectItemName, projectItemDesc, shippingFee, quantity, thumbImage, projectId) VALUES 
-		<foreach collection="list" item="item" separator=" , ">
 		(
 			PROJECT_ITEM_SEQ.NEXTVAL,
-		 	#{item.projectItemName},
-			#{item.projectItemDesc} ,
-			#{item.shippingFee},
-			#{item.quantity},
-			#{item.thumbImage},
-			#{item.projectId}
+		 	#{projectItemName},
+			#{projectItemDesc} ,
+			#{shippingFee},
+			#{quantity},
+			#{thumbImage},
+			#{projectId}
 		) 
-		</foreach>
 	</insert>
 	
 	<select id="selectExistHashtags" parameterType="String" resultType="String"> 
@@ -105,7 +116,7 @@
 	<insert id="insertProjectHashtags" parameterType="HashMap">
 		INSERT INTO PROJECTHASHTAG (PROJECTHASHTAGSEQ, HASHTAGSEQ, PROJECTID ) VALUES (
 			PROJECT_HASHTAG_SEQ.NEXTVAL , 
-			(SELECT HASHTAGSEQ FROM HASHTAG WHERE HASHTAGNAME = #{ hashtagName } ),
+			( SELECT HASHTAGSEQ FROM HASHTAG WHERE HASHTAGNAME = #{ hashtagName } ),
 			#{projectId}
 		)
 	</insert>
