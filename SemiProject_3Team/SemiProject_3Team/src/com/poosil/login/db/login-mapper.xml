@@ -21,7 +21,6 @@ FROM MEMBERS
 </select>
 
 <select id="login" parameterType="HashMap" resultType="loginDto">
-
 SELECT USERID,USERROLE,USERENABLED
 FROM MEMBERS 
 WHERE USERID = #{userid} 

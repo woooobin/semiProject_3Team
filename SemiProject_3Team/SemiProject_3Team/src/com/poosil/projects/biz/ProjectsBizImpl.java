@@ -77,7 +77,7 @@ public class ProjectsBizImpl implements ProjectsBiz{
 		
 		int insertHashtagsRes = dao.insertHashtags(inputHashtagList);
 		
-		// =============== 해쉬태그테이블에 전체 삽입 완료=============== //  
+		// =============== 해쉬태그테이블에 전체 삽입 완료 =============== //  
 		
 		int insertProjectHashtagRes = dao.insertProjectHashtags( hashtags, projectId );
 		
@@ -96,6 +96,27 @@ public class ProjectsBizImpl implements ProjectsBiz{
 		// TODO Auto-generated method stub
 		return dao.selectProjectsWithHashtag(hashtagseq);
 	}
+	
+	
+	// ================ 좋아요 ================//
+	@Override
+	public boolean isLiked(int projectId, String userId) {
+		int result = dao.selectExistLike(projectId, userId);
+		System.out.println(result);
+		return result > 0 ;
+	}
+	@Override
+	public int projectLike(int projectId, String userId, String isLiked) {
+		int result = 0;
+		
+		if(isLiked.equals("false")) {
+			result = dao.projectLike(projectId, userId);
+		}else if(isLiked.equals("true")) {
+			result = dao.projectUnlike(projectId, userId);
+		}
+		return result ;
+	}
+	
 	
 	
 

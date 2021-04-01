@@ -35,4 +35,10 @@ public interface ProjectDao {
 	public List<HashtagDto> selectProjectHashtag ( int projectId ) ;
 	
 	public List<ProjectDto> selectProjectsWithHashtag(int hashtagseq);
+	
+	public int selectExistLike(int projectId, String userId);
+	
+	
+	public int projectLike(int projectId, String userId);
+	public int projectUnlike(int projectId, String userId);
 }

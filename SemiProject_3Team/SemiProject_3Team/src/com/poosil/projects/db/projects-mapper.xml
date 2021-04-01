@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="projects-mapper">
-	<select id="selectList" resultType="ProjectDto">
+<mapper namespace="projects-mapper" >
+	<select id="selectList" resultType="ProjectDto" >
 	SELECT 
 		projectId,
 		projectMainTitle, 
@@ -137,6 +137,19 @@
 	SELECT PROJECTID, PROJECTMAINTITLE FROM PROJECTS WHERE PROJECTID IN
 		( SELECT PROJECTID FROM PROJECTHASHTAG WHERE HASHTAGSEQ = #{hashtagseq})
 	</select>
+	
+	<select id="selectExistLike" parameterType="HashMap" resultType="int">
+		SELECT COUNT(*) FROM PROJECTLIKE WHERE PROJECTID = #{projectId} AND USERID = #{userId} 
+	</select>
+	
+	<insert id="insertProjectLike" parameterType="HashMap">
+	INSERT INTO PROJECTLIKE (projectId, userId) VALUES(
+		#{projectId}, #{userId}
+	)
+	</insert>
+	<delete id="deleteProjectLike" parameterType="HashMap">
+	DELETE FROM PROJECTLIKE WHERE PROJECTID = #{projectId} AND USERID = ${userId} 
+	</delete>
 </mapper>
 
 
