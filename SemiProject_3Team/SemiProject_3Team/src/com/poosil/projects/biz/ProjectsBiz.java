@@ -21,7 +21,11 @@ public interface ProjectsBiz {
 			String projectStartDate,
 			String projectEndDate,
 			String shippingStartDate,
-			String detailDesc
+			String detailDesc,
+			String address,
+			String latitude,
+			String longitude,
+			String province
 		);
 	public int insertProjectItems(List<ProjectItemDto> list);
 	public ProjectDto selectOne(int projectId);
@@ -32,4 +36,7 @@ public interface ProjectsBiz {
 	public List<ProjectItemDto> selectProjectItems (int projectId);
 	public List<HashtagDto> selectProjectHashtags(int projectId);
 	public List<ProjectDto> selectProjectsWithHashtag(int hashtagseq);
+	
+	public boolean isLiked(int projectId, String userId);
+	public int projectLike(int projectId, String userId, String isLiked);
 }

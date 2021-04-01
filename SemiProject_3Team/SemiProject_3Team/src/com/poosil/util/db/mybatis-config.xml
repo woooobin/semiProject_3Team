@@ -3,7 +3,7 @@
 <configuration>
 
 	<properties resource="com/poosil/util/db/db.properties"></properties>
-
+	
 	<typeAliases>
 		<typeAlias type="com.poosil.notice.noticedto.NoticeDto" alias="NoticeDto" />
 		<typeAlias type="com.poosil.projects.dto.ProjectDto" alias="ProjectDto" />

@@ -15,7 +15,9 @@
 </head>
 <%
 	loginDto logindto = (loginDto)session.getAttribute("logindto"); 
-	List<PayDto> list = (List<PayDto>) request.getAttribute("list");
+	List<PayDto> list = (List<PayDto>)request.getAttribute("paylist");
+	
+
 %>
 <body>
 
@@ -29,22 +31,22 @@
 				<th>가격</th>
 				<th>주문날짜</th>
 			</tr>
-<%
-	for (PayDto dto : list) {
+<% 
+for (PayDto paydto : list) {
 %>
-			
+
 			<tr>
-				<td><%=dto.getOrderSeq() %></td>
-				<td><%=dto.getUserId() %></td>
-				<td><%=dto.getProjectItemSeq() %></td>
-				<td><%=dto.getQuantity() %></td>
-				<td><%=dto.getPrice() %></td>
-				<td><%=dto.getOrderDate() %></td>
+				<td><%=paydto.getOrderSeq() %></td>
+				<td><%=paydto.getUserId() %></td>
+				<td><%=paydto.getProjectItemSeq() %></td>
+				<td><%=paydto.getQuantity() %></td>
+				<td><%=paydto.getPrice() %></td>
+				<td><%=paydto.getOrderDate() %></td>
 			</tr>
-			
 <%
-	}
+}
 %>
+
 			
 			<tr>
 				<td colspan="4" align="right">

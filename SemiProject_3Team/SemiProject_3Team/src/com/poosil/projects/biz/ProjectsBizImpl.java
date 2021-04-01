@@ -20,15 +20,17 @@ public class ProjectsBizImpl implements ProjectsBiz{
 	@Override
 	public Map<String, Integer>  insertProject(String userId, String projectMainTitle, String projectSubTitle, String thumbImage,
 			String goalPrice, String projectCategory, String projectStartDate, String projectEndDate,
-			String shippingStartDate, String detailDesc) {
+			String shippingStartDate, String detailDesc, String address,String latitude,String longitude,String province) {
 		// TODO Auto-generated method stub
-		return dao.insertProject(userId,projectMainTitle,projectSubTitle,thumbImage,goalPrice,projectCategory,projectStartDate,projectEndDate,shippingStartDate,detailDesc);
+		return dao.insertProject(userId,projectMainTitle,projectSubTitle,thumbImage,goalPrice,projectCategory,projectStartDate,projectEndDate,shippingStartDate,detailDesc,address,latitude,longitude,province);
 	}
+	
 	@Override
 	public int insertProjectItems(List<ProjectItemDto> list) {
 		// TODO Auto-generated method stub
 		return dao.insertProjectItems(list);
 	}
+	
 	@Override
 	public ProjectDto selectOne(int projectId) {
 		// TODO Auto-generated method stub
@@ -75,7 +77,7 @@ public class ProjectsBizImpl implements ProjectsBiz{
 		
 		int insertHashtagsRes = dao.insertHashtags(inputHashtagList);
 		
-		// =============== 해쉬태그테이블에 전체 삽입 완료=============== //  
+		// =============== 해쉬태그테이블에 전체 삽입 완료 =============== //  
 		
 		int insertProjectHashtagRes = dao.insertProjectHashtags( hashtags, projectId );
 		
@@ -94,6 +96,27 @@ public class ProjectsBizImpl implements ProjectsBiz{
 		// TODO Auto-generated method stub
 		return dao.selectProjectsWithHashtag(hashtagseq);
 	}
+	
+	
+	// ================ 좋아요 ================//
+	@Override
+	public boolean isLiked(int projectId, String userId) {
+		int result = dao.selectExistLike(projectId, userId);
+		System.out.println(result);
+		return result > 0 ;
+	}
+	@Override
+	public int projectLike(int projectId, String userId, String isLiked) {
+		int result = 0;
+		
+		if(isLiked.equals("false")) {
+			result = dao.projectLike(projectId, userId);
+		}else if(isLiked.equals("true")) {
+			result = dao.projectUnlike(projectId, userId);
+		}
+		return result ;
+	}
+	
 	
 	
 

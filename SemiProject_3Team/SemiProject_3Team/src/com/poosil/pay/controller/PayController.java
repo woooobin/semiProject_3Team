@@ -19,6 +19,7 @@ import com.poosil.pay.biz.PayBizImpl;
 import com.poosil.pay.dto.PayDto;
 import com.poosil.projects.biz.ProjectsBiz;
 import com.poosil.projects.biz.ProjectsBizImpl;
+import com.poosil.projects.dto.ProjectDto;
 import com.poosil.projects.dto.ProjectItemDto;
 
 
@@ -73,13 +74,23 @@ public class PayController extends HttpServlet {
 			int price = Integer.parseInt(request.getParameter("price"));
 			String address = request.getParameter("address");
 			int phone = Integer.parseInt(request.getParameter("phone"));
-			int totalprice = 0;
+			int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
 			
-			PayDto dto = new PayDto(0, quantity, userId, projectItemSeq, address, phone, totalprice, price, null);
+			PayDto dto = new PayDto(0, quantity, userId, projectItemSeq, address, phone, totalPrice, price, null);
 			
 			int res = biz.insertadminPayment(dto);
 			
 			if(res > 0) {
+				dto.setTotalPrice(totalPrice);
+				
+				int updateres = biz.updateTotalPrice(dto);
+				
+				if(updateres > 0) {
+					ProjectDto projectdto = projectbiz.selectOne(projectItemSeq);
+					response.sendRedirect("project_list.jsp");
+				} else {
+					response.sendRedirect("project_list.jsp");
+				}
 				response.sendRedirect("index.jsp");
 			} else {
 				response.sendRedirect("orderpage.jsp");
@@ -87,11 +98,18 @@ public class PayController extends HttpServlet {
 			} else if (command.equals("custompaylist")) {
 				
 				HttpSession session = request.getSession();
+				
 				String userId = request.getParameter("userid");
+				//String userId = request.getParamter("userid");
+				System.out.println("userid 1=" + userId );
 				
-				List<PayDto> list = biz.customerPaymentList();
+				List<PayDto> paylist = biz.customerPaymentList(userId);
 				
-				request.setAttribute("list", list);
+				System.out.println("paylist =" + paylist );
+				
+				
+				request.setAttribute("paylist", paylist);
+			
 				
 				dispatch(request, response, "customer_payment_history.jsp");
 			} else if (command.equals("orderpage")) {
@@ -99,23 +117,25 @@ public class PayController extends HttpServlet {
 				HttpSession session = request.getSession();
 				
 				String userid = request.getParameter("userid");
-				//세션에서 가져오는 값은 다 오브젝트 
-				loginDto logindto = loginbiz.selectMy(userid);
 				
-				session.setAttribute("logindto", logindto);
+				//세션에서 가져오는 값은 다 오브젝트 
+				loginDto dto = loginbiz.selectMy(userid);
+				//System.out.println("userid = " + dto.getUserid());
+				session.setAttribute("dto", dto);
 				
 				//상품 정보 가져오기
-				/*
-				int projectId = Integer.parseInt(request.getParameter("projectId"));
 				
-				List<ProjectItemDto> projectItems = new ArrayList<ProjectItemDto>();
-				projectItems = projectbiz.selectProjectItems(106);
-				request.setAttribute("projectItems", projectItems);
-				*/
-				response.sendRedirect("orderpage.jsp");
+				int projectItemSeq = Integer.parseInt(request.getParameter("projectItemSeq"));
+				System.out.println("projectItemSeq 1 =" + projectItemSeq );
+				ProjectItemDto projectitemdto = biz.selectProjectItem(projectItemSeq);
+				System.out.println("projectItemSeq 2 = " + projectitemdto.getProjectItemSeq());
+				request.setAttribute("projectitemdto", projectitemdto);
+				
+				dispatch(request, response, "orderpage.jsp");
 				
 				
-			}
+				
+			} 
 				
 		}
 	

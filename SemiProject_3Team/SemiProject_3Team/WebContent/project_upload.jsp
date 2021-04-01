@@ -21,6 +21,7 @@ response.setContentType("text/html; charset=UTF-8");
 
 	<!-- include summernote css/js -->
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+	<script src="js/proj4.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 	<script type="text/javascript">
 	
@@ -73,8 +74,6 @@ response.setContentType("text/html; charset=UTF-8");
 						// 에디터에 이미지 출력
 						console.log("succes =", data)
 						const url = "image/" + JSON.parse(data).url;
-
-						/* $(".imageInput").eq(this).val(url) */
 						currentInput.next().val(url);
 					}
 				});
@@ -111,11 +110,15 @@ response.setContentType("text/html; charset=UTF-8");
 				projectCategory: $("#projectCategory").val(),
 				projectEndDate: $("#projectEndDate").val(),
 				detailDesc: $(".detailDesc").val(),
+				address: $("#address").val(),
+				latitude: $("#latitude").val(),
+				longtitude: $("#longtitude").val(),
+				province: $("#province").val(),
 				projectItems: projectItems,
 				hashtags : hashtags
 			};
 			console.log(data)
-			$.ajax({ // ajax를 통해 파일 업로드 처리
+			$.ajax({ 
 				data: { "command": "insertProject", "data": JSON.stringify(data) },
 				type: "POST",
 				dataType: "json",
@@ -133,6 +136,27 @@ response.setContentType("text/html; charset=UTF-8");
 			});
 		}
 
+		function goPopup() {
+			var pop = window.open("jusoPopup.jsp", "pop",
+					"width=570,height=420, scrollbars=yes, resizable=yes");
+		}
+		function jusoCallBack(roadFullAddr,x,y, province) {
+			
+			const point1 = [+x,+y];
+		    var firstProjection = "+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs"; // from
+		    var secondProjection = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"; 
+			var lonAndLat = proj4(firstProjection, secondProjection, point1); //변환된 위도, 경도 
+			
+			console.log(lonAndLat) //[127.25313872031843, 37.65626868953749]
+			
+			var addressEl = document.querySelector("#address").value = roadFullAddr;
+			document.querySelector("#latitude").value = lonAndLat[0];
+			document.querySelector("#longtitude").value =  lonAndLat[1];
+			document.querySelector("#province").value = province;
+			
+			
+			/* console.log(x,y, province) */
+		}
 	</script>
 
 </head>
@@ -176,6 +200,11 @@ response.setContentType("text/html; charset=UTF-8");
 					<br />
 					<input type="date" name="projectEndDate" id="projectEndDate" class="form-control"
 						value="2021-04-02" />
+					<br/><button type="button" class="btn btn-info" onClick="goPopup();">주소검색</button>
+						<input type="text" name="address" id="address" class="form-control" placeholder="도로명 주소를 입력해 주세요" required readonly />
+						<input type="text" name="latitude" id="latitude" class="form-control" readonly/>
+						<input type="text" name="longtitude" id="longtitude" class="form-control" readonly/>
+						<input type="text" name="province" id="province" class="form-control" readonly/>
 				</div>
 			</div>
 			<br />
@@ -189,9 +218,6 @@ response.setContentType("text/html; charset=UTF-8");
 					<input type="text" placeholder="상품의 구성 내역" name="projectItemDesc"
 						class="form-control projectItemDesc" value="projectItemnameasdfasdf" />
 					<br />
-					<input type="file" class="imageInput" />
-					<input type="text" class="thumbnailImage" name="thumbImage" />
-					<br />
 					<input type="text" name="shippingFee" placeholder="배송비" value="3000" class="form-control shippingFee" />
 					<input type="text" name="price" placeholder="물품의 가격" class="form-control price"/>
 					<input type="number" name="quantity" placeholder="수량" value="5" class="form-control quantity" />
@@ -203,9 +229,6 @@ response.setContentType("text/html; charset=UTF-8");
 					<input type="text" placeholder="상품의 구성 내역" name="projectItemDesc"
 						class="form-control projectItemDesc" value="projectItemnameasdfasdf" />
 					<br />
-					<input type="file" class="imageInput" />
-					<input type="text" class="thumbnailImage" name="thumbImage" />
-					<br />
 					<input type="text" name="shippingFee" placeholder="배송비" value="3000" class="form-control shippingFee" />
 					<input type="text" name="price" placeholder="물품의 가격" class="form-control price"/>
 					<input type="number" name="quantity" placeholder="수량" value="5" class="form-control quantity" />
@@ -216,9 +239,6 @@ response.setContentType("text/html; charset=UTF-8");
 					<br />
 					<input type="text" placeholder="상품의 구성 내역" name="projectItemDesc"
 						class="form-control projectItemDesc" value="projectItemnameasdfasdf" />
-					<br />
-					<input type="file" class="imageInput" />
-					<input type="text" class="thumbnailImage" name="thumbImage" />
 					<br />
 					<input type="text" name="shippingFee" placeholder="배송비" value="3000" class="form-control shippingFee" />
 					<input type="text" name="price" placeholder="물품의 가격" class="form-control price"/>

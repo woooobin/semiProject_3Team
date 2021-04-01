@@ -16,7 +16,7 @@ public class ProjectDto {
 	private Date createdAt;
 	private Date updatedAt;
 	private String address;
-	private String lattitude;
+	private String latitude;
 	private String longitude;
 	private String province;
 	private int goalPrice;
@@ -29,7 +29,7 @@ public class ProjectDto {
 	}
 	public ProjectDto(String projectId, String userId, String projectMainTitle, String projectSubTitle,
 			String thumbImage, String projectCategory, Date projectStartDate, Date projectEndDate,
-			Date shippingStartDate, String detailDesc, Date createdAt, Date updatedAt, String address, String lattitude,
+			Date shippingStartDate, String detailDesc, Date createdAt, Date updatedAt, String address, String latitude,
 			String longitude, String province, int goalPrice, int totalPrice, int soldCount, int likeCount) {
 		super();
 		this.projectId = projectId;
@@ -45,7 +45,7 @@ public class ProjectDto {
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 		this.address = address;
-		this.lattitude = lattitude;
+		this.latitude = latitude;
 		this.longitude = longitude;
 		this.province = province;
 		this.goalPrice = goalPrice;
@@ -131,11 +131,11 @@ public class ProjectDto {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getLattitude() {
-		return lattitude;
+	public String getLatitude() {
+		return latitude;
 	}
-	public void setLattitude(String lattitude) {
-		this.lattitude = lattitude;
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
 	}
 	public String getLongitude() {
 		return longitude;
