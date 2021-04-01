@@ -104,7 +104,10 @@
 				<td><div class="d-flex justify-content-end">
 					<button type="button" class="btn btn-info" onClick="goPopup();">주소검색</button>
 				</div>
-				<input type="text" name="address" id="address" class="form-control" placeholder="도로명 주소를 입력해 주세요" required readonly />
+				<input type="text" name="zipNo" id="zipNo" class="form-control" placeholder="우편 번호" required readonly><br/>
+				<input style="width: 300px;" type="text" name="addr" id="addr" class="form-control" placeholder="도로명 주소를 입력해 주세요" required readonly />
+				<input  type="text" name="addr2" id="addr2" class="form-control" placeholder="참고 주소" required readonly /><br/>
+				<input type="text" name="addrDetail" id="addrDetail" class="form-control" placeholder="나머지 주소를 입력해 주세요"/>
 			</tr>
 			<tr>
 				<th>전화번호</th>
@@ -149,10 +152,16 @@
 		var pop = window.open("signup/jusoPopup.jsp", "pop",
 				"width=570,height=420, scrollbars=yes, resizable=yes");
 	}
-	function jusoCallBack(roadFullAddr) {
-		var addressEl = document.querySelector("#address");
-		addressEl.value = roadFullAddr;
-	}
+	var jusoCallBack = function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo){ 
+		document.getElementById("zipNo").value = zipNo; 
+		document.getElementById("addr").value = roadAddrPart1; 
+		document.getElementById("addr2").value = roadAddrPart2;
+		roadAddrPart1 += roadAddrPart2;
+		if(addrDetail.length>30){ 
+			alert('상세주소가 너무 길어 다시 입력해야 합니다.'); 
+			return; 
+		} 
+		document.getElementById("addrDetail").value = addrDetail; }
 	function fRecs(f)
 
 	  {

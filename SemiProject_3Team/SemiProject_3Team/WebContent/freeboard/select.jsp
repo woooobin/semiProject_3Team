@@ -9,6 +9,45 @@
 <html>
 <head>
 <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        // 
+        $(document).ready(function () {
+
+
+            // 1. 버튼 바로 뒤에 댓글 입력창이 있을 때
+            /**
+             * $(".item>button").click(function () {
+                    console.log($(".item>button"), $(this))
+                    $(this).next().toggleClass("on");
+                });
+             * 
+            */
+            // 2. 구조가 약간 복잡할 때
+
+            var item = $(".answer>button").click(function () {
+                //현재 클릭한 값의 인덱스
+                var idx = item.index(this);
+
+                $(".answertext").eq(idx).toggleClass("on")
+            });
+        })
+    </script>
+
+    <style>
+        .item {
+            outline: 1px solid;
+            cursor: pointer;
+        }
+
+        .contentarea {
+            display: none;
+        }
+
+        .contentarea.on {
+            display: block;
+        }
+    </style>
 <link href="./styles/reset.css" rel="stylesheet">
   	<!-- Bootstrap CSS -->
     <link href="./styles/bootstrap.min.css" rel="stylesheet" >
@@ -67,11 +106,6 @@
 						<input type="hidden" name="parentcommentno" value="${cdto.commentno }">
 						${cdto.userid }  
 						</td>
-					<c:if test="${sessionID != null}">
-						<td>
-							<input type="button" id="answer" value="답글하기" onclick="location.href='comment.do?command=answerproc&commentno=${cdto.commentno}'">
-						</td>
-					</c:if>
 						<td> 작성 날짜 : ${cdto.regdate }</td>
 					<c:if test="${sessionID == cdto.userid }">
 						<td align="right">
@@ -81,9 +115,27 @@
 						</td>
 					</c:if>
 					</tr>
+					<c:if test="${sessionID != null}">
+						<td class="answer">
+							<button onclick="displayShow();">답글하기</button>
+						</td>
+					</c:if>
+					<tbody class="answertext">
+					<tr>
+						<td>
+							<textarea rows="3" cols="60" name="answercontent"></textarea>
+						</td>
+					</tr>
 					<tr>
 						<td style="border-bottom: 1px solid #CCCCCC;"></td>
 					</tr>
+					<tr>
+						<td>
+							<input type="submit" value="대댓글 등록" onclick="location.href='comment.do?command='">
+							<input type="button" onclick="dispalyNone();">
+						</td>
+					</tr>
+					</tbody>
 			</c:forEach>
 		</c:otherwise>
 		</c:choose>
@@ -100,31 +152,15 @@
 		</tr>
 	</table>
 <script type="text/javascript">
-$(function(){
-	$("#answer").onclick(function(){
-		$.ajax({
-			url:"comment.do",
-			data: "command="answerProc,
-			dataType: 
-			success: function(data){
-				
-				}
-			});
-		});
-	});
-$(function(){
-	$("#insert").onclick(function(){
-		$.ajax({
-			url:"comment.do"
-			type:'post',
-			data:,
-			dataType:
-			success: function(data){
-				
-				}	
-			});
-		});
-	});
+function displayShow(){
+	$("#answer").style.display = 'block';
+	$("#contenttable").style.display = 'none';
+}
+
+function displayNone(){
+	$("#answer").style.display = 'none';
+	$("#contenttable").style.display = 'block';
+}
 
 </script>
 </body>
