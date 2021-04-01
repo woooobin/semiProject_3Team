@@ -153,9 +153,7 @@
 		var addressEl = document.querySelector("#address");
 		addressEl.value = roadFullAddr;
 	}
-	function fRecs(f)
-
-	  {
+	function fRecs(f){
 	    f.action = "signup/recaptch.php";
 	  }
 	</script>	

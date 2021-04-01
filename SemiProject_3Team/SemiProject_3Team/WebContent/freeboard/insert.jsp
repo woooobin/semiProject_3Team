@@ -1,3 +1,4 @@
+<%@page import="com.poosil.login.dto.loginDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -5,6 +6,10 @@ request.setCharacterEncoding("UTF-8");
 %>
 <%
 response.setContentType("text/html; charset=UTF-8");
+%>
+
+<%
+loginDto logindto = (loginDto)session.getAttribute("dto"); 
 %>
 <!DOCTYPE html>
 <html>
@@ -58,7 +63,6 @@ response.setContentType("text/html; charset=UTF-8");
         });
     </script>
 </head>
-
 <body>
 
 <br>
