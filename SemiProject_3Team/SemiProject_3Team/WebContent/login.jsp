@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-request.setCharacterEncoding("UTF-8");
-%>
-<%
-response.setContentType("text/html; charset=UTF-8");
-%>
+<%request.setCharacterEncoding("UTF-8");%>
+<%response.setContentType("text/html; charset=UTF-8");%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,29 +102,44 @@ body {
   text-align: center;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
- <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
     
 <body width="100%" height="100%">
    <script type="text/javascript">	
     Kakao.init("d785007a1b76ece9b8555123982ff2f0");
     
-    function kakaoLogin() {
-		Kakao.Auth.login({
-			scope:'profile,account_email,birthday',
-			success: function(authObj) {
-				console.log(authObj);
-				alert(JSON.stringify(authObj));
-			},
-			fail: function(authObj){
-				alert(JSON.stringify(err));
-			}
-		});
-	}
-   
-    </script> 
+    <a id="kakao-login-btn"></a>
+
+    <script type="text/javascript">
+      Kakao.Auth.createLoginButton({
+        container: '#kakao-login-btn',
+        success: function(authObj) {
+          Kakao.API.request({
+            url: '/v2/user/me',
+            success: function(res) {
+            	const {email} = res;
+              alert(JSON.stringify(res))
+              location.href='snslogin?command=snslogin';
+            },
+            fail: function(error) {
+              alert(
+                'login success, but failed to request user information: ' +
+                  JSON.stringify(error)
+              )
+            },
+          })
+        },
+        fail: function(err) {
+          alert('failed to login: ' + JSON.stringify(err))
+        },
+      })
+    </script>
+
   	
     
     
@@ -144,16 +157,14 @@ body {
       <div class="bottomText">
         Don't you have ID? <a href="signup.jsp">sign up</a>
       </div>
-       <div id="naver_id_login">
-       
-       </div> 
+     
+       <div id="naver_id_login" ></div> 
       <a href="javascript:kakaoLogin();" > <img src="kakaologoinimg/kakao_login_small.png"></a>
-  		
     </form>
    
     <!-- 네이버 로그인 -->
   <script type="text/javascript">
-  	var naver_id_login = new naver_id_login("x_5pD8D2hV0OEmqLImlt", "http://localhost:8787/semiProject_3Team/naverlogincallback.jsp");
+  	var naver_id_login = new naver_id_login("Q_3L44elkR1gsILyh0Fi", "http://localhost:8787/SemiProject_3Team/naverlogincallback.jsp");
   	var state = naver_id_login.getUniqState();
   	naver_id_login.setButton("green", 1,40);
   	naver_id_login.setDomain("http://localhost:8787");
@@ -162,7 +173,8 @@ body {
   	naver_id_login.init_naver_id_login();
   </script>	
     
-    
+  
+ 
     
   </body>
 

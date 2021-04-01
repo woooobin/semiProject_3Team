@@ -53,7 +53,7 @@
 		</tr>
 			
 			<td colspan="2" align="left">
-				<input type="button" value="정보 수정" onclick="location.href='login.do?command=userupdate&userid=<%=dto.getUserid() %>'"/>
+				<input type="button" value="정보 수정" onclick="location.href='userupdate.jsp'"/>
 			</td>
 		</tr>
 		</tr>

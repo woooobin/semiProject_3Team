@@ -110,12 +110,6 @@ public class logincontroller extends HttpServlet {
 			List<loginDto> list = biz.selectEnabledUser();
 			request.setAttribute("list", list);
 			dispatch(request, response, "userlisten.jsp");
-		} else if (command.equals("updateform")) {
-			String userid = request.getParameter("userid");
-			loginDto dto = biz.selectUser(userid);
-			request.setAttribute("dto", dto);
-			dispatch(request, response, "userupdate.jsp");
-
 		} else if (command.equals("userroleupdate")) {
 			String userid = request.getParameter("userid");
 			String userrole = request.getParameter("userrole");
@@ -198,20 +192,31 @@ public class logincontroller extends HttpServlet {
 
 		} else if (command.equals("userupdate")) {
 			String userid = request.getParameter("userid");
-			System.out.println(userid);
-
-			loginDto dto = new loginDto();
-
-			dispatch(request, response, "userupdate.jsp");
-			int res = biz.updateUser(dto);
-
+			String usernickname =request.getParameter("usernickname");
+			int userphone = Integer.parseInt(request.getParameter("userphone"));
+			String useremail = request.getParameter("useremail");
+			String address = request.getParameter("address");
+			String avatar = request.getParameter("avatar");
+			System.out.println("avatar"+avatar);
+			loginDto dto = new loginDto(userid,null,useremail,userphone,address,null,null,null,null,avatar,usernickname,null,null);
+			dto.setUserid(userid);
+			System.out.println("userid" + userid);
+			dto.setUsernickname(usernickname);
+			dto.setUserphone(userphone);
+			dto.setUseremail(useremail);
+			dto.setAddress(address);
+			dto.setAvatar(avatar);
+			
+			int res= biz.updateUser(dto);
+			System.out.println(dto);
+			
 			if (res > 0) {
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('수정 성공!'); location.href='usermain.jsp';</script>");
 				out.flush();
 			} else {
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('수정 실패!'); location.href='login.do?command=userupdate.jsp';</script>");
+				out.println("<script>alert('수정 실패!'); location.href='userupdate.jsp';</script>");
 				out.flush();
 			}
 		} else if (command.equals("userdelete")) {
@@ -232,7 +237,6 @@ public class logincontroller extends HttpServlet {
 			}
 
 		}
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

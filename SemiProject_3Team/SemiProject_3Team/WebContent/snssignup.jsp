@@ -1,20 +1,32 @@
-<%@page import="com.poosil.login.dto.loginDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
-<%
-	response.setContentType("text/html;charset=UTF-8");
-%>
-
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <script type="text/javascript">
+	
+	function idCheckProc() {
+		var chk = document.getElementsByName("userid")[0].title;
+		if (chk == 'n') {
+			alert("id 중복체크를 해주세요!");
+			document.getElementsByName("userid")[0].focus();
+		}
+	}
+	
+	function idCheck() {
+		var userid = document.getElementsByName("userid")[0].value;
+		
+		if (userid == null || userid.trim() == "") {
+			alert("id를 입력해 주세요!");
+		} else {
+			open("login.do?command=idchk&userid="+userid, "", "width=200, height=200");
+		}
+	}
+	
 	$(document).ready(function () {
 
 		$(".imageInput").on("change", function () {
@@ -43,49 +55,68 @@
 	});
 
 </script>
-<% loginDto dto = (loginDto)session.getAttribute("dto"); %>
 </head>
 <body>
-<form action="login.do" method="post">
-		<input type="hidden" name="command" value="userupdate" />
-		<input type="hidden" name="userid" value="<%=dto.getUserid() %>" /> 
+<form action="sns.do" method="post">
+		<input type="hidden" name="command" value="insertuser" />
+		
 		<table border="1">
 			<tr>
-				<th>이름 </th>
-				<td><%=dto.getUsername() %> </td>
+				<th>아이디</th>
+				<td>
+					<input type="text" name="userid" required="required" title="n" />
+					<input type="button" value="중복체크" onclick="idCheck();" /> 
+				</td>
 			</tr>
-				<tr>
-				<th>닉네임 </th>
-				<td> <input type="text" name="usernickname" value="<%=dto.getUsernickname() %>" /> </td>
+			<tr>
+				<th>비밀번호</th>
+				<td><input type="password" name="password" required="required" onclick="idCheckProc();" /></td>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<td><input type="text" name="username" required="required" onclick="idCheckProc();" /></td>
+			</tr>
+			<tr>
+				<th>닉네임</th>
+				<td><input type="text" name="usernickname" required="required" onclick="idCheckProc();" /></td>
 			</tr>
 			<tr>
 				<th>주소</th>
 				<td><div class="d-flex justify-content-end">
 					<button type="button" class="btn btn-info" onClick="goPopup();">주소검색</button>
 				</div>
-				<input type="text" value="<%=dto.getAddress() %>" name="address" id="address" class="form-control" placeholder="도로명 주소를 입력해 주세요" required readonly />
+				<input type="text" name="address" id="address" class="form-control" placeholder="도로명 주소를 입력해 주세요" required readonly />
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td><input type="text" name="userphone" value="<%=dto.getUserphone() %>"  /></td>
+				<td><input type="text" name="userphone" required="required" onclick="idCheckProc();" /></td>
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td><%=dto.getUseremail() %></td>
+				<td>
+					<input type="text" name="useremail" required="required" value="" />
+				</td>
 			</tr>
 			<tr>
 				<th>프로필사진</th>
 				<td><!--<input type="text" name="avatar" required="required" onclick="idCheckProc();"  />-->
 				<div>
 						<input type="file" class="imageInput"  />
-						<input type="text" id="thumbnailImage" name="avatar" value="<%=dto.getAvatar() %>" />
+						<input type="text" id="thumbnailImage" name="avatar" />
 					</div>
 				</td>
 			</tr>
 			<tr>
+				<td>
+				<form name="fRec" method="post" onsubmit="return fRecs(this);" autocomplete="off" style='margin:0px;'>
+		<input type=hidden id="remoteip" name="remoteip" value="<?=$_SERVER[REMOTE_ADDR]?>" />
+		<div class="g-recaptcha" data-sitekey="6LfBSYwaAAAAAKLUkLmLGoubHgGSYvYgAm8iRpuL"></div>
+		</form>
+				</td>
+			</tr>
+			<tr>
 				<td colspan="2" align="right">
-					<input type="button" value="이전" onclick="location.href='usermain.jsp'">
-					<input type="submit" value="수정" />
+					<input type="submit"  value="가입" />
 					<!-- form 태그에 버튼 태그 왠만해선 쓰지 말기. submit 이벤트 발생하기 때문에. -->
 				</td>
 			</tr>

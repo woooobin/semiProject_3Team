@@ -1,16 +1,10 @@
 <%@page import="com.poosil.login.dto.loginDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-request.setCharacterEncoding("UTF-8");
-%>
-<%
-response.setContentType("text/html; charset=UTF-8");
-%>
+<%request.setCharacterEncoding("UTF-8");%>
+<%response.setContentType("text/html; charset=UTF-8");%>
 
-<% 
-loginDto dto = (loginDto)session.getAttribute("dto");
-%>
+<% loginDto dto = (loginDto)session.getAttribute("dto");%>
 <style>
 header {
 	positon: relative; height : 200px;
