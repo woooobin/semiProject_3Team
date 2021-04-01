@@ -42,9 +42,9 @@
   	
   	
   	<update id="updateTotalPrice" parameterType="PayDto">
-  		UPDATE PROJECTS SET TOTALPRICE = #{totalPrice} + #{price} 
-  		WHERE PROJECTID = (SELECT PROJECTID FROM PROJECTITEM 
-  		WHERE PROJECTITEMSEQ = #{projectItemSeq})
+  		UPDATE PROJECTS SET TOTALPRICE = TOTALPRICE + #{price} 
+        WHERE PROJECTID = (SELECT PROJECTID FROM PROJECTITEM 
+        WHERE PROJECTITEMSEQ = #{projectItemSeq})
   	</update>
   	
 

@@ -9,12 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.poosil.free.biz.FreeBoardBiz;
 import com.poosil.free.biz.FreeBoardBizImpl;
 import com.poosil.free.dao.FreeBoardDao;
 import com.poosil.free.dao.FreeBoardDaoImpl;
 import com.poosil.free.dto.FreeBoardDto;
+import com.poosil.login.dto.loginDto;
 
 /**
  * Servlet implementation class FreeBoardController
@@ -29,6 +31,9 @@ public class FreeBoardController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		
+		
+		HttpSession session = request.getSession();
 		
 		FreeBoardDao dao = new FreeBoardDaoImpl();
 		FreeBoardBiz biz = new FreeBoardBizImpl();
@@ -54,18 +59,27 @@ public class FreeBoardController extends HttpServlet {
 			dispatch(request, response, "freeboard/insert.jsp");
 			
 		} else if (command.equals("insertres")) {
-			String userid = request.getParameter("userid");
-			String freeboardtitle = request.getParameter("freeboardtitle");
-			String freeboardcontent = request.getParameter("freeboardcontent");
 			
-			FreeBoardDto dto = new FreeBoardDto(0, userid, freeboardtitle, freeboardcontent, null, 0);
-			int res = biz.insert(dto);
+			loginDto loginDto = (loginDto)session.getAttribute("dto");
 			
-			if(res > 0) {
-				response.sendRedirect("free.do?command=list");
-			} else {
-				response.sendRedirect("free.do?command=insertform");
+			//로그인한 유저 npe 처리 
+			if(loginDto != null) {
+				
+				String userid = loginDto.getUserid();
+				String freeboardtitle = request.getParameter("freeboardtitle");
+				String freeboardcontent = request.getParameter("freeboardcontent");
+				
+				FreeBoardDto dto = new FreeBoardDto(0, userid, freeboardtitle, freeboardcontent, null, 0);
+				int res = biz.insert(dto);
+				
+				
+				if(res > 0) {
+					response.sendRedirect("free.do?command=list");
+				} else {
+					response.sendRedirect("free.do?command=insertform");
+				}
 			}
+			
 			
 		} else if (command.equals("updateform")) {
 			int freeboardseq = Integer.parseInt(request.getParameter("freeboardseq"));

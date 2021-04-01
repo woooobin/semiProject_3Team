@@ -1,7 +1,9 @@
 package com.poosil.free.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -59,10 +61,11 @@ public class FreeBoardDaoImpl extends SqlMapConfig implements FreeBoardDao {
 		int res = 0;
 		
 		try {
+			
 			SqlSession session = getSqlSessionFactory().openSession(true);
 			res = session.insert("freeboardmapper.insert", dto);
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		
@@ -76,6 +79,8 @@ public class FreeBoardDaoImpl extends SqlMapConfig implements FreeBoardDao {
 		try {
 			SqlSession session = getSqlSessionFactory().openSession(true);
 			res = session.update("freeboardmapper.update", dto);
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
