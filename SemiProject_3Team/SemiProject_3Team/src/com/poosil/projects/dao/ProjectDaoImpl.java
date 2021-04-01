@@ -187,7 +187,6 @@ public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
 		return resultList;
 	}
 
-	
 	@Override
 	public int insertProjectHashtags(List<String> hashtagList, int projectId) {
 
@@ -281,4 +280,77 @@ public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
 		session.close();
 		return projects;
 	}
+	
+	@Override
+	public int selectExistLike(int projectId, String userId) {
+		SqlSession session = null;
+
+		Map<String, String> param = new HashMap <String, String>();
+		
+		System.out.println("selectExistLike "+ projectId + userId);
+		
+		param.put("projectId", projectId + "");
+		param.put("userId", userId);
+		
+		int result = 0;
+		try {
+			session = getSqlSessionFactory().openSession(true);
+			
+			result = session.selectOne("projects-mapper.selectExistLike", param );
+			System.out.println("selecExistLike = " + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		session.close();
+		return result;
+	}
+
+	@Override
+	public int projectLike(int projectId, String userId) {
+		SqlSession session = null;
+
+		List<ProjectDto> projects = new ArrayList<ProjectDto>();
+		Map<String, String> param = new HashMap <String, String>();
+		param.put("projectId", projectId + "");
+		param.put("userId", userId);
+		
+		int result = 0;
+		try {
+			session = getSqlSessionFactory().openSession(true);
+			
+			result = session.insert("projects-mapper.insertProjectLike", param );
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		session.close();
+		return result;
+	}
+
+	@Override
+	public int projectUnlike(int projectId, String userId) {
+		SqlSession session = null;
+
+		Map<String, String> param = new HashMap <String, String>();
+		
+		param.put("projectId", projectId + "");
+		param.put("userId", userId);
+		
+		int result = 0;
+		try {
+			session = getSqlSessionFactory().openSession(true);
+			
+			result = session.insert("projects-mapper.deleteProjectLike", param );
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		session.close();
+		return result;
+	}
+
+	
 }

@@ -8,6 +8,7 @@ response.setContentType("text/html; charset=UTF-8");
 %>
 <%
 loginDto logindto = (loginDto)session.getAttribute("dto"); /*  */
+boolean isLiked = (boolean)request.getAttribute("isLiked");
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -15,25 +16,24 @@ loginDto logindto = (loginDto)session.getAttribute("dto"); /*  */
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap" rel="stylesheet">
 <link href="styles/reset.css" rel="stylesheet">
-<link href="styles/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="styles/bootstrap.min.css" rel="stylesheet"> -->
 <link href="styles/layout.css" rel="stylesheet">
 <link href="styles/project_selectOne.css" rel="stylesheet">
 
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="styles/all.css" rel="stylesheet"> <!--load all styles -->
     <style type="text/css">
       #map {
         height: 400px;width:400px;
       }
     </style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
 <c:set var="projectDto" value="${requestScope.projectDto}" />
+<%-- <c:set var="isLiked" value="${requestScope.isLiked}" /> --%>
 
 <script>
 	onload = function() {
@@ -45,15 +45,25 @@ loginDto logindto = (loginDto)session.getAttribute("dto"); /*  */
 		var prop = "top=200px,left=600px,width=400px,height=400px";
 		window.open(url,"", prop);
 	}
+	function handleLike(){
+	<%
+		if(logindto != null){
+			%>
+			location.href="project.do?command=projectToggleLike&projectId="+${projectDto.projectId}+"&isLiked="+<%=isLiked%>
+			<%
+		}else{
+			%>
+			return alert("로그인 한 유저만 좋아요 할 수 있습니다. ")
+			<%
+		}
+	%>
+			
+	}
 	
 </script>
 
-<!--  -->
  <script>
-      // In this example, we center the map, and add a marker, using a LatLng object
-      // literal instead of a google.maps.LatLng object. LatLng object literals are
-      // a convenient way to add a LatLng coordinate and, in most cases, can be used
-      // in place of a google.maps.LatLng object.
+ 
       let map;
 
       function initMap() {
@@ -62,14 +72,12 @@ loginDto logindto = (loginDto)session.getAttribute("dto"); /*  */
           center:  { lat:  ${projectDto.longitude }, lng: ${projectDto.latitude } },
         };
         map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        
         const marker = new google.maps.Marker({
-          
           position: { lat: ${projectDto.longitude } , lng: ${projectDto.latitude }},
           map: map,
         });
-        const infowindow = new google.maps.InfoWindow({
-          content: "<p>Marker Location:" + marker.getPosition() + "</p>",
-        });
+        
         google.maps.event.addListener(marker, "click", () => {
           infowindow.open(map, marker);
         });
@@ -82,8 +90,8 @@ loginDto logindto = (loginDto)session.getAttribute("dto"); /*  */
 	<%-- <c:set var="projectItems" value="${requestScope.projectItems}" /> --%>
 
 	
-	projectId = ${projectDto.projectId}
-	<div class="project-detail-header">
+	<%-- projectId = ${projectDto.projectId} --%>
+	<div class="project-detail-header" >
 		<h2>${projectDto.projectMainTitle}</h2>
 		<h3>${projectDto.projectSubTitle }</h3>
 	</div>
@@ -115,7 +123,6 @@ loginDto logindto = (loginDto)session.getAttribute("dto"); /*  */
 				<div class="project-detail-description">
 					<div class="description"></div>
 				</div>
-				<!-- end description -->
 			</div>
 
 		</div>
@@ -131,18 +138,29 @@ loginDto logindto = (loginDto)session.getAttribute("dto"); /*  */
 					<div id="map"></div>
 					<p>${projectDto.address }</p>
 					
-					<p>${projectDto.province }</p>
-					<h3>남은 후원일</h3>
-					<p class="restDay"></p>
-					<h3>펀딩액</h3>
-					<p>${projectDto.totalPrice }</p>
-					<h3>발송 시작일</h3>
-					<p>${projectDto.shippingStartDate}</p>
+					<h3>남은 후원일<span></span></h3>
+					
+					<h3>펀딩액<span>${projectDto.totalPrice }</span></h3>
+					<h3>발송 시작일 <span>${projectDto.shippingStartDate}</span></h3>
+					
 
 					<div class="project-detail-sub-nav">
-						<button>like</button>
-						<button onclick="openWin()">채팅</button>
-						<button>share</button>
+						<button class="btn" onclick="handleLike()">
+<%
+							if(isLiked) {
+								%>
+							<i class="fas fa-heart"></i>
+								<%
+							}else{
+								%>
+							<i class="far fa-heart"></i>
+								<%
+							}
+%>
+						</button>
+						
+						<button class="btn" onclick="openWin()"><i class="far fa-comment"></i></button>
+						<button class="btn"><i class="fas fa-share-alt"></i>share</button>
 					</div>
 				</div>
 				<!-- end detail info -->
@@ -155,20 +173,17 @@ loginDto logindto = (loginDto)session.getAttribute("dto"); /*  */
 							<c:otherwise>
 								<c:forEach items="${projectItems}" var="projectItem">
 									<li class="project-items-item">
-										<div class="frame">
-											<h4>${projectItem.projectItemName}</h4>
-											<p>${projectItem.projectItemDesc}</p>
-											<p>
-												<span>배송비 </span> ${projectItem.shippingFee}
-											</p>
-											<p>${projectItem.quantity}개 중 (수량-팔린갯수 )개 남음</p>
-											<p>${projectItem.price}</p>
-											<!--
-											언제나 로그인이 되어잇지 않기 때문에 userId를 여기서 쓰면 안됨 어차피 세션에서가져다 쓸 것 이기 때문에그냥 컨트롤러에서 유저아이디만 받아다가 써야함 
-											  -->
-											<%-- <button href="pay.do?command=orderpage&userid=${ userid}&projectItemSeq=${ projectItemSeq}">projectItemseq =${projectItem.projectItemSeq} 후원하기</button> --%>
-										
-										</div>
+										<a href="#">
+											<div class="frame">
+												<p>${projectItem.price}원 응원하기 </p>
+												<h4>${projectItem.projectItemName}</h4>
+												<p>${projectItem.projectItemDesc}</p>
+												<p><span>배송비 </span>
+													 ${projectItem.shippingFee}
+												</p>
+												<p>제한수량 ${projectItem.quantity}개 중 (수량-팔린갯수 )개 남음</p>
+											</div>
+										</a>
 									</li>
 								</c:forEach>
 							</c:otherwise>

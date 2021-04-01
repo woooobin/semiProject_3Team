@@ -12,11 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.poosil.login.dto.loginDto;
 import com.poosil.projects.biz.ProjectsBiz;
 import com.poosil.projects.biz.ProjectsBizImpl;
 import com.poosil.projects.dto.HashtagDto;
@@ -36,7 +38,9 @@ public class ProjectsController extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-
+		
+		
+		HttpSession session = request.getSession();
 		String command = request.getParameter("command");
 		ProjectsBiz biz = new ProjectsBizImpl();
 
@@ -150,13 +154,41 @@ public class ProjectsController extends HttpServlet {
 			
 			request.setAttribute("projectHashtags", projectHashtags);
 			
+			loginDto loginDto = (loginDto)session.getAttribute("dto"); 
+			
+			if(loginDto != null && loginDto.getUserid() != null ) {		
+				
+				boolean isLiked = biz.isLiked(projectId,loginDto.getUserid() );
+				System.out.println("isLiked = "+isLiked);
+				request.setAttribute("isLiked", isLiked);
+			}else {
+				request.setAttribute("isLiked", false);
+			}
+			
 			dispatch(request, response, "project_selectOne.jsp");
 		}else if(command.equals("selectWHashtag")) {
 			int hashtagSeq = Integer.parseInt(request.getParameter("hashtagSeq"));
 			
 			List<ProjectDto> resultList = biz.selectProjectsWithHashtag(hashtagSeq);
 			request.setAttribute("projects", resultList);
+			
 			dispatch(request, response, "project_hashtags.jsp");
+			
+		}else if(command.equals("projectToggleLike")) {
+			
+			int projectId = Integer.parseInt(request.getParameter("projectId"));
+			String isLiked = request.getParameter("isLiked");
+			loginDto loginDto = (loginDto)session.getAttribute("dto"); 
+			String userId = loginDto.getUserid();
+			int result = 0;
+			if(loginDto != null) { //혹시 몰라서 한 번 더 로그인 한 유저 확인 해줌 
+				result = biz.projectLike(projectId, userId, isLiked);
+			}
+			if(result > 0 ) {
+				response.sendRedirect("project.do?command=selectOne&projectId="+projectId);
+			}
+			System.out.println("userId = "+userId);
+			
 		}
 
 	}
