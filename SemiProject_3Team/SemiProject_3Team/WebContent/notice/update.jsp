@@ -65,20 +65,20 @@ response.setContentType("text/html; charset=UTF-8");
 	<jsp:useBean id="ntdto" class="com.poosil.notice.noticedto.NoticeDto" scope="request"></jsp:useBean>
 	<form action="notice.do" method="post">
     	<input type="hidden" name="command" value="updateres">
-    	<input type="hidden" name="noticeseq" value='<jsp:getProperty property="noticeseq" name="dto"/>'/>
+    	<input type="hidden" name="noticeseq" value='<jsp:getProperty property="noticeseq" name="ntdto"/>'/>
     	<table border="1" style="margin-left: auto; margin-right: auto;">
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="noticetitle" value='<jsp:getProperty property="noticetitle" name="dto"/>'/></td>
+				<td><input type="text" name="noticetitle" value='<jsp:getProperty property="noticetitle" name="ntdto"/>'/></td>
 			</tr>
 			<tr>
 				<th style="vertical-align: middle;">내용</th>
-				<td><textarea rows="30" cols="100" name="noticecontent" id="summernote" placeholder="write something"><jsp:getProperty property="noticecontent" name="dto"/></textarea></td>
+				<td><textarea rows="30" cols="100" name="noticecontent" id="summernote" placeholder="write something"><jsp:getProperty property="noticecontent" name="ntdto"/></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
 					 <input type="submit" value="수정" />
-					 <input type="button" value="취소" onclick="notice.do?command=select&noticeseq=${dto.noticeseq}" />
+					 <input type="button" value="취소" onclick="notice.do?command=select&noticeseq=${ntdto.noticeseq}" />
 				</td>
 			</tr>
        </table> 

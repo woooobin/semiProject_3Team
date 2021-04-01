@@ -77,7 +77,7 @@ public class NoticeController extends HttpServlet {
 			
 			NoticeDto dto = biz.selectOne(noticeseq);
 			
-			request.setAttribute("dto", dto);
+			request.setAttribute("ntdto", dto);
 			
 			dispatch(request, response, "notice/update.jsp");
 			

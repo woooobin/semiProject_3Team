@@ -1,6 +1,6 @@
 package com.poosil.free.dto;
 
-import javax.xml.crypto.Data;
+import java.util.Date;
 
 public class FreeBoardDto {
 	
@@ -8,14 +8,14 @@ public class FreeBoardDto {
 	private String userid;
 	private String freeboardtitle;
 	private String freeboardcontent;
-	private Data regdate;
+	private Date regdate;
 	private int readcount;
 	
 	public FreeBoardDto() {
 		
 	}
 
-	public FreeBoardDto(int freeboardseq, String userid, String freeboardtitle, String freeboardcontent, Data regdate,
+	public FreeBoardDto(int freeboardseq, String userid, String freeboardtitle, String freeboardcontent, Date regdate,
 			int readcount) {
 		super();
 		this.freeboardseq = freeboardseq;
@@ -58,11 +58,11 @@ public class FreeBoardDto {
 		this.freeboardcontent = freeboardcontent;
 	}
 
-	public Data getRegdate() {
+	public Date getRegdate() {
 		return regdate;
 	}
 
-	public void setRegdate(Data regdate) {
+	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
 
@@ -73,6 +73,7 @@ public class FreeBoardDto {
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
 	}
+	
 	
 	
 	

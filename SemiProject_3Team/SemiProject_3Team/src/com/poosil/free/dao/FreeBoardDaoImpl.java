@@ -20,6 +20,11 @@ public class FreeBoardDaoImpl extends SqlMapConfig implements FreeBoardDao {
 			session = getSqlSessionFactory().openSession(false);
 			
 			list = session.selectList("freeboardmapper.selectList");
+			
+			for(FreeBoardDto dto : list) {
+				System.out.println("dto : " + dto.getUserid());
+				System.out.println("dto2 : " + dto.getRegdate());
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -3,8 +3,7 @@
 <mapper namespace="freeboardmapper">
   
 	<select id="selectList" resultType="FreeBoardDto">
-		SELECT FREEBOARDSEQ, USERID, FREEBOARDTITLE, FREEBOARDCONTENT, REGDATE, READCOUNT
-		FROM FREEBOARD
+		SELECT * FROM FREEBOARD
 		ORDER BY FREEBOARDSEQ DESC
 	</select>
   	

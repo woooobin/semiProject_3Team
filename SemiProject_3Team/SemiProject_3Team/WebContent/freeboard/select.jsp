@@ -17,13 +17,14 @@
 <body>
 <%@ include file="../ui/header.jsp" %>
 <% String sessionID = (String)session.getAttribute("sessionID"); %>
-	<h2>${dto.freeboardtitle }</h2>
+	<h3 align="center">${dto.freeboardtitle }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
 	
 	<table border="1" style="margin-left: auto; margin-right: auto;">
 		<tr>
-			<td>${dto.userid }</td>
-			<td>${dto.readcount }</td>
+			<td>${dto.userid }&nbsp;&nbsp;&nbsp;조회수 ${dto.readcount }</td>
+			<td>${dto.regdate }&nbsp;&nbsp;</td>
 		</tr>
+		
 		<tr>
 			<td>
 				<textarea rows="10" cols="60" readonly="readonly">${dto.freeboardcontent }</textarea>
@@ -33,8 +34,8 @@
 			<c:when test="${sessionID == dto.userid}">
 				<tr>
 					<td colspan="2" align="right">
-						<input type="button" value="수정" onclick="location.href='free.do?command=updateform&noticeseq=${dto.noticeseq}'">
-						<input type="button" value="삭제" onclick="location.href='free.do?command=delete&noticeseq=${dto.noticeseq}'">
+						<input type="button" value="수정" onclick="location.href='free.do?command=updateform&freeboardseq=${dto.freeboardseq}'">
+						<input type="button" value="삭제" onclick="location.href='free.do?command=delete&freeboardseq=${dto.freeboardseq}'">
 						<input type="button" value="목록" onclick="location.href='free.do?command=list'">
 					</td>
 				</tr>
@@ -90,7 +91,7 @@
 	
 	<table id="contenttable">
 		<tr>
-			<td><textarea rows="3" cols="60" readonly="readonly">${cdto.commentcontent }</textarea></td>
+			<td><textarea rows="3" cols="60" name="commentcontent">${cdto.commentcontent }</textarea></td>
 		</tr>
 		<tr>
 			<td>
@@ -119,6 +120,7 @@ $(function(){
 			data:,
 			dataType:
 			success: function(data){
+				
 				}	
 			});
 		});
