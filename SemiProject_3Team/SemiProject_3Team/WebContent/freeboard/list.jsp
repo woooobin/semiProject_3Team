@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -15,14 +16,15 @@
     <link href="./styles/bootstrap.min.css" rel="stylesheet" >
 </head>
 <body>
+<% String sessionID = (String)session.getAttribute("sessionID"); %>
 <%@ include file="../ui/header.jsp" %>
 	<table border="1">
 		<col width="50">
 		<col width="500">
 		<col width="100">
 		<col width="100">
-		<col width="100">
-		<tr>
+		<col width="50">
+		<tr align="center">
 			<td>번호</td>
 			<td>제목</td>
 			<td>글쓴이</td>
@@ -37,7 +39,7 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${list }" var="dto">
-					<tr>
+					<tr align="center">
 						<td>${dto.freeboardseq }</td>
 						<td><a href="free.do?command=select&freeboardseq=${dto.freeboardseq }">${dto.freeboardtitle }</a></td>
 						<td>${dto.userid }</td>
@@ -46,14 +48,14 @@
 					</tr>
 				</c:forEach>
 			</c:otherwise>
-			<c:when test="${sessionScope.sessionID != null }">
+			</c:choose>
+			<c:if test="${sessionID != null }">
 				<tr>
 					<td colspan="4" align="right">
 						<input type="button" value="글작성" onclick="location.href='free.do?command=insertform'" >
 					</td>
 				</tr>
-			</c:when>
-		</c:choose>
+			</c:if>
 	</table>
 </body>
 </html>

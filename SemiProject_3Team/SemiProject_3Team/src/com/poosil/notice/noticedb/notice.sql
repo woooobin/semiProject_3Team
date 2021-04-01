@@ -16,9 +16,9 @@ CREATE TABLE NOTICE(
 );
 
 INSERT INTO NOTICE
-VALUES(NOTICESEQ.NEXTVAL, 'test1', 'Çª½Ç ÀÌ¿ë ¼öÄ¢', '1. ¾È½ÉÇÏ°í »ç¿ëÇØ ÁÖ½Ã±æ ¹Ù¶ø´Ï´Ù.', 'ADMIN', SYSDATE, '°ü¸®ÀÚÀÔ´Ï´Ù.');
+VALUES(NOTICESEQ.NEXTVAL, 'test1', 'Çªï¿½ï¿½ ï¿½Ì¿ï¿½ ï¿½ï¿½Ä¢', '1. ï¿½È½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö½Ã±ï¿½ ï¿½Ù¶ï¿½ï¿½Ï´ï¿½.', 'ADMIN', SYSDATE, 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.');
 
 
-SELECT NOTICESEQ, USERID, NOTICETITLE, NOTICECONTENT, USERROLE, REGDATE, USERNICKNAME
+SELECT NOTICESEQ, USERID, NOTICETITLE, NOTICECONTENT, USERROLE, REGDATE
 FROM NOTICE
 ORDER BY NOTICESEQ DESC;

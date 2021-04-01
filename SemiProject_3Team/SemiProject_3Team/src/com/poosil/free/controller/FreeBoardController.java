@@ -37,6 +37,7 @@ public class FreeBoardController extends HttpServlet {
 		if(command.equals("list")) {
 			List<FreeBoardDto> list = biz.selectList();
 			request.setAttribute("list", list);
+			
 			dispatch(request, response, "freeboard/list.jsp");
 		} else if (command.equals("select")) {
 			int freeboardseq = Integer.parseInt(request.getParameter("freeboardseq"));
@@ -71,7 +72,7 @@ public class FreeBoardController extends HttpServlet {
 			
 			FreeBoardDto dto = biz.selectOne(freeboardseq);
 			
-			request.setAttribute("dto", dto);
+			request.setAttribute("fbdto", dto);
 			
 			dispatch(request, response, "freeboard/update.jsp");
 			
