@@ -20,3 +20,32 @@
 .half{
 	width:45%;
 }
+
+
+/* header css */
+
+header{}
+header .container{width:1400px; margin:0 auto;}
+header .container>div{width:50%;float:left;}
+header .container:after{clear:both;content:''; display:block;}
+
+header .container .lft{float:left;position:relative;}
+
+header .container .lft h1{width:100px;height:100px;}
+header .container .lft h1 a{display:block;width:100%;}
+
+
+header .container .rgt{}
+header .container .rgt nav {}
+header .container .rgt nav li{}
+header .container .rgt nav li a{}
+
+header .container .row {width:100%;}
+header .container .row .gnb{  display: flex;
+    width: 60%;
+    margin: 0 auto;
+    justify-content: space-between;
+
+}
+header .container .row .gnb li{width: 16%;}
+header .container .row .gnb li a{display: block;width: 100%;}
