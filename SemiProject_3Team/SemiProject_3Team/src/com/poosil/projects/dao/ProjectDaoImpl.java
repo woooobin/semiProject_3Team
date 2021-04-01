@@ -187,7 +187,6 @@ public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
 		return resultList;
 	}
 
-	
 	@Override
 	public int insertProjectHashtags(List<String> hashtagList, int projectId) {
 
@@ -334,8 +333,8 @@ public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
 	public int projectUnlike(int projectId, String userId) {
 		SqlSession session = null;
 
-		List<ProjectDto> projects = new ArrayList<ProjectDto>();
 		Map<String, String> param = new HashMap <String, String>();
+		
 		param.put("projectId", projectId + "");
 		param.put("userId", userId);
 		

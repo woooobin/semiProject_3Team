@@ -148,7 +148,7 @@
 	)
 	</insert>
 	<delete id="deleteProjectLike" parameterType="HashMap">
-	DELETE FROM PROJECTLIKE WHERE PROJECTID = #{projectId} AND USERID = ${userId} 
+	DELETE FROM PROJECTLIKE WHERE PROJECTID = #{projectId} AND USERID = #{userId} 
 	</delete>
 </mapper>
 
