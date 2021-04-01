@@ -193,21 +193,16 @@ public class loginDao extends SqlMapConfig {
 
 	}
 
-	// 4. 정보 조회(수정전)
-	public loginDto selectUser(String userid) {
-
-		return null;
-	}
-
-	// 5. 정보 수정(수정전)
+	// 5. 정보 수정
 	public int updateUser(loginDto dto) {
-
-		int res = 0;
 		SqlSession session = null;
+		
+		int res = 0;
 		try {
-			session = getSqlSessionFactory().openSession(true);
-			res = session.update(namespace + "userupdate", dto);
+			session= getSqlSessionFactory().openSession(true);
+			res =session.update(namespace+"userupdate",dto);
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -273,29 +268,43 @@ public class loginDao extends SqlMapConfig {
 		return res;
 
 	}
+	public int snslogin(String useremail) {
 
-	// Connection con = getConnection();
-	// String sql = " UPDATE MYMEMBER SET MYENABLED = ? WHERE MYNO = ? ";
-	// PreparedStatement pstm = null;
-	// int res = 0;
-	//
-	// try {
-	// pstm = con.prepareStatement(sql);
-	//
-	// System.out.println("3. query 준비 : " + sql);
-	//
-	// res = pstm.executeUpdate();
-	// System.out.println("4. query 실행 및 리턴");
-	// if (res > 0) {
-	// commit(con);
-	// }
-	// } catch (SQLException e) {
-	// e.printStackTrace();
-	// } finally {
-	// close(pstm, con);
-	// }
-	//
-	// return res;
-	// }
+		SqlSession session = null;
+		int res = 0;
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			res = session.selectOne(namespace + "snscheck", useremail);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return res;
+
+	}
+	public loginDto snslogin2(String useremail) {
+
+		loginDto dto = new loginDto();
+
+		SqlSession session = null;
+
+		try {
+			session = getSqlSessionFactory().openSession(true);
+			dto = session.selectOne(namespace + "snslogin2", useremail);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return dto;
+
+	}
+
+	
+	
+
 
 }

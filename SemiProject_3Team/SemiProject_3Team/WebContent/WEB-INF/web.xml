@@ -30,4 +30,18 @@
   	<url-pattern>/pay.do</url-pattern>
   </servlet-mapping>
   
+  
+  <servlet>
+  	<servlet-name>sns</servlet-name>
+  	<servlet-class>com.poosil.login.controller.snslogincontroller</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>sns</servlet-name>
+  	<url-pattern>/sns.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
 </web-app>
