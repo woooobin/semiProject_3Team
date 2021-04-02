@@ -87,14 +87,7 @@ public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
 		int result = 0;
 		try {
 			session = getSqlSessionFactory().openSession(true);
-			/**
-			 * #{item.projectItemName},
-			#{item.projectItemDesc} ,
-			#{item.shippingFee},
-			#{item.quantity},
-			#{item.thumbImage},
-			#{item.projectId}
-			 */
+			
 			for(ProjectItemDto dto : list) {
 				Map<String, String> param = new HashMap<String, String>();
 				
@@ -102,8 +95,8 @@ public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
 				param.put("projectItemDesc", dto.getProjectItemDesc());
 				param.put("shippingFee", dto.getShippingFee()+"");
 				param.put("quantity", dto.getQuantity()+"");
-				param.put("thumbImage", dto.getThumbImage()+"");
 				param.put("projectId", dto.getProjectId()+"");
+				param.put("price", dto.getPrice()+"");
 				
 				result += session.insert("projects-mapper.insertProjectItems", param);
 			}

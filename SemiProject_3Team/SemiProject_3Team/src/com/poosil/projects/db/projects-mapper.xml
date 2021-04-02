@@ -87,15 +87,15 @@
 	</insert>
 	
 	<insert id="insertProjectItems" parameterType="HashMap">
-		INSERT INTO PROJECTITEM (projectItemSeq, projectItemName, projectItemDesc, shippingFee, quantity, thumbImage, projectId) VALUES 
+		INSERT INTO PROJECTITEM (projectItemSeq, projectItemName, projectItemDesc, shippingFee, quantity, projectId, price) VALUES 
 		(
 			PROJECT_ITEM_SEQ.NEXTVAL,
 		 	#{projectItemName},
 			#{projectItemDesc} ,
 			#{shippingFee},
 			#{quantity},
-			#{thumbImage},
-			#{projectId}
+			#{projectId},
+			#{price}
 		) 
 	</insert>
 	
