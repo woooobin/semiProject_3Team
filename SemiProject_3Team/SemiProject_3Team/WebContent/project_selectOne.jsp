@@ -29,9 +29,10 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
         height: 400px;width:400px;
       }
     </style>
+    
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <c:set var="projectDto" value="${requestScope.projectDto}" />
 <%-- <c:set var="isLiked" value="${requestScope.isLiked}" /> --%>
 
@@ -83,9 +84,14 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
         });
       }
     </script>
+    <meta property="og:type" content="website"> 
+<meta property="og:title" content="${projectDto.projectMainTitle}">
+<meta property="og:description" content="${projectDto.projectSubTitle }">
+<meta property="og:image" content="images/imsimungmunglogo.jpeg">
+<meta property="og:url" content="http://localhost:8787/SemiProject_3Team/project.do?command=selectOne&projectId="+${projectDto.projectId}>
 </head>
 <body>
-	<%@ include file="../ui/header.jsp"%>
+	<%@ include file="ui/header.jsp"%>
 	<h1>select One</h1>
 	<%-- <c:set var="projectItems" value="${requestScope.projectItems}" /> --%>
 
@@ -160,7 +166,11 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 						</button>
 						
 						<button class="btn" onclick="openWin()"><i class="far fa-comment"></i></button>
-						<button class="btn"><i class="fas fa-share-alt"></i>share</button>
+						
+						<a id="kakao-link-btn" href="javascript:sendLink()">
+							<i class="fas fa-share-alt"></i>share
+  카카오톡 공유하기 버튼
+</a>
 					</div>
 				</div>
 				<!-- end detail info -->
@@ -196,6 +206,40 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 	</div>
 
 	<div class="description"></div>
+	<script type='text/javascript'>
+  //<![CDATA[
+    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('d2cc856fd683da85b775d0d7fcce39ce');
+    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    Kakao.Link.createDefaultButton({
+      container: '#kakao-link-btn',
+      objectType: 'feed',
+      content: {
+        title: $('meta[property="og:title"]').attr( 'content' ),
+        description: $('meta[property="og:description"]').attr( 'content' ),
+        imageUrl: $( 'meta[property="og:image"]' ).attr( 'content' ),
+        link: {
+          mobileWebUrl:"http://localhost:8787/SemiProject_3Team/project.do?command=selectOne&projectId="+${projectDto.projectId},
+          webUrl: "http://localhost:8787/SemiProject_3Team/project.do?command=selectOne&projectId="+${projectDto.projectId}
+        }
+      },
+      social: {
+        likeCount: 286,
+        commentCount: 45,
+        sharedCount: 845
+      },
+      buttons: [
+        {
+          title: '웹으로 보기',
+          link: {
+            /* webUrl: window.location.href */
+            webUrl: "http://localhost:8787/SemiProject_3Team/project.do?command=selectOne&projectId="+${projectDto.projectId}
+          }
+        }
+      ]
+    });
+  //]]>
+</script>
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDq0AzhkYcg-kmHAxrEjRJV7JjG5TyO6sA&callback=initMap&libraries=&v=weekly" async></script>
 </body>
