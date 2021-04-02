@@ -35,11 +35,8 @@
 		<mapper resource="com/poosil/members/db/member-mapper.xml" />
 		<mapper resource="com/poosil/login/db/login-mapper.xml"/>
 		<mapper resource="com/poosil/free/db/free-mapper.xml"/>
-<<<<<<< HEAD
 		<mapper resource="com/poosil/pay/db/pay-mapper.xml"/>
 		<mapper resource="com/poosil/comment/db/comment-mapper.xml"/>
-=======
 		<mapper resource="com/poosil/search/search-mapper.xml" />
->>>>>>> acb993b631d66a15acc46897f851a9b246e85f7e
 	</mappers>
 </configuration>
