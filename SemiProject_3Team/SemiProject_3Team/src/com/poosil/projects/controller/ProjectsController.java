@@ -84,7 +84,12 @@ public class ProjectsController extends HttpServlet {
 			JsonArray projectItemsArray = projectItems.getAsJsonArray();
 
 			// hashtag들
-			List<String> hashtags = Arrays.asList(jsonData.get("hashtags").getAsString().split(","));
+			List<String> hashtags = new ArrayList<String>();
+			if(jsonData.get("hashtags").getAsString().length() > 0) {
+				
+				hashtags = Arrays.asList(jsonData.get("hashtags").getAsString().split(","));
+			}
+			
 			
 			System.out.println(" 들어온 hashtag 값 = " + hashtags + "hashtags size = " + hashtags.size() );
 		
@@ -104,10 +109,12 @@ public class ProjectsController extends HttpServlet {
 							.getAsString();
 					int shippingFee = projectItemsArray.get(i).getAsJsonObject().get("shippingFee").getAsInt();
 					int quantity = projectItemsArray.get(i).getAsJsonObject().get("quantity").getAsInt();
-					String ItemThumbImage = projectItemsArray.get(i).getAsJsonObject().get("thumbImage").getAsString();
+//					String ItemThumbImage = projectItemsArray.get(i).getAsJsonObject().get("thumbImage").getAsString();
 					int price = projectItemsArray.get(i).getAsJsonObject().get("price").getAsInt();
-					ProjectItemDto dto = new ProjectItemDto(0, projectItemName, projectItemDesc, shippingFee, quantity,
-							ItemThumbImage, projectId, price);
+					System.out.println(projectItemName+projectItemDesc+shippingFee + quantity + projectId + price );
+					
+					
+					ProjectItemDto dto = new ProjectItemDto(0, projectItemName, projectItemDesc, shippingFee, quantity, projectId, price);
 
 					list.add(dto);
 				}

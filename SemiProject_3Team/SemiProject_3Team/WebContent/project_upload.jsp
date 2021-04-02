@@ -84,7 +84,20 @@ response.setContentType("text/html; charset=UTF-8");
 
 		function handleUploadProject() {
 
-
+			
+			//com.poosil.projects.biz.ProjectsBizImpl.insertProjectItems
+			/**
+			
+				String projectItemName = projectItemsArray.get(i).getAsJsonObject().get("projectItemName")
+							.getAsString();
+					String projectItemDesc = projectItemsArray.get(i).getAsJsonObject().get("projectItemDesc")
+							.getAsString();
+					int shippingFee = projectItemsArray.get(i).getAsJsonObject().get("shippingFee").getAsInt();
+					int quantity = projectItemsArray.get(i).getAsJsonObject().get("quantity").getAsInt();
+//					String ItemThumbImage = projectItemsArray.get(i).getAsJsonObject().get("thumbImage").getAsString();
+					int price = projectItemsArray.get(i).getAsJsonObject().get("price").getAsInt();
+					
+					*/
 
 			const projectItems = [...document.querySelectorAll(".projectsItem")].map((x, idx) => {
 				return {
@@ -92,14 +105,12 @@ response.setContentType("text/html; charset=UTF-8");
 					projectItemDesc: x.querySelector(".projectItemDesc").value,
 					shippingFee: x.querySelector(".shippingFee").value,
 					quantity: x.querySelector(".quantity").value,
-					thumbImage: x.querySelector(".thumbnailImage").value,
 					price : x.querySelector(".price").value
 				}
 			});
 			
-			/* const hashtags = $("#hashtags").textContent().match(/#[^\s#]+/g); */
-			const hashtags = document.getElementById("hashtags").value.match(/#[^\s#]+/g).join(",");
-			console.log(hashtags)
+					
+			const hashtags = document.getElementById("hashtags").value ? document.getElementById("hashtags").value.match(/#[^\s#]+/g).join(",") : "";
 			const data = {
 				projectMainTitle: $("#projectMainTitle").val(),
 				thumbnailImage: $("#thumbnailImage").val(),
@@ -117,7 +128,6 @@ response.setContentType("text/html; charset=UTF-8");
 				projectItems: projectItems,
 				hashtags : hashtags
 			};
-			console.log(data)
 			$.ajax({ 
 				data: { "command": "insertProject", "data": JSON.stringify(data) },
 				type: "POST",
@@ -219,7 +229,7 @@ response.setContentType("text/html; charset=UTF-8");
 						class="form-control projectItemDesc" value="projectItemnameasdfasdf" />
 					<br />
 					<input type="text" name="shippingFee" placeholder="배송비" value="3000" class="form-control shippingFee" />
-					<input type="text" name="price" placeholder="물품의 가격" class="form-control price"/>
+					<input type="text" name="price" placeholder="물품의 가격" class="form-control price" value="3000"/>
 					<input type="number" name="quantity" placeholder="수량" value="5" class="form-control quantity" />
 				</div>
 				<div class="lft projectsItem">
@@ -230,7 +240,7 @@ response.setContentType("text/html; charset=UTF-8");
 						class="form-control projectItemDesc" value="projectItemnameasdfasdf" />
 					<br />
 					<input type="text" name="shippingFee" placeholder="배송비" value="3000" class="form-control shippingFee" />
-					<input type="text" name="price" placeholder="물품의 가격" class="form-control price"/>
+					<input type="text" name="price" placeholder="물품의 가격" class="form-control price" value="3000"/>
 					<input type="number" name="quantity" placeholder="수량" value="5" class="form-control quantity" />
 				</div>
 				<div class="lft projectsItem">
@@ -241,7 +251,7 @@ response.setContentType("text/html; charset=UTF-8");
 						class="form-control projectItemDesc" value="projectItemnameasdfasdf" />
 					<br />
 					<input type="text" name="shippingFee" placeholder="배송비" value="3000" class="form-control shippingFee" />
-					<input type="text" name="price" placeholder="물품의 가격" class="form-control price"/>
+					<input type="text" name="price" placeholder="물품의 가격" class="form-control price" value="3000"/>
 					<input type="number" name="quantity" placeholder="수량" value="5" class="form-control quantity" />
 				</div>
 			</div>
