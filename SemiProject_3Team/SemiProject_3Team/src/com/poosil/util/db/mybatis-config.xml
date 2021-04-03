@@ -31,7 +31,6 @@
 	<mappers>
 		<mapper resource="com/poosil/notice/noticedb/notice-mapper.xml" />
 		<mapper resource="com/poosil/projects/db/projects-mapper.xml" />
-		<mapper resource="com/poosil/members/db/member-mapper.xml" />
 		<mapper resource="com/poosil/login/db/login-mapper.xml"/>
 		<mapper resource="com/poosil/free/db/free-mapper.xml"/>
 		<mapper resource="com/poosil/pay/db/pay-mapper.xml"/>

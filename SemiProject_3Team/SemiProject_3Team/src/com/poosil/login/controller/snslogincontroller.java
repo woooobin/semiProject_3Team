@@ -29,20 +29,36 @@ public class snslogincontroller extends HttpServlet {
 
 		String command = request.getParameter("command");
 		System.out.println(command);
-		String useremail = request.getParameter("useremail");
-		System.out.println(useremail);
 
 		loginBiz biz = new loginBiz();
+		
+		
 		if (command.equals("snslogin")) {
-			System.out.println(useremail);
+			
+			String useremail = request.getParameter("useremail");
 			String token = request.getParameter("token");
-			System.out.println(token);
+			
+			
+			if(token != null) { //naver login
+				System.out.println(token);
+				// 네이버 일때 토큰 받아옴 
+			}
+			System.out.println(useremail);
+			
 			int snsres = biz.snslogin(useremail);
+			
+			System.out.println("here1"+snsres);
 
 			if (snsres == 0) {
 
-				System.out.println(snsres);
-				response.sendRedirect("snssignup.jsp");
+				System.out.println("here2"+snsres);
+				
+				request.setAttribute("userEmail", useremail);
+		
+				dispatch(request,response,"snssignup.jsp");
+				
+				
+				
 			} else {
 				HttpSession session = request.getSession();
 				session.setAttribute("sessionID", useremail);
@@ -89,7 +105,7 @@ public class snslogincontroller extends HttpServlet {
 			String username = request.getParameter("username");
 			String userenabled = request.getParameter("userenabled");
 			String usernickname = request.getParameter("usernickname");
-
+			String useremail = request.getParameter("useremail");
 			loginDto dto = new loginDto();
 			dto.setUserid(userid);
 			dto.setPassword(password);
