@@ -41,4 +41,6 @@ public interface ProjectDao {
 	
 	public int projectLike(int projectId, String userId);
 	public int projectUnlike(int projectId, String userId);
+	public int projectAddLikeCount(int projectId);
+	public int projectRemoveLikeCount(int projectId);
 }

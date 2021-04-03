@@ -163,6 +163,8 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 								<%
 							}
 %>
+
+						<span class="likeCount">${projectDto.likeCount }</span>
 						</button>
 						
 						<button class="btn" onclick="openWin()"><i class="far fa-comment"></i></button>

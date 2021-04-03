@@ -150,6 +150,12 @@
 	<delete id="deleteProjectLike" parameterType="HashMap">
 	DELETE FROM PROJECTLIKE WHERE PROJECTID = #{projectId} AND USERID = #{userId} 
 	</delete>
+	<update id="addLikeCount" parameterType="int">
+	UPDATE PROJECTS SET LIKECOUNT = LIKECOUNT + 1 WHERE PROJECTID = #{projecId}
+	</update>
+	<update id="removeLikeCount" parameterType="int">
+	UPDATE PROJECTS SET LIKECOUNT = LIKECOUNT - 1 WHERE PROJECTID = #{projecId}
+	</update>
 </mapper>
 
 

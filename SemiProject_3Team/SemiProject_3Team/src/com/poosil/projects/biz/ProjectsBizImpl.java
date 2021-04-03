@@ -53,11 +53,8 @@ public class ProjectsBizImpl implements ProjectsBiz{
 		
 		if(existHashtags.size() > 0) {
 			for(String hashtag : hashtags) {
-				System.out.println("here1" + hashtag);
 				
 				if(!existHashtags.contains(hashtag)) {
-					
-					System.out.println("here2" +hashtag);
 					inputHashtags.add(hashtag);
 				}
 			}
@@ -71,7 +68,6 @@ public class ProjectsBizImpl implements ProjectsBiz{
 			HashtagDto hashtag = new HashtagDto();
 			hashtag.setHashtagSeq(0);
 			hashtag.setHashtagName(str);
-			System.out.println("will inserted hashtag = "+str); 
 			inputHashtagList.add(hashtag);
 		}
 		
@@ -102,19 +98,26 @@ public class ProjectsBizImpl implements ProjectsBiz{
 	@Override
 	public boolean isLiked(int projectId, String userId) {
 		int result = dao.selectExistLike(projectId, userId);
-		System.out.println(result);
 		return result > 0 ;
 	}
 	@Override
 	public int projectLike(int projectId, String userId, String isLiked) {
 		int result = 0;
-		
+		int likeCountResult=0;
 		if(isLiked.equals("false")) {
 			result = dao.projectLike(projectId, userId);
+			if(result>0) {
+				likeCountResult = dao.projectAddLikeCount(projectId);
+			}
 		}else if(isLiked.equals("true")) {
+			
 			result = dao.projectUnlike(projectId, userId);
+			if(result > 0) {
+				likeCountResult = dao.projectRemoveLikeCount(projectId);
+			}
 		}
-		return result ;
+		
+		return likeCountResult > 0 ? result : 0 ;
 	}
 	
 	
