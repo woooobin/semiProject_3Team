@@ -221,6 +221,7 @@
 		<tr>
 			<td>
 				<input type="hidden" name="userid" value="${cdto.userid }"> 
+				<input type="hidden" name="freeboardseq" value="${dto.freeboardseq }">
 				<textarea rows="3" cols="60" name="commentcontent"></textarea>
 			</td>
 		</tr>
