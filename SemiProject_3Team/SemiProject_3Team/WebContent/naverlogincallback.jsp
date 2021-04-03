@@ -18,7 +18,7 @@
 
 
 <script type="text/javascript">
- /*  var naver_id_login = new naver_id_login("Q_3L44elkR1gsILyh0Fi", "http://localhost:8787/SemiProject_3Team/naverlogincallback.jsp");
+/*    var naver_id_login = new naver_id_login("Q_3L44elkR1gsILyh0Fi", "http://localhost:8787/SemiProject_3Team/naverlogincallback.jsp");
   // 접근 토큰 값 출력
   
   //alert(naver_id_login.oauthParams.access_token);
@@ -30,8 +30,8 @@
 
 	  window.close();  
 	  
- */
-	
+ 
+	 */
 
 
 	  //window.close();

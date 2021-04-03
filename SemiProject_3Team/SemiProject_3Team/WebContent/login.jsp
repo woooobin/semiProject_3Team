@@ -136,14 +136,14 @@ body {
    
     <!-- 네이버 로그인 -->
   <script type="text/javascript">
-  	/* var naver_id_login = new naver_id_login("Q_3L44elkR1gsILyh0Fi", "http://localhost:8787/SemiProject_3Team/naverlogincallback.jsp");
+/*   	var naver_id_login = new naver_id_login("Q_3L44elkR1gsILyh0Fi", "http://localhost:8787/SemiProject_3Team/naverlogincallback.jsp");
   	var state = naver_id_login.getUniqState();
   	naver_id_login.setButton("green", 1,40);
   	naver_id_login.setDomain("http://localhost:8787");
   	naver_id_login.setState(state);
   	naver_id_login.setPopup();
-  	naver_id_login.init_naver_id_login(); */
-  </script>	
+  	naver_id_login.init_naver_id_login(); 
+ */  </script>	
     
   <script type="text/javascript">	
     Kakao.init("d785007a1b76ece9b8555123982ff2f0");
