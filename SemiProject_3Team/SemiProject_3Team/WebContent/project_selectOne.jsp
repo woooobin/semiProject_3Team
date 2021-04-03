@@ -168,9 +168,7 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 						<button class="btn" onclick="openWin()"><i class="far fa-comment"></i></button>
 						
 						<a id="kakao-link-btn" href="javascript:sendLink()">
-							<i class="fas fa-share-alt"></i>share
-  카카오톡 공유하기 버튼
-</a>
+							<i class="fas fa-share-alt"></i> share 카카오톡 공유하기 버튼 </a>
 					</div>
 				</div>
 				<!-- end detail info -->
