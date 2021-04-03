@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.poosil.login.dto.loginDto;
 import com.poosil.notice.noticebiz.NoticeBiz;
 import com.poosil.notice.noticebiz.NoticeBizImpl;
 import com.poosil.notice.noticedto.NoticeDto;
@@ -27,24 +29,23 @@ public class NoticeController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		HttpSession session = request.getSession();
 		
 		NoticeBiz biz = new NoticeBizImpl();
 		String command = request.getParameter("command");
 		
-		//  메인 페이지에서 눌렀을때 작동하도록 메인페이지쪽 controller에서 만들어야함
-		    if(command.equals("list")) {
-		    String userrole = request.getParameter("userrole");
-		    String userId= request.getParameter("userId");
-		    String usernickname = request.getParameter("usernickname");
-			List<NoticeDto> list = biz.selectList();
-			// 이게 맞을까? 이거 물어봐야함.
-			NoticeDto dto = new NoticeDto(0, userId, null, null, userrole, null, usernickname);
-			request.setAttribute("list", list);
-			if(dto != null) {	
+		if(command.equals("list")) {
+			String userrole = request.getParameter("userrole");
+			String userId= request.getParameter("userId");
+			if(userrole != null && userId != null ) {
+				List<NoticeDto> list = biz.selectList();
+				NoticeDto dto = new NoticeDto(0, userId, null, null, userrole, null);
+				request.setAttribute("list", list);
+				
 				if(dto.getUserrole().equals("ADMIN")) {
 					dispatch(request, response, "notice/adminlist.jsp");//notice/adminlist.jsp
 				} else {
-					dispatch(request, response, "notice/userlist.jsp");//notice/userlist.jsp
+					dispatch(request, response, "notice/adminlist.jsp");//notice/userlist.jsp
 				}
 			}
 			
@@ -61,13 +62,20 @@ public class NoticeController extends HttpServlet {
 			dispatch(request, response, "notice/insert.jsp");
 			
 		} else if(command.equals("insertres")) {
-			String userid = request.getParameter("userid");
+			
+			loginDto loginDto = (loginDto)session.getAttribute("dto");
+			String userid = loginDto.getUserid();
 			String noticetitle = request.getParameter("noticetitle");
 			String noticecontent = request.getParameter("noticecontent");
 			
-			NoticeDto dto = new NoticeDto(0, userid, noticetitle, noticecontent, "ADMIN", null, "nickname");
-			int res = biz.insert(dto);
 			
+			System.out.println("logindto" + loginDto + "notietitle = " + noticetitle + "noticecontent = " + noticecontent);
+			
+			
+			NoticeDto dto = new NoticeDto(0, userid, noticetitle, noticecontent, "ADMIN", null);
+			
+			int res = biz.insert(dto);
+			System.out.println("res= " + res);
 			if(res > 0) {
 				response.sendRedirect("notice.do?command=list");
 			} else {
@@ -79,7 +87,7 @@ public class NoticeController extends HttpServlet {
 			
 			NoticeDto dto = biz.selectOne(noticeseq);
 			
-			request.setAttribute("dto", dto);
+			request.setAttribute("ntdto", dto);
 			
 			dispatch(request, response, "notice/update.jsp");
 			
@@ -88,7 +96,7 @@ public class NoticeController extends HttpServlet {
 			String noticetitle = request.getParameter("noticetitle");
 			String noticecontent = request.getParameter("noticecontent");
 			
-			NoticeDto dto = new NoticeDto(noticeseq, null, noticetitle, noticecontent, null, null, null);
+			NoticeDto dto = new NoticeDto(noticeseq, null, noticetitle, noticecontent, null, null);
 			
 			int res = biz.update(dto);
 			
@@ -102,7 +110,7 @@ public class NoticeController extends HttpServlet {
 			int noticeseq = Integer.parseInt(request.getParameter("noticeseq"));
 			int res = biz.delete(noticeseq);
 			if(res > 0) {
-				dispatch(request, response, "notice.do?command=list");
+				dispatch(request, response, "index.jsp");
 			} else {
 				dispatch(request, response, "notice.do?command=select&noticeseq="+noticeseq);
 			}

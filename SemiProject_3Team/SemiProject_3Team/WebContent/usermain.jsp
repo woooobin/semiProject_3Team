@@ -62,7 +62,7 @@
 		<a href="login.do?command=logout">logout</a>
 	</div>
 	<div>
-		<a href=" ">결제 내역 보기</a>
+		<a href="pay.do?command=custompaylist&userid=<%=dto.getUserid()%>">결제 내역 보기</a>
 	</div>
 	<div>
 		<a href="login.do?command=userdelete&userid=<%=dto.getUserid() %>">회원 탈퇴</a>

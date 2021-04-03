@@ -15,8 +15,8 @@
   	</select>
   	
   	<insert id="insert" parameterType="map">
-  		INSERT INTO NOTICE
-  		VALUES(NOTICESEQ.NEXTVAL, #{userid}, #{noticetitle}, #{noticecontent}, #{userrole}, SYSDATE, #{usernickname})
+  		INSERT INTO NOTICE (NOTICESEQ ,USERID, NOTICETITLE, NOTICECONTENT,USERROLE, REGDATE ) 
+  		VALUES(NOTICESEQ.NEXTVAL, #{userid}, #{noticetitle}, #{noticecontent}, #{userrole}, SYSDATE)
   	</insert>
   	
   	<update id="update" parameterType="map">

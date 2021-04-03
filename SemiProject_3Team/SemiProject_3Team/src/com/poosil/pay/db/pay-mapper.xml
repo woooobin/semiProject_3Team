@@ -19,18 +19,33 @@
   	<select id="adminPaymentList" resultMap="PayMap">
   		SELECT ORDERSEQ, QUANTITY, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, ORDERDATE
   		FROM ORDERPAGE 
+  		ORDER BY ORDERSEQ DESC
   	</select>
   	
-  	<select id="customerPaymentList" resultMap="PayMap">
-  		SELECT QUANTITY, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, ORDERDATE
+  	<select id="customerPaymentList" parameterType="PayDto" resultType="PayDto">
+  		SELECT ORDERSEQ, QUANTITY, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, ORDERDATE
   		FROM ORDERPAGE
   		WHERE USERID = #{userId}
+  		ORDER BY ORDERDATE DESC
   	</select>
   	
   	<insert id="insertadminPayment" parameterType="PayDto">
   		INSERT INTO ORDERPAGE
   		VALUES(ORDERSEQ.NEXTVAL, #{quantity}, #{userId}, #{projectItemSeq}, #{address}, #{phone}, #{totalPrice}, #{price}, SYSDATE)
   	</insert>
+  	
+  	<select id="selectProjectItem" parameterType="int" resultType="ProjectItemDto">
+  		SELECT PROJECTITEMSEQ, PROJECTITEMNAME, QUANTITY, PROJECTID, PRICE
+  		FROM PROJECTITEM
+  		WHERE PROJECTITEMSEQ = #{projectItemSeq}
+  	</select>
+  	
+  	
+  	<update id="updateTotalPrice" parameterType="PayDto">
+  		UPDATE PROJECTS SET TOTALPRICE = TOTALPRICE + #{price} 
+        WHERE PROJECTID = (SELECT PROJECTID FROM PROJECTITEM 
+        WHERE PROJECTITEMSEQ = #{projectItemSeq})
+  	</update>
   	
 
   </mapper>

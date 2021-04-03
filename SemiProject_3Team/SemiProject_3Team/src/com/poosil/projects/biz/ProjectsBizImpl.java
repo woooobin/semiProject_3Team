@@ -20,15 +20,17 @@ public class ProjectsBizImpl implements ProjectsBiz{
 	@Override
 	public Map<String, Integer>  insertProject(String userId, String projectMainTitle, String projectSubTitle, String thumbImage,
 			String goalPrice, String projectCategory, String projectStartDate, String projectEndDate,
-			String shippingStartDate, String detailDesc) {
+			String shippingStartDate, String detailDesc, String address,String latitude,String longitude,String province) {
 		// TODO Auto-generated method stub
-		return dao.insertProject(userId,projectMainTitle,projectSubTitle,thumbImage,goalPrice,projectCategory,projectStartDate,projectEndDate,shippingStartDate,detailDesc);
+		return dao.insertProject(userId,projectMainTitle,projectSubTitle,thumbImage,goalPrice,projectCategory,projectStartDate,projectEndDate,shippingStartDate,detailDesc,address,latitude,longitude,province);
 	}
+	
 	@Override
 	public int insertProjectItems(List<ProjectItemDto> list) {
 		// TODO Auto-generated method stub
 		return dao.insertProjectItems(list);
 	}
+	
 	@Override
 	public ProjectDto selectOne(int projectId) {
 		// TODO Auto-generated method stub
@@ -51,11 +53,8 @@ public class ProjectsBizImpl implements ProjectsBiz{
 		
 		if(existHashtags.size() > 0) {
 			for(String hashtag : hashtags) {
-				System.out.println("here1" + hashtag);
 				
 				if(!existHashtags.contains(hashtag)) {
-					
-					System.out.println("here2" +hashtag);
 					inputHashtags.add(hashtag);
 				}
 			}
@@ -69,13 +68,12 @@ public class ProjectsBizImpl implements ProjectsBiz{
 			HashtagDto hashtag = new HashtagDto();
 			hashtag.setHashtagSeq(0);
 			hashtag.setHashtagName(str);
-			System.out.println("will inserted hashtag = "+str); 
 			inputHashtagList.add(hashtag);
 		}
 		
 		int insertHashtagsRes = dao.insertHashtags(inputHashtagList);
 		
-		// =============== 해쉬태그테이블에 전체 삽입 완료=============== //  
+		// =============== 해쉬태그테이블에 전체 삽입 완료 =============== //  
 		
 		int insertProjectHashtagRes = dao.insertProjectHashtags( hashtags, projectId );
 		
@@ -94,6 +92,34 @@ public class ProjectsBizImpl implements ProjectsBiz{
 		// TODO Auto-generated method stub
 		return dao.selectProjectsWithHashtag(hashtagseq);
 	}
+	
+	
+	// ================ 좋아요 ================//
+	@Override
+	public boolean isLiked(int projectId, String userId) {
+		int result = dao.selectExistLike(projectId, userId);
+		return result > 0 ;
+	}
+	@Override
+	public int projectLike(int projectId, String userId, String isLiked) {
+		int result = 0;
+		int likeCountResult=0;
+		if(isLiked.equals("false")) {
+			result = dao.projectLike(projectId, userId);
+			if(result>0) {
+				likeCountResult = dao.projectAddLikeCount(projectId);
+			}
+		}else if(isLiked.equals("true")) {
+			
+			result = dao.projectUnlike(projectId, userId);
+			if(result > 0) {
+				likeCountResult = dao.projectRemoveLikeCount(projectId);
+			}
+		}
+		
+		return likeCountResult > 0 ? result : 0 ;
+	}
+	
 	
 	
 

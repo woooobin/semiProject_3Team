@@ -10,7 +10,6 @@ public class NoticeDto {
 	private String noticecontent;
 	private String userrole;
 	private Date regdate;
-	private String usernickname;
 	
 	
 	public NoticeDto() {
@@ -19,7 +18,7 @@ public class NoticeDto {
 
 
 	public NoticeDto(int noticeseq, String userid, String noticetitle, String noticecontent, String userrole,
-			Date regdate, String usernickname) {
+			Date regdate) {
 		super();
 		this.noticeseq = noticeseq;
 		this.userid = userid;
@@ -27,7 +26,6 @@ public class NoticeDto {
 		this.noticecontent = noticecontent;
 		this.userrole = userrole;
 		this.regdate = regdate;
-		this.usernickname = usernickname;
 	}
 
 
@@ -91,17 +89,5 @@ public class NoticeDto {
 	}
 
 
-	public String getUsernickname() {
-		return usernickname;
-	}
-
-
-	public void setUsernickname(String usernickname) {
-		this.usernickname = usernickname;
-	}
-
-	
-	
-	
 	
 }

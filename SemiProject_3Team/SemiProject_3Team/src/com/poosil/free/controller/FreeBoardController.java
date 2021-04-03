@@ -9,10 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.poosil.free.biz.FreeBoardBiz;
 import com.poosil.free.biz.FreeBoardBizImpl;
+import com.poosil.free.dao.FreeBoardDao;
+import com.poosil.free.dao.FreeBoardDaoImpl;
 import com.poosil.free.dto.FreeBoardDto;
+import com.poosil.login.dto.loginDto;
 
 /**
  * Servlet implementation class FreeBoardController
@@ -28,17 +32,22 @@ public class FreeBoardController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
+		
+		HttpSession session = request.getSession();
+		
+		FreeBoardDao dao = new FreeBoardDaoImpl();
 		FreeBoardBiz biz = new FreeBoardBizImpl();
 		String command = request.getParameter("command");
 		
 		if(command.equals("list")) {
-			String userid = request.getParameter("userid");
 			List<FreeBoardDto> list = biz.selectList();
 			request.setAttribute("list", list);
+			
 			dispatch(request, response, "freeboard/list.jsp");
 		} else if (command.equals("select")) {
 			int freeboardseq = Integer.parseInt(request.getParameter("freeboardseq"));
-			String userid = request.getParameter("userid");
+			
+			dao.readcount(freeboardseq);
 			
 			FreeBoardDto dto = biz.selectOne(freeboardseq);
 			
@@ -51,7 +60,61 @@ public class FreeBoardController extends HttpServlet {
 			
 		} else if (command.equals("insertres")) {
 			
+			loginDto loginDto = (loginDto)session.getAttribute("dto");
 			
+			//로그인한 유저 npe 처리 
+			if(loginDto != null) {
+				
+				String userid = loginDto.getUserid();
+				String freeboardtitle = request.getParameter("freeboardtitle");
+				String freeboardcontent = request.getParameter("freeboardcontent");
+				
+				FreeBoardDto dto = new FreeBoardDto(0, userid, freeboardtitle, freeboardcontent, null, 0);
+				int res = biz.insert(dto);
+				
+				
+				if(res > 0) {
+					response.sendRedirect("free.do?command=list");
+				} else {
+					response.sendRedirect("free.do?command=insertform");
+				}
+			}
+			
+			
+		} else if (command.equals("updateform")) {
+			int freeboardseq = Integer.parseInt(request.getParameter("freeboardseq"));
+			
+			FreeBoardDto dto = biz.selectOne(freeboardseq);
+			
+			request.setAttribute("fbdto", dto);
+			
+			dispatch(request, response, "freeboard/update.jsp");
+			
+		} else if(command.equals("updateres")) {
+			
+			int freeboardseq = Integer.parseInt(request.getParameter("freeboardseq"));
+			String freeboardtitle = request.getParameter("freeboardtitle");
+			String freeboardcontent = request.getParameter("freeboardcontent");
+			
+			FreeBoardDto dto = new FreeBoardDto(freeboardseq, null, freeboardtitle, freeboardcontent, null, 0);
+			
+			int res = biz.update(dto);
+			
+			if(res > 0) {
+				response.sendRedirect("free.do?command=select&freeboardseq="+freeboardseq);
+			} else {
+				response.sendRedirect("free.do?command=updateform&freeboardseq="+freeboardseq);
+			}
+			
+		} else if(command.equals("delete")) {
+			int freeboardseq = Integer.parseInt(request.getParameter("freeboardseq"));
+			int res = biz.delete(freeboardseq);
+			
+			if(res > 0 ) {
+				dispatch(request, response, "free.do?command=list");
+			} else {
+				dispatch(request, response, "free.do?command=select&freeboardseq="+freeboardseq);
+			}
 			
 		}
 		

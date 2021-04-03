@@ -3,7 +3,7 @@
 <configuration>
 
 	<properties resource="com/poosil/util/db/db.properties"></properties>
-
+	
 	<typeAliases>
 		<typeAlias type="com.poosil.notice.noticedto.NoticeDto" alias="NoticeDto" />
 		<typeAlias type="com.poosil.projects.dto.ProjectDto" alias="ProjectDto" />
@@ -11,6 +11,8 @@
 		<typeAlias type="com.poosil.projects.dto.HashtagDto" alias="HashtagDto" />
 		<typeAlias type="com.poosil.login.dto.loginDto" />
 		<typeAlias type="com.poosil.free.dto.FreeBoardDto" alias="FreeBoardDto" />
+		<typeAlias type="com.poosil.pay.dto.PayDto" alias="PayDto"/>
+		<typeAlias type="com.poosil.comment.dto.CommentDto" alias="CommentDto" />
 	</typeAliases>
 
 	<environments default="development">
@@ -29,8 +31,9 @@
 	<mappers>
 		<mapper resource="com/poosil/notice/noticedb/notice-mapper.xml" />
 		<mapper resource="com/poosil/projects/db/projects-mapper.xml" />
-		<mapper resource="com/poosil/members/db/member-mapper.xml" />
 		<mapper resource="com/poosil/login/db/login-mapper.xml"/>
 		<mapper resource="com/poosil/free/db/free-mapper.xml"/>
+		<mapper resource="com/poosil/pay/db/pay-mapper.xml"/>
+		<mapper resource="com/poosil/comment/db/comment-mapper.xml"/>
 	</mappers>
 </configuration>
