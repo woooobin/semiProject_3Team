@@ -106,39 +106,11 @@ body {
 
 
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
     
 <body width="100%" height="100%">
-   <script type="text/javascript">	
-    Kakao.init("d785007a1b76ece9b8555123982ff2f0");
-    
-    <a id="kakao-login-btn"></a>
-
-    <script type="text/javascript">
-      Kakao.Auth.createLoginButton({
-        container: '#kakao-login-btn',
-        success: function(authObj) {
-          Kakao.API.request({
-            url: '/v2/user/me',
-            success: function(res) {
-            	const {email} = res;
-              alert(JSON.stringify(res))
-              location.href='snslogin?command=snslogin';
-            },
-            fail: function(error) {
-              alert(
-                'login success, but failed to request user information: ' +
-                  JSON.stringify(error)
-              )
-            },
-          })
-        },
-        fail: function(err) {
-          alert('failed to login: ' + JSON.stringify(err))
-        },
-      })
-    </script>
+   
 
   	
     
@@ -159,21 +131,50 @@ body {
       </div>
      
        <div id="naver_id_login" ></div> 
-      <a href="javascript:kakaoLogin();" > <img src="kakaologoinimg/kakao_login_small.png"></a>
+      <a id="kakao-login-btn" > <img src="kakaologoinimg/kakao_login_small.png"></a>
     </form>
    
     <!-- 네이버 로그인 -->
   <script type="text/javascript">
-  	var naver_id_login = new naver_id_login("Q_3L44elkR1gsILyh0Fi", "http://localhost:8787/SemiProject_3Team/naverlogincallback.jsp");
+  	/* var naver_id_login = new naver_id_login("Q_3L44elkR1gsILyh0Fi", "http://localhost:8787/SemiProject_3Team/naverlogincallback.jsp");
   	var state = naver_id_login.getUniqState();
   	naver_id_login.setButton("green", 1,40);
   	naver_id_login.setDomain("http://localhost:8787");
   	naver_id_login.setState(state);
   	naver_id_login.setPopup();
-  	naver_id_login.init_naver_id_login();
+  	naver_id_login.init_naver_id_login(); */
   </script>	
     
-  
+  <script type="text/javascript">	
+    Kakao.init("d785007a1b76ece9b8555123982ff2f0");
+    
+   /* kakao.Auth.authorize({
+    	redirectUrl:'http://localhost:8787/SemiProject_3Team/kakaologinform.jsp'
+      });
+   */
+   
+   Kakao.Auth.createLoginButton({
+	   container:'#kakao-login-btn',
+	   success:function(authObj){
+	   Kakao.API.request({
+		   url:'/v2/user/me',
+		   success:function(res){
+			   console.log(res);
+			   var email = res.kakao_account.email;
+			   
+			   location.href='snslogin?command=snslogin&useremail'+email;
+		   }
+	   })
+		console.log(authobj);
+	var token = authObj.access_token;
+	
+},
+fail: function (err) {
+	alert(JASON.stringify(err));
+}
+
+});  
+    </script>
  
     
   </body>

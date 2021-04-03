@@ -5,8 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+<script type="text/javascript">
+  var naver_id_login = new naver_id_login("Q_3L44elkR1gsILyh0Fi", "http://localhost:8787/SemiProject_3Team/naverlogincallback.jsp");
+  naver_id_login.get_naver_userprofile("naveremail()");
+  function naveremail() {
+	  naver_id_login.getProfileData('email')
+}
+ 
+</script>
 <script type="text/javascript">
 	
 	function idCheckProc() {
@@ -94,7 +102,7 @@
 			<tr>
 				<th>이메일</th>
 				<td>
-					<input type="text" name="useremail" required="required" value="" />
+					<input type="text" name="useremail" required="required" id="naveremail();" />
 				</td>
 			</tr>
 			<tr>
