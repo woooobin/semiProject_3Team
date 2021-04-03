@@ -27,6 +27,27 @@ public class CommentDaoImpl extends SqlMapConfig implements CommentDao {
 		
 		return list;
 	}
+	
+	@Override
+	public CommentDto selectOne(int commentno) {
+		
+		SqlSession session = null;
+		
+		CommentDto dto = new CommentDto();
+		
+		try {
+			session = getSqlSessionFactory().openSession(false);
+			dto = session.selectOne("commentboardmapper.selectOne", commentno);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		
+		return dto;
+	}
 
 	@Override
 	public int insert(CommentDto cdto) {
@@ -91,17 +112,17 @@ public class CommentDaoImpl extends SqlMapConfig implements CommentDao {
 	}
 	
 	@Override
-	public int answerInsert(CommentDto cdto) {
-		int res = 0;
+	public int answerInsert(CommentDto adto) {
+		int ares = 0;
 		
 		try {
 			SqlSession session = getSqlSessionFactory().openSession(true);
-			res = session.insert("commentboardmapper.answerInsert", cdto);
+			ares = session.insert("commentboardmapper.answerInsert", adto);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return res;
+		return ares;
 	}
 }

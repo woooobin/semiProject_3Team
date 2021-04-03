@@ -6,6 +6,12 @@
 		SELECT * FROM COMMENTBOARD
 		ORDER BY COMMENTNO DESC, GROUPSEQ
 	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="CommentDto">
+  		SELECT COMMENTNO, GROUPNO, GROPUSEQ, TITLETAB, FREEBOARDSEQ, USERID, COMMENTCONTENT, REGDATE
+  		FROM COMMENTBOARD
+  		WHERE COMMENTNO = #{commentno}
+  	</select>
   	
   	<insert id="insert" parameterType="map">
   		INSERT INTO FREEBOARD

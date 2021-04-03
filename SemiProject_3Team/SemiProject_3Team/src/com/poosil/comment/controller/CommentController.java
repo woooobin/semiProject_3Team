@@ -39,11 +39,76 @@ public class CommentController extends HttpServlet {
 			request.setAttribute("clist", clist);
 			dispatch(request, response, "freeboard/list.jsp");
 			
-		} else if (command.equals("insertform")) {
+		} else if (command.equals("insert")) {
+			String userid = request.getParameter("userid");
+			String commentcontent = request.getParameter("commentcontent");
+			
+			CommentDto cdto = new CommentDto();
+			cdto.setUserid(userid);
+			cdto.setCommentcontent(commentcontent);
+			
+			int res = biz.insert(cdto);
+			PrintWriter out = response.getWriter();
+			if(res > 0) {
+				out.println("<script type='text/javascript'>");
+				out.println("location.reload();");
+				out.println("</script>");
+			} else {
+				out.println("<script type='text/javascript'>");
+				out.println("alert('댓글 작성 실패');");
+				out.println("</script>");
+			}
 			
 			
-		} else if (command.equals("updateform")) {
+		}else if (command.equals("updateanswer")) {
+			int updateno = Integer.parseInt(request.getParameter("updateno"));
 			
+			CommentDto dto = biz.selectOne(updateno);
+			
+			request.setAttribute("ucdto", dto);
+			
+			dispatch(request, response, "freeboard/select.jsp");
+			
+			int updatecommentno = Integer.parseInt(request.getParameter("updatecommentno"));
+			String updateuserid = request.getParameter("updateuserid");
+			String updatecontent = request.getParameter("updatecontent");
+			
+			CommentDto cdto = new CommentDto();
+			cdto.setCommentno(updatecommentno);
+			cdto.setUserid(updateuserid);
+			cdto.setCommentcontent(updatecontent);
+			
+			int res = biz.update(cdto);
+			PrintWriter out = response.getWriter();
+			if(res > 0) {
+				out.println("<script type='text/javascript'>");
+				out.println("location.reload();");
+				out.println("</script>");
+			} else {
+				out.println("<script type='text/javascript'>");
+				out.println("alert('댓글 수정 실패');");
+				out.println("</script>");
+			}
+			
+			int parentcommentno = Integer.parseInt(request.getParameter("parentcommentNo"));
+			String answeruserid = request.getParameter("answeruserid");
+			String answercontent = request.getParameter("answercontent");
+			
+			CommentDto adto = new CommentDto();
+			cdto.setCommentno(parentcommentno);
+			cdto.setUserid(answeruserid);
+			cdto.setCommentcontent(answercontent);
+			
+			int ares = biz.answerProc(adto);
+			if(ares > 0) {
+				out.println("<script type='text/javascript'>");
+				out.println("location.reload();");
+				out.println("</script>");
+			} else {
+				out.println("<script type='text/javascript'>");
+				out.println("alert('대댓글 작성 실패');");
+				out.println("</script>");
+			}
 			
 		} else if (command.equals("delete")) {
 			int commentno = Integer.parseInt(request.getParameter("commentno"));
@@ -56,13 +121,11 @@ public class CommentController extends HttpServlet {
 				out.println("</script>");
 			} else {
 				out.println("<script type='text/javascript'>");
-				out.println("alert('삭제 실패 다시 시도 하세요');");
+				out.println("alert('댓글 삭제 실패');");
 				out.println("</script>");
 			}
 			
-		} else if(command.equals("aswerproc")) {
-			
-		}
+		} 
 	}
 	
 	private void dispatch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
