@@ -49,8 +49,16 @@
 				<td><textarea rows="2" cols="25" name="quantity"><%=projectitemdto.getQuantity() %></textarea></td>
 			</tr>
 			<tr>
+				<th>상품가</th>
+				<td><textarea rows="2" cols="25" name="price"><%=projectitemdto.getPrice()%></textarea></td>
+			</tr>
+			<tr>
+				<th>배송비</th>
+				<td><textarea rows="2" cols="25" name="delivery">3000</textarea></td>
+			</tr>
+			<tr>
 				<th>총 가격</th>
-				<td><textarea rows="2" cols="25" name="price"><%=projectitemdto.getPrice() %></textarea></td>
+				<td><textarea rows="2" cols="25" name="deliveryprice"><%=projectitemdto.getPrice()+3000%></textarea></td>
 			</tr>
 			<tr>
 				<th>ID</th>

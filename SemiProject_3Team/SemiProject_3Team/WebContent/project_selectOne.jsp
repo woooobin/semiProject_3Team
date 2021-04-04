@@ -199,16 +199,14 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 												<p>제한수량 ${projectItem.quantity}개 중 (수량-팔린갯수 )개 남음</p>
 											</div>
 										</a>
+									</li>
 										<%
 									} else {
 										%>
-										<script type="text/javascript">
-										return alert ("로그인 후에 이용해주세요!")
-										</script>
+										<p>로그인 후에 펀딩하실 수 있습니다.</p>
 										<%
 									}
 										%>
-									</li>
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
