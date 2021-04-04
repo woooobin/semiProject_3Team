@@ -181,7 +181,10 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 							<c:otherwise>
 								<c:forEach items="${projectItems}" var="projectItem">
 									<li class="project-items-item">
-										<a href="#">
+									<% if(logindto != null) {	
+									%>										
+										<a href="pay.do?command=orderpage&userid=<%=logindto.getUserid() %>&projectItemSeq=${ projectItem.projectItemSeq}">
+										
 											<div class="frame">
 												<p>${projectItem.price}원 응원하기 </p>
 												<h4>${projectItem.projectItemName}</h4>
@@ -192,6 +195,15 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 												<p>제한수량 ${projectItem.quantity}개 중 (수량-팔린갯수 )개 남음</p>
 											</div>
 										</a>
+										<%
+									} else {
+										%>
+										<script type="text/javascript">
+										return alert ("로그인 후에 이용해주세요!")
+										</script>
+										<%
+									}
+										%>
 									</li>
 								</c:forEach>
 							</c:otherwise>
