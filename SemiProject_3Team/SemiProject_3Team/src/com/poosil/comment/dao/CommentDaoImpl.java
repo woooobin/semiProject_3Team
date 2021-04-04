@@ -113,16 +113,16 @@ public class CommentDaoImpl extends SqlMapConfig implements CommentDao {
 	
 	@Override
 	public int answerInsert(CommentDto adto) {
-		int ares = 0;
+		int res = 0;
 		
 		try {
 			SqlSession session = getSqlSessionFactory().openSession(true);
-			ares = session.insert("commentboardmapper.answerInsert", adto);
+			res = session.insert("commentboardmapper.answerInsert", adto);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return ares;
+		return res;
 	}
 }

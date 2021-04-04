@@ -41,20 +41,21 @@ public class CommentController extends HttpServlet {
 			
 		} else if (command.equals("insert")) {
 			String userid = request.getParameter("userid");
+			int freeboardseq = Integer.parseInt(request.getParameter("freeboardseq"));
 			String commentcontent = request.getParameter("commentcontent");
 			
 			CommentDto cdto = new CommentDto();
+			cdto.setFreeboardseq(freeboardseq);
 			cdto.setUserid(userid);
 			cdto.setCommentcontent(commentcontent);
 			
 			int res = biz.insert(cdto);
 			PrintWriter out = response.getWriter();
 			if(res > 0) {
-				out.println("<script type='text/javascript'>");
-				out.println("location.reload();");
-				out.println("</script>");
+				response.sendRedirect("free.do?command=select&freeboardseq="+freeboardseq);
 			} else {
 				out.println("<script type='text/javascript'>");
+				out.println("history.back();");
 				out.println("alert('댓글 작성 실패');");
 				out.println("</script>");
 			}

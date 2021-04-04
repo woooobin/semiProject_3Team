@@ -14,8 +14,13 @@
   	</select>
   	
   	<insert id="insert" parameterType="map">
-  		INSERT INTO FREEBOARD
-  		VALUES(FREEBOARDSEQ.NEXTVAL, #{userid}, #{freeboardtitle}, #{freeboardcontent}, SYSDATE, 0)
+  		INSERT INTO COMMENTBOARD
+  		VALUES(COMMENTNOSEQ.NEXTVAL, GROUPNOSEQ.NEXTVAL, 1, 0,
+  			#{freeboardseq},
+  			#{userid},
+  			#{commentcontent},
+  			SYSDATE
+  		)
   	</insert>
   
   	<update id="update" parameterType="map">
