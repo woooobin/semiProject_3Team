@@ -15,7 +15,11 @@
 <link href="./styles/reset.css" rel="stylesheet">
   	<!-- Bootstrap CSS -->
     <link href="./styles/bootstrap.min.css" rel="stylesheet" >
-    
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <title>Hello, world!</title>
 </head>
 <body>

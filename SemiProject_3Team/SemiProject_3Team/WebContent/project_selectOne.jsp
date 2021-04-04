@@ -71,6 +71,8 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
         const mapOptions = {
           zoom: 15,
           center:  { lat:  ${projectDto.longitude }, lng: ${projectDto.latitude } },
+          disableDefaultUI:true,
+          zoomControl: true
         };
         map = new google.maps.Map(document.getElementById("map"), mapOptions);
         
@@ -163,6 +165,8 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 								<%
 							}
 %>
+
+						<span class="likeCount">${projectDto.likeCount }</span>
 						</button>
 						
 						<button class="btn" onclick="openWin()"><i class="far fa-comment"></i></button>

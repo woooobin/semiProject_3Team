@@ -34,7 +34,7 @@ String userNickname = "ADMIN";
 			} else {
 			%>
 			<nav class="nav">
-				<%-- <li><a aria-current="page" href="login.do?command=mypage&userrole=<%=dto.getUserrole()%>&userid=<%=dto.getUserid()%>">mypage</a></li> --%>
+				<li><a aria-current="page" href="login.do?command=mypage&userrole=<%=dto.getUserrole()%>&userid=<%=dto.getUserid()%>">mypage</a></li>
 				<li><a href="login.do?command=logout">logout</a></li>
 			</nav>
 
@@ -48,9 +48,10 @@ String userNickname = "ADMIN";
 				<li><a href="#">카테고리</a></li>
 				<li><a href="project.do?command=selectList">펀딩하기</a></li>
 				<li><a href="#">랭킹</a></li>
+				
 				<li><a href="#">이용가이드</a></li>
 				<li><a href="free.do?command=list">자유게시판</a></li>
-				<li><a href="notice.do?command=list&userrole=${userrole}">공지게시판</a></li>
+				<li><a href="notice.do?command=list">공지게시판</a></li>
 			</ul>
 		</div>
 		

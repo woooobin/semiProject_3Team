@@ -71,7 +71,6 @@ public class ProjectsController extends HttpServlet {
 			String longitude = jsonData.get("longtitude").getAsString();
 			String province = jsonData.get("province").getAsString();
 
-			 System.out.println(address+latitude+longitude+province);
 
 			Map<String, Integer> resultMap = biz.insertProject("test1", projectMainTitle, projectSubTitle, thumbImage,
 					goalPrice, projectCategory, projectStartDate, projectEndDate, shippingStartDate, detailDesc,address,latitude,longitude, province);
@@ -91,7 +90,6 @@ public class ProjectsController extends HttpServlet {
 			}
 			
 			
-			System.out.println(" 들어온 hashtag 값 = " + hashtags + "hashtags size = " + hashtags.size() );
 		
 			JsonObject result = new JsonObject(); //=========== 받는 json 전체를 뜻한다 
 
@@ -124,7 +122,6 @@ public class ProjectsController extends HttpServlet {
 				if(hashtags.size() > 0) {
 					// hashtag가 디비에 들어오게 되면 디비에 업로드 한다. 
 					int insertHashtagsRes = biz.insertHashtags(hashtags, projectId);
-					System.out.println("insertHashtagsRes = " + insertHashtagsRes); // 성
 				}
 				
 				if (insertProjectItemsRes > 0) {

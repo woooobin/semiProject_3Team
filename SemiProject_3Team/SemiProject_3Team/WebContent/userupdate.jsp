@@ -41,6 +41,23 @@
 			});
 		})
 	});
+	$(function(){
+	    $('#userPw').keyup(function(){
+	      $('#chkNotice').html('');
+	    });
+
+	    $('#userPwChk').keyup(function(){
+
+	        if($('#userPw').val() != $('#userPwChk').val()){
+	          $('#chkNotice').html('비밀번호 일치하지 않음<br><br>');
+	          $('#chkNotice').attr('color', '#f82a2aa3');
+	        } else{
+	          $('#chkNotice').html('비밀번호 일치함<br><br>');
+	          $('#chkNotice').attr('color', '#199894b3');
+	        }
+
+	    });
+	});
 
 </script>
 <% loginDto dto = (loginDto)session.getAttribute("dto"); %>
@@ -51,19 +68,37 @@
 		<input type="hidden" name="userid" value="<%=dto.getUserid() %>" /> 
 		<table border="1">
 			<tr>
+				<th>ID </th>
+				<td><%=dto.getUserid() %> </td>
+			</tr>
+			<tr>
+				<th>비밀번호</th>
+				<td>
+				<input type="password" name="password" id="userPw" placeholder="비밀번호" required="required" onclick="idCheckProc();" />
+				<input type="password" id="userPwChk" placeholder="비밀번호 확인" required="required" onclick="idCheckProc();"/>
+				<font id="chkNotice" size="2"></font>
+				</td>
+			</tr>
+			<tr>
 				<th>이름 </th>
 				<td><%=dto.getUsername() %> </td>
 			</tr>
-				<tr>
+			<tr>
 				<th>닉네임 </th>
 				<td> <input type="text" name="usernickname" value="<%=dto.getUsernickname() %>" /> </td>
 			</tr>
 			<tr>
 				<th>주소</th>
-				<td><div class="d-flex justify-content-end">
-					<button type="button" class="btn btn-info" onClick="goPopup();">주소검색</button>
-				</div>
-				<input type="text" value="<%=dto.getAddress() %>" name="address" id="address" class="form-control" placeholder="도로명 주소를 입력해 주세요" required readonly />
+				<td>
+					<div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-info" onClick="goPopup();">주소검색</button>
+                </div>
+                <input type="hidden" name="address" id="address" class="form-control" placeholder="도로명 주소를 입력해 주세요" required readonly />
+                <input type="text" name="zipNo" id="zipNo" class="form-control" placeholder="우편 번호" required readonly><br/>
+                <input style="width: 300px;" type="text" name="addr" id="addr" class="form-control" placeholder="도로명 주소를 입력해 주세요" required readonly />
+                <input  type="text" name="addr2" id="addr2" class="form-control" placeholder="참고 주소" required readonly /><br/>
+                <input type="text" name="addrDetail" id="addrDetail" class="form-control" placeholder="나머지 주소를 입력해 주세요"/>
+				<td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
@@ -92,21 +127,25 @@
 		</table>
 		<script>
 	
-	function goPopup() {
-		// 주소검색을 수행할 팝업 페이지를 호출합니다.
-		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-		var pop = window.open("signup/jusoPopup.jsp", "pop",
-				"width=570,height=420, scrollbars=yes, resizable=yes");
-	}
-	function jusoCallBack(roadFullAddr) {
-		var addressEl = document.querySelector("#address");
-		addressEl.value = roadFullAddr;
-	}
-	function fRecs(f)
+		function goPopup() {
+	        // 주소검색을 수행할 팝업 페이지를 호출합니다.
+	        // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+	        var pop = window.open("signup/jusoPopup.jsp", "pop",
+	                "width=570,height=420, scrollbars=yes, resizable=yes");
+	    }
+	    var jusoCallBack = function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo){ 
+	        document.getElementById("address").value = roadFullAddr; 
+	        document.getElementById("zipNo").value = zipNo; 
+	        document.getElementById("addr").value = roadAddrPart1; 
+	        document.getElementById("addr2").value = roadAddrPart2;
+	        roadAddrPart1 += roadAddrPart2;
+	        if(addrDetail.length>30){ 
+	            alert('상세주소가 너무 길어 다시 입력해야 합니다.'); 
+	            return; 
+	        } 
+	        document.getElementById("addrDetail").value = addrDetail; 
 
-	  {
-	    f.action = "signup/recaptch.php";
-	  }
+	    }
 	</script>	
 	</form>
 </body>
