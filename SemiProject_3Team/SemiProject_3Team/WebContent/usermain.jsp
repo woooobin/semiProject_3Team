@@ -22,7 +22,7 @@
 <body>
 	<h1>MyPage</h1>
 	<h2><%=dto.getUserid() %>
-	<%session.setAttribute("userid", request.getAttribute("userid"));%><%session.setAttribute("password", request.getAttribute("password"));%>	
+	<%session.setAttribute("userid", request.getAttribute("userid"));%>
 	님, 환영합니다.</h2>
 	<div>
 	<input type="button" value="MainPage" onclick="location.href='index.jsp'"/>

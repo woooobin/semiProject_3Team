@@ -64,6 +64,23 @@
 			});
 		})
 	});
+	$(function(){
+	    $('#userPw').keyup(function(){
+	      $('#chkNotice').html('');
+	    });
+
+	    $('#userPwChk').keyup(function(){
+
+	        if($('#userPw').val() != $('#userPwChk').val()){
+	          $('#chkNotice').html('비밀번호 일치하지 않음<br><br>');
+	          $('#chkNotice').attr('color', '#f82a2aa3');
+	        } else{
+	          $('#chkNotice').html('비밀번호 일치함<br><br>');
+	          $('#chkNotice').attr('color', '#199894b3');
+	        }
+
+	    });
+	});
 
 </script>
 </head>
@@ -89,7 +106,11 @@
 			</tr>
 			<tr>
 				<th>비밀번호</th>
-				<td><input type="password" name="password" required="required" onclick="idCheckProc();" /></td>
+				<td>
+				<input type="password" name="password" id="userPw" placeholder="비밀번호" required="required" onclick="idCheckProc();" />
+				<input type="password" id="userPwChk" placeholder="비밀번호 확인" required="required" onclick="idCheckProc();"/>
+				<font id="chkNotice" size="2"></font>
+				</td>
 			</tr>
 			<tr>
 				<th>이름</th>

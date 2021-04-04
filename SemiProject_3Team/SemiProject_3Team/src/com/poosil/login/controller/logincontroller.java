@@ -192,15 +192,17 @@ public class logincontroller extends HttpServlet {
 
 		} else if (command.equals("userupdate")) {
 			String userid = request.getParameter("userid");
+			String password =request.getParameter("password");
 			String usernickname =request.getParameter("usernickname");
 			int userphone = Integer.parseInt(request.getParameter("userphone"));
 			String useremail = request.getParameter("useremail");
 			String address = request.getParameter("address");
 			String avatar = request.getParameter("avatar");
 			System.out.println("avatar"+avatar);
-			loginDto dto = new loginDto(userid,null,useremail,userphone,address,null,null,null,null,avatar,usernickname,null,null);
+			loginDto dto = new loginDto(userid,password,useremail,userphone,address,null,null,null,null,avatar,usernickname,null,null);
 			dto.setUserid(userid);
 			System.out.println("userid" + userid);
+			dto.setPassword(password);
 			dto.setUsernickname(usernickname);
 			dto.setUserphone(userphone);
 			dto.setUseremail(useremail);

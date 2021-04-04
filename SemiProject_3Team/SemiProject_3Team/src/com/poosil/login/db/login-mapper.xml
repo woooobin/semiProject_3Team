@@ -54,7 +54,7 @@ VALUES(#{userid},#{password},#{useremail},#{userphone},#{address},'USER',#{avata
 
 <update id="userupdate" parameterType="loginDto" >
 UPDATE MEMBERS 
-SET USERNICKNAME=#{usernickname},USERPHONE = #{userphone},ADDRESS = #{address},AVATAR= #{avatar}
+SET PASSWORD=#{password}, USERNICKNAME=#{usernickname},USERPHONE = #{userphone},ADDRESS = #{address},AVATAR= #{avatar}
 WHERE USERID = #{userid}
 
 </update>
