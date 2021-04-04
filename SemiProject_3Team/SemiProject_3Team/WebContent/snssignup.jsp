@@ -98,11 +98,16 @@ String userEmail = (String)request.getAttribute("userEmail");
 			</tr>
 			<tr>
 				<th>주소</th>
-				<td><div class="d-flex justify-content-end">
-						<button type="button" class="btn btn-info" onClick="goPopup();">주소검색</button>
-					</div> <input type="text" name="address" id="address"
-					class="form-control" placeholder="도로명 주소를 입력해 주세요" required
-					readonly />
+				<td>
+					<div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-info" onClick="goPopup();">주소검색</button>
+                </div>
+                <input type="hidden" name="address" id="address" class="form-control" placeholder="도로명 주소를 입력해 주세요" required readonly />
+                <input type="text" name="zipNo" id="zipNo" class="form-control" placeholder="우편 번호" required readonly><br/>
+                <input style="width: 300px;" type="text" name="addr" id="addr" class="form-control" placeholder="도로명 주소를 입력해 주세요" required readonly />
+                <input  type="text" name="addr2" id="addr2" class="form-control" placeholder="참고 주소" required readonly /><br/>
+                <input type="text" name="addrDetail" id="addrDetail" class="form-control" placeholder="나머지 주소를 입력해 주세요"/>
+				<td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
@@ -125,38 +130,32 @@ String userEmail = (String)request.getAttribute("userEmail");
 				</td>
 			</tr>
 			<tr>
-				<td>
-					<form name="fRec" method="post" onsubmit="return fRecs(this);"
-						autocomplete="off" style='margin: 0px;'>
-						<input type=hidden id="remoteip" name="remoteip"
-							value="<?=$_SERVER[REMOTE_ADDR]?>" />
-						<div class="g-recaptcha"
-							data-sitekey="6LfBSYwaAAAAAKLUkLmLGoubHgGSYvYgAm8iRpuL"></div>
-					</form>
-				</td>
-			</tr>
-			<tr>
 				<td colspan="2" align="right"><input type="submit" value="가입" />
 					<!-- form 태그에 버튼 태그 왠만해선 쓰지 말기. submit 이벤트 발생하기 때문에. --></td>
 			</tr>
 		</table>
-		<script>
-			function goPopup() {
-				// 주소검색을 수행할 팝업 페이지를 호출합니다.
-				// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-				var pop = window.open("signup/jusoPopup.jsp", "pop",
-						"width=570,height=420, scrollbars=yes, resizable=yes");
-			}
-			function jusoCallBack(roadFullAddr) {
-				var addressEl = document.querySelector("#address");
-				addressEl.value = roadFullAddr;
-			}
-			function fRecs(f)
-
-			{
-				f.action = "signup/recaptch.php";
-			}
-		</script>
 	</form>
+	<script>
+	
+		function goPopup() {
+	        // 주소검색을 수행할 팝업 페이지를 호출합니다.
+	        // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+	        var pop = window.open("signup/jusoPopup.jsp", "pop",
+	                "width=570,height=420, scrollbars=yes, resizable=yes");
+	    }
+	    var jusoCallBack = function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo){ 
+	        document.getElementById("address").value = roadFullAddr; 
+	        document.getElementById("zipNo").value = zipNo; 
+	        document.getElementById("addr").value = roadAddrPart1; 
+	        document.getElementById("addr2").value = roadAddrPart2;
+	        roadAddrPart1 += roadAddrPart2;
+	        if(addrDetail.length>30){ 
+	            alert('상세주소가 너무 길어 다시 입력해야 합니다.'); 
+	            return; 
+	        } 
+	        document.getElementById("addrDetail").value = addrDetail; 
+
+	    }
+	</script>	
 </body>
 </html>

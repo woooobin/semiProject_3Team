@@ -23,9 +23,9 @@ response.setContentType("text/html;charset=UTF-8");
 
 
 	<script type="text/javascript">
-	const woobins = "Q_3L44elkR1gsILyh0Fi";
+	const woobins = "eipjoJ2hKhd112Ae1a7L";
 	const garins= "PFkl_3h_ZxfQM_35xKqR";
-		var naver_id_login = new naver_id_login(garins,
+		var naver_id_login = new naver_id_login(woobins,
 				"http://localhost:8787/SemiProject_3Team/naverlogincallback.jsp");
 		
 		// 접근 토큰 값 출력
