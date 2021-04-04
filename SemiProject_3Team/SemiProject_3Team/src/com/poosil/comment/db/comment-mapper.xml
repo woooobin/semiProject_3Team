@@ -6,10 +6,21 @@
 		SELECT * FROM COMMENTBOARD
 		ORDER BY COMMENTNO DESC, GROUPSEQ
 	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="CommentDto">
+  		SELECT COMMENTNO, GROUPNO, GROPUSEQ, TITLETAB, FREEBOARDSEQ, USERID, COMMENTCONTENT, REGDATE
+  		FROM COMMENTBOARD
+  		WHERE COMMENTNO = #{commentno}
+  	</select>
   	
   	<insert id="insert" parameterType="map">
-  		INSERT INTO FREEBOARD
-  		VALUES(FREEBOARDSEQ.NEXTVAL, #{userid}, #{freeboardtitle}, #{freeboardcontent}, SYSDATE, 0)
+  		INSERT INTO COMMENTBOARD
+  		VALUES(COMMENTNOSEQ.NEXTVAL, GROUPNOSEQ.NEXTVAL, 1, 0,
+  			#{freeboardseq},
+  			#{userid},
+  			#{commentcontent},
+  			SYSDATE
+  		)
   	</insert>
   
   	<update id="update" parameterType="map">

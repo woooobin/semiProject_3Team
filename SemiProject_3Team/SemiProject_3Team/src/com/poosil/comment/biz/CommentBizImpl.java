@@ -15,6 +15,12 @@ public class CommentBizImpl implements CommentBiz {
 		// TODO Auto-generated method stub
 		return dao.selectList();
 	}
+	
+	@Override
+	public CommentDto selectOne(int commentno) {
+		
+		return dao.selectOne(commentno);
+	}
 
 	@Override
 	public int insert(CommentDto cdto) {
@@ -35,10 +41,10 @@ public class CommentBizImpl implements CommentBiz {
 	}
 	
 	@Override
-	public int answerProc(CommentDto cdto) {
+	public int answerProc(CommentDto adto) {
 		
-		int update = dao.answerUpdate(cdto.getCommentno());
-		int insert = dao.answerInsert(cdto);
+		int update = dao.answerUpdate(adto.getCommentno());
+		int insert = dao.answerInsert(adto);
 		
 		return update + insert;
 	}

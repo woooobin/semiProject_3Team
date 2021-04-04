@@ -137,7 +137,7 @@
 					<input type="submit"  value="가입" />
 					<!-- form 태그에 버튼 태그 왠만해선 쓰지 말기. submit 이벤트 발생하기 때문에. -->
 				</td>
-			</tr>
+			</tr>ㄴ
 		</table>
 	</form>
 		<script>
