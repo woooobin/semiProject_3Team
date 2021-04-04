@@ -34,12 +34,14 @@ public class CommentController extends HttpServlet {
 		CommentBiz biz = new CommentBizImpl();
 		String command = request.getParameter("command");
 		
-		if(command.equals("list")) {
-			List<CommentDto> clist = biz.selectList();
+		if(command.equals("clist")) {
+			int freeboardseq = Integer.parseInt(request.getParameter("freeboardseq"));
+			
+			List<CommentDto> clist = biz.selectList(freeboardseq);
 			request.setAttribute("clist", clist);
 			dispatch(request, response, "freeboard/list.jsp");
 			
-		} else if (command.equals("insert")) {
+		} else if (command.equals("cinsert")) {
 			String userid = request.getParameter("userid");
 			int freeboardseq = Integer.parseInt(request.getParameter("freeboardseq"));
 			String commentcontent = request.getParameter("commentcontent");
@@ -111,7 +113,7 @@ public class CommentController extends HttpServlet {
 				out.println("</script>");
 			}
 			
-		} else if (command.equals("delete")) {
+		} else if (command.equals("cdelete")) {
 			int commentno = Integer.parseInt(request.getParameter("commentno"));
 			
 			int res = biz.delete(commentno);

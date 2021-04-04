@@ -6,7 +6,7 @@ import com.poosil.comment.dto.CommentDto;
 
 public interface CommentDao {
 	
-	public List<CommentDto> selectList();
+	public List<CommentDto> selectList(int freeboardseq);
 	public CommentDto selectOne(int commentno);
 	public int insert(CommentDto cdto);
 	public int update(CommentDto cdto);

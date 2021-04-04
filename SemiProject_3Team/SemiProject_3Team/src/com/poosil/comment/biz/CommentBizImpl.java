@@ -11,9 +11,9 @@ public class CommentBizImpl implements CommentBiz {
 	CommentDao dao = new CommentDaoImpl();
 	
 	@Override
-	public List<CommentDto> selectList() {
+	public List<CommentDto> selectList(int freeboardseq) {
 		// TODO Auto-generated method stub
-		return dao.selectList();
+		return dao.selectList(freeboardseq);
 	}
 	
 	@Override
