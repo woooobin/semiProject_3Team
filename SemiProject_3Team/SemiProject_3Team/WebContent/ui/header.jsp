@@ -51,7 +51,7 @@ String userNickname = "ADMIN";
 				
 				<li><a href="#">이용가이드</a></li>
 				<li><a href="free.do?command=list">자유게시판</a></li>
-				<li><a href="notice.do?command=list&userrole=${userrole}">공지게시판</a></li>
+				<li><a href="notice.do?command=list">공지게시판</a></li>
 			</ul>
 		</div>
 		
