@@ -143,19 +143,18 @@ body {
 		<div class="bottomText">
 			Don't you have ID? <a href="signup.jsp">sign up</a>
 		</div>
-
-		<div id="naver_id_login"></div>
-		<a id="kakao-login-btn"> <img
-			src="kakaologoinimg/kakao_login_small.png"></a>
-		<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
-		<a id="glogin">google</a>
+		<div><br/>
+		<a id="naver_id_login"></a>
+		<a><img src="kakaologinimg/kakaolink_btn_small_ov.png" style="width: 40px;" id="kakao-login-btn"></a>
+		<a><img src="https://pics.freeicons.io/uploads/icons/png/149250811530100220-512.png" style="width: 40px";  id="glogin"></a>
+		</div>
 	</form>
 
 	<!-- 네이버 로그인 -->
 	<script type="text/javascript">
-		const woobins = "Q_3L44elkR1gsILyh0Fi";
+		const woobins = "eipjoJ2hKhd112Ae1a7L";
 		const garins = "PFkl_3h_ZxfQM_35xKqR";
-		var naver_id_login = new naver_id_login(garins,
+		var naver_id_login = new naver_id_login(woobins,
 				"http://localhost:8787/SemiProject_3Team/naverlogincallback.jsp");
 		var state = naver_id_login.getUniqState();
 		naver_id_login.setButton("green", 1, 40);
