@@ -15,7 +15,7 @@ response.setContentType("text/html;charset=UTF-8");
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<!--<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>-->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
@@ -23,14 +23,12 @@ response.setContentType("text/html;charset=UTF-8");
 
 
 	<script type="text/javascript">
-	const woobins = "eipjoJ2hKhd112Ae1a7L";
+	const woobins = "LQ9oq3XCCiY1n374Y0ED";
 	const garins= "PFkl_3h_ZxfQM_35xKqR";
-		var naver_id_login = new naver_id_login(woobins,
-				"http://localhost:8787/SemiProject_3Team/naverlogincallback.jsp");
-		
+		var naver_id_login = new naver_id_login(woobins, "http://localhost:8787/SemiProject_3Team/naverlogincallback.js");
 		// 접근 토큰 값 출력
 		const token = naver_id_login.oauthParams.access_token;
-		alert(token);
+		//alert(token);
 		
 		// 네이버 사용자 프로필 조회
 		naver_id_login.get_naver_userprofile("naverSignInCallback()");
@@ -40,11 +38,12 @@ response.setContentType("text/html;charset=UTF-8");
 			const useremail = naver_id_login.getProfileData('email');
 			console.log(useremail , token)
 			
-			return;
+			
 			window.opener.location.href = 'snslogin?command=snslogin&useremail='
 					+ useremail+"&token="+token;
 
 			window.close();
+			return;
 
 			//window.close();
 		}

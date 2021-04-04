@@ -153,7 +153,7 @@ body {
 
 	<!-- 네이버 로그인 -->
 	<script type="text/javascript">
-		const woobins = "Q_3L44elkR1gsILyh0Fi";
+		const woobins = "LQ9oq3XCCiY1n374Y0ED";
 		const garins = "PFkl_3h_ZxfQM_35xKqR";
 		var naver_id_login = new naver_id_login(garins,
 				"http://localhost:8787/SemiProject_3Team/naverlogincallback.jsp");
