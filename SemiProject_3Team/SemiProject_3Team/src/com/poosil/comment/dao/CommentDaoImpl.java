@@ -10,14 +10,14 @@ import com.poosil.util.db.SqlMapConfig;
 public class CommentDaoImpl extends SqlMapConfig implements CommentDao {
 
 	@Override
-	public List<CommentDto> selectList() {
+	public List<CommentDto> selectList(int freeboardseq) {
 		SqlSession session = null;
 		
 		List<CommentDto> list = new ArrayList<CommentDto>();
 		
 		try {
 			session = getSqlSessionFactory().openSession(false);
-			list = session.selectList("commentboardmapper.selectList");
+			list = session.selectList("commentboardmapper.selectList", freeboardseq);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -52,7 +52,11 @@ public class CommentDaoImpl extends SqlMapConfig implements CommentDao {
 	@Override
 	public int insert(CommentDto cdto) {
 		int res = 0;
+	
 		
+		System.out.println("freeboardseq = "+cdto.getFreeboardseq());
+		System.out.println("userid = "+cdto.getUserid());
+		System.out.println("commentcontent = "+cdto.getCommentcontent());
 		try {
 			SqlSession session = getSqlSessionFactory().openSession(true);
 			res = session.insert("commentboardmapper.insert", cdto);

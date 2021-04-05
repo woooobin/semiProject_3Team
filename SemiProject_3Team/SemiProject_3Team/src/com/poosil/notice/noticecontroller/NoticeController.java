@@ -44,9 +44,9 @@ public class NoticeController extends HttpServlet {
 				
 				if(dto.getUserrole().equals("ADMIN")) {
 					dispatch(request, response, "notice/adminlist.jsp");//notice/adminlist.jsp
-				} else {
-					dispatch(request, response, "notice/adminlist.jsp");//notice/userlist.jsp
 				}
+			} else {
+				dispatch(request, response, "notice/userlist.jsp");//notice/userlist.jsp
 			}
 			
 		} else if(command.equals("select")) {

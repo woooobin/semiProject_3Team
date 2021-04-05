@@ -8,97 +8,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-* {
-	margin: 0px;
-	padding: 0px;
-	text-decoration: none;
-	font-family: sans-serif;
-}
-
-body {
-	background-image: #34495e;
-}
-
-.loginForm {
-	position: absolute;
-	width: 300px;
-	height: 400px;
-	padding: 30px, 20px;
-	background-color: #FFFFFF;
-	text-align: center;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	border-radius: 15px;
-}
-
-.loginForm h2 {
-	text-align: center;
-	margin: 30px;
-}
-
-.idForm {
-	border-bottom: 2px solid #adadad;
-	margin: 30px;
-	padding: 10px 10px;
-}
-
-.passForm {
-	border-bottom: 2px solid #adadad;
-	margin: 30px;
-	padding: 10px 10px;
-}
-
-.id {
-	width: 100%;
-	border: none;
-	outline: none;
-	color: #636e72;
-	font-size: 16px;
-	height: 25px;
-	background: none;
-}
-
-.pw {
-	width: 100%;
-	border: none;
-	outline: none;
-	color: #636e72;
-	font-size: 16px;
-	height: 25px;
-	background: none;
-}
-
-.btn {
-	position: relative;
-	left: 40%;
-	transform: translateX(-50%);
-	margin-bottom: 40px;
-	width: 80%;
-	height: 40px;
-	background: linear-gradient(125deg, #81ecec, #6c5ce7, #81ecec);
-	background-position: left;
-	background-size: 200%;
-	color: white;
-	font-weight: bold;
-	border: none;
-	cursor: pointer;
-	transition: 0.4s;
-	display: inline;
-}
-
-.btn:hover {
-	background-position: right;
-}
-
-.bottomText {
-	text-align: center;
-}
-</style>
+<link href="./styles/reset.css" rel="stylesheet">
+<link href="./styles/layout.css" rel="stylesheet">
+<link href="./styles/login.css" rel="stylesheet">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-
 
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
@@ -123,12 +37,7 @@ body {
 </head>
 
 
-<body width="100%" height="100%">
-
-
-
-
-
+<body>
 	<form action="login.do" method="post" class="loginForm">
 		<h2>Login</h2>
 		<div class="idForm">

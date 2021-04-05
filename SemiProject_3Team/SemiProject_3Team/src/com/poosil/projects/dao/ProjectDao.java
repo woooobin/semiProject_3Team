@@ -8,7 +8,7 @@ import com.poosil.projects.dto.ProjectDto;
 import com.poosil.projects.dto.ProjectItemDto;
 
 public interface ProjectDao {
-	public List<ProjectDto> selectList();
+	public List<ProjectDto> selectList(String province, String sortOpt);
 	public Map<String, Integer> insertProject(
 			String userId, 
 			String projectMainTitle,
