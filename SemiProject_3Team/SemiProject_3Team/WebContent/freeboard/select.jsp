@@ -28,12 +28,19 @@
             var item = $(".update>button").click(function () {
                 //현재 클릭한 값의 인덱스
                 var idx = item.index(this);
-
+                $(".updatetext").forEach(function(i){
+					console.log($(this));
+					$(this).removeClass("on")
+				})
+				$(".answertext").forEach(function(i){
+					console.log($(this));
+					$(this).removeClass("on")
+				})
                 $(".updatetext").eq(idx).toggleClass("on")
                 $(".contenttable").toggleClass("on")
                 // 인터넷에선 jsp()가아니라 html() 로 적혀있엇음
-                if($(this).jsp() == '수정'){
-                	$(this).jsp('수정 취소')
+                if($(this).html() == '수정'){
+                	$(this).html('수정 취소')
                 }
             });
         })
@@ -42,11 +49,18 @@
             var item = $(".answer>button").click(function () {
                 //현재 클릭한 값의 인덱스
                 var idx = item.index(this);
-
+                $(".updatetext").forEach(function(i){
+					console.log($(this));
+					$(this).removeClass("on")
+				})
+				$(".answertext").forEach(function(i){
+					console.log($(this));
+					$(this).removeClass("on")
+				})
                 $(".answertext").eq(idx).toggleClass("on")
                 $(".contenttable").toggleClass("on")
-                if($(this).jsp() == '답글하기'){
-                	$(this).jsp('답글하기 취소')
+                if($(this).text() == '답글하기'){
+                	$(this).text('답글하기 취소')
                 }
             });
         })
@@ -133,7 +147,7 @@
 		</c:choose>
 	</table>
 	<h4>&nbsp;&nbsp;Comments</h4>
-	<form action="comment.do" method="POST">
+	<form action="free.do" method="POST">
 	<input type="hidden" name="command" value="updateanswer">
 	<table border="1">
 		<c:choose>
@@ -155,8 +169,8 @@
 						<td> 작성 날짜 : ${cdto.regdate }</td>
 					<c:if test="${sessionID == cdto.userid }">
 						<td class="update" align="right">	<!-- onclick="location.href='comment.do?command=update&commentno=${cdto.commentno}'" -->
-							<button onclick="location.href='free.do?command=updateanswer&updateno=${cdto.commentno}">수정</button>
-							<input type="button" value="삭제" onclick="location.href='comment.do?command=delete&commentno=${cdto.commentno}'">
+							<button>수정</button>
+							<input type="button" value="삭제" onclick="location.href='comment.do?command=cdelete&commentno=${cdto.commentno}'">
 							&nbsp;&nbsp;<br/>
 						</td>
 					</c:if>
@@ -168,7 +182,7 @@
 					</c:if>
 					<tr>
 						<td>
-							
+							<textarea rows="3" cols="60" readonly="readonly">${cdto.commentcontent }</textarea>
 						</td>
 					</tr>
 					<tbody class="updatetext">
@@ -195,7 +209,7 @@
 						<td>
 							<input type="hidden" name="parentcommentno" value="${cdto.commentno }">
 							<input type="hidden" name="answeruserid" value="${cdto.userid }">
-							<textarea rows="3" cols="60" class="answercontent"></textarea>
+							<textarea rows="3" cols="100" class="answercontent"></textarea>
 						</td>
 					</tr>
 					<tr>
@@ -215,14 +229,15 @@
 					</tr>
 	</table>
 	</form>
-	<form action="comment.do" method="POST">
-	<input type="hidden" name="command" value="insert">
+	<form action="free.do" method="POST">
+	<input type="hidden" name="command" value="cinsert">
 	<table id="contenttable">
+		<c:if test="${sessionID != null}">
 		<tr>
 			<td>
-				<input type="hidden" name="userid" value="${cdto.userid }"> 
+				<input type="hidden" name="userid" value="${sessionID }"> 
 				<input type="hidden" name="freeboardseq" value="${dto.freeboardseq }">
-				<textarea rows="3" cols="60" name="commentcontent"></textarea>
+				<textarea rows="3" cols="100" name="commentcontent"></textarea>
 			</td>
 		</tr>
 		<tr>
@@ -230,6 +245,14 @@
 				<input type="submit" value="댓글 등록">&nbsp;&nbsp;
 			</td>
 		</tr>
+		</c:if>
+		<c:if test="${sessionID == null}">
+		<tr>
+			<td>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			</td>
+		</tr>
+		</c:if>
 	</table>
 	</form>
 </body>
