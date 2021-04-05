@@ -13,17 +13,23 @@ import com.poosil.projects.dto.ProjectItemDto;
 import com.poosil.util.db.SqlMapConfig;
 
 public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
-	public List<ProjectDto> selectList() {
+	public List<ProjectDto> selectList(String province, String sortOpt) {
 
 		SqlSession session = null;
+		System.out.println("============================dao = ");
+		System.out.println(sortOpt);
+		System.out.println(province);
+		
 
 		List<ProjectDto> list = new ArrayList<ProjectDto>();
-
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("sortOpt", sortOpt);
+		param.put("province", province);
 		try {
 			session = getSqlSessionFactory().openSession(true);
-
-			list = session.selectList("projects-mapper.selectList");
-			System.out.println("hreer" + list);
+			
+			list = session.selectList("projects-mapper.selectList", param);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

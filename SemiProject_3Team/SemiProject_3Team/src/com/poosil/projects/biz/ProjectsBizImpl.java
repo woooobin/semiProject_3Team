@@ -14,8 +14,8 @@ public class ProjectsBizImpl implements ProjectsBiz{
 
 	ProjectDao dao = new ProjectDaoImpl();
 	@Override
-	public List<ProjectDto> selectList() {
-		return dao.selectList();
+	public List<ProjectDto> selectList(String province, String sortOpt) {
+		return dao.selectList(province, sortOpt);
 	}
 	@Override
 	public Map<String, Integer>  insertProject(String userId, String projectMainTitle, String projectSubTitle, String thumbImage,

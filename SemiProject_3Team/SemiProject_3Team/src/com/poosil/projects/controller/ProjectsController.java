@@ -45,7 +45,18 @@ public class ProjectsController extends HttpServlet {
 		ProjectsBiz biz = new ProjectsBizImpl();
 
 		if (command.equals("selectList")) {
-			List<ProjectDto> list = biz.selectList();
+			String province = request.getParameter("province");
+			String sortOpt = request.getParameter("sortOpt");
+			if(sortOpt == null || sortOpt.length() <= 0 ) {
+				sortOpt = "LIKECOUNT";
+			}
+			if(province == null) {
+				province = "경기";
+			}
+			System.out.println(province);
+			
+			
+			List<ProjectDto> list = biz.selectList(province, sortOpt);
 			request.setAttribute("list", list);
 			dispatch(request, response, "project_list.jsp");
 
