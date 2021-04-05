@@ -20,8 +20,10 @@
 	System.out.println("projectName = " + projectName);
 	int quantity = Integer.parseInt(request.getParameter("quantity"));
 	System.out.println("quantity = " + quantity);
-	int deliveryprice = Integer.parseInt(request.getParameter("deliveryprice"));
-	System.out.println("deliveryprice ="  + deliveryprice);
+	int deliveryFee = Integer.parseInt(request.getParameter("deliveryFee"));
+	System.out.println("deliveryFee ="  + deliveryFee);
+	int purchasePrice = Integer.parseInt(request.getParameter("purchasePrice"));
+	System.out.println("purchasePrice ="  + purchasePrice);
 	int price = Integer.parseInt(request.getParameter("price"));
 	System.out.println("price = " + price);
 	String userId = request.getParameter("userId");
@@ -50,7 +52,7 @@
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
 	    name : '<%=projectName%>',
-	    amount : <%=deliveryprice%>,
+	    amount : <%=purchasePrice%>,
 	    buyer_email : 'iamport@siot.do',
 	    buyer_name :'<%=name%>',
 	    buyer_tel : <%=phone%>,
@@ -73,6 +75,8 @@
                     projectName : '<%=projectName%>',
                     quantity : <%=quantity%>,
                     price : <%=price%>,
+                    deliveryFee : <%=deliveryFee%>,
+                    purchasePrice : <%=purchasePrice%>,
                     userId : '<%=userId%>',
                     name : '<%=name%>',
                     address : '<%=address%>',

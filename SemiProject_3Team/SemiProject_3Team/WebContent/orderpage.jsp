@@ -54,11 +54,11 @@
 			</tr>
 			<tr>
 				<th>배송비</th>
-				<td><textarea rows="2" cols="25" name="delivery">3000</textarea></td>
+				<td><textarea rows="2" cols="25" name="deliveryFee">3000</textarea></td>
 			</tr>
 			<tr>
-				<th>총 가격</th>
-				<td><textarea rows="2" cols="25" name="deliveryprice"><%=projectitemdto.getPrice()+3000%></textarea></td>
+				<th>결제 금액</th>
+				<td><textarea rows="2" cols="25" name="purchasePrice"><%=projectitemdto.getPrice()+3000%></textarea></td>
 			</tr>
 			<tr>
 				<th>ID</th>

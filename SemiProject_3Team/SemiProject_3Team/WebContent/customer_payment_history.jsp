@@ -40,7 +40,7 @@ for (PayDto paydto : list) {
 				<td><%=paydto.getUserId() %></td>
 				<td><%=paydto.getProjectItemSeq() %></td>
 				<td><%=paydto.getQuantity() %></td>
-				<td><%=paydto.getPrice() %></td>
+				<td><%=paydto.getPurchasePrice() %></td>
 				<td><%=paydto.getOrderDate() %></td>
 			</tr>
 <%

@@ -13,17 +13,20 @@
   		<result property="phone" column="PHONE"/>
   		<result property="totalPrice" column="TOTALPRICE"/>
   		<result property="price" column="PRICE"/>
+  		<result property="deliveryFee" column="DELIVERYFEE"/>
+  		<result property="purchasePrice" column="PURCHASEPRICE"/>
   		<result property="orderDate" column="ORDERDATE"/>
+
   	</resultMap>
   	
   	<select id="adminPaymentList" resultMap="PayMap">
-  		SELECT ORDERSEQ, QUANTITY, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, ORDERDATE
+  		SELECT ORDERSEQ, QUANTITY, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, DELIVERYFEE, PURCHASEPRICE, ORDERDATE
   		FROM ORDERPAGE 
   		ORDER BY ORDERSEQ DESC
   	</select>
   	
   	<select id="customerPaymentList" parameterType="PayDto" resultType="PayDto">
-  		SELECT ORDERSEQ, QUANTITY, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, ORDERDATE
+  		SELECT ORDERSEQ, QUANTITY, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, DELIVERYFEE, PURCHASEPRICE, ORDERDATE
   		FROM ORDERPAGE
   		WHERE USERID = #{userId}
   		ORDER BY ORDERDATE DESC
@@ -31,11 +34,11 @@
   	
   	<insert id="insertadminPayment" parameterType="PayDto">
   		INSERT INTO ORDERPAGE
-  		VALUES(ORDERSEQ.NEXTVAL, #{quantity}, #{userId}, #{projectItemSeq}, #{address}, #{phone}, #{totalPrice}, #{price}, SYSDATE)
+  		VALUES(ORDERSEQ.NEXTVAL, #{quantity}, #{userId}, #{projectItemSeq}, #{address}, #{phone}, #{totalPrice}, #{price}, #{deliveryFee}, #{purchasePrice}, SYSDATE)
   	</insert>
   	
   	<select id="selectProjectItem" parameterType="int" resultType="ProjectItemDto">
-  		SELECT PROJECTITEMSEQ, PROJECTITEMNAME, QUANTITY, PROJECTID, PRICE
+  		SELECT PROJECTITEMSEQ, PROJECTITEMNAME, QUANTITY, PROJECTID, PRICE 
   		FROM PROJECTITEM
   		WHERE PROJECTITEMSEQ = #{projectItemSeq}
   	</select>

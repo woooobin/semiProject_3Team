@@ -1,6 +1,7 @@
 package com.poosil.pay.controller;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +68,8 @@ public class PayController extends HttpServlet {
 					+request.getParameter("address")
 					+request.getParameter("phone")
 					+request.getParameter("userId")
+					+request.getParameter("purchasePrice")
+					+request.getParameter("deliveryFee")
 					);		
 			String userId = request.getParameter("userId");
 			int projectItemSeq = Integer.parseInt(request.getParameter("projectItemSeq"));
@@ -74,27 +77,24 @@ public class PayController extends HttpServlet {
 			int price = Integer.parseInt(request.getParameter("price"));
 			String address = request.getParameter("address");
 			int phone = Integer.parseInt(request.getParameter("phone"));
-			int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
+			//int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
+			int totalPrice = 0;
+			int deliveryFee = Integer.parseInt(request.getParameter("deliveryFee"));
+			int purchasePrice = Integer.parseInt(request.getParameter("purchasePrice"));
 			
-			PayDto dto = new PayDto(0, quantity, userId, projectItemSeq, address, phone, totalPrice, price, null);
+			PayDto dto = new PayDto(0, quantity, userId, projectItemSeq, address, phone, totalPrice, price, deliveryFee, purchasePrice, null);
 			
 			int res = biz.insertadminPayment(dto);
 			
 			if(res > 0) {
-				dto.setTotalPrice(totalPrice);
 				
-				int updateres = biz.updateTotalPrice(dto);
-				
-				if(updateres > 0) {
-					ProjectDto projectdto = projectbiz.selectOne(projectItemSeq);
 					response.sendRedirect("project_list.jsp");
 				} else {
 					response.sendRedirect("project_list.jsp");
-				}
-				response.sendRedirect("index.jsp");
-			} else {
-				response.sendRedirect("orderpage.jsp");
-			}
+				
+			} 
+			
+			    
 			} else if (command.equals("custompaylist")) {
 				
 				HttpSession session = request.getSession();
