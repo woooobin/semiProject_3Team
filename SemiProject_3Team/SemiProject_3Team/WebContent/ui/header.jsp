@@ -20,15 +20,15 @@ String userNickname = "ADMIN";
 
 	<div class="container">
 		<div class="lft">
-			<h1><a href="index.jsp">로고</a></h1>
+			
 		</div>
 		<div class="rgt">
 			<%
 			if (!isLoggedIn) {
 			%>
 			<nav class="nav">
-				<li><a aria-current="page" href="login.jsp">login</a></li>
-				<li><a href="signup.jsp">sign up</a></li>
+				<li><a aria-current="page" href="login.jsp">로그인</a></li>
+				<li><a href="signup.jsp">회원가입</a></li>
 			</nav>
 			<%
 			} else {
@@ -43,6 +43,7 @@ String userNickname = "ADMIN";
 			%>
 		</div>
 		<div class="row">
+			<h1><a href="index.jsp">로고</a></h1>
 			
 			<ul class="gnb">
 				<li><a href="#">카테고리</a></li>

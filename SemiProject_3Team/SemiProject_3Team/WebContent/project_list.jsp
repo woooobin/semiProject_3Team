@@ -15,7 +15,8 @@ response.setContentType("text/html; charset=UTF-8");
 <head>
 <meta charset="UTF-8">
 <link href="styles/reset.css" rel="stylesheet">
-<link href="styles/bootstrap.min.css" rel="stylesheet">
+<link href="styles/layout.css" rel="stylesheet">
+
 <link href="styles/project_list.css" rel="stylesheet">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

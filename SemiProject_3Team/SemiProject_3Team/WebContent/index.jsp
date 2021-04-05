@@ -1,37 +1,171 @@
 <%@page import="com.poosil.login.dto.loginDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("UTF-8");
 %>
 <%
-	response.setContentType("text/html; charset=UTF-8");
+response.setContentType("text/html; charset=UTF-8");
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="./styles/reset.css" rel="stylesheet">
-  	<!-- Bootstrap CSS -->
-    <link href="./styles/bootstrap.min.css" rel="stylesheet" >
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link href="./styles/reset.css" rel="stylesheet">
+<link href="./styles/layout.css" rel="stylesheet">
+<link href="./styles/main.css" rel="stylesheet">
 
-<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <title>Hello, world!</title>
+<title>Hello, world!</title>
+
 </head>
 <body>
-<%@ include file="./ui/header.jsp" %>
+	<%@ include file="./ui/header.jsp"%>
 
-<div class="container">
-<div class="row">
-    <div class="col">col</div>
-    <div class="col">col</div>
-    <div class="col">col</div>
-    <div class="col">col</div>
-  </div>
-</div>
+	<div class="container">
+		<!-- Slider main container -->
+		<div class="swiper-container">
+			<!-- Additional required wrapper -->
+			<div class="swiper-wrapper">
+				<!-- Slides -->
+				<div class="swiper-slide">Slide 1</div>
+				<div class="swiper-slide">Slide 2</div>
+				<div class="swiper-slide">Slide 3</div>
+				...
+			</div>
+			<!-- If we need pagination -->
+			<div class="swiper-pagination"></div>
+
+			<!-- If we need navigation buttons -->
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
+
+			<!-- If we need scrollbar -->
+			<div class="swiper-scrollbar"></div>
+		</div>
+		<!--  -->
+		<div class="container-project">
+			<h2>인기있는 프로젝트</h2>
+			<div class="main-projects-wrap">
+				<ol class="main-project-list">
+					<li class="main-projects-list-item">
+						<a>
+							<span class="frame">
+								<em>D-7</em>
+								<h3>프로젝트 제목 1</h3>
+							</span>
+						</a>
+						<p>
+							<span>3,000,000원</span>
+							<span>144% 달성</span>
+						</p>
+					</li>
+					<li class="main-projects-list-item">
+						<a>
+							<span class="frame">
+								<em>D-7</em>
+								<h3>프로젝트 제목 1</h3>
+							</span>
+						</a>
+						<p>
+							<span>3,000,000원</span>
+							<span>144% 달성</span>
+						</p>
+					</li>
+					<li class="main-projects-list-item">
+						<a>
+							<span class="frame">
+								<em>D-7</em>
+								<h3>프로젝트 제목 1</h3>
+							</span>
+						</a>
+						<p>
+							<span>3,000,000원</span>
+							<span>144% 달성</span>
+						</p>
+					</li>
+					<li class="main-projects-list-item">
+						<a>
+							<span class="frame">
+								<em>D-7</em>
+								<h3>프로젝트 제목 1</h3>
+							</span>
+						</a>
+						<p>
+							<span>3,000,000원</span>
+							<span>144% 달성</span>
+						</p>
+					</li>
+				</ol>
+			</div>
+			<h2>신규 프로젝트</h2>
+			<div class="main-projects-wrap">
+				<ol class="main-project-list">
+					<li class="main-projects-list-item">
+						<a>
+							<span class="frame">
+								<em>D-7</em>
+								<h3>프로젝트 제목 1</h3>
+							</span>
+						</a>
+						<p>
+							<span>3,000,000원</span>
+							<span>144% 달성</span>
+						</p>
+					</li>
+					<li class="main-projects-list-item">
+						<a>
+							<span class="frame">
+								<em>D-7</em>
+								<h3>프로젝트 제목 1</h3>
+							</span>
+						</a>
+						<p>
+							<span>3,000,000원</span>
+							<span>144% 달성</span>
+						</p>
+					</li>
+					<li class="main-projects-list-item">
+						<a>
+							<span class="frame">
+								<em>D-7</em>
+								<h3>프로젝트 제목 1</h3>
+							</span>
+						</a>
+						<p>
+							<span>3,000,000원</span>
+							<span>144% 달성</span>
+						</p>
+					</li>
+					<li class="main-projects-list-item">
+						<a>
+							<span class="frame">
+								<em>D-7</em>
+								<h3>프로젝트 제목 1</h3>
+							</span>
+						</a>
+						<p>
+							<span>3,000,000원</span>
+							<span>144% 달성</span>
+						</p>
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script>
+		var swiper = new Swiper('.swiper-container', {
+			navigation : {
+				nextEl : '.swiper-button-next',
+				prevEl : '.swiper-button-prev',
+			},
+/* 			pagination : {
+				el : '.swiper-pagination',
+				
+			}, */
+		});
+	</script>
 </body>
 </html>

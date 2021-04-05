@@ -26,26 +26,68 @@
 
 header{}
 header .container{width:1400px; margin:0 auto;}
+@media screen and (max-width: 1400px){
+	header .container{width:90%;}
+}
 header .container>div{width:50%;float:left;}
 header .container:after{clear:both;content:''; display:block;}
 
 header .container .lft{float:left;position:relative;}
 
-header .container .lft h1{width:100px;height:100px;}
-header .container .lft h1 a{display:block;width:100%;}
 
 
-header .container .rgt{}
-header .container .rgt nav {}
+header .container .rgt{float:right; display:flex; justify-content: flex-end; margin-right:20px;}
+header .container .rgt nav {display:flex; margin: 30px 0;}
 header .container .rgt nav li{}
-header .container .rgt nav li a{}
+header .container .rgt nav li a{display:block;padding:0 10px;white-space: nowrap;font-size: 14px;transition:all .2s;}
 
-header .container .row {width:100%;}
-header .container .row .gnb{  display: flex;
+header .container .rgt nav li+li{margin-left:2px;border-left:1px solid #eee;}
+
+
+header .container .row h1{width:130px;height:94px; display:inline-block ; }
+header .container .row h1 a{display:block;width:100%;height:100%;background-image:url("../images/logo/logo_transparent_notypo.png");
+background-size:auto 100%;background-position: center center;
+text-indent: -9999px;}
+
+
+header .container .row {width:100%;text-align: center;}
+header .container .row .gnb{  
+	
+	display: flex;
     width: 60%;
-    margin: 0 auto;
+    margin: 30px auto 0 ;
     justify-content: space-between;
 
 }
-header .container .row .gnb li{width: 16%;}
-header .container .row .gnb li a{display: block;width: 100%;}
+
+@media screen and (max-width: 768px) { 	
+	header .container .row .gnb{width:100%;}
+}
+
+header .container .row .gnb li{text-align:center;line-height:40px;position:relative;}
+
+header .container .row .gnb li a{
+	display: block;
+    width: 100%;
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: 600;
+    line-height:35px;
+    }
+
+header .container .row .gnb li:after{
+		position:absolute;
+		bottom:0;
+		left:50%;
+		transform:translateX(-50%);
+		content:""; 
+		display:inline-block;
+		width:0;height:5px;
+		background-color:rgba(244,221,80,1);
+		transition:all .2s;
+	}
+header .container .row .gnb li:hover:after{width:100%;}
+
+
+
+
