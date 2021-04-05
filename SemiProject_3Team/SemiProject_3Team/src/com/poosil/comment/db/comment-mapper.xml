@@ -17,7 +17,9 @@
   	
   	<insert id="insert" parameterType="map">
   		INSERT INTO COMMENTBOARD
-  		VALUES(COMMENTNOSEQ.NEXTVAL, GROUPNOSEQ.NEXTVAL, 1, 0,
+		(COMMENTNO,GROUPNO, GROUPSEQ,TITLETAB,FREEBOARDSEQ,USERID,COMMENTCONTENT,REGDATE)
+  		VALUES(
+			COMMENTNOSEQ.NEXTVAL, GROUPNOSEQ.NEXTVAL, 1, 0,
   			#{freeboardseq},
   			#{userid},
   			#{commentcontent},
@@ -38,7 +40,7 @@
   	
   	<insert id="answerInsert" parameterType="map">
   		INSERT INTO COMMENTBOARD
-  		VALUSE(
+  		VALUES(
   				COMMENTNOSEQ.NEXTVAL,
   				(SELECT COMMENTNO FROM COMMENTBOARD WHERE COMMENTNO = #{groupno}),
 				(SELECT GROUPSEQ FROM COMMENTBOARD WHERE COMMENTNO = #{groupseq}) + 1,

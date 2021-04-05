@@ -52,7 +52,11 @@ public class CommentDaoImpl extends SqlMapConfig implements CommentDao {
 	@Override
 	public int insert(CommentDto cdto) {
 		int res = 0;
+	
 		
+		System.out.println("freeboardseq = "+cdto.getFreeboardseq());
+		System.out.println("userid = "+cdto.getUserid());
+		System.out.println("commentcontent = "+cdto.getCommentcontent());
 		try {
 			SqlSession session = getSqlSessionFactory().openSession(true);
 			res = session.insert("commentboardmapper.insert", cdto);

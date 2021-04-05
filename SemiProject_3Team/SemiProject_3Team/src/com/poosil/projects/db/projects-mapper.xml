@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="projects-mapper" >
-	<select id="selectList" resultType="ProjectDto" >
+	<select id="selectList" parameterType="HashMap" resultType="ProjectDto" >
 	SELECT 
 		projectId,
 		projectMainTitle, 
@@ -13,9 +13,9 @@
 		projectCategory, 
 		projectStartDate,
 		projectEndDate
-		
 	FROM PROJECTS
-	ORDER BY CREATEDAT DESC
+	WHERE PROVINCE LIKE '%'||#{province}||'%' 
+	ORDER BY #{sortOpt} DESC
 	</select>
 	<select id="selectOne" resultType="ProjectDto" parameterType="int">
 	SELECT 

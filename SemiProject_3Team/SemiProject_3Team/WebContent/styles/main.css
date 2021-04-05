@@ -1,0 +1,52 @@
+.swiper-container {
+	width: 100%;
+	height: 500px;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+.container-project{width:980px;margin: 0 auto;}
+.container-project h2{padding:20px 0 10px ;}
+.container-project .main-projects-wrap{}
+.container-project .main-projects-wrap .main-project-list{
+	padding:10px 5px;
+    display: flex;
+    justify-content: space-between;
+	
+}
+.container-project .main-projects-wrap .main-project-list .main-projects-list-item{float:left;}
+
+.main-projects-list-item{}
+.main-projects-list-item+li{margin-left:10px;}
+.main-projects-list-item a{}
+.main-projects-list-item a span.frame{   
+	position:relative;
+	display: block;
+    width: 200px;
+    height: 200px;
+    
+    outline: 1px solid;
+ }
+.main-projects-list-item a span.frame>*{position:absolute;}
+.main-projects-list-item a span em{right:5px ; top:5px;}
+.main-projects-list-item a span h3{left:5px ; bottom:10px;}
+
+.main-projects-list-item p{padding:5px 0;}
+.main-projects-list-item p span{}
