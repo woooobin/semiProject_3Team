@@ -62,6 +62,8 @@ public class FreeBoardController extends HttpServlet {
 			request.setAttribute("dto", dto);
 			dispatch(request, response, "freeboard/select.jsp");
 			
+			
+			
 		} else if (command.equals("insertform")) {
 			dispatch(request, response, "freeboard/insert.jsp");
 			
@@ -146,6 +148,8 @@ public class FreeBoardController extends HttpServlet {
 			}
 			
 			
+		
+			
 		}else if (command.equals("updateanswer")) {
 			int updateno = Integer.parseInt(request.getParameter("updateno"));
 			
@@ -188,6 +192,7 @@ public class FreeBoardController extends HttpServlet {
 			int ares = cbiz.answerProc(adto);
 			if(ares > 0) {
 				out.println("<script type='text/javascript'>");
+				out.println("history.back();");
 				out.println("location.reload();");
 				out.println("</script>");
 			} else {
@@ -196,22 +201,25 @@ public class FreeBoardController extends HttpServlet {
 				out.println("</script>");
 			}
 			
-		} else if (command.equals("cdelete")) {
+		}else if (command.equals("cdelete")) {
 			int commentno = Integer.parseInt(request.getParameter("commentno"));
-			
 			int res = cbiz.delete(commentno);
+			System.out.println("no : " +commentno);
+			System.out.println("res : " + res);
 			PrintWriter out = response.getWriter();
 			if(res > 0) {
 				out.println("<script type='text/javascript'>");
-				out.println("location.reload();");
+				out.println("history.back();");
+				out.println("location.reload(true);");
+				out.println("window.location.reload(true);;");
 				out.println("</script>");
 			} else {
 				out.println("<script type='text/javascript'>");
 				out.println("alert('댓글 삭제 실패');");
 				out.println("</script>");
 			}
-			
 		}
+			
 		
 	}
 	

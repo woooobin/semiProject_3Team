@@ -25,18 +25,20 @@
             */
             // 2. 구조가 약간 복잡할 때
 
-            var item = $(".update>button").click(function () {
-                //현재 클릭한 값의 인덱스
+            var item = $(".update>a").click(function () {
+                
                 var idx = item.index(this);
-                $(".updatetext").forEach(function(i){
+                console.log($(".updatetext"));
+                $(".updatetext").each(function(i, item){
 					console.log($(this));
-					$(this).removeClass("on")
+					$(item).removeClass("on")
 				})
-				$(".answertext").forEach(function(i){
+				$(".answertext").each(function(i, item){
 					console.log($(this));
-					$(this).removeClass("on")
+					$(item).removeClass("on")
 				})
                 $(".updatetext").eq(idx).toggleClass("on")
+               
                 $(".contenttable").toggleClass("on")
                 // 인터넷에선 jsp()가아니라 html() 로 적혀있엇음
                 if($(this).html() == '수정'){
@@ -46,14 +48,14 @@
         })
         
        $(document).ready(function () {
-            var item = $(".answer>button").click(function () {
+            var item = $(".answer>a").click(function () {
                 //현재 클릭한 값의 인덱스
                 var idx = item.index(this);
-                $(".updatetext").forEach(function(i){
+                $(".updatetext").each(function(i){
 					console.log($(this));
 					$(this).removeClass("on")
 				})
-				$(".answertext").forEach(function(i){
+				$(".answertext").each(function(i){
 					console.log($(this));
 					$(this).removeClass("on")
 				})
@@ -169,8 +171,8 @@
 						<td> 작성 날짜 : ${cdto.regdate }</td>
 					<c:if test="${sessionID == cdto.userid }">
 						<td class="update" align="right">	<!-- onclick="location.href='comment.do?command=update&commentno=${cdto.commentno}'" -->
-							<button>수정</button>
-							<input type="button" value="삭제" onclick="location.href='comment.do?command=cdelete&commentno=${cdto.commentno}'">
+							<a href="#">수정</a><!-- &freeboardseq=${freeboardseq } -->
+							<input type="button" value="삭제" onclick="location.href='free.do?command=cdelete&commentno=${cdto.commentno}'">
 							&nbsp;&nbsp;<br/>
 						</td>
 					</c:if>
@@ -235,7 +237,7 @@
 		<c:if test="${sessionID != null}">
 		<tr>
 			<td>
-				<input type="hidden" name="userid" value="${sessionID }"> 
+				<input type="hidden" name="userid" value="<%=sessionID%>"> 
 				<input type="hidden" name="freeboardseq" value="${dto.freeboardseq }">
 				<textarea rows="3" cols="100" name="commentcontent"></textarea>
 			</td>
@@ -252,7 +254,7 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</td>
 		</tr>
-		</c:if>
+		</c:if> 
 	</table>
 	</form>
 </body>
