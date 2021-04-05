@@ -51,13 +51,13 @@
             var item = $(".answer>a").click(function () {
                 //현재 클릭한 값의 인덱스
                 var idx = item.index(this);
-                $(".updatetext").each(function(i){
+                $(".updatetext").each(function(i, item){
 					console.log($(this));
-					$(this).removeClass("on")
+					$(item).removeClass("on")
 				})
-				$(".answertext").each(function(i){
+				$(".answertext").each(function(i, item){
 					console.log($(this));
-					$(this).removeClass("on")
+					$(item).removeClass("on")
 				})
                 $(".answertext").eq(idx).toggleClass("on")
                 $(".contenttable").toggleClass("on")
@@ -69,7 +69,6 @@
         
         $(document).ready(function(){
         	var idxNo = item.index(this);
-        	
         })
         
     </script>
@@ -179,7 +178,7 @@
 					</tr>
 					<c:if test="${sessionID != null}">
 						<td class="answer">
-							<button>답글하기</button>
+							<a href="#">답글하기</a>
 						</td>
 					</c:if>
 					<tr>
