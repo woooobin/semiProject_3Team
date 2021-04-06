@@ -103,7 +103,7 @@ public class PayDaoImpl extends SqlMapConfig implements PayDao {
 	}
 
 	@Override
-	public int updateTotalPrice(String projectId , int purchasePrice) {
+	public int updateTotalPrice(String projectId , int price) {
 		
 		int updateres = 0;
 		
@@ -112,7 +112,7 @@ public class PayDaoImpl extends SqlMapConfig implements PayDao {
 			
 			Map<String, String > param = new HashMap<String, String>();
 			
-			param.put("price", purchasePrice+"" );
+			param.put("price", price+"" );
 			param.put("projectId", projectId );
 			
 			updateres = session.update(namespace+"updateTotalPrice", param);

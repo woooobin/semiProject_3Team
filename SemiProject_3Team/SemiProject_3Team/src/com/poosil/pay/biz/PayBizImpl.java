@@ -37,9 +37,9 @@ public class PayBizImpl implements PayBiz {
 	}
 	
 	@Override
-	public int updateTotalPrice(String projectId , int purchasePrice) {
+	public int updateTotalPrice(String projectId , int price) {
 		// TODO Auto-generated method stub
-		return dao.updateTotalPrice(projectId,purchasePrice);
+		return dao.updateTotalPrice(projectId,price);
 	}
 	
 
