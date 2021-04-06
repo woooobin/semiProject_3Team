@@ -16,6 +16,8 @@
 <%
 	int projectItemSeq = Integer.parseInt(request.getParameter("projectItemSeq"));
 	System.out.println("projectItemSeq = " + projectItemSeq);
+	int projectId = Integer.parseInt(request.getParameter("projectId"));
+	System.out.println("projectId = " + projectId);
 	String projectName = request.getParameter("projectName");
 	System.out.println("projectName = " + projectName);
 	int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -34,6 +36,8 @@
 	System.out.println("address = " + address);
 	int phone = Integer.parseInt(request.getParameter("phone"));
 	System.out.println("phone = " + phone);
+	int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
+	System.out.println("totalPrice = " + totalPrice);
 	
 %>
 <body>
@@ -80,7 +84,9 @@
                     userId : '<%=userId%>',
                     name : '<%=name%>',
                     address : '<%=address%>',
-                    phone : <%=phone%>
+                    phone : <%=phone%>,
+                    totalPrice : <%=totalPrice%>,
+                    projectId : <%=projectId%>
                	
                 },
                 success : function(res){

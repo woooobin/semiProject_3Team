@@ -16,8 +16,6 @@
 <%
 	loginDto logindto = (loginDto)session.getAttribute("logindto"); 
 	List<PayDto> list = (List<PayDto>)request.getAttribute("paylist");
-	
-
 %>
 <body>
 
@@ -43,11 +41,10 @@ for (PayDto paydto : list) {
 				<td><%=paydto.getPurchasePrice() %></td>
 				<td><%=paydto.getOrderDate() %></td>
 			</tr>
+			
 <%
 }
-%>
-
-			
+%>			
 			<tr>
 				<td colspan="4" align="right">
 					<input type="button" value="홈으로" onclick="location.href='index.jsp'"/>

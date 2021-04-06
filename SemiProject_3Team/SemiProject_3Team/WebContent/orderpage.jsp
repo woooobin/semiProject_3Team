@@ -1,3 +1,4 @@
+<%@page import="com.poosil.projects.dto.ProjectDto"%>
 <%@page import="com.poosil.pay.dto.PayDto"%>
 <%@page import="com.poosil.projects.dto.ProjectItemDto"%>
 <%@page import="java.util.List"%>
@@ -26,6 +27,7 @@
 	System.out.println("logindto = " + logindto.getUserid());
 	ProjectItemDto projectitemdto = (ProjectItemDto)request.getAttribute("projectitemdto");
 	System.out.println("projectItemSeq 3 = " + projectitemdto.getProjectItemSeq());
+	ProjectDto projectdto = (ProjectDto)request.getAttribute("projectdto");
 %>
 <body>
 
@@ -39,6 +41,10 @@
 			<tr>
 				<th>상품 번호</th>
 				<td><textarea rows="2" cols="25" name="projectItemSeq"><%=projectitemdto.getProjectItemSeq() %></textarea></td>
+			</tr>
+			<tr>
+				<th>projectId</th>
+				<td><textarea rows="2" cols="25" name="projectId"><%=projectdto.getProjectId() %></textarea></td>
 			</tr>
 			<tr>
 				<th>상품 명</th>
@@ -81,6 +87,12 @@
 				<th>주문 날짜</th>
 				<td></td>
 			</tr>
+
+			<tr>
+				<th>상품 총 누적 금액</th>
+				<td><textarea rows="2" cols="25" name="totalPrice"><%=projectdto.getTotalPrice() %></textarea></td>
+			</tr>			
+			
 			
 			<tr align="right">
 				<td colspan="2">

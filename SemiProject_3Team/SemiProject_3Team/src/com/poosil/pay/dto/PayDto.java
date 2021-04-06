@@ -128,10 +128,4 @@ public class PayDto {
 	}
 
 
-
-
-	
-	
-
-	
 }

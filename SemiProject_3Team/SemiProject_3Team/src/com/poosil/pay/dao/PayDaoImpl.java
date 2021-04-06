@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.poosil.pay.dto.PayDto;
 import com.poosil.projects.dto.ProjectItemDto;
+import com.poosil.projects.dto.ProjectDto;
 import com.poosil.util.db.SqlMapConfig;
 
 
@@ -41,6 +42,18 @@ public class PayDaoImpl extends SqlMapConfig implements PayDao {
 	public int insertadminPayment(PayDto dto) {
 		int res = 0;
 		
+		/*
+		System.out.println(dto.getQuantity());
+		System.out.println(dto.getUserId());
+		System.out.println(dto.getProjectItemSeq());
+		System.out.println(dto.getAddress());
+		System.out.println(dto.getPhone());
+		System.out.println(dto.getTotalPrice());
+		System.out.println(dto.getPrice());
+		System.out.println(dto.getDeliveryFee());
+		System.out.println(dto.getPurchasePrice());
+		*/
+		
 		try(SqlSession session = getSqlSessionFactory().openSession(true);){
 			res = session.insert(namespace + "insertadminPayment", dto);
 			
@@ -50,8 +63,6 @@ public class PayDaoImpl extends SqlMapConfig implements PayDao {
 		
 		return res;
 	}
-	
-	
 	
 	@Override
 	public List<PayDto> customerPaymentList(String userId) {
@@ -80,7 +91,6 @@ public class PayDaoImpl extends SqlMapConfig implements PayDao {
 		
 		ProjectItemDto projectitemdto = new ProjectItemDto();
 		
-		
 		try {
 			session = getSqlSessionFactory().openSession(true);
 			
@@ -98,9 +108,18 @@ public class PayDaoImpl extends SqlMapConfig implements PayDao {
 	public int updateTotalPrice(PayDto dto) {
 		
 		int updateres = 0;
-		try(SqlSession session = getSqlSessionFactory().openSession(true);){
+		
+		try{
+			SqlSession session = getSqlSessionFactory().openSession(true);
+			System.out.println("toalprice 1 = "+dto.getTotalPrice());
+			System.out.println("price 1 = "+dto.getPrice());
+			System.out.println("projectItemSeq 1  = "+dto.getProjectItemSeq());
 			updateres = session.update(namespace+"updateTotalPrice", dto);
-			
+			System.out.println("toalprice 2 = "+dto.getTotalPrice());
+			System.out.println("price 2 = "+dto.getPrice());
+			System.out.println("projectItemSeq 2 = "+dto.getProjectItemSeq());
+			System.out.println("updateres = " + updateres);
+	
 		} catch (Exception e) {
 			
 			e.printStackTrace();

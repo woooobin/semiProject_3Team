@@ -5,6 +5,7 @@ import java.util.List;
 import com.poosil.pay.dao.PayDao;
 import com.poosil.pay.dao.PayDaoImpl;
 import com.poosil.pay.dto.PayDto;
+import com.poosil.projects.dto.ProjectDto;
 import com.poosil.projects.dto.ProjectItemDto;
 
 public class PayBizImpl implements PayBiz {
@@ -40,14 +41,6 @@ public class PayBizImpl implements PayBiz {
 		// TODO Auto-generated method stub
 		return dao.updateTotalPrice(dto);
 	}
-
-	/*
-	@Override
-	public PayDto customerPayment(String userId) {
-		// TODO Auto-generated method stub
-		return dao.customerPayment(userId);
-	}
-	*/
 	
 
 }
