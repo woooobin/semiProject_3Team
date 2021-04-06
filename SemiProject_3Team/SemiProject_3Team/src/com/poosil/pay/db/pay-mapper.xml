@@ -46,8 +46,7 @@
   	
   	<update id="updateTotalPrice" parameterType="HashMap">
   		UPDATE PROJECTS SET TOTALPRICE = TOTALPRICE + #{price} 
-        WHERE PROJECTID = (SELECT PROJECTID FROM PROJECTITEM 
-       		 WHERE PROJECTITEMSEQ = #{projectItemSeq})
+        WHERE PROJECTID = #{projectId}
   	</update>
   	
 
