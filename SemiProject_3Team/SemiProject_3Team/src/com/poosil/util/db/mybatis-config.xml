@@ -11,7 +11,6 @@
 		<typeAlias type="com.poosil.projects.dto.HashtagDto" alias="HashtagDto" />
 		<typeAlias type="com.poosil.login.dto.loginDto" />
 		<typeAlias type="com.poosil.free.dto.FreeBoardDto" alias="FreeBoardDto" />
-		<typeAlias type="com.poosil.search.ProjectSearchDto" alias="ProjectSearchDto" />
 	</typeAliases>
 
 	<environments default="development">

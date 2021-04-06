@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.poosil.projects.dto.HashtagDto;
+import com.poosil.projects.dto.ProjectDto;
 import com.poosil.util.db.SqlMapConfig;
 
 
@@ -15,9 +15,9 @@ public class ProjectSearchDao extends SqlMapConfig {
 	private String namespace = "search-mapper.";
 	
 	// 게시글 리스트
-	public List<ProjectSearchDto> searchList(String searchOption, String keyword) {
+	public List<ProjectDto> searchList(String searchOption, String keyword) {
 		SqlSession session = null;
-		List<ProjectSearchDto> list = null;
+		List<ProjectDto> list = null;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchOption", searchOption);
@@ -36,12 +36,12 @@ public class ProjectSearchDao extends SqlMapConfig {
 	}
 	
 	// 해시태그 검색
-	public List<HashtagDto> hashtagList(String hashtag) {
+	public List<ProjectDto> hashtagList(String hashtagName) {
 		SqlSession session = null;
-		List<HashtagDto> list = null;
+		List<ProjectDto> list = null;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("hashtag", hashtag);
+		map.put("hashtagName", hashtagName);
 
 		
 		try {
