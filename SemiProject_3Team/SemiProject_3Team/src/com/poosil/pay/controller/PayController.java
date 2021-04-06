@@ -76,6 +76,7 @@ public class PayController extends HttpServlet {
 					+request.getParameter("deliveryFee")
 					);		
 			String userId = request.getParameter("userId");
+			System.out.println("==========================  projectitem = " + request.getParameter("projectItemSeq"));
 			int projectItemSeq = Integer.parseInt(request.getParameter("projectItemSeq"));
 			int projectId = Integer.parseInt(request.getParameter("projectId"));
 			int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -86,22 +87,28 @@ public class PayController extends HttpServlet {
 			int totalPrice = 0;
 			int deliveryFee = Integer.parseInt(request.getParameter("deliveryFee"));
 			int purchasePrice = Integer.parseInt(request.getParameter("purchasePrice"));
-			
+			System.out.println("purchase price = " + purchasePrice + "projectId = " + projectId);
 			PayDto dto = new PayDto(0, quantity, userId, projectItemSeq, address, phone, totalPrice, price, deliveryFee, purchasePrice, null);
 			
 			int res = biz.insertadminPayment(dto);
+			System.out.println("insertadminPayment " + res);
 			
 				if(res > 0) {
+					System.out.println("insertadminPayment " + res);
 					/*
 					ProjectDto projectdto = new ProjectDto();
 					projectdto.setTotalPrice(totalPrice);
 					*/
+					System.out.println("====================>>projectId = " + projectId + "purchasePrice  = " + purchasePrice);
 					
-					int updateres = biz.updateTotalPrice(dto);
+					
+					int updateres = biz.updateTotalPrice(projectId + "",purchasePrice );
 					
 					if(updateres > 0) {
+						System.out.println("updateTotalPrice res 성공 ");
 						response.sendRedirect("project_list.jsp");
 					} else {
+						System.out.println("updateTotalPrice res 실 ");
 						response.sendRedirect("project_list.jsp");
 					}
 				} else {

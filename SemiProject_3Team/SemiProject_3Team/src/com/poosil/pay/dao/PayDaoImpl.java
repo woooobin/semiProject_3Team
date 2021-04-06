@@ -103,24 +103,19 @@ public class PayDaoImpl extends SqlMapConfig implements PayDao {
 	}
 
 	@Override
-	public int updateTotalPrice(PayDto dto) {
+	public int updateTotalPrice(String projectId , int purchasePrice) {
 		
 		int updateres = 0;
 		
 		try{
 			SqlSession session = getSqlSessionFactory().openSession(true);
-			System.out.println("toalprice 1 = "+dto.getTotalPrice());
-			System.out.println("price 1 = "+dto.getPrice());
-			System.out.println("projectItemSeq 1  = "+dto.getProjectItemSeq());
 			
-			Map<String, String >param = new HashMap<String, String>();
-			param.put("price", dto.getPurchasePrice()+"");
-			param.put("projectItemSeq", dto.getProjectItemSeq()+"");
+			Map<String, String > param = new HashMap<String, String>();
 			
-			updateres = session.update(namespace+"updateTotalPrice", dto);
-			System.out.println("toalprice 2 = "+dto.getTotalPrice());
-			System.out.println("price 2 = "+dto.getPrice());
-			System.out.println("projectItemSeq 2 = "+dto.getProjectItemSeq());
+			param.put("price", purchasePrice+"" );
+			param.put("projectId", projectId );
+			
+			updateres = session.update(namespace+"updateTotalPrice", param);
 			System.out.println("updateres = " + updateres);
 	
 		} catch (Exception e) {
