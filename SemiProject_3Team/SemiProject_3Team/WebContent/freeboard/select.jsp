@@ -51,6 +51,7 @@ if (logindto != null) {
 }
 
 .answertext {
+	margin-left : 20px;  
 	display: none;
 }
 
@@ -131,7 +132,7 @@ if (logindto != null) {
 					<input type="hidden" value="${cdto.commentno }">
 					<p>userId = ${cdto.userid }</p>
 					<p>작성 날짜 : ${cdto.regdate }</p>
-
+		
 					<c:if test="${userid.equals(cdto.userid)}">
 						<div class="buttonwrap">
 							<button class="btn-update"
@@ -142,14 +143,16 @@ if (logindto != null) {
 					</c:if>
 
 				</div>
-
+				
 				<c:if test="${userid.equals(cdto.userid)}">
 					<button class="btn-answer" onclick="onClickAnswerComment(${status.index})">답글하기</button>
 				</c:if>
 				<div>
 					<textarea rows="3" cols="60" readonly="readonly">${cdto.commentcontent }</textarea>
 				</div>
-
+				<!-- <c:forEach begin="1" end="${dto.titletab }"> <!-- 1~0까지 1~1까지면 1번 반복 1~2까지면 2번 반복 -->
+								&nbsp; <!-- 공백, 탭 -->
+							</c:forEach> -->
 				<!-- 댓글 수정 영역 -->
 				<div class="updatetext">
 					<form action="free.do" method="POST">
