@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+ <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer> </script>
 <meta charset="UTF-8">
 <link href="./styles/reset.css" rel="stylesheet">
   	<!-- Bootstrap CSS -->
@@ -81,8 +82,24 @@
 
 	    });
 	});
+	 var onloadCallback = function() {
+		  
+		    var v = grecaptcha.getResponse();
+		    if(v.length == 0)
+		    {
+		        return false;
+		    }
+		    if(v.length != 0)
+		    {
+		        return true;
+		    }
 
+		  };
+	
 </script>
+
+
+
 </head>
 <body>
 <%@ include file="./ui/header.jsp" %>
@@ -154,11 +171,16 @@
 				</td>
 			</tr>
 			<tr>
+				<td>
+				<div class="g-recaptcha" data-sitekey="6LfBSYwaAAAAAKLUkLmLGoubHgGSYvYgAm8iRpuL"></div>
+				</td>
+			</tr>
+			<tr>
 				<td colspan="2" align="right">
 					<input type="submit"  value="가입" />
 					<!-- form 태그에 버튼 태그 왠만해선 쓰지 말기. submit 이벤트 발생하기 때문에. -->
 				</td>
-			</tr>ㄴ
+			</tr>
 		</table>
 	</form>
 		<script>

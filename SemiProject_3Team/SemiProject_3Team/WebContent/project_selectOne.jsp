@@ -184,20 +184,30 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${projectItems}" var="projectItem">
-									<li class="project-items-item">
-										<a href="#">
-											<div class="frame">
-												<p>${projectItem.price}원 응원하기 </p>
-												<h4>${projectItem.projectItemName}</h4>
-												<p>${projectItem.projectItemDesc}</p>
-												<p><span>배송비 </span>
-													 ${projectItem.shippingFee}
-												</p>
-												<p>제한수량 ${projectItem.quantity}개 중 (수량-팔린갯수 )개 남음</p>
-											</div>
-										</a>
-									</li>
-								</c:forEach>
+                           <li class="project-items-item">
+                           <% if(logindto != null) {   
+                           %>                              
+                              <a href="pay.do?command=orderpage&userid=<%=logindto.getUserid() %>&projectItemSeq=${ projectItem.projectItemSeq}">
+                              
+                                 <div class="frame">
+                                    <p>${projectItem.price}원 응원하기 </p>
+                                    <h4>${projectItem.projectItemName}</h4>
+                                    <p>${projectItem.projectItemDesc}</p>
+                                    <p><span>배송비 </span>
+                                        ${projectItem.shippingFee}
+                                    </p>
+                                    <p>제한수량 ${projectItem.quantity}개 중 (수량-팔린갯수 )개 남음</p>
+                                 </div>
+                              </a>
+                           </li>
+                              <%
+                           } else {
+                              %>
+                              <p>로그인 후에 펀딩하실 수 있습니다.</p>
+                              <%
+                           }
+                              %>
+                        </c:forEach>
 							</c:otherwise>
 						</c:choose>
 					</ul>

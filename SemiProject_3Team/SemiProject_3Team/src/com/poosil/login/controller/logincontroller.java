@@ -38,7 +38,7 @@ public class logincontroller extends HttpServlet {
 
 			String userid = request.getParameter("userid");
 			String password = request.getParameter("password");
-
+			
 			HttpSession session = request.getSession();
 
 			loginDto dto = biz.login(userid, password);

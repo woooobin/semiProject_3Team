@@ -66,4 +66,5 @@ public class loginBiz {
 
 		return dao.snslogin2(useremail);
 	}
+	
 }
