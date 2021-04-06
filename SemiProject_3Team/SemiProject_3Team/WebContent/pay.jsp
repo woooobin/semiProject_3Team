@@ -16,10 +16,16 @@
 <%
 	int projectItemSeq = Integer.parseInt(request.getParameter("projectItemSeq"));
 	System.out.println("projectItemSeq = " + projectItemSeq);
+	int projectId = Integer.parseInt(request.getParameter("projectId"));
+	System.out.println("projectId = " + projectId);
 	String projectName = request.getParameter("projectName");
 	System.out.println("projectName = " + projectName);
 	int quantity = Integer.parseInt(request.getParameter("quantity"));
 	System.out.println("quantity = " + quantity);
+	int deliveryFee = Integer.parseInt(request.getParameter("deliveryFee"));
+	System.out.println("deliveryFee ="  + deliveryFee);
+	int purchasePrice = Integer.parseInt(request.getParameter("purchasePrice"));
+	System.out.println("purchasePrice ="  + purchasePrice);
 	int price = Integer.parseInt(request.getParameter("price"));
 	System.out.println("price = " + price);
 	String userId = request.getParameter("userId");
@@ -30,6 +36,9 @@
 	System.out.println("address = " + address);
 	int phone = Integer.parseInt(request.getParameter("phone"));
 	System.out.println("phone = " + phone);
+	/* int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
+	System.out.println("totalPrice = " + totalPrice); */
+	
 %>
 <body>
 <form action="pay.do" method="post" id="formdata">
@@ -38,7 +47,7 @@
  
  $(function(){
      var IMP = window.IMP; 
-     IMP.init('가맹점 식별 코드'); //필요하신분 김대진 문의  
+     IMP.init('imp88679730'); //필요하신분 김대진 문의  
      var msg;
 
  	IMP.request_pay({
@@ -47,7 +56,7 @@
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
 	    name : '<%=projectName%>',
-	    amount : <%=price%>,
+	    amount : <%=purchasePrice%>,
 	    buyer_email : 'iamport@siot.do',
 	    buyer_name :'<%=name%>',
 	    buyer_tel : <%=phone%>,
@@ -70,10 +79,14 @@
                     projectName : '<%=projectName%>',
                     quantity : <%=quantity%>,
                     price : <%=price%>,
+                    deliveryFee : <%=deliveryFee%>,
+                    purchasePrice : <%=purchasePrice%>,
                     userId : '<%=userId%>',
                     name : '<%=name%>',
                     address : '<%=address%>',
-                    phone : <%=phone%>
+                    phone : <%=phone%>,
+                    <%-- totalPrice : <%=totalPrice%>, --%>
+                    projectId : <%=projectId%>
                	
                 },
                 success : function(res){

@@ -1,3 +1,4 @@
+<%@page import="com.poosil.login.dto.loginDto"%>
 <%@page import="com.poosil.pay.dto.PayDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -13,7 +14,8 @@
 <title>Insert title here</title>
 </head>
 <%
-	List<PayDto> list = (List<PayDto>) request.getAttribute("list");
+	loginDto logindto = (loginDto)session.getAttribute("logindto"); 
+	List<PayDto> list = (List<PayDto>)request.getAttribute("paylist");
 %>
 <body>
 
@@ -27,23 +29,22 @@
 				<th>가격</th>
 				<th>주문날짜</th>
 			</tr>
-<%
-	for (PayDto dto : list) {
+<% 
+for (PayDto paydto : list) {
 %>
-			
+
 			<tr>
-				<td><%=dto.getOrderSeq() %></td>
-				<td><%=dto.getUserId() %></td>
-				<td><%=dto.getProjectItemSeq() %></td>
-				<td><%=dto.getQuantity() %></td>
-				<td><%=dto.getPrice() %></td>
-				<td><%=dto.getOrderDate() %></td>
+				<td><%=paydto.getOrderSeq() %></td>
+				<td><%=paydto.getUserId() %></td>
+				<td><%=paydto.getProjectItemSeq() %></td>
+				<td><%=paydto.getQuantity() %></td>
+				<td><%=paydto.getPurchasePrice() %></td>
+				<td><%=paydto.getOrderDate() %></td>
 			</tr>
 			
 <%
-	}
-%>
-			
+}
+%>			
 			<tr>
 				<td colspan="4" align="right">
 					<input type="button" value="홈으로" onclick="location.href='index.jsp'"/>

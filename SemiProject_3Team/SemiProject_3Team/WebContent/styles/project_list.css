@@ -1,17 +1,25 @@
+
 .project_nav{ 
-	padding:50px 0;
-	width:90%;margin:0 auto;
-}
-.project_nav .col{text-align:center;}
-.project_nav .col .project_nav_province{
-	width:80px;height:80px;border-radius:50px;
-	font-size:15px;font-weight:400;
-	border:none;
+	padding:30px 0;
+	width:80%;margin:0 auto;
+	display:flex;justify-content:space-between;
 }
 
-.project_item{
-	text-align:center;margin-bottom:40px;border:1px solid #eee;
+.project_nav .project_nav_province{
+	width:80px;height:80px;border-radius:50px;
+	font-size:15px;font-weight:400;text-align:center;
+	border:1px solid #dadada;
 }
+.project-list-wrap{width:980px;margin:0 auto;display:flex; justify-content:space-between;flex-wrap:wrap;}
+.project-list-btn-wrap{width:100%;padding-bottom:30px;}
+.project-upload-btn{background-color:rgba(244,221,80,1);padding:5px 10px;border-radius:5px; }
+@media screen and (max-width:980px){
+	.project-list-wrap{width:100%;}
+}
+.project_item{
+	text-align:center;margin-bottom:20px; border:1px solid #dadada;width:calc(25% - 20px); 
+}
+.project_item>a{display:block;width:100%;height:100%;}
 .project_item .frame{
 	display:inline-block;position:relative;width:200px;height:200px;overflow:hidden;
 }

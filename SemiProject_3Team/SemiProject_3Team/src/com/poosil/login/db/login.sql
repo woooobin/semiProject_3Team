@@ -57,7 +57,7 @@ VALUES('조가린','1234', 'SEMI', 004, '세미','111', '111', 'ADMIN', 'Y', '11
 
 
 
-DELETE FROM MEMBERS WHERE userid = '사용자8' ;
+DELETE FROM MEMBERS WHERE userid = 'naver1' ;
 
 
 //회갑생성
@@ -114,6 +114,11 @@ SET USERENABLED ='Y'
 WHERE USERROLE = 'ADMIN';
 
 
+UPDATE MEMBERS
+SET USERNICKNAME='우빈',USERPHONE = 123546343, ADDRESS = '우리집'
+WHERE USERID = 'naver1';
+
+
 //회원가입
 INSERT INTO MEMBERS (USERID,PASSWORD,USEREMAIL,USERPHONE,ADDRESS,USERROLE,AVATAR,USERNAME) 
 VALUES('test04','1234','wrdfw',01066663333,'걔네집','USER', '빛가린' , '짱이야')
@@ -123,6 +128,51 @@ VALUES('test04','1234','wrdfw',01066663333,'걔네집','USER', '빛가린' , '�
 //탈퇴회원 로그인아웃
 SELECT USERID USERENABLED FROM MEMBERS
 WHERE USERENABLED ='N';
+
+//회원 탈퇴
+UPDATE MEMBERS 
+SET USERENABLED ='N'
+WHERE USERID = 
+
+UPDATE MEMBERS 
+SET USERENABLED ='Y'
+WHERE USERID = 'kakao2'
+
+
+
+//이메일 중복 확인
+SELECT COUNT(*)
+FROM MEMBERS
+WHERE USEREMAIL ='gksdnqls45@naver.com';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

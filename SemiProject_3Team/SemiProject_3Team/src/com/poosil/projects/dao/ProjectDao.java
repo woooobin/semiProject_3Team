@@ -8,7 +8,7 @@ import com.poosil.projects.dto.ProjectDto;
 import com.poosil.projects.dto.ProjectItemDto;
 
 public interface ProjectDao {
-	public List<ProjectDto> selectList();
+	public List<ProjectDto> selectList(String province, String sortOpt);
 	public Map<String, Integer> insertProject(
 			String userId, 
 			String projectMainTitle,
@@ -19,7 +19,8 @@ public interface ProjectDao {
 			String projectStartDate,
 			String projectEndDate,
 			String shippingStartDate,
-			String detailDesc
+			String detailDesc,
+			String address,String latitude,String longitude,String province
 		);
 	public int insertProjectItems(List<ProjectItemDto> list);
 	public ProjectDto selectOne(int projectId);
@@ -34,4 +35,12 @@ public interface ProjectDao {
 	public List<HashtagDto> selectProjectHashtag ( int projectId ) ;
 	
 	public List<ProjectDto> selectProjectsWithHashtag(int hashtagseq);
+	
+	public int selectExistLike(int projectId, String userId);
+	
+	
+	public int projectLike(int projectId, String userId);
+	public int projectUnlike(int projectId, String userId);
+	public int projectAddLikeCount(int projectId);
+	public int projectRemoveLikeCount(int projectId);
 }

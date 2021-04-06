@@ -21,7 +21,6 @@ FROM MEMBERS
 </select>
 
 <select id="login" parameterType="HashMap" resultType="loginDto">
-
 SELECT USERID,USERROLE,USERENABLED
 FROM MEMBERS 
 WHERE USERID = #{userid} 
@@ -53,9 +52,9 @@ VALUES(#{userid},#{password},#{useremail},#{userphone},#{address},'USER',#{avata
 
 </insert>
 
-<update id="userupdate">
-UPDATE MEMBERS
-SET USERNAME=#{username}, USEREMAIL =#{useremail},USERPHONE = #{userphone},ADDRESS = #{address},AVATAR#{avatar}
+<update id="userupdate" parameterType="loginDto" >
+UPDATE MEMBERS 
+SET PASSWORD=#{password}, USERNICKNAME=#{usernickname},USERPHONE = #{userphone},ADDRESS = #{address},AVATAR= #{avatar}
 WHERE USERID = #{userid}
 
 </update>
@@ -72,6 +71,18 @@ WHERE USERENABLED ='N';
 
 </select>
 
+<select id="snscheck" parameterType="String" resultType="int">
+SELECT COUNT(*)
+FROM MEMBERS
+WHERE USEREMAIL = #{useremail}
+</select>
+
+
+<select id="snslogin2" parameterType="String" resultType="loginDto">
+SELECT USERID,USEREMAIL,USERPHONE,ADDRESS,USERROLE,SELLERSOPT,AVATAR,USERNICKNAME,USERNAME,USERENABLED
+FROM MEMBERS
+WHERE USEREMAIL = #{useremail}
+</select>
 
 </mapper>
 

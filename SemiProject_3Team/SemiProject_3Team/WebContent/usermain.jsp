@@ -22,7 +22,7 @@
 <body>
 	<h1>MyPage</h1>
 	<h2><%=dto.getUserid() %>
-	<%session.setAttribute("userid", request.getAttribute("userid"));%><%session.setAttribute("password", request.getAttribute("password"));%>	
+	<%session.setAttribute("userid", request.getAttribute("userid"));%>
 	님, 환영합니다.</h2>
 	<div>
 	<input type="button" value="MainPage" onclick="location.href='index.jsp'"/>
@@ -53,7 +53,7 @@
 		</tr>
 			
 			<td colspan="2" align="left">
-				<input type="button" value="정보 수정" onclick="location.href='login.do?command=userupdate&userid=<%=dto.getUserid() %>'"/>
+				<input type="button" value="정보 수정" onclick="location.href='userupdate.jsp'"/>
 			</td>
 		</tr>
 		</tr>
@@ -62,7 +62,7 @@
 		<a href="login.do?command=logout">logout</a>
 	</div>
 	<div>
-		<a href=" ">결제 내역 보기</a>
+		<a href="pay.do?command=custompaylist&userid=<%=dto.getUserid()%>">결제 내역 보기</a>
 	</div>
 	<div>
 		<a href="login.do?command=userdelete&userid=<%=dto.getUserid() %>">회원 탈퇴</a>

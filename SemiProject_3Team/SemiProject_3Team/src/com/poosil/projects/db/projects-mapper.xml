@@ -2,19 +2,21 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="projects-mapper">
-	<select id="selectList" resultType="ProjectDto">
+<mapper namespace="projects-mapper" >
+	<select id="selectList" parameterType="HashMap" resultType="ProjectDto" >
 	SELECT 
 		projectId,
 		projectMainTitle, 
 		projectSubTitle,
 		thumbImage,
 		goalPrice,
+		totalPrice,
 		projectCategory, 
 		projectStartDate,
 		projectEndDate
 	FROM PROJECTS
-	ORDER BY projectId DESC
+	WHERE PROVINCE LIKE '%'||#{province}||'%' 
+	ORDER BY #{sortOpt} ASC
 	</select>
 	<select id="selectOne" resultType="ProjectDto" parameterType="int">
 	SELECT 
@@ -29,7 +31,11 @@
 		projectCategory,
 		detailDesc, 
 		projectStartDate,
-		projectEndDate
+		projectEndDate,
+		address,
+		latitude,
+		longitude,
+		province
 		FROM PROJECTS 
 		WHERE projectId = #{projectId}
 	</select>
@@ -52,8 +58,13 @@
 		likeCount,
 		soldCount,
 		detailDesc,
+		address,
+		latitude,
+		longitude,
+		province,
 		createdAt,
-		updatedAt
+		updatedAt,
+		totalPrice
 		 ) VALUES (
 			#{projectId}, 
 			#{userId},
@@ -68,24 +79,27 @@
 			0,
 			0,
 			#{detailDesc},
+			#{address},
+			#{latitude},
+			#{longitude },
+			#{province},
 			SYSDATE,
-			SYSDATE
+			SYSDATE,
+			0
 		)
 	</insert>
 	
-	<insert id="insertProjectItems" parameterType="java.util.List">
-		INSERT INTO PROJECTITEM (projectItemSeq, projectItemName, projectItemDesc, shippingFee, quantity, thumbImage, projectId) VALUES 
-		<foreach collection="list" item="item" separator=" , ">
+	<insert id="insertProjectItems" parameterType="HashMap">
+		INSERT INTO PROJECTITEM (projectItemSeq, projectItemName, projectItemDesc, shippingFee, quantity, projectId, price) VALUES 
 		(
 			PROJECT_ITEM_SEQ.NEXTVAL,
-		 	#{item.projectItemName},
-			#{item.projectItemDesc} ,
-			#{item.shippingFee},
-			#{item.quantity},
-			#{item.thumbImage},
-			#{item.projectId}
+		 	#{projectItemName},
+			#{projectItemDesc} ,
+			#{shippingFee},
+			#{quantity},
+			#{projectId},
+			#{price}
 		) 
-		</foreach>
 	</insert>
 	
 	<select id="selectExistHashtags" parameterType="String" resultType="String"> 
@@ -105,14 +119,14 @@
 	<insert id="insertProjectHashtags" parameterType="HashMap">
 		INSERT INTO PROJECTHASHTAG (PROJECTHASHTAGSEQ, HASHTAGSEQ, PROJECTID ) VALUES (
 			PROJECT_HASHTAG_SEQ.NEXTVAL , 
-			(SELECT HASHTAGSEQ FROM HASHTAG WHERE HASHTAGNAME = #{ hashtagName } ),
+			( SELECT HASHTAGSEQ FROM HASHTAG WHERE HASHTAGNAME = #{ hashtagName } ),
 			#{projectId}
 		)
 	</insert>
 	
 	<select id="selectProjectItems" parameterType="int" resultType="ProjectItemDto">
 		SELECT 
-			PROJECTITEMSEQ, PROJECTITEMNAME, PROJECTITEMDESC, SHIPPINGFEE, QUANTITY, THUMBIMAGE, PROJECTID, PRICE 
+			PROJECTITEMSEQ, PROJECTITEMNAME, PROJECTITEMDESC, SHIPPINGFEE, QUANTITY, PROJECTID, PRICE 
 		FROM PROJECTITEM
 		WHERE PROJECTID = #{projectId}
 	</select>
@@ -126,6 +140,25 @@
 	SELECT PROJECTID, PROJECTMAINTITLE FROM PROJECTS WHERE PROJECTID IN
 		( SELECT PROJECTID FROM PROJECTHASHTAG WHERE HASHTAGSEQ = #{hashtagseq})
 	</select>
+	
+	<select id="selectExistLike" parameterType="HashMap" resultType="int">
+		SELECT COUNT(*) FROM PROJECTLIKE WHERE PROJECTID = #{projectId} AND USERID = #{userId} 
+	</select>
+	
+	<insert id="insertProjectLike" parameterType="HashMap">
+	INSERT INTO PROJECTLIKE (projectId, userId) VALUES(
+		#{projectId}, #{userId}
+	)
+	</insert>
+	<delete id="deleteProjectLike" parameterType="HashMap">
+	DELETE FROM PROJECTLIKE WHERE PROJECTID = #{projectId} AND USERID = #{userId} 
+	</delete>
+	<update id="addLikeCount" parameterType="int">
+	UPDATE PROJECTS SET LIKECOUNT = LIKECOUNT + 1 WHERE PROJECTID = #{projecId}
+	</update>
+	<update id="removeLikeCount" parameterType="int">
+	UPDATE PROJECTS SET LIKECOUNT = LIKECOUNT - 1 WHERE PROJECTID = #{projecId}
+	</update>
 </mapper>
 
 

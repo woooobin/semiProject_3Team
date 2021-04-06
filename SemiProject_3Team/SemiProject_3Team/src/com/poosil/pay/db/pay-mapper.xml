@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="paymapper">
+  	<resultMap type="PayDto" id="PayMap">
+  		<result property="orderSeq" column="ORDERSEQ"/>
+  		<result property="quantity" column="QUANTITY"/>
+  		<result property="userId" column="USERID"/>
+  		<result property="projectItemSeq" column="PROJECTITEMSEQ"/>
+  		<result property="address" column="ADDRESS"/>
+  		<result property="phone" column="PHONE"/>
+  		<result property="totalPrice" column="TOTALPRICE"/>
+  		<result property="price" column="PRICE"/>
+  		<result property="orderDate" column="ORDERDATE"/>
+  		<result property="deliveryFee" column="DELIVERYFEE"/>
+  		<result property="purchasePrice" column="PURCHASEPRICE"/>
+
+  	</resultMap>
+  	
+  	<select id="adminPaymentList" resultMap="PayMap">
+  		SELECT ORDERSEQ, QUANTITY, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, ORDERDATE, DELIVERYFEE, PURCHASEPRICE
+  		FROM ORDERPAGE 
+  		ORDER BY ORDERSEQ DESC
+  	</select>
+  	
+  	<select id="customerPaymentList" parameterType="PayDto" resultType="PayDto">
+  		SELECT ORDERSEQ, QUANTITY, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, ORDERDATE, DELIVERYFEE, PURCHASEPRICE
+  		FROM ORDERPAGE
+  		WHERE USERID = #{userId}
+  		ORDER BY ORDERDATE DESC
+  	</select>
+  	
+  	<insert id="insertadminPayment" parameterType="PayDto">
+  		INSERT INTO ORDERPAGE
+  		VALUES(ORDERSEQ.NEXTVAL, #{quantity}, #{userId}, #{projectItemSeq}, #{address}, #{phone}, #{totalPrice}, #{price}, SYSDATE, #{deliveryFee}, #{purchasePrice})
+  	</insert>
+  	
+  	<select id="selectProjectItem" parameterType="int" resultType="ProjectItemDto">
+  		SELECT PROJECTITEMSEQ, PROJECTITEMNAME, QUANTITY, PROJECTID, PRICE 
+  		FROM PROJECTITEM
+  		WHERE PROJECTITEMSEQ = #{projectItemSeq}
+  	</select>
+  	
+  	
+  	<update id="updateTotalPrice" parameterType="HashMap">
+  		UPDATE PROJECTS SET TOTALPRICE = TOTALPRICE + #{price} 
+        WHERE PROJECTID = #{projectId}
+  	</update>
+  	
+
+  </mapper>
