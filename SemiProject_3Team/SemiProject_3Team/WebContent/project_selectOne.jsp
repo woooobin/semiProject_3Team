@@ -15,6 +15,12 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 <html>
 <head>
 <meta charset="UTF-8">
+<meta property="og:type" content="website"> 
+<meta property="og:title" content="${projectDto.projectMainTitle}">
+<meta property="og:description" content="${projectDto.projectSubTitle }">
+<meta property="og:image" content="images/logo/logo_transparent_notypo.png">
+<meta property="og:url" content="http://localhost:8787/SemiProject_3Team/project.do?command=selectOne&projectId="+${projectDto.projectId}>
+
 <title>Insert title here</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap" rel="stylesheet">
@@ -61,10 +67,7 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 			
 	}
 	
-</script>
-
- <script>
- 
+	/* ============ google map api =========== */
       let map;
 
       function initMap() {
@@ -85,12 +88,7 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
           infowindow.open(map, marker);
         });
       }
-    </script>
-    <meta property="og:type" content="website"> 
-<meta property="og:title" content="${projectDto.projectMainTitle}">
-<meta property="og:description" content="${projectDto.projectSubTitle }">
-<meta property="og:image" content="images/imsimungmunglogo.jpeg">
-<meta property="og:url" content="http://localhost:8787/SemiProject_3Team/project.do?command=selectOne&projectId="+${projectDto.projectId}>
+</script>
 </head>
 <body>
 	<%@ include file="ui/header.jsp"%>
@@ -184,30 +182,31 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${projectItems}" var="projectItem">
-                           <li class="project-items-item">
-                           <% if(logindto != null) {   
-                           %>                              
-                              <a href="pay.do?command=orderpage&userid=<%=logindto.getUserid() %>&projectItemSeq=${ projectItem.projectItemSeq}">
-                              
-                                 <div class="frame">
-                                    <p>${projectItem.price}원 응원하기 </p>
-                                    <h4>${projectItem.projectItemName}</h4>
-                                    <p>${projectItem.projectItemDesc}</p>
-                                    <p><span>배송비 </span>
-                                        ${projectItem.shippingFee}
-                                    </p>
-                                    <p>제한수량 ${projectItem.quantity}개 중 (수량-팔린갯수 )개 남음</p>
-                                 </div>
-                              </a>
-                           </li>
-                              <%
-                           } else {
-                              %>
-                              <p>로그인 후에 펀딩하실 수 있습니다.</p>
-                              <%
-                           }
-                              %>
-                        </c:forEach>
+									<li class="project-items-item">
+									<% 
+									if(logindto != null) {	
+									%>										
+										<a href="pay.do?command=orderpage&userid=<%=logindto.getUserid() %>&projectItemSeq=${ projectItem.projectItemSeq}&projectId=${projectItem.projectId}">
+										
+											<div class="frame">
+												<p>${projectItem.price}원 응원하기 </p>
+												<h4>${projectItem.projectItemName}</h4>
+												<p>${projectItem.projectItemDesc}</p>
+												<p><span>배송비 </span>
+													 ${projectItem.shippingFee}
+												</p>
+												<p>제한수량 ${projectItem.quantity}개 중 (수량-팔린갯수 )개 남음</p>
+											</div>
+										</a>
+									</li>
+										<%
+									} else {
+										%>
+										<p>로그인 후에 펀딩하실 수 있습니다.</p>
+										<%
+									}
+										%>
+								</c:forEach>
 							</c:otherwise>
 						</c:choose>
 					</ul>

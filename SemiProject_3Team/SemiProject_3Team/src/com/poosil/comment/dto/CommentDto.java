@@ -94,4 +94,5 @@ public class CommentDto {
 		this.regdate = regdate;
 	}
 	
+	
 }

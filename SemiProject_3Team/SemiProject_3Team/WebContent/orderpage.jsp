@@ -1,3 +1,4 @@
+<%@page import="com.poosil.projects.dto.ProjectDto"%>
 <%@page import="com.poosil.pay.dto.PayDto"%>
 <%@page import="com.poosil.projects.dto.ProjectItemDto"%>
 <%@page import="java.util.List"%>
@@ -26,6 +27,7 @@
 	System.out.println("logindto = " + logindto.getUserid());
 	ProjectItemDto projectitemdto = (ProjectItemDto)request.getAttribute("projectitemdto");
 	System.out.println("projectItemSeq 3 = " + projectitemdto.getProjectItemSeq());
+	/* ProjectDto projectdto = (ProjectDto)request.getAttribute("projectdto"); */
 %>
 <body>
 
@@ -41,6 +43,10 @@
 				<td><textarea rows="2" cols="25" name="projectItemSeq"><%=projectitemdto.getProjectItemSeq() %></textarea></td>
 			</tr>
 			<tr>
+				<th>projectId</th>
+				<td><textarea rows="2" cols="25" name="projectId"><%=projectitemdto.getProjectId() %></textarea></td>
+			</tr>
+			<tr>
 				<th>상품 명</th>
 				<td><textarea rows="2" cols="25" name="projectName"><%=projectitemdto.getProjectItemName() %></textarea></td>
 			</tr>			
@@ -49,8 +55,16 @@
 				<td><textarea rows="2" cols="25" name="quantity"><%=projectitemdto.getQuantity() %></textarea></td>
 			</tr>
 			<tr>
-				<th>총 가격</th>
-				<td><textarea rows="2" cols="25" name="price"><%=projectitemdto.getPrice() %></textarea></td>
+				<th>상품가</th>
+				<td><textarea rows="2" cols="25" name="price"><%=projectitemdto.getPrice()%></textarea></td>
+			</tr>
+			<tr>
+				<th>배송비</th>
+				<td><textarea rows="2" cols="25" name="deliveryFee">3000</textarea></td>
+			</tr>
+			<tr>
+				<th>결제 금액</th>
+				<td><textarea rows="2" cols="25" name="purchasePrice"><%=projectitemdto.getPrice()+3000%></textarea></td>
 			</tr>
 			<tr>
 				<th>ID</th>
@@ -73,6 +87,12 @@
 				<th>주문 날짜</th>
 				<td></td>
 			</tr>
+
+			<%-- <tr>
+				<th>상품 총 누적 금액</th>
+				<td><textarea rows="2" cols="25" name="totalPrice"><%=projectdto.getTotalPrice() %></textarea></td>
+			</tr>		 --%>	
+			
 			
 			<tr align="right">
 				<td colspan="2">

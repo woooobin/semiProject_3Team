@@ -9,7 +9,7 @@ import com.poosil.projects.dto.ProjectItemDto;
 
 
 public interface ProjectsBiz {
-	public List<ProjectDto> selectList();
+	public List<ProjectDto> selectList(String province, String sortOpt);
 	
 	public Map<String, Integer>  insertProject(
 			String userId, 
