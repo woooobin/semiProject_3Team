@@ -12,14 +12,18 @@ public class PayDto {
 	private int phone;
 	private int totalPrice;
 	private int price;
+	private int deliveryFee;
+	private int purchasePrice;
 	private Date orderDate;
+
 	
 	public PayDto() {
 		
 	}
 
 	public PayDto(int orderSeq, int quantity, String userId, int projectItemSeq, String address, int phone,
-			int totalPrice, int price, Date orderDate) {
+			int totalPrice, int price, int deliveryFee, int purchasePrice, Date orderDate) {
+		super();
 		this.orderSeq = orderSeq;
 		this.quantity = quantity;
 		this.userId = userId;
@@ -28,7 +32,10 @@ public class PayDto {
 		this.phone = phone;
 		this.totalPrice = totalPrice;
 		this.price = price;
+		this.deliveryFee = deliveryFee;
+		this.purchasePrice = purchasePrice;
 		this.orderDate = orderDate;
+
 	}
 
 	public int getOrderSeq() {
@@ -90,10 +97,27 @@ public class PayDto {
 	public int getPrice() {
 		return price;
 	}
-
+	
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	
+	public int getDeliveryFee() {
+		return deliveryFee;
+	}
+
+	public void setDeliveryFee(int deliveryFee) {
+		this.deliveryFee = deliveryFee;
+	}
+
+	public int getPurchasePrice() {
+		return purchasePrice;
+	}
+
+	public void setPurchasePrice(int purchasePrice) {
+		this.purchasePrice = purchasePrice;
+	}
+
 
 	public Date getOrderDate() {
 		return orderDate;
@@ -102,9 +126,6 @@ public class PayDto {
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
-	
-	
-	
-		
-	
+
+
 }

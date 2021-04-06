@@ -36,7 +36,7 @@
 				<td><%=dto.getUserId() %></td>
 				<td><%=dto.getProjectItemSeq() %></td>
 				<td><%=dto.getQuantity() %></td>
-				<td><%=dto.getPrice() %></td>
+				<td><%=dto.getPurchasePrice() %></td>
 				<td><%=dto.getOrderDate() %></td>
 			</tr>
 			

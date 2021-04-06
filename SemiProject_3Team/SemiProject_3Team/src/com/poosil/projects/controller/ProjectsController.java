@@ -51,9 +51,9 @@ public class ProjectsController extends HttpServlet {
 				sortOpt = "LIKECOUNT";
 			}
 			if(province == null) {
-				province = "경기";
+				province = "";
 			}
-			System.out.println(province);
+			//System.out.println(province);
 			
 			
 			List<ProjectDto> list = biz.selectList(province, sortOpt);

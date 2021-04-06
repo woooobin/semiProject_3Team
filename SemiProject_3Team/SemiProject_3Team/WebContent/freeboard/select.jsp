@@ -1,12 +1,10 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("UTF-8");
 response.setContentType("text/html; charset=UTF-8");
 loginDto logindto = (loginDto) session.getAttribute("dto");
-
 if (logindto != null) {
-
 	String userid = logindto.getUserid();
 	pageContext.setAttribute("userid", userid);
 }
@@ -49,28 +47,22 @@ if (logindto != null) {
 	outline: 1px solid;
 	cursor: pointer;
 }
-
 .answertext {
 	margin-left : 20px;  
 	display: none;
 }
-
 .answertext.on {
 	display: block;
 }
-
 .updatetext {
 	display: none;
 }
-
 .updatetext.on {
 	display: block;
 }
-
 .contenttable {
 	display: block;
 }
-
 .contenttable.on {
 	dispaly: none;
 }
