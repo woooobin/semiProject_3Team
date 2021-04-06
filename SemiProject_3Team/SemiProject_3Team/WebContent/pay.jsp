@@ -36,8 +36,8 @@
 	System.out.println("address = " + address);
 	int phone = Integer.parseInt(request.getParameter("phone"));
 	System.out.println("phone = " + phone);
-	int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
-	System.out.println("totalPrice = " + totalPrice);
+	/* int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
+	System.out.println("totalPrice = " + totalPrice); */
 	
 %>
 <body>
@@ -85,7 +85,7 @@
                     name : '<%=name%>',
                     address : '<%=address%>',
                     phone : <%=phone%>,
-                    totalPrice : <%=totalPrice%>,
+                    <%-- totalPrice : <%=totalPrice%>, --%>
                     projectId : <%=projectId%>
                	
                 },

@@ -27,7 +27,7 @@
 	System.out.println("logindto = " + logindto.getUserid());
 	ProjectItemDto projectitemdto = (ProjectItemDto)request.getAttribute("projectitemdto");
 	System.out.println("projectItemSeq 3 = " + projectitemdto.getProjectItemSeq());
-	ProjectDto projectdto = (ProjectDto)request.getAttribute("projectdto");
+	/* ProjectDto projectdto = (ProjectDto)request.getAttribute("projectdto"); */
 %>
 <body>
 
@@ -44,7 +44,7 @@
 			</tr>
 			<tr>
 				<th>projectId</th>
-				<td><textarea rows="2" cols="25" name="projectId"><%=projectdto.getProjectId() %></textarea></td>
+				<td><textarea rows="2" cols="25" name="projectId"><%=projectitemdto.getProjectId() %></textarea></td>
 			</tr>
 			<tr>
 				<th>상품 명</th>
@@ -88,10 +88,10 @@
 				<td></td>
 			</tr>
 
-			<tr>
+			<%-- <tr>
 				<th>상품 총 누적 금액</th>
 				<td><textarea rows="2" cols="25" name="totalPrice"><%=projectdto.getTotalPrice() %></textarea></td>
-			</tr>			
+			</tr>		 --%>	
 			
 			
 			<tr align="right">

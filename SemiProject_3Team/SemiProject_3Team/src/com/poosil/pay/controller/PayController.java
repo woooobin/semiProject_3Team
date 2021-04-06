@@ -82,8 +82,8 @@ public class PayController extends HttpServlet {
 			int price = Integer.parseInt(request.getParameter("price"));
 			String address = request.getParameter("address");
 			int phone = Integer.parseInt(request.getParameter("phone"));
-			int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
-			//int totalPrice = 0;
+			//int totalPrice = Integer.parseInt(request.getParameter("totalPrice"));
+			int totalPrice = 0;
 			int deliveryFee = Integer.parseInt(request.getParameter("deliveryFee"));
 			int purchasePrice = Integer.parseInt(request.getParameter("purchasePrice"));
 			
@@ -91,8 +91,7 @@ public class PayController extends HttpServlet {
 			
 			int res = biz.insertadminPayment(dto);
 			
-			if(res > 0) {
-				
+				if(res > 0) {
 					/*
 					ProjectDto projectdto = new ProjectDto();
 					projectdto.setTotalPrice(totalPrice);
@@ -105,12 +104,9 @@ public class PayController extends HttpServlet {
 					} else {
 						response.sendRedirect("project_list.jsp");
 					}
-					
 				} else {
 					response.sendRedirect("project_list.jsp");
-				
-			} 
-			
+				} 
 			    
 			} else if (command.equals("custompaylist")) {
 				
@@ -148,11 +144,11 @@ public class PayController extends HttpServlet {
 				
 				//totalPrice 가져오기
 				
-				int projectId = Integer.parseInt(request.getParameter("projectId"));
+//				int projectId = Integer.parseInt(request.getParameter("projectId"));
 				
-				ProjectDto projectdto = projectbiz.selectOne(projectId);
-				System.out.println("projectId 1 =" + projectId );
-				request.setAttribute("projectdto", projectdto);
+//				ProjectDto projectdto = projectbiz.selectOne(projectId);
+//				System.out.println("projectId 1 =" + projectId );
+//				request.setAttribute("projectdto", projectdto);
 				
 				dispatch(request, response, "orderpage.jsp");
 				
