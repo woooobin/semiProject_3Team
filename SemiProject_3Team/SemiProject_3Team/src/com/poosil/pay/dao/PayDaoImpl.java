@@ -1,16 +1,14 @@
 package com.poosil.pay.dao;
 
 import java.util.ArrayList;
-
-
-
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.poosil.pay.dto.PayDto;
 import com.poosil.projects.dto.ProjectItemDto;
-import com.poosil.projects.dto.ProjectDto;
 import com.poosil.util.db.SqlMapConfig;
 
 
@@ -114,6 +112,11 @@ public class PayDaoImpl extends SqlMapConfig implements PayDao {
 			System.out.println("toalprice 1 = "+dto.getTotalPrice());
 			System.out.println("price 1 = "+dto.getPrice());
 			System.out.println("projectItemSeq 1  = "+dto.getProjectItemSeq());
+			
+			Map<String, String >param = new HashMap<String, String>();
+			param.put("price", dto.getPurchasePrice()+"");
+			param.put("projectItemSeq", dto.getProjectItemSeq()+"");
+			
 			updateres = session.update(namespace+"updateTotalPrice", dto);
 			System.out.println("toalprice 2 = "+dto.getTotalPrice());
 			System.out.println("price 2 = "+dto.getPrice());
