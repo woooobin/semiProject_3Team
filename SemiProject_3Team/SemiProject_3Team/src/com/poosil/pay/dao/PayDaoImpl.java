@@ -1,9 +1,9 @@
 package com.poosil.pay.dao;
 
 import java.util.ArrayList;
-
-
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -40,6 +40,18 @@ public class PayDaoImpl extends SqlMapConfig implements PayDao {
 	public int insertadminPayment(PayDto dto) {
 		int res = 0;
 		
+		/*
+		System.out.println(dto.getQuantity());
+		System.out.println(dto.getUserId());
+		System.out.println(dto.getProjectItemSeq());
+		System.out.println(dto.getAddress());
+		System.out.println(dto.getPhone());
+		System.out.println(dto.getTotalPrice());
+		System.out.println(dto.getPrice());
+		System.out.println(dto.getDeliveryFee());
+		System.out.println(dto.getPurchasePrice());
+		*/
+		
 		try(SqlSession session = getSqlSessionFactory().openSession(true);){
 			res = session.insert(namespace + "insertadminPayment", dto);
 			
@@ -49,8 +61,6 @@ public class PayDaoImpl extends SqlMapConfig implements PayDao {
 		
 		return res;
 	}
-	
-	
 	
 	@Override
 	public List<PayDto> customerPaymentList(String userId) {
@@ -79,7 +89,6 @@ public class PayDaoImpl extends SqlMapConfig implements PayDao {
 		
 		ProjectItemDto projectitemdto = new ProjectItemDto();
 		
-		
 		try {
 			session = getSqlSessionFactory().openSession(true);
 			
@@ -94,12 +103,21 @@ public class PayDaoImpl extends SqlMapConfig implements PayDao {
 	}
 
 	@Override
-	public int updateTotalPrice(PayDto dto) {
+	public int updateTotalPrice(String projectId , int purchasePrice) {
 		
 		int updateres = 0;
-		try(SqlSession session = getSqlSessionFactory().openSession(true);){
-			updateres = session.update(namespace+"updateTotalPrice", dto);
+		
+		try{
+			SqlSession session = getSqlSessionFactory().openSession(true);
 			
+			Map<String, String > param = new HashMap<String, String>();
+			
+			param.put("price", purchasePrice+"" );
+			param.put("projectId", projectId );
+			
+			updateres = session.update(namespace+"updateTotalPrice", param);
+			System.out.println("updateres = " + updateres);
+	
 		} catch (Exception e) {
 			
 			e.printStackTrace();
