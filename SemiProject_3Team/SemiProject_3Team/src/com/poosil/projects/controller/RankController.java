@@ -1,6 +1,7 @@
 package com.poosil.projects.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,7 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.poosil.projects.biz.RankBiz;
+import com.poosil.projects.biz.RankBizImpl;
+import com.poosil.projects.dto.ProjectDto;
 
 @WebServlet("/rank.do")
 public class RankController extends HttpServlet {
@@ -23,11 +27,21 @@ public class RankController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		
 		
-		HttpSession session = request.getSession();
-		String command = request.getParameter("command");
+ 		String command = request.getParameter("command");
+		RankBiz biz = new RankBizImpl();
 		
 		if(command.equals("selectAll")) {
+			List<ProjectDto> topLikeList = biz.selectTopLike();
+			List<ProjectDto> topPriceList = biz.selectTopPrice();
+			List<Integer> topCategoryList = biz.selectTopCategoryCount();
+			List<String> topCategoryNameList = biz.selectTopCategoryName();
 			
+			request.setAttribute("topLikeList", topLikeList);
+			request.setAttribute("topCategoryList", topCategoryList);
+			request.setAttribute("topPriceList", topPriceList);
+			request.setAttribute("topCategoryNameList", topCategoryNameList);
+			
+			dispatch(request, response, "rank.jsp");			
 		}
 	}
 
