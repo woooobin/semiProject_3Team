@@ -42,34 +42,10 @@ if (logindto != null) {
 		 	
 </script>
 
-<style>
-.item {
-	outline: 1px solid;
-	cursor: pointer;
-}
-.answertext {
-	margin-left : 20px;  
-	display: none;
-}
-.answertext.on {
-	display: block;
-}
-.updatetext {
-	display: none;
-}
-.updatetext.on {
-	display: block;
-}
-.contenttable {
-	display: block;
-}
-.contenttable.on {
-	dispaly: none;
-}
-</style>
 <link href="./styles/reset.css" rel="stylesheet">
+<link href="./styles/layout.css" rel="stylesheet">
+<link href="./styles/free-select.css" rel="stylesheet">
 <!-- Bootstrap CSS -->
-<link href="./styles/bootstrap.min.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
@@ -82,7 +58,7 @@ if (logindto != null) {
 		scope="request"></jsp:useBean>
 	<h3 align="center">${dto.freeboardtitle }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
 
-	<table border="1" style="margin-left: auto; margin-right: auto;">
+	<table border="1">
 		<tr>
 			<td>${dto.userid }&nbsp;&nbsp;&nbsp;조회수${dto.readcount }</td>
 			<td>${dto.regdate }&nbsp;&nbsp;</td>

@@ -39,9 +39,11 @@ response.setContentType("text/html; charset=UTF-8");
 		<div>
 			<section>
 				<div id="data-container"></div>
+				<div class="button-wrap">
+					<button onclick="location.href='free.do?command=insertform'">글쓰기</button>
+				</div>
 				<div id="pagination"></div>
 			</section>
-			<button onclick="location.href='free.do?command=insertform'">글쓰기</button>
 		</div>
 	</div>
 	</div>
