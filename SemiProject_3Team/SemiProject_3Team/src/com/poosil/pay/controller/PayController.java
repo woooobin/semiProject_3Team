@@ -157,10 +157,7 @@ public class PayController extends HttpServlet {
 				request.setAttribute("projectdto", projectdto);
 				
 				dispatch(request, response, "orderpage.jsp");
-				
-				
-				
-				
+						
 			} 
 				
 		}

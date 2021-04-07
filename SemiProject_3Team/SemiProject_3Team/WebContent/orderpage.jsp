@@ -19,7 +19,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link href="./styles/reset.css" rel="stylesheet">
+<link href="./styles/layout.css" rel="stylesheet">
+<link href="./styles/main.css" rel="stylesheet">
 <title>Insert title here</title>
+
 </head>
 
 <%
@@ -31,12 +36,22 @@
 %>
 <body>
 
-	<h1>주문서 작성</h1>
+	<%@ include file="./ui/header.jsp"%>
+
+	<h1>주문서 작성</h1><br>
 	<form action="pay.jsp" method="post">
 		<table border="1">
 			<tr>
-				<th></th>
-				<td></td>
+			<th>결제 방식</th>
+				<td>
+					<select>
+						<option value="kakao">카카오페이</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>상품사진</th>
+				<td><%=projectdto.getThumbImage() %></td>
 			</tr>
 			<tr>
 				<th>주문번호</th>
@@ -82,6 +97,7 @@
 				<th>받는 사람 주소</th>
 				<td><textarea rows="2" cols="25" name="address"><%=logindto.getAddress() %></textarea></td>
 			</tr>
+			
 			<tr>
 				<th>핸드폰 번호</th>
 				<td><textarea rows="2" cols="25" name="phone"><%=logindto.getUserphone() %></textarea></td>

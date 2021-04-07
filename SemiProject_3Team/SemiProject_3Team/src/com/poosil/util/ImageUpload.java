@@ -40,13 +40,11 @@ public class ImageUpload extends HttpServlet {
 		RequestDispatcher view = null;
 
 		String root = request.getSession().getServletContext().getRealPath("/");
-		System.out.println(root);
+		System.out.println("root = " + root);
 		// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
 
 		String savePath = root + "image";
 
-		// web/board_upload 濡� 吏��젙�븿
-		// request 瑜� MultipartRequest 媛앹껜濡� 蹂��솚�븿
 
 		MultipartRequest mrequest = new MultipartRequest(request, savePath, maxSize, "UTF-8",
 				new DefaultFileRenamePolicy());

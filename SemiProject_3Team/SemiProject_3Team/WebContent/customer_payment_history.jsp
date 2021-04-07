@@ -19,6 +19,8 @@
 %>
 <body>
 
+	<%@ include file="./ui/header.jsp"%>
+
 	<h1>결제 내역</h1>
 		<table border="1">
 			<tr>

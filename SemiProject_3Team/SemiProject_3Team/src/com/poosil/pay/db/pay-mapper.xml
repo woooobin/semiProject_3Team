@@ -43,11 +43,12 @@
   		WHERE PROJECTITEMSEQ = #{projectItemSeq}
   	</select>
   	
-  	
   	<update id="updateTotalPrice" parameterType="HashMap">
   		UPDATE PROJECTS SET TOTALPRICE = TOTALPRICE + #{price} 
         WHERE PROJECTID = #{projectId}
   	</update>
+  	
+
   	
 
   </mapper>

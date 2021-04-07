@@ -46,6 +46,8 @@ response.setContentType("text/html; charset=UTF-8");
 			}
 			%>
 		</div>
+		<button onclick='location.href="project_upload.jsp"'
+							class="project-upload-btn">프로젝트 업로드 하기</button>
 		<c:choose>
 			<c:when test="${empty list}">
 		프로젝트 목록이 없습니다.
@@ -55,8 +57,7 @@ response.setContentType("text/html; charset=UTF-8");
 
 				<div class="project-list-wrap">
 					<div class="project-list-btn-wrap">
-						<button onclick='location.href="project_upload.jsp"'
-							class="project-upload-btn">프로젝트 업로드 하기</button>
+						
 						<select id="sortOpt" onchange="onChangeOption()">
 							<option value="likecount" <%= sortOpt != null  && sortOpt.equals("likecount") ? "selected": ""%> >추천순</option>
 							<option value="totalprice" <%= sortOpt != null && sortOpt.equals("totalprice") ? "selected": ""%>>팔린 금액 높은 순</option>

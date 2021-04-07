@@ -18,6 +18,10 @@ local.properties
 .loadpath
 .recommenders
 
+
+!SemiProject_3Team/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/SemiProject_3Team/image
+
+
 # External tool builders
 .externalToolBuilders/
 
