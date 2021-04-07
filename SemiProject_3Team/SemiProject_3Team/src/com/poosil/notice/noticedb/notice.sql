@@ -15,7 +15,7 @@ CREATE TABLE NOTICE(
 );
 
 INSERT INTO NOTICE
-VALUES(NOTICESEQ.NEXTVAL, 'test1', 'Ǫ�� �̿� ��Ģ', '1. �Ƚ��ϰ� ����� �ֽñ� �ٶ��ϴ�.', 'ADMIN', SYSDATE, '�������Դϴ�.');
+VALUES(NOTICESEQ.NEXTVAL, 'test1', 'Ǫ�� �̿� ��Ģ', '1. �Ƚ��ϰ� ����� �ֽñ� �ٶ��ϴ�.', '관리자', SYSDATE);
 
 
 SELECT NOTICESEQ, USERID, NOTICETITLE, NOTICECONTENT, USERROLE, REGDATE
