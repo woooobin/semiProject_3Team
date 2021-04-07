@@ -37,10 +37,15 @@ response.setContentType("text/html; charset=UTF-8");
 				cache: false,
 				contentType: false,
 				processData: false,
+				dataType : "json",
 				success: function (data) { // 처리가 성공할 경우
 					// 에디터에 이미지 출력
-					console.log("succes =", data)
-					$(editor).summernote('editor.insertImage', "image/" + JSON.parse(data).url);
+					console.log("success =", data);
+					let image = $('<img>').attr('src', data.url );
+					console.log(image, "editor=", editor, "summernote", $('#summernote'));
+					// $(editor).summernote('editor.insertImage', "image/" + JSON.parse(data).url);
+					$('#summernote').summernote('insertNode', image[0]);
+				
 				}
 			});
 		}
