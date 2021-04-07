@@ -48,7 +48,7 @@ String userNickname = "ADMIN";
 			<ul class="gnb">
 				<li><a href="#">카테고리</a></li>
 				<li><a href="project.do?command=selectList">펀딩하기</a></li>
-				<li><a href="#">랭킹</a></li>
+				<li><a href="rank.do?command=selectAll">랭킹</a></li>
 				
 				<li><a href="#">이용가이드</a></li>
 				<li><a href="free.do?command=list">자유게시판</a></li>

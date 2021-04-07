@@ -99,10 +99,10 @@ public class PayController extends HttpServlet {
 					ProjectDto projectdto = new ProjectDto();
 					projectdto.setTotalPrice(totalPrice);
 					*/
-					System.out.println("====================>>projectId = " + projectId + "purchasePrice  = " + purchasePrice);
+					System.out.println("====================>>projectId = " + projectId + "price  = " + price);
 					
 					
-					int updateres = biz.updateTotalPrice(projectId + "",purchasePrice );
+					int updateres = biz.updateTotalPrice(projectId + "",price );
 					
 					if(updateres > 0) {
 						System.out.println("updateTotalPrice res 성공 ");
@@ -149,13 +149,12 @@ public class PayController extends HttpServlet {
 				System.out.println("projectItemSeq 2 = " + projectitemdto.getProjectItemSeq());
 				request.setAttribute("projectitemdto", projectitemdto);
 				
-				//totalPrice 가져오기
+				//totalPrice 가져오기, thumbimage가져오기 
 				
-//				int projectId = Integer.parseInt(request.getParameter("projectId"));
-				
-//				ProjectDto projectdto = projectbiz.selectOne(projectId);
-//				System.out.println("projectId 1 =" + projectId );
-//				request.setAttribute("projectdto", projectdto);
+				int projectId = Integer.parseInt(request.getParameter("projectId"));
+								ProjectDto projectdto = projectbiz.selectOne(projectId);
+				System.out.println("projectId 1 =" + projectId );
+				request.setAttribute("projectdto", projectdto);
 				
 				dispatch(request, response, "orderpage.jsp");
 				

@@ -1,0 +1,52 @@
+
+
+	h2{font-size:14px;height:100px;line-height:100px;}
+	 span {
+        
+      }
+      
+     button{
+     	align: right;
+     }
+	
+	.table{
+		display: table;
+		width:100%;
+	}
+	.heading span{border: 1px solid #bcbcbc;}
+	.heading,
+	.container .table .row{
+		display:flex;justify-content:space-between;
+		font-size: 16px;
+	}
+	.container .row>span,
+	.container .heading>span{padding: 10px 15px;
+    border-left: none;text-align:center;
+    border-right: none;}
+	
+	.container .row+.row{
+	border-top: 1px solid #bcbcbc;
+	}
+
+	#data-container{
+		border-bottom: 1px solid #bcbcbc;
+	}
+	.cell-1{
+		width: 10%;
+	}
+	.cell-2{
+		width: 40%;
+	}
+	.container .table .row .cell-2{text-align:left;}
+	.cell-3{
+		width: 20%;
+	}
+	.cell-4{
+		width: 20%;
+	}
+	.cell-5{
+		width: 10%;
+	}
+	
+	.paginationjs{display:flex;justify-content:center; padding:50px 0;}
+	
