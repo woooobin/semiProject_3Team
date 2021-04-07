@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
-<%
-String userEmail = (String)request.getAttribute("userEmail");
-%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+ <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer> </script>
 <meta charset="UTF-8">
+<link href="./styles/reset.css" rel="stylesheet">
+<link href="./styles/layout.css" rel="stylesheet">
+<link href="./styles/login.css" rel="stylesheet">
+<link href="styles/project_list.css" rel="stylesheet">
+ <link rel="stylesheet" href="css/signup.css">
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
@@ -23,41 +26,51 @@ String userEmail = (String)request.getAttribute("userEmail");
 	}
 </script>
 <script type="text/javascript">
+	
 	function idCheckProc() {
 		var chk = document.getElementsByName("userid")[0].title;
 		if (chk == 'n') {
-			alert("id 중복체크를 해주세요!");
+			alert("ID중복체크 먼저 하십시오.");
 			document.getElementsByName("userid")[0].focus();
 		}
 	}
-
+	
 	function idCheck() {
 		var userid = document.getElementsByName("userid")[0].value;
-
+		
 		if (userid == null || userid.trim() == "") {
-			alert("id를 입력해 주세요!");
+			alert("ID를 입력해 주세요.");
 		} else {
-			open("login.do?command=idchk&userid=" + userid, "",
-					"width=200, height=200");
+			open("login.do?command=idchk&userid="+userid, "", "width=200, height=200");
 		}
 	}
+	function emailCheck() {
+		var useremail = document.getElementsByName("useremail")[0].value;
+		
+		if (useremail == null || useremail.trim() == "") {
+			alert("이메일를 입력해 주세요!");
+		} else {
+			open("login.do?command=emailchk&useremail="+useremail, "", "width=200, height=200");
+		}
+	}
+	
+	
+	$(document).ready(function () {
 
-	$(document).ready(function() {
-
-		$(".imageInput").on("change", function() {
+		$(".imageInput").on("change", function () {
 
 			data = new FormData();
 			data.append("uploadFile", $(this)[0].files[0]);
 
 			const currentInput = $(this);
 			$.ajax({ // ajax를 통해 파일 업로드 처리
-				data : data,
-				type : "POST",
-				url : "imageUpload.do",
-				cache : false,
-				contentType : false,
-				processData : false,
-				success : function(data) { // 처리가 성공할 경우
+				data: data,
+				type: "POST",
+				url: "imageUpload.do",
+				cache: false,
+				contentType: false,
+				processData: false,
+				success: function (data) { // 처리가 성공할 경우
 					// 에디터에 이미지 출력
 					console.log("succes =", data)
 					const url = "image/" + JSON.parse(data).url;
@@ -86,6 +99,7 @@ String userEmail = (String)request.getAttribute("userEmail");
 
 	    });
 	});
+	
 </script>
 </head>
 <body>
@@ -155,25 +169,17 @@ String userEmail = (String)request.getAttribute("userEmail");
 	</form>
 	<script>
 	
-		function goPopup() {
-	        // 주소검색을 수행할 팝업 페이지를 호출합니다.
-	        // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-	        var pop = window.open("signup/jusoPopup.jsp", "pop",
-	                "width=570,height=420, scrollbars=yes, resizable=yes");
-	    }
-	    var jusoCallBack = function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo){ 
-	        document.getElementById("address").value = roadFullAddr; 
-	        document.getElementById("zipNo").value = zipNo; 
-	        document.getElementById("addr").value = roadAddrPart1; 
-	        document.getElementById("addr2").value = roadAddrPart2;
-	        roadAddrPart1 += roadAddrPart2;
-	        if(addrDetail.length>30){ 
-	            alert('상세주소가 너무 길어 다시 입력해야 합니다.'); 
-	            return; 
-	        } 
-	        document.getElementById("addrDetail").value = addrDetail; 
-
-	    }
+	
+	function goPopup() {
+        // 주소검색을 수행할 팝업 페이지를 호출합니다.
+        // 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+        var pop = window.open("signup/jusoPopup.jsp", "pop",
+                "width=570,height=420, scrollbars=yes, resizable=yes");
+    }
+    var jusoCallBack = function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo){ 
+        document.getElementById("address").value = roadFullAddr; 
+      
+    }
 	</script>	
 </body>
 </html>
