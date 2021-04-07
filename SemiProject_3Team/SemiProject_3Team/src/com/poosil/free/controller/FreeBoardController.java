@@ -48,7 +48,7 @@ public class FreeBoardController extends HttpServlet {
 		if (command.equals("list")) {
 			List<FreeBoardDto> list = biz.selectList();
 			request.setAttribute("list", list);
-
+			System.out.println("list: "+list.get(1).getRegdate());
 			dispatch(request, response, "freeboard/list.jsp");
 		} else if (command.equals("select")) {
 			int freeboardseq = Integer.parseInt(request.getParameter("freeboardseq"));
@@ -58,6 +58,7 @@ public class FreeBoardController extends HttpServlet {
 			FreeBoardDto dto = biz.selectOne(freeboardseq);
 			List<CommentDto> clist = cbiz.selectList(freeboardseq);
 			request.setAttribute("clist", clist);
+			
 			request.setAttribute("dto", dto);
 			dispatch(request, response, "freeboard/select.jsp");
 
@@ -113,6 +114,7 @@ public class FreeBoardController extends HttpServlet {
 		} else if (command.equals("delete")) {
 			int freeboardseq = Integer.parseInt(request.getParameter("freeboardseq"));
 			int res = biz.delete(freeboardseq);
+			System.out.println("FREEBOARDSEQ : " + freeboardseq);
 
 			if (res > 0) {
 				dispatch(request, response, "free.do?command=list");
@@ -152,11 +154,16 @@ public class FreeBoardController extends HttpServlet {
 			String updatecontent = request.getParameter("updatecontent");
 
 			CommentDto cdto = new CommentDto();
+			cdto.setFreeboardseq(freeboardseq);
 			cdto.setCommentno(updatecommentno);
 			cdto.setUserid(updateuserid);
 			cdto.setCommentcontent(updatecontent);
-
-			int res = cbiz.update(cdto);
+			System.out.println("freeboardseq:" + freeboardseq);
+			System.out.println("updatecommentno:" + updatecommentno);
+			System.out.println("updateuserid:" + updateuserid);
+			System.out.println("updatecontent:" + updatecontent);
+			int res = cbiz.answerProc(cdto);
+		
 			PrintWriter out = response.getWriter();
 			if (res > 0) {
 				response.sendRedirect("free.do?command=select&freeboardseq=" + freeboardseq );

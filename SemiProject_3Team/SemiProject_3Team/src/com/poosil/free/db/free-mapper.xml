@@ -3,7 +3,8 @@
 <mapper namespace="freeboardmapper">
   
 	<select id="selectList" resultType="FreeBoardDto">
-		SELECT * FROM FREEBOARD
+		SELECT FREEBOARDSEQ, USERID, FREEBOARDTITLE, FREEBOARDCONTENT, TO_DATE(REGDATE, 'YY/MM/DD') AS REGDATE, READCOUNT 
+		FROM FREEBOARD
 		ORDER BY FREEBOARDSEQ DESC
 	</select>
   	
@@ -31,7 +32,7 @@
   	</update>
   	
   	<delete id="delete" parameterType="int">
-  		DELECT FROM FREEBOARD
+  		DELETE FROM FREEBOARD
   		WHERE FREEBOARDSEQ = #{freeboardseq}	
   	</delete>
 </mapper>
