@@ -16,17 +16,66 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0
+}
+
+body {
+	font-family: '맑은 고딕' 돋움;
+	font-size: 0.75em;
+	color: #333
+}
+
+.tbl-ex {
+	margin: 100px auto 0px auto;
+}
+
+.tbl-ex, .tbl-ex th, .tbl-ex td {
+	border: 1px solid gray;
+	border-width: 1px 0;
+	border-collapse: collapse;
+	text-align: center;
+	padding: 8px;
+}
+
+.tbl-ex th {
+	background-color: #f5f6f7;
+	font-size: 1.1em;
+	color: #000000;
+	border-width: 2px 0;
+}
+
+.tbl-ex td {
+	border-style: dotted;
+}
+
+.tbl-ex tr:hover td {
+	background-color: #f1c50e;
+	color: #000000 cursor: pointer;
+}
+
+.even {
+	background-color: #FFFFFF;
+}
+
+.page_name {
+	text-align: center;
+}
+</style>
 
 </head>
 <body>
 	<%
 		List<loginDto> list = (List<loginDto>) request.getAttribute("list");
 	%>
-
-	<h1>회원 전체 조회(관리자,사용자)</h1>
+	<div class="page_name">
+		<h1>회원 전체 조회(관리자,사용자)</h1>
+	</div>
 
 	<br />
-	<table border="1">
+	<table border="1" class="tbl-ex">
 		<tr>
 			<th>아이디</th>
 			<th>비밀번호</th>
@@ -45,7 +94,7 @@
 		<%
 			for (loginDto dto : list) {
 		%>
-		<tr>
+		<tr class="even">
 			<td><%=dto.getUserid()%></td>
 			<td><%=dto.getPassword()%></td>
 			<td><%=dto.getUsername()%></td>

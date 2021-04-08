@@ -1,5 +1,5 @@
-h1,h2,h3,h4,h5,h6,p{}
-h3{    font-size: 21px ;
+
+h3{ font-size: 21px ;
     font-weight: 500;}
 .lft{width:calc(100% - 300px);}
 .rgt{width:300px;}
@@ -24,7 +24,8 @@ h3{    font-size: 21px ;
 }
 .project-detail-header h2{font-size:23px;padding:0 0 23px;}
 .project-detail-header h3{font-size:18px; font-weight:400;}
-.project-detail-header img{    position: absolute;
+.project-detail-header img{    
+	position: absolute;
     left: 50%;
     width: 100%;
     text-align: 0;
@@ -36,15 +37,24 @@ h3{    font-size: 21px ;
 .project-detail-nav ol li{margin : 0 20px;}
 
 .project-detail-sub-nav{
+	display: flex;
+    justify-content: center;
+    align-items: center;
 	border-top: 1px solid #dedede;
     margin: 20px 0;
     border-bottom: 1px solid #dedede;
 }
 .project-detail-sub-nav a,
 .project-detail-sub-nav button{width:30%;height:50px;}
+.project-detail-sub-nav button+button{border-left: 1px solid #dedede;border-right: 1px solid #dedede;}
 .project-detail-sub-nav button>*{display:inline-block;vertical-align:middle;}
 .project-detail-sub-nav button>i{font-size:20px;}
 .project-detail-sub-nav button .likeCount{margin:0 10px;}
+.project-detail-sub-nav #kakao-link-btn{   
+	display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    }
 
 
 .project-detail-hashtags a{
@@ -72,6 +82,15 @@ h3{    font-size: 21px ;
 	font-size: 15px;
     font-weight: 100;
 }
+
+.project-items-item {
+	border:1px solid #eaeaea;
+	padding:20px;
+}
+.project-items-item .frame{font-size:14px;}
+.project-items-item .frame p {padding-bottom:5px;font-size:12px;}
+.project-items-item .frame p h4{font-size:15px;}
+
 
 
 

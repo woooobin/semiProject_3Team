@@ -12,19 +12,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="./styles/reset.css" rel="stylesheet">
+<link href="./styles/layout.css" rel="stylesheet">
+<link href="./styles/login.css" rel="stylesheet">
+<link href="styles/project_list.css" rel="stylesheet">
+    
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 </head>
 
-<%loginDto dto = (loginDto)session.getAttribute("dto");%>
 
+<%@ include file="../ui/header.jsp"%>
 <body>
 
-<div >
-	<a><img src="images/logo/logo.png" style="width: 80px; cursor: pointer;" onclick="location.href='index.jsp'"></a>
-	</button>
-	</div>
+
 	<h1>내 정보</h1>
 	<h2><%=dto.getUserid() %>
 	<%session.setAttribute("userid", request.getAttribute("userid"));%>

@@ -2,27 +2,28 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="projects-mapper" >
-	<select id="selectList" parameterType="HashMap" resultType="ProjectDto" >
-	SELECT 
+  
+<mapper namespace="projects-mapper">
+	<select id="selectList" parameterType="HashMap" resultType="ProjectDto">
+		SELECT
 		projectId,
-		projectMainTitle, 
+		projectMainTitle,
 		projectSubTitle,
 		thumbImage,
 		goalPrice,
 		totalPrice,
-		projectCategory, 
+		projectCategory,
 		projectStartDate,
 		projectEndDate
-	FROM PROJECTS
-	WHERE PROVINCE LIKE '%'||#{province}||'%' 
-	ORDER BY CREATEDAT DESC, #{sortOpt} ASC
-	
+		FROM PROJECTS
+		WHERE PROVINCE LIKE '%'||#{province}||'%'
+		ORDER BY CREATEDAT DESC, #{sortOpt} ASC
 	</select>
+	
 	<select id="selectOne" resultType="ProjectDto" parameterType="int">
-	SELECT 
+		SELECT
 		projectId,
-		projectMainTitle, 
+		projectMainTitle,
 		projectSubTitle,
 		thumbImage,
 		goalPrice,
@@ -30,29 +31,30 @@
 		soldCount,
 		likeCount,
 		projectCategory,
-		detailDesc, 
+		detailDesc,
 		projectStartDate,
 		projectEndDate,
 		address,
 		latitude,
 		longitude,
 		province
-		FROM PROJECTS 
+		FROM PROJECTS
 		WHERE projectId = #{projectId}
 	</select>
+	
 	<insert id="insertProject" parameterType="HashMap">
 		<selectKey keyProperty="projectId" resultType="int" order="BEFORE">
 			( SELECT PROJECT_SEQ.NEXTVAL FROM DUAL )
 		</selectKey>
-	
-		INSERT INTO PROJECTS ( 
-		projectId, 
-		userId, 
-		projectMainTitle, 
+
+		INSERT INTO PROJECTS (
+		projectId,
+		userId,
+		projectMainTitle,
 		projectSubTitle,
 		thumbImage,
 		goalPrice,
-		projectCategory, 
+		projectCategory,
 		projectStartDate,
 		projectEndDate,
 		shippingStartDate,
@@ -66,116 +68,147 @@
 		createdAt,
 		updatedAt,
 		totalPrice
-		 ) VALUES (
-			#{projectId}, 
-			#{userId},
-			#{projectMainTitle},
-			#{projectSubTitle},
-			#{thumbImage}, 
-			#{goalPrice},
-			#{projectCategory},
-			#{projectStartDate}, 
-			#{projectEndDate},
-			#{shippingStartDate}, 
-			0,
-			0,
-			#{detailDesc},
-			#{address},
-			#{latitude},
-			#{longitude },
-			#{province},
-			SYSDATE,
-			SYSDATE,
-			0
+		) VALUES (
+		#{projectId},
+		#{userId},
+		#{projectMainTitle},
+		#{projectSubTitle},
+		#{thumbImage},
+		#{goalPrice},
+		#{projectCategory},
+		#{projectStartDate},
+		#{projectEndDate},
+		#{shippingStartDate},
+		0,
+		0,
+		#{detailDesc},
+		#{address},
+		#{latitude},
+		#{longitude },
+		#{province},
+		SYSDATE,
+		SYSDATE,
+		0
 		)
 	</insert>
-	
+
 	<insert id="insertProjectItems" parameterType="HashMap">
-		INSERT INTO PROJECTITEM (projectItemSeq, projectItemName, projectItemDesc, shippingFee, quantity, projectId, price) VALUES 
+		INSERT INTO
+		PROJECTITEM (projectItemSeq, projectItemName, projectItemDesc,
+		shippingFee, quantity, projectId, price) VALUES
 		(
-			PROJECT_ITEM_SEQ.NEXTVAL,
-		 	#{projectItemName},
-			#{projectItemDesc} ,
-			#{shippingFee},
-			#{quantity},
-			#{projectId},
-			#{price}
-		) 
+		PROJECT_ITEM_SEQ.NEXTVAL,
+		#{projectItemName},
+		#{projectItemDesc} ,
+		#{shippingFee},
+		#{quantity},
+		#{projectId},
+		#{price}
+		)
 	</insert>
-	
-	<select id="selectExistHashtags" parameterType="String" resultType="String"> 
-		SELECT HASHTAGNAME FROM HASHTAG WHERE 
-		HASHTAGNAME = #{hashtagName}
+
+	<select id="selectExistHashtags" parameterType="String" resultType="String">
+		SELECT HASHTAGNAME FROM HASHTAG WHERE
+		HASHTAGNAME =
+		#{hashtagName}
 	</select>
-	
-	
+
 	<insert id="insertHashtags" parameterType="String">
-		INSERT INTO HASHTAG ( hashtagSeq , hashtagName ) VALUES
+		INSERT INTO HASHTAG (
+		hashtagSeq , hashtagName ) VALUES
 		(
-			HASHTAG_SEQ.NEXTVAL,
-			#{ hashtagName }
+		HASHTAG_SEQ.NEXTVAL,
+		#{ hashtagName }
 		)
 	</insert>
-		
+
 	<insert id="insertProjectHashtags" parameterType="HashMap">
-		INSERT INTO PROJECTHASHTAG (PROJECTHASHTAGSEQ, HASHTAGSEQ, PROJECTID ) VALUES (
-			PROJECT_HASHTAG_SEQ.NEXTVAL , 
-			( SELECT HASHTAGSEQ FROM HASHTAG WHERE HASHTAGNAME = #{ hashtagName } ),
-			#{projectId}
+		INSERT INTO
+		PROJECTHASHTAG (PROJECTHASHTAGSEQ, HASHTAGSEQ, PROJECTID ) VALUES (
+		PROJECT_HASHTAG_SEQ.NEXTVAL ,
+		( SELECT HASHTAGSEQ FROM HASHTAG WHERE
+		HASHTAGNAME = #{ hashtagName }
+		),
+		#{projectId}
 		)
 	</insert>
-	
+
 	<select id="selectProjectItems" parameterType="int" resultType="ProjectItemDto">
-		SELECT 
-			PROJECTITEMSEQ, PROJECTITEMNAME, PROJECTITEMDESC, SHIPPINGFEE, QUANTITY, PROJECTID, PRICE 
+		SELECT
+		PROJECTITEMSEQ, PROJECTITEMNAME, PROJECTITEMDESC,
+		SHIPPINGFEE, QUANTITY, PROJECTID,
+		PRICE
 		FROM PROJECTITEM
 		WHERE PROJECTID = #{projectId}
 	</select>
-	
-	<select id="selectProjectHashtags" parameterType="int" resultType="HashtagDto" >
-	SELECT HASHTAGNAME, HASHTAGSEQ FROM HASHTAG WHERE HASHTAGSEQ IN 
+
+	<select id="selectProjectHashtags" parameterType="int" resultType="HashtagDto">
+		SELECT HASHTAGNAME, HASHTAGSEQ FROM HASHTAG WHERE
+		HASHTAGSEQ IN
 		(SELECT HASHTAGSEQ FROM PROJECTHASHTAG WHERE PROJECTID = #{projectId} )
 	</select>
-	
-	<select id="selectProjectsWHashtags" parameterType="int" resultType="ProjectDto" >
-	SELECT PROJECTID, PROJECTMAINTITLE FROM PROJECTS WHERE PROJECTID IN
-		( SELECT PROJECTID FROM PROJECTHASHTAG WHERE HASHTAGSEQ = #{hashtagseq})
+
+	<select id="selectProjectsWHashtags" parameterType="int" resultType="ProjectDto">
+		SELECT PROJECTID, PROJECTMAINTITLE FROM PROJECTS WHERE
+		PROJECTID IN
+		( SELECT
+		PROJECTID FROM PROJECTHASHTAG WHERE HASHTAGSEQ = #{hashtagseq})
 	</select>
-	
+
 	<select id="selectExistLike" parameterType="HashMap" resultType="int">
-		SELECT COUNT(*) FROM PROJECTLIKE WHERE PROJECTID = #{projectId} AND USERID = #{userId} 
+		SELECT COUNT(*) FROM PROJECTLIKE 
+		WHERE PROJECTID = #{projectId} AND USERID = #{userId}
 	</select>
-	
+
 	<insert id="insertProjectLike" parameterType="HashMap">
-	INSERT INTO PROJECTLIKE (projectId, userId) VALUES(
+		INSERT INTO
+		PROJECTLIKE (projectId, userId) VALUES(
 		#{projectId}, #{userId}
-	)
+		)
 	</insert>
+	
 	<delete id="deleteProjectLike" parameterType="HashMap">
-	DELETE FROM PROJECTLIKE WHERE PROJECTID = #{projectId} AND USERID = #{userId} 
+		DELETE FROM
+		PROJECTLIKE WHERE PROJECTID = #{projectId} AND USERID =
+		#{userId}
 	</delete>
+	
 	<update id="addLikeCount" parameterType="int">
-	UPDATE PROJECTS SET LIKECOUNT = LIKECOUNT + 1 WHERE PROJECTID = #{projecId}
+		UPDATE PROJECTS SET
+		LIKECOUNT = LIKECOUNT + 1 WHERE PROJECTID = #{projecId}
 	</update>
+	
 	<update id="removeLikeCount" parameterType="int">
-	UPDATE PROJECTS SET LIKECOUNT = LIKECOUNT - 1 WHERE PROJECTID = #{projecId}
+		UPDATE PROJECTS SET
+		LIKECOUNT = LIKECOUNT - 1 WHERE PROJECTID = #{projecId}
 	</update>
+
+	<select id="projectByLikeCount" resultType="ProjectDto">
+		SELECT PROJECTID,
+		USERID, PROJECTMAINTITLE, PROJECTSUBTITLE,
+		THUMBIMAGE, PROJECTCATEGORY,
+		PROJECTSTARTDATE, PROJECTENDDATE,
+		SHIPPINGSTARTDATE, DETAILDESC,
+		CREATEDAT, UPDATEDAT, ADDRESS,
+		LATITUDE, LONGITUDE, PROVINCE,
+		GOALPRICE, TOTALPRICE, SOLDCOUNT,
+		LIKECOUNT
+		FROM (
+		SELECT * FROM PROJECTS
+		ORDER BY LIKECOUNT DESC
+		)
+		WHERE ROWNUM BETWEEN 1 AND 4
+	</select>
+
+	<select id="projectByCreatedAt" resultType="ProjectDto">
+		SELECT PROJECTID, USERID, PROJECTMAINTITLE, PROJECTSUBTITLE,
+		THUMBIMAGE, PROJECTCATEGORY, PROJECTSTARTDATE, PROJECTENDDATE,
+		SHIPPINGSTARTDATE, DETAILDESC, CREATEDAT, UPDATEDAT, ADDRESS,
+		LATITUDE, LONGITUDE, PROVINCE, GOALPRICE, TOTALPRICE, SOLDCOUNT,
+		LIKECOUNT
+		FROM (
+		SELECT * FROM PROJECTS ORDER BY CREATEDAT DESC
+		)
+		WHERE ROWNUM BETWEEN 1 AND 4
+	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
