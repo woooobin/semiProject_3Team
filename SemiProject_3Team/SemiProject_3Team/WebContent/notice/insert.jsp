@@ -86,5 +86,6 @@ response.setContentType("text/html; charset=UTF-8");
 			</tr>
        </table> 
     </form>
+    <%@ include file="/ui/footer.jsp"%>
 </body>
 </html>

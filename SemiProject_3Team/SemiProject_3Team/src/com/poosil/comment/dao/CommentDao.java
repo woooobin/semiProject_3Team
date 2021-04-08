@@ -12,5 +12,5 @@ public interface CommentDao {
 	public int update(CommentDto cdto);
 	public int delete(int commentno);
 	public int answerUpdate(int parentcommentNo);
-	public int answerInsert(CommentDto adto);
+	public int answerInsert(CommentDto cdto);
 }

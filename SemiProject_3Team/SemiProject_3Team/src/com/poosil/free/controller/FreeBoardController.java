@@ -162,7 +162,7 @@ public class FreeBoardController extends HttpServlet {
 			System.out.println("updatecommentno:" + updatecommentno);
 			System.out.println("updateuserid:" + updateuserid);
 			System.out.println("updatecontent:" + updatecontent);
-			int res = cbiz.answerProc(cdto);
+			int res = cbiz.update(cdto);
 		
 			PrintWriter out = response.getWriter();
 			if (res > 0) {
@@ -173,24 +173,30 @@ public class FreeBoardController extends HttpServlet {
 				out.println("</script>");
 			}
 
-		} else if (command.equals("insertCommentAnswer")) {
+		} else if (command.equals("insertanswer")) {
 			int freeboardseq = Integer.parseInt(request.getParameter("freeboardseq"));
-			int parentcommentno = Integer.parseInt(request.getParameter("parentcommentNo"));
-			String answeruserid = request.getParameter("answeruserid");
-			String answercontent = request.getParameter("answercontent");
-
+			int updatecommentno = Integer.parseInt(request.getParameter("updatecommentno"));
+			String updateuserid = request.getParameter("updateuserid");
+			String updatecontent = request.getParameter("updatecontent");
+			
 			CommentDto cdto = new CommentDto();
-			cdto.setCommentno(parentcommentno);
-			cdto.setUserid(answeruserid);
-			cdto.setCommentcontent(answercontent);
-
-			int ares = cbiz.answerProc(cdto);
+			cdto.setFreeboardseq(freeboardseq);
+			cdto.setCommentno(updatecommentno);
+			cdto.setUserid(updateuserid);
+			cdto.setCommentcontent(updatecontent);
+			System.out.println("freeboardseq:" + freeboardseq);
+			System.out.println("updatecommentno:" + updatecommentno);
+			System.out.println("updateuserid:" + updateuserid);
+			System.out.println("updatecontent:" + updatecontent);
+			
+			int res = cbiz.answerProc(cdto);
+			
 			PrintWriter out = response.getWriter();
-			if (ares > 0) {
-				response.sendRedirect("free.do?command=select&freeboardseq=" + freeboardseq);
+			if (res > 0) {
+				response.sendRedirect("free.do?command=select&freeboardseq=" + freeboardseq );
 			} else {
 				out.println("<script type='text/javascript'>");
-				out.println("alert('대댓글 작성 실패');");
+				out.println("alert('댓글 수정 실패');");
 				out.println("</script>");
 			}
 		} else if (command.equals("cdelete")) {
@@ -206,6 +212,7 @@ public class FreeBoardController extends HttpServlet {
 				out.println("<script type='text/javascript'>");
 				out.println("alert('댓글 삭제 실패');");
 				out.println("</script>");
+				response.sendRedirect("free.do?command=select&freeboardseq=" + freeboardseq);
 			}
 		}
 

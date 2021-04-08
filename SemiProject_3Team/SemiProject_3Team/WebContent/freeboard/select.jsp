@@ -97,14 +97,13 @@ if (logindto != null) {
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${clist }" var="cdto" varStatus="status">
+							<c:forEach begin="2" end="${cdto.titletab }">
+									&nbsp;&nbsp;&nbsp;
+							</c:forEach>
 							<div class="row">
 								<p>
 								<input type="hidden" value="${cdto.commentno }">
-								
-									<c:forEach begin="1" end="${cdto.titletab }">
-										&nbsp;&nbsp;&nbsp;
-									</c:forEach>
-									${cdto.commentcontent }
+									<textarea rows="3" cols="120">${cdto.commentcontent }</textarea>
 									 
 								</p>
 									 <div class="comment-util">
@@ -143,21 +142,21 @@ if (logindto != null) {
 							<div class="answertext">
 								<form action="free.do" method="POST">
 									<input type="hidden" name="freeboardseq"
-										value="${dto.freeboardseq}" /> <input type="hidden"
-										name="command" value="updateanswer" /> <input type="hidden"
-										name="updatecommentno" value="${cdto.commentno }" /> <input
-										type="hidden" name="updateuserid"
-										value="${sessionID }" />
+										value="${dto.freeboardseq}" /> 
+										<input type="hidden" name="command" value="insertanswer" /> 
+										<input type="hidden" name="updatecommentno" value="${cdto.commentno }" /> 
+										<input type="hidden" name="updateuserid" value="${sessionID }" />
 									<textarea rows="3" cols="100" name="updatecontent"></textarea>
 									<input type="submit" class="button" value="대댓글 등록">
 								</form>
 							</div>
+							<br/>
 
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 			</div>
-			
+			<h4>댓글 달기</h4>
 			<form action="free.do" method="POST">
 				<input type="hidden" name="command" value="cinsert">
 				<div class="write-form clearfix" id="contenttable">
@@ -166,11 +165,12 @@ if (logindto != null) {
 						<input type="hidden" name="freeboardseq" value="${dto.freeboardseq }"> 
 						<textarea rows="3"	cols="100" name="commentcontent"></textarea>
 						<input type="submit" class="button" value="댓글 등록">
+						<br/>
 					</c:if>
 				</div>
 			</form>
 		</div>
 	</div>
-
+<%@ include file="/ui/footer.jsp"%>
 </body>
 </html>

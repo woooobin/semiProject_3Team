@@ -89,5 +89,6 @@ loginDto logindto = (loginDto)session.getAttribute("dto");
 			</tr>
        </table> 
     </form>
+    <%@ include file="/ui/footer.jsp"%>
 </body>
 </html>

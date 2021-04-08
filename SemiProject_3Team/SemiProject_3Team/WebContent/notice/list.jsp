@@ -77,5 +77,6 @@
         })
     })
 </script>
+<%@ include file="/ui/footer.jsp"%>
 </body>
 </html>
