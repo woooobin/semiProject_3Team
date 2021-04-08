@@ -51,19 +51,22 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 		var prop = "top=200px,left=600px,width=400px,height=400px";
 		window.open(url,"", prop);
 	}
+	
+	let isLikeClicked = false;
 	function handleLike(){
-	<%
-		if(logindto != null){
-			%>
-			location.href="project.do?command=projectToggleLike&projectId="+${projectDto.projectId}+"&isLiked="+<%=isLiked%>
+		if(!isLikeClicked){
 			<%
-		}else{
+			if(logindto != null){
+				%>
+				location.href="project.do?command=projectToggleLike&projectId="+${projectDto.projectId}+"&isLiked="+<%=isLiked%>
+				<%
+			}else{
+				%>
+				return alert("로그인 한 유저만 좋아요 할 수 있습니다. ")
+				<%
+			}
 			%>
-			return alert("로그인 한 유저만 좋아요 할 수 있습니다. ")
-			<%
 		}
-	%>
-			
 	}
 
     let map;
@@ -91,9 +94,10 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 </head>
 <body>
 	<%@ include file="ui/header.jsp"%>
-	<div class="project-detail-header" >
+	<div class="project-detail-header">
 		<h2>${projectDto.projectMainTitle}</h2>
 		<h3>${projectDto.projectSubTitle }</h3>
+		<img src="${projectDto.thumbImage }"/>
 	</div>
 	<div class="layout_wrap project-detail-section ">
 		<div class="lft">
@@ -127,13 +131,10 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 						<span class="graph-inner"
 							style="display:block;width : calc( (${projectDto.goalPrice } / ${projectDto.totalPrice } ) * 100 ) %; background-color : #777;"></span>
 					</div>
-					<p>달성</p>
 					<div id="map"></div>
 					<p>${projectDto.address }</p>
-					
-					<h3>남은 후원일<span></span></h3>
-					
-					<h3>펀딩액<span>${projectDto.totalPrice }</span></h3>
+					<!-- <h3>남은 후원일<span></span></h3> -->
+					<h3>펀딩액<span>${projectDto.totalPrice }</span>원 달성!</h3>
 					<h3>발송 시작일 <span>${projectDto.shippingStartDate}</span></h3>
 					
 

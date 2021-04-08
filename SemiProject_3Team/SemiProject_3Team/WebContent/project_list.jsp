@@ -68,14 +68,13 @@ response.setContentType("text/html; charset=UTF-8");
 							<a href="project.do?command=selectOne&projectId=${dto.projectId}">
 								<div class="frame">
 									<img src="${dto.thumbImage}" />
-									<h2>${dto.projectMainTitle}</h2>
-									<div class="graph">
-										<span class="graph_val"
-											style="display:inline-block;width:calc(${dto.totalPrice} / ${dto.goalPrice} * 100)%"></span>
-									</div>
 								</div>
-								<p>총 금액 :${dto.totalPrice}</p>
-								<p class="percent"></p>
+								<h2>${dto.projectMainTitle}</h2>
+								<div class="graph">
+									<span class="graph_val"	style="display:inline-block;width:calc(${dto.totalPrice} / ${dto.goalPrice} * 100)%"></span>
+								</div>
+								<p>펀딩 ${dto.totalPrice} 원 달성 !</p>
+								
 							</a>
 						</div>
 					</c:forEach>
