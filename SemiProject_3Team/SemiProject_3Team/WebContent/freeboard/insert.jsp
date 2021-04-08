@@ -64,6 +64,17 @@ loginDto logindto = (loginDto)session.getAttribute("dto");
             });
         });
     </script>
+<style type="text/css">
+    .button {
+	border: 1px solid yellow;
+	background-color: #fff5ba;;
+	font: 15px 굴림;
+	color: black;
+	width:100px;
+	height: 30px;
+	border-radius: 5px;
+}	
+    </style>
 </head>
 <body>
 <%@ include file="../ui/header.jsp" %>
@@ -83,8 +94,8 @@ loginDto logindto = (loginDto)session.getAttribute("dto");
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
-					 <input type="submit" value="작성" />
-					 <input type="button" value="취소" onclick="location.href='free.do?command=list'" />
+					 <input class="button" type="submit" value="작성" />
+					 <input class="button" type="button" value="취소" onclick="location.href='free.do?command=list'" />
 				</td>
 			</tr>
        </table> 

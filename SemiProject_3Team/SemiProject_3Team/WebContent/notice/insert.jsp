@@ -60,6 +60,17 @@ response.setContentType("text/html; charset=UTF-8");
             });
         });
     </script>
+<style type="text/css">
+    .button {
+	border: 1px solid yellow;
+	background-color: #fff5ba;;
+	font: 15px 굴림;
+	color: black;
+	width:100px;
+	height: 30px;
+	border-radius: 5px;
+}	
+    </style>
 </head>
 <% String sessionID = (String)session.getAttribute("sessionID"); %>
 <body>
@@ -80,8 +91,8 @@ response.setContentType("text/html; charset=UTF-8");
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
-					 <input type="submit" value="작성" />
-					 <input type="button" value="취소" onclick="location.href='notice.do?command=list'" />
+					 <input class="button" type="submit" value="작성" />
+					 <input class="button" type="button" value="취소" onclick="location.href='notice.do?command=list'" />
 				</td>
 			</tr>
        </table> 
