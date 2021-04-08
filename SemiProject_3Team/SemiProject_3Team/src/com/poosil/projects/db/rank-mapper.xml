@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="rank-mapper">
+	<resultMap id="categoryResultMap" type="HashMap">
+		<id column=""/>
+	</resultMap>
+	<select id="selectTopLike" resultType="ProjectDto">
+	SELECT PROJECTID, PROJECTMAINTITLE, LIKECOUNT FROM 
+		( SELECT PROJECTID,PROJECTMAINTITLE, LIKECOUNT FROM PROJECTS ORDER BY LIKECOUNT DESC, CREATEDAT DESC ) 
+	<![CDATA[where rownum <= 10]]>
+	</select>
+	
+	<select id="selectTopPrice" resultType="ProjectDto">
+	SELECT PROJECTID, PROJECTMAINTITLE, TOTALPRICE FROM 
+		( SELECT PROJECTID, PROJECTMAINTITLE, TOTALPRICE FROM PROJECTS ORDER BY TOTALPRICE DESC, CREATEDAT DESC ) 
+	<![CDATA[where rownum <= 10]]>
+	</select>
+	
+	<select id="selectTopCategoryCount" resultType="int">
+		SELECT COUNT(*) FROM PROJECTS GROUP BY PROJECTCATEGORY ORDER BY COUNT(*) DESC
+	</select>
+	
+	<select id="selectTopCategoryCategory" resultType="String">
+		SELECT PROJECTCATEGORY FROM PROJECTS GROUP BY PROJECTCATEGORY ORDER BY COUNT(*) DESC
+	</select>
+</mapper>

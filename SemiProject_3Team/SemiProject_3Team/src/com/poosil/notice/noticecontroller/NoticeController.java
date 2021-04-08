@@ -37,17 +37,12 @@ public class NoticeController extends HttpServlet {
 		if(command.equals("list")) {
 			String userrole = request.getParameter("userrole");
 			String userId= request.getParameter("userId");
-			if(userrole != null && userId != null ) {
+			
 				List<NoticeDto> list = biz.selectList();
 				NoticeDto dto = new NoticeDto(0, userId, null, null, userrole, null);
 				request.setAttribute("list", list);
+				dispatch(request, response, "notice/list.jsp");
 				
-				if(dto.getUserrole().equals("ADMIN")) {
-					dispatch(request, response, "notice/adminlist.jsp");//notice/adminlist.jsp
-				}
-			} else {
-				dispatch(request, response, "notice/userlist.jsp");//notice/userlist.jsp
-			}
 			
 		} else if(command.equals("select")) {
 			int noticeseq = Integer.parseInt(request.getParameter("noticeseq"));
@@ -114,13 +109,14 @@ public class NoticeController extends HttpServlet {
 			} else {
 				dispatch(request, response, "notice.do?command=select&noticeseq="+noticeseq);
 			}
+		
 		}
-		
-		
-		
-		
-		
 	}
+		
+		
+		
+		
+	
 	
 	private void dispatch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);

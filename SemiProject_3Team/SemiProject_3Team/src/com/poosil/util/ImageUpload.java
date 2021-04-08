@@ -1,5 +1,6 @@
 package com.poosil.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -39,39 +40,41 @@ public class ImageUpload extends HttpServlet {
 
 		RequestDispatcher view = null;
 
-		String root = request.getSession().getServletContext().getRealPath("/");
-		System.out.println("root = " + root);
+		String root = request.getSession().getServletContext().getRealPath("/image");
+		
+		File file = new File(root);
+		
+		try {
+			if(!file.exists()) {
+				file.mkdirs();
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(root);
 		// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
 
-		String savePath = root + "image";
+		// web/board_upload 濡� 吏��젙�븿
+		// request 瑜� MultipartRequest 
 
-
-		MultipartRequest mrequest = new MultipartRequest(request, savePath, maxSize, "UTF-8",
-				new DefaultFileRenamePolicy());
-//		String originFileName = mrequest.getFilesystemName("upfile");
+		MultipartRequest mrequest = new MultipartRequest(request, root , maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
 		Enumeration files = mrequest.getFileNames();
 		
-		String str = (String) files.nextElement(); // �뙆�씪 �씠由꾩쓣 諛쏆븘�� string�쑝濡� ���옣
-		String originFileName = mrequest.getFilesystemName(str); // �뾽濡쒕뱶 �맂 �뙆�씪 �씠由� 媛��졇�샂
+		String str = (String) files.nextElement(); //
+		String originFileName = mrequest.getFilesystemName(str); // 
 		
-		System.out.println(originFileName);
-
+		String imagePath = "image\\" + originFileName ;
 
 		JsonObject result = new JsonObject();
-		result.addProperty("url", originFileName);
+		result.addProperty("url", imagePath );
 
 		response.getWriter().append(result + "");
-		response.setContentType("text/html; charset=utf-8");
 
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-
-			throws ServletException, IOException {
-
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 
 		doGet(request, response);
 

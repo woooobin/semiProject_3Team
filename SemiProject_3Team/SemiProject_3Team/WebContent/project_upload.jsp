@@ -14,7 +14,7 @@ response.setContentType("text/html; charset=UTF-8");
 	<title>Insert title here</title>
 	<link href="styles/reset.css" rel="stylesheet" />
 	<link href="styles/layout.css" rel="stylesheet" />
-	<!-- include libraries(jQuery, bootstrap) -->
+	
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -37,10 +37,15 @@ response.setContentType("text/html; charset=UTF-8");
 				cache: false,
 				contentType: false,
 				processData: false,
+				dataType : "json",
 				success: function (data) { // 처리가 성공할 경우
 					// 에디터에 이미지 출력
-					console.log("succes =", data)
-					$(editor).summernote('editor.insertImage', "image/" + JSON.parse(data).url);
+					console.log("success =", data);
+					let image = $('<img>').attr('src', data.url );
+					console.log(image, "editor=", editor, "summernote", $('#summernote'));
+					// $(editor).summernote('editor.insertImage', "image/" + JSON.parse(data).url);
+					$('#summernote').summernote('insertNode', image[0]);
+				
 				}
 			});
 		}
@@ -83,21 +88,6 @@ response.setContentType("text/html; charset=UTF-8");
 
 
 		function handleUploadProject() {
-
-			
-			//com.poosil.projects.biz.ProjectsBizImpl.insertProjectItems
-			/**
-			
-				String projectItemName = projectItemsArray.get(i).getAsJsonObject().get("projectItemName")
-							.getAsString();
-					String projectItemDesc = projectItemsArray.get(i).getAsJsonObject().get("projectItemDesc")
-							.getAsString();
-					int shippingFee = projectItemsArray.get(i).getAsJsonObject().get("shippingFee").getAsInt();
-					int quantity = projectItemsArray.get(i).getAsJsonObject().get("quantity").getAsInt();
-//					String ItemThumbImage = projectItemsArray.get(i).getAsJsonObject().get("thumbImage").getAsString();
-					int price = projectItemsArray.get(i).getAsJsonObject().get("price").getAsInt();
-					
-					*/
 
 			const projectItems = [...document.querySelectorAll(".projectsItem")].map((x, idx) => {
 				return {
@@ -157,15 +147,12 @@ response.setContentType("text/html; charset=UTF-8");
 		    var secondProjection = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"; 
 			var lonAndLat = proj4(firstProjection, secondProjection, point1); //변환된 위도, 경도 
 			
-			console.log(lonAndLat) //[127.25313872031843, 37.65626868953749]
+			//console.log(lonAndLat) //[127.25313872031843, 37.65626868953749]
 			
 			var addressEl = document.querySelector("#address").value = roadFullAddr;
 			document.querySelector("#latitude").value = lonAndLat[0];
 			document.querySelector("#longtitude").value =  lonAndLat[1];
 			document.querySelector("#province").value = province;
-			
-			
-			/* console.log(x,y, province) */
 		}
 	</script>
 
