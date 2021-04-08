@@ -23,8 +23,8 @@ public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
 
 		List<ProjectDto> list = new ArrayList<ProjectDto>();
 		Map<String, String> param = new HashMap<String, String>();
-		param.put("sortOpt", sortOpt);
 		param.put("province", province);
+		param.put("sortOpt", sortOpt);
 		try {
 			session = getSqlSessionFactory().openSession(true);
 			
