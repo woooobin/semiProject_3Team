@@ -40,7 +40,7 @@
 	
 	textarea{
 		border: none;
-		overflow: scroll;
+		
 	}
 	
 	.button {
