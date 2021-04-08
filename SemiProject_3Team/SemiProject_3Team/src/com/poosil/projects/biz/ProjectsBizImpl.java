@@ -120,6 +120,17 @@ public class ProjectsBizImpl implements ProjectsBiz{
 		return likeCountResult > 0 ? result : 0 ;
 	}
 	
+	@Override
+	public List<ProjectDto> selectListByLikecount() {
+		
+		return dao.selectListByLikecount();
+	}
+	
+	@Override
+	public List<ProjectDto> selectListByCreatedAt() {
+		return dao.selectListByCreatedAt();
+	}
+	
 	
 	
 

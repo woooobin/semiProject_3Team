@@ -383,5 +383,35 @@ public class ProjectDaoImpl extends SqlMapConfig implements ProjectDao {
 		session.close();
 		return result;
 	}
+	
+	// 인기 프로젝트 순
+	@Override
+	public List<ProjectDto> selectListByLikecount() {
+		SqlSession session = null;
+		
+		List<ProjectDto> list = new ArrayList<ProjectDto>();
+		
+		session = getSqlSessionFactory().openSession(true);
+		list = session.selectList("projects-mapper.projectByLikeCount");
+		
+		session.close();
+		
+		return list;
+	}
+
+	// 신규 프로젝트 순
+	@Override
+	public List<ProjectDto> selectListByCreatedAt() {
+SqlSession session = null;
+		
+		List<ProjectDto> list = new ArrayList<ProjectDto>();
+		
+		session = getSqlSessionFactory().openSession(true);
+		list = session.selectList("projects-mapper.selectListByCreatedAt");
+		
+		session.close();
+		
+		return list;
+	}
 
 }
