@@ -25,22 +25,21 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap" rel="stylesheet">
 <link href="styles/reset.css" rel="stylesheet">
-<!-- <link href="styles/bootstrap.min.css" rel="stylesheet"> -->
 <link href="styles/layout.css" rel="stylesheet">
 <link href="styles/project_selectOne.css" rel="stylesheet">
 
 <link href="styles/all.css" rel="stylesheet"> <!--load all styles -->
     <style type="text/css">
       #map {
-        height: 400px;width:400px;
+        height: 240px;width:240px;
       }
     </style>
     
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="js/project-googlemap.js"></script>
 <c:set var="projectDto" value="${requestScope.projectDto}" />
-<%-- <c:set var="isLiked" value="${requestScope.isLiked}" /> --%>
 
 <script>
 	onload = function() {
@@ -66,37 +65,32 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 	%>
 			
 	}
-	
-	/* ============ google map api =========== */
-      let map;
 
-      function initMap() {
-        const mapOptions = {
-          zoom: 15,
-          center:  { lat:  ${projectDto.longitude }, lng: ${projectDto.latitude } },
-          disableDefaultUI:true,
-          zoomControl: true
-        };
-        map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        
-        const marker = new google.maps.Marker({
-          position: { lat: ${projectDto.longitude } , lng: ${projectDto.latitude }},
-          map: map,
-        });
-        
-        google.maps.event.addListener(marker, "click", () => {
-          infowindow.open(map, marker);
-        });
-      }
+    let map;
+
+    function initMap() {
+      const mapOptions = {
+        zoom: 15,
+        center:  { lat:  ${projectDto.longitude }, lng: ${projectDto.latitude } },
+        disableDefaultUI:true,
+        zoomControl: true
+      };
+      map = new google.maps.Map(document.getElementById("map"), mapOptions);
+      
+      const marker = new google.maps.Marker({
+        position: { lat: ${projectDto.longitude } , lng: ${projectDto.latitude }},
+        map: map,
+      });
+      
+      google.maps.event.addListener(marker, "click", () => {
+        infowindow.open(map, marker);
+      });
+    }
+	
 </script>
 </head>
 <body>
 	<%@ include file="ui/header.jsp"%>
-	<h1>select One</h1>
-	<%-- <c:set var="projectItems" value="${requestScope.projectItems}" /> --%>
-
-	
-	<%-- projectId = ${projectDto.projectId} --%>
 	<div class="project-detail-header" >
 		<h2>${projectDto.projectMainTitle}</h2>
 		<h3>${projectDto.projectSubTitle }</h3>
@@ -104,14 +98,7 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 	<div class="layout_wrap project-detail-section ">
 		<div class="lft">
 			<div class="wrapper">
-				<div class="project-detail-nav">
-					<ol>
-						<li><a href="#">공지사항</a></li>
-						<li><a href="#">응원글보기</a></li>
-						<li><a href="#">문의게시판</a></li>
-					</ol>
-				</div>
-				<!-- end nav -->
+			
 				<div class="project-detail-hashtags">
 					<c:choose>
 						<c:when test="${empty projectHashtags}">
@@ -170,7 +157,7 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 						<button class="btn" onclick="openWin()"><i class="far fa-comment"></i></button>
 						
 						<a id="kakao-link-btn" href="javascript:sendLink()">
-							<i class="fas fa-share-alt"></i> share 카카오톡 공유하기 버튼 </a>
+							<i class="fas fa-share-alt"></i> </a>
 					</div>
 				</div>
 				<!-- end detail info -->

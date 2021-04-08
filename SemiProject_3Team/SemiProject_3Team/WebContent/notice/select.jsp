@@ -57,41 +57,50 @@
 </head>
 <body>
 <%@ include file="../ui/header.jsp" %>
-	
-	<table class="table" border="1" style="margin-left: auto; margin-right: auto;">
-		<tr>
-			<td class="title" align="center" >${dto.noticetitle }</td>
-		</tr>
-		<tr>
-			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-		</tr>
-		<tr>
-			<td class="writer">관리자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.regdate }</td>
-		</tr>
-		<tr>
-			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-		</tr>
-		<tr>
-			<td class="content">
-				<textarea rows="30" cols="100" readonly="readonly">${dto.noticecontent }</textarea>
-			</td>
-		</tr>
-	 <% if(logindto != null && logindto.getUserrole().equals("ADMIN")){
-					%>
-				<tr>
-					<td colspan="2" align="right" >
-						<input type="button" class="button" value="수정" onclick="location.href='notice.do?command=updateform&noticeseq=${dto.noticeseq}'">
-						<input type="button" class="button" value="삭제" onclick="location.href='notice.do?command=delete&noticeseq=${dto.noticeseq}'">
-						<input type="button" class="button" value="목록" onclick="location.href='notice.do?command=list'">
-					</td>
-				</tr>
-			 <%	}else{ %>
-				<tr>
-					<td colspan="2" align="right">
-						<input type="button" class="button" value="목록" onclick="location.href='notice.do?command=list'">
-					</td>
-				</tr>
-			 <%	} %>
-	</table>
+	<div class="container">
+
+		<table class="table" border="1"
+			style="margin-left: auto; margin-right: auto;">
+			<tr>
+				<td class="title" align="center">${dto.noticetitle }</td>
+			</tr>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="writer">관리자&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.regdate }</td>
+			</tr>
+			<tr>
+				<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="content"><textarea rows="30" cols="100"
+						readonly="readonly">${dto.noticecontent }</textarea></td>
+			</tr>
+			<%
+			if (logindto != null && logindto.getUserrole().equals("ADMIN")) {
+			%>
+			<tr>
+				<td colspan="2" align="right"><input type="button"
+					class="button" value="수정"
+					onclick="location.href='notice.do?command=updateform&noticeseq=${dto.noticeseq}'">
+					<input type="button" class="button" value="삭제"
+					onclick="location.href='notice.do?command=delete&noticeseq=${dto.noticeseq}'">
+					<input type="button" class="button" value="목록"
+					onclick="location.href='notice.do?command=list'"></td>
+			</tr>
+			<%
+			} else {
+			%>
+			<tr>
+				<td colspan="2" align="right"><input type="button"
+					class="button" value="목록"
+					onclick="location.href='notice.do?command=list'"></td>
+			</tr>
+			<%
+			}
+			%>
+		</table>
+	</div>
 </body>
 </html>

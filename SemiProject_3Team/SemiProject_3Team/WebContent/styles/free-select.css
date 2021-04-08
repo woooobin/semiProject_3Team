@@ -2,6 +2,64 @@
 	padding: 10px 15px;
     font-size: 14px;
  }
-
-.table-section{}
+.table-header .userid{
+	margin-right:20px;
+}
+h3{padding:30px 0;}
+.table-header .readcount{
+	margin-right:20px;
+}
+.table-header .regdate{
+	font-size:12px;
+}
+.btn-wrap{ display: flex; justify-content: flex-end; }
+.btn-wrap .view-list-btn{
+	background:none;outline:none;border:none;background-color:rgba(244,221,80,1);padding:5px 10px;border-radius:5px;
+}
 .table-section textarea{width:100%;border:1px solid #dedede;}
+
+.comment-wrap>p{text-align:center;}
+.row{border-bottom: 1px solid #dedede;padding-bottom:20px; margin-bottom:30px;}
+.row p {font-size:14px; font-weight:500;}
+.row p .btn-update {display:inline-block;}
+
+.row .comment-util span {font-size:13px; font-weight:300;}
+
+.write-form{}
+.write-form textarea{display:block;}
+.write-form input[type="submit"]{float:right;}
+
+h4{
+	    padding: 0 0 18px;
+}
+
+
+.item {
+	outline: 1px solid;
+	cursor: pointer;
+}
+
+.answertext {
+	margin-left: 20px;
+	display: none;
+}
+
+.answertext.on {
+	display: block;
+}
+
+.updatetext {
+	display: none;
+}
+
+.updatetext.on {
+	display: block;
+}
+
+.contenttable {
+	display: block;
+}
+
+.contenttable.on {
+	display: none;
+}

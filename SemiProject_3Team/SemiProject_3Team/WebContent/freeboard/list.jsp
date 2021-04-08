@@ -42,11 +42,12 @@ response.setContentType("text/html; charset=UTF-8");
 				<div id="data-container"></div><br/>
 				<% if(sessionID != null){
 				%>
-			<div align="right">
-				<input type="button" class="button" value="글작성" onclick="location.href='free.do?command=insertform'" >
+			<div class="button-wrap">
+				<button onclick="location.href='free.do?command=insertform'">글쓰기</button>
 			</div>
-			  <%
-			} %>
+			<%
+				} 
+			%>
 				<div id="pagination"></div>
 			</section>
 		</div>

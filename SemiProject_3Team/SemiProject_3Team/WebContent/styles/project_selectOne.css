@@ -1,8 +1,8 @@
 h1,h2,h3,h4,h5,h6,p{}
 h3{    font-size: 21px ;
     font-weight: 500;}
-.lft{width:70%;}
-.rgt{width:30%;}
+.lft{width:calc(100% - 300px);}
+.rgt{width:300px;}
 .lft>.wrapper{width:90%; margin:0 auto;}
 .rgt>.wrapper{
 	width:90%;margin: 0 auto;
@@ -11,17 +11,50 @@ h3{    font-size: 21px ;
 .graph{background-color:#eee;border-radius:6px;height:6px;}
 
 .project-detail-header{
-	padding:30px 0;
-	text-align:center;
+	padding: 80px 0;
+    text-align: center;
 }
 
-.project-detail-nav{}
+.project-detail-header h2{font-size:23px;padding:0 0 23px;}
+.project-detail-header h3{font-size:18px; font-weight:400;}
+
 .project-detail-nav ol{display:flex;justify-content:center; align-items:center;}
 .project-detail-nav ol li{margin : 0 20px;}
 
-.project-detail-sub-nav{}
+.project-detail-sub-nav a,
 .project-detail-sub-nav button{width:50px;height:50px;}
 .project-detail-sub-nav button>i{font-size:20px;}
 
-.project-detail-hashtags{}
-.project-detail-hashtags a{display:inline-block; padding :0 5px; border-radius:5px; background-color:blue; color:#fff !important; font-weight:400;}
+.project-detail-hashtags a{
+	display: inline-block;
+    padding: 4px 13px;
+    border-radius: 5px;
+    background-color: #40a798;
+    color: #fff !important;
+    font-weight: 400;
+}
+
+.project-detail-description{padding:30px 0;}
+
+.project-detail-info{
+	
+}
+.project-detail-info > h3{
+	padding:0 5px;
+}
+.project-detail-info .graph + p,
+.project-detail-info #map + p {
+	padding:15px 0;
+}
+.project-detail-info h3,.project-detail-info p{
+	font-size: 15px;
+    font-weight: 100;
+}
+
+
+
+
+
+
+
+
