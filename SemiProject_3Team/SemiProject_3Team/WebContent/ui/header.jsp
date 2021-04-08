@@ -69,7 +69,6 @@ String userNickname = "ADMIN";
 				<li><a href="project.do?command=selectList">펀딩하기</a></li>
 				<li><a href="rank.do?command=selectAll">랭킹</a></li>
 				
-				<li><a href="#">이용가이드</a></li>
 				<li><a href="free.do?command=list">자유게시판</a></li>
 				<li><a href="notice.do?command=list">공지게시판</a></li>
 			</ul>

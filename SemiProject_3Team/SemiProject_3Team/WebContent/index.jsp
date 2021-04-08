@@ -39,11 +39,11 @@
 				<!-- Slides -->
 				<div class="swiper-slide">
 					<h2>먼 곳의 농산물을 체험해 보세요.</h2>
-					<img src="images/slide01.jpeg" style="top: 25px;" />
+					<img src="images/slide02.jpeg"/>
 				</div>
 				<div class="swiper-slide">
-					<h2>이웃을 응원해서 선물을 받아보세요.</h2>
-					<img src="images/slide02.jpeg" style="top: 25px;" />
+					<h2> 이웃을 응원해서 선물을 받아보세요. </h2>
+					<img src="images/slide01.jpeg"/>
 				</div>
 			</div>
 			<!-- If we need pagination -->
