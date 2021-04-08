@@ -13,5 +13,5 @@ public interface CommentBiz {
 	public int insert(CommentDto cdto);
 	public int update(CommentDto cdto);
 	public int delete(int commentno);
-	public int answerProc(CommentDto adto);
+	public int answerProc(CommentDto cdto);
 }

@@ -102,5 +102,6 @@
 			%>
 		</table>
 	</div>
+	<%@ include file="/ui/footer.jsp"%>
 </body>
 </html>

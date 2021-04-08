@@ -88,5 +88,6 @@ for (int i = 0; i < list.size(); i++) {%>{
         })
     })
 </script>
+<%@ include file="/ui/footer.jsp"%>
 </body>
 </html>

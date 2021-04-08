@@ -41,10 +41,10 @@ public class CommentBizImpl implements CommentBiz {
 	}
 	
 	@Override
-	public int answerProc(CommentDto adto) {
+	public int answerProc(CommentDto cdto) {
 		
-		int update = dao.answerUpdate(adto.getCommentno());
-		int insert = dao.answerInsert(adto);
+		int update = dao.answerUpdate(cdto.getCommentno());
+		int insert = dao.answerInsert(cdto);
 		
 		return update + insert;
 	}

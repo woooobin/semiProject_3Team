@@ -24,7 +24,7 @@ h3{padding:30px 0;}
 .row p .btn-update {display:inline-block;}
 
 .row .comment-util span {font-size:13px; font-weight:300;}
-
+.row {display:inline-block;}
 .write-form{}
 .write-form textarea{display:block;}
 .write-form input[type="submit"]{float:right;}
