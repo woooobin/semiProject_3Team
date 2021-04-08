@@ -39,4 +39,7 @@ public interface ProjectsBiz {
 	
 	public boolean isLiked(int projectId, String userId);
 	public int projectLike(int projectId, String userId, String isLiked);
+	
+	public List<ProjectDto> selectListByLikecount();
+	public List<ProjectDto> selectListByCreatedAt();
 }

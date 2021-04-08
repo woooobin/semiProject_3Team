@@ -15,14 +15,87 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@800&display=swap"
+	rel="stylesheet">
 <link href="./styles/search.css" rel="stylesheet" media="all">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+	function sendKeyword() {
+
+		var keyword = document.myForm.keyword.value;
+
+		if (keyword == "") {
+			hide(); // 검색창이 비워져 있으면 숨김.
+			return;
+		}
+		var params = "keyword=" + keyword;
+		sendRequest("search_suggestClient.jsp", params, displaySuggest, "POST");
+
+	}
+
+	function displaySuggest() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) { // 서버 응답 정상
+				var resultText = httpRequest.responseText; // response로 넘어온 텍스트 할당
+				// alert(resultText);
+				// 5|abc,ajax,adf
+				var resultArray = resultText.split("|"); // {5, {abc,ajax,adf}}로 나눔
+				var count = parseInt(resultArray[0]); // 5
+				var keywordList = null;
+
+				if (count > 0) {
+					keywordList = resultArray[1].split(",");
+					var html = "";
+					for (var i = 0; i < keywordList.length; i++) {
+						html += "<a href=\"javascript.select('"
+								+ keywordList[i] + "');\">" + keywordList[i]
+								+ "</a><br/>";
+						// <a href="javascript:select('ajax');">ajax</a><br/>
+					}
+					var suggestListDiv = document
+							.getElementById("suggestListDiv");
+					suggestListDiv.innerHTML = html;
+					show();
+				} else {
+					// count == 0
+					hide();
+				}
+			} else {
+				// status != 200
+				hide();
+			}
+		} else {
+			// readyState != 4
+			hide();
+		}
+	} // function..end
+
+	// 사용자가 제시어 중에서 클릭한 키워드
+	function select(selectKeyword) {
+		// 클릭한 제시어를 inputbox에 넣어줌
+		document.myForm.keyword.value = selectKeyword;
+		hide(); // 다른 제시어 감춤
+	}
+
+	function show() {
+		var suggestDiv = document.getElementById("suggestDiv");
+		suggestDiv.style.display = "block";
+	}
+
+	function hide() {
+		var suggestDiv = document.getElementById("suggestDiv");
+		suggestDiv.style.display = "none";
+	}
+
+	// 처음 DOM이 로드되었을 때 보이지 않도록
+	window.onload = function() {
+		hide();
+	}
+</script>
 
 <title>Search Main</title>
 <style type="text/css">
-
-
 .suggest {
 	display: none;
 	position: absolute;
@@ -40,7 +113,8 @@ body {
 html {
 	margin: 0;
 	background-size: cover;
-	background: url("./images/background/1.jpg") no-repeat center center fixed;
+	background: url("./images/background/1.jpg") no-repeat center center
+		fixed;
 	background-blend-mode: darken;
 	transition: 3s;
 }
@@ -78,13 +152,20 @@ div.searchEngine {
 }
 
 h1 {
-  color: #ffe151;
-  font-size: 47px;
-  font-family: 'Nanum Myeongjo', serif;
-  text-align: center; 
-  text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a 4px 4px;
+	color: #ffe151;
+	font-size: 47px;
+	font-family: 'Nanum Myeongjo', serif;
+	text-align: center;
+	text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a
+		4px 4px;
 }
 
+.logo {
+	justify-content: center;
+	align-items: center;
+	width: 130px;
+	height: 94px;
+}
 }
 </style>
 <script type="text/javascript"
@@ -120,6 +201,9 @@ h1 {
 
 </head>
 <body>
+	<a href="index.jsp"><img
+		src="./images/logo/logo_transparent_notypo.png" class="logo"></a>
+
 	<div class="searchEngine">
 		<form action="projectsearch.do" class="form" name="myForm"
 			method="post">
