@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.poosil.projects.dto.HashtagDto;
 import com.poosil.projects.dto.ProjectDto;
 
-
-
 @WebServlet("/projectsearch.do")
 public class ProjectSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +24,7 @@ public class ProjectSearchController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String command = request.getParameter("command");
 		System.out.println("command : " + command);
-		
+
 		ProjectSearchDao projectsearchdao = new ProjectSearchDao();
 
 		// 검색 게시물 리스트
@@ -48,13 +46,13 @@ public class ProjectSearchController extends HttpServlet {
 			map.put("list", list); // list
 			map.put("searchOption", searchOption); // 검색 옵션
 			map.put("keyword", keyword); // 검색 키워드
-			
+
 			System.out.println("map : " + map);
 
 			request.setAttribute("list", list);
 			dispatch(request, response, "project_list.jsp");
-			
-		} 
+
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

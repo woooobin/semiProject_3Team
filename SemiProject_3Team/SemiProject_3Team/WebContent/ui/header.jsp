@@ -46,7 +46,7 @@ String userNickname = "ADMIN";
 			<h1><a href="index.jsp">로고</a></h1>
 			
 			<ul class="gnb">
-				<li><a href="#">카테고리</a></li>
+				<li><a href="./search.jsp ">카테고리</a></li>
 				<li><a href="project.do?command=selectList">펀딩하기</a></li>
 				<li><a href="rank.do?command=selectAll">랭킹</a></li>
 				
@@ -55,15 +55,6 @@ String userNickname = "ADMIN";
 				<li><a href="notice.do?command=list">공지게시판</a></li>
 			</ul>
 		</div>
-		<nav class="nav justify-content-center">
-			<li class="nav-item"><a class="nav-link active"
-				aria-current="page" href="./search.jsp">카테고리</a></li>
-			<li class="nav-item"><a class="nav-link" href="project.do?command=selectList">펀딩하기</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">랭킹</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">이용가이드</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">자유게시판</a></li>
-			<li class="nav-item"><a class="nav-link" href="notice.do?command=list&userrole=${userrole }">공지게시판</a></li>
-		</nav>
 	</div>
 </header>
 
