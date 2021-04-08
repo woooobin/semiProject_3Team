@@ -72,7 +72,7 @@ response.setContentType("text/html; charset=UTF-8");
             		},
             	<%}%>
             	
-            
+             
         	],
             callback: function (data, pagination) {
                 var dataHtml = '<div>';

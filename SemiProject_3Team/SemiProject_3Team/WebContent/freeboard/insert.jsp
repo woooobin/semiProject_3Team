@@ -73,7 +73,7 @@ loginDto logindto = (loginDto)session.getAttribute("dto");
     	<input type="hidden" name="command" value="insertres">
     	<input type="hidden" name="userid" value='<%=sessionID%>'>
     	<table border="1" style="margin-left: auto; margin-right: auto;">
-			<tr>
+			<tr> 
 				<th>제목</th>
 				<td><input type="text" name="freeboardtitle" placeholder="writer title here" required /></td>
 			</tr>
