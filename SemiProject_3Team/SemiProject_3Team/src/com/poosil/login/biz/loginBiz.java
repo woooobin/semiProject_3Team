@@ -66,4 +66,9 @@ public class loginBiz {
 
 		return dao.snslogin2(useremail);
 	}
+	
+	public List<loginDto> userSearch(String username) {
+		
+		return dao.userSearch(username);
+	}
 }
