@@ -74,7 +74,7 @@ response.setContentType("text/html; charset=UTF-8");
 </head>
 
 <body>
-<%@ include file="../ui/header.jsp" %>
+<%@ include file="../ui/header.jsp" %> 
 	<jsp:useBean id="fbdto" class="com.poosil.free.dto.FreeBoardDto" scope="request"></jsp:useBean>
 	<form action="free.do" method="post">
     	<input type="hidden" name="command" value="updateres">

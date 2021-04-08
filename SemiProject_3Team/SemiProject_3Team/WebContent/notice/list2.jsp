@@ -46,7 +46,7 @@
 						<td style="border-bottom: 1px solid #CCCCCC;"></td>
 					</tr>
 				</c:forEach>
-			</c:otherwise>
+			</c:otherwise> 
 		</c:choose>
 			<% if(logindto != null && logindto.getUserrole().equals("ADMIN")){
 				%>

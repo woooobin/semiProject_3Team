@@ -72,7 +72,7 @@ for (int i = 0; i < list.size(); i++) {%>{
             		},
             		<%}%>
             	
-            
+             
         	],
             callback: function (data, pagination) {
                 var dataHtml = '<div>';
