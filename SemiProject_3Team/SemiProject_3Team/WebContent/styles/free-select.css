@@ -63,3 +63,14 @@ h4{
 .contenttable.on {
 	display: none;
 }
+
+
+.button, .view-list-btn, .btn-update, .btn-answer {
+	border: 1px solid yellow;
+	background-color: #fff5ba;;
+	font: 15px 굴림;
+	color: black;
+	width:100px;
+	height: 30px;
+	border-radius: 5px;
+}

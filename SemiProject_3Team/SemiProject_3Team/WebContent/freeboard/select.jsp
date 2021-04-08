@@ -45,7 +45,8 @@ if (logindto != null) {
 <link href="./styles/reset.css" rel="stylesheet">
 <link href="./styles/layout.css" rel="stylesheet">
 <link href="./styles/free-select.css" rel="stylesheet">
-<title>Insert title here</title>
+<link href="images/logo/favicon.png" rel="shortcut icon">
+<title>${dto.freeboardtitle }</title>
 </head>
 <body>
 	<%@ include file="../ui/header.jsp"%>
@@ -55,11 +56,11 @@ if (logindto != null) {
 	%>
 	<jsp:useBean id="ucdto" class="com.poosil.comment.dto.CommentDto"
 		scope="request"></jsp:useBean>
-	<h3 align="center">${dto.freeboardtitle }</h3>
+	<h2 align="center">${dto.freeboardtitle }</h2>
 	<div class="container">
 		<div class="table">
 			<div class="table-header">
-				<span class="userid">유저 아이디 : ${dto.userid}</span><span
+				<span class="userid">${dto.userid}</span><span
 					class="readcount">조회수 : ${dto.readcount }</span> <span
 					class="regdate">${dto.regdate }&nbsp;</span>
 			</div>
@@ -72,11 +73,11 @@ if (logindto != null) {
 			<c:choose>
 				<c:when test="${sessionID == dto.userid}">
 					<div>
-						<input type="button" value="수정"
+						<input type="button" value="수정" class="button"
 							onclick="location.href='free.do?command=updateform&freeboardseq=${dto.freeboardseq}'">
-						<input type="button" value="삭제"
+						<input type="button" value="삭제" class="button"
 							onclick="location.href='free.do?command=delete&freeboardseq=${dto.freeboardseq}'">
-						<input type="button" value="목록"
+						<input type="button" value="목록" class="button"
 							onclick="location.href='free.do?command=list'">
 					</div>
 				</c:when>
@@ -97,25 +98,27 @@ if (logindto != null) {
 					<c:otherwise>
 						<c:forEach items="${clist }" var="cdto" varStatus="status">
 							<div class="row">
-								<input type="hidden" value="${cdto.commentno }">
 								<p>
+								<input type="hidden" value="${cdto.commentno }">
+								
 									<c:forEach begin="1" end="${cdto.titletab }">
-										&nbsp;
+										&nbsp;&nbsp;&nbsp;
 									</c:forEach>
 									${cdto.commentcontent }
 									 
-								 </p>
-								 <div class="comment-util">
-								 	<span class="userid">작성자 아이디 : ${cdto.userid }</span>
-									 <span class="regdate">작성 날짜 : ${cdto.regdate }</span>
-									<c:if test="${userid.equals(cdto.userid)}">
-										<button class="btn-update" onclick="onclickUpdateComment(${status.index})">수정</button>
-										<button onclick="location.href='free.do?command=cdelete&commentno=${cdto.commentno}&freeboardseq=${dto.freeboardseq}'">삭제</button>
-									</c:if>
-									<c:if test="${userid != null}">
-										<button class="btn-answer" onclick="onClickAnswerComment(${status.index})">답글달기</button>
-									</c:if>
-								 </div>
+								</p>
+									 <div class="comment-util">
+									 	<span class="userid"> ${cdto.userid } &nbsp;&nbsp;&nbsp;</span>
+										 <span class="regdate"> ${cdto.regdate }&nbsp;&nbsp;&nbsp;</span>
+										<c:if test="${userid.equals(cdto.userid)}">
+											<button class="btn-update" onclick="onclickUpdateComment(${status.index})">수정</button>
+											<button class="button" onclick="location.href='free.do?command=cdelete&commentno=${cdto.commentno}&freeboardseq=${dto.freeboardseq}'">삭제</button>
+										</c:if>
+										<c:if test="${userid != null}">
+											<button class="btn-answer" onclick="onClickAnswerComment(${status.index})">답글달기</button>
+										</c:if>
+									 </div>
+								
 							</div>
 							<!-- 댓글 수정 영역 -->
 							<div class="updatetext">
@@ -132,7 +135,7 @@ if (logindto != null) {
 										<textarea rows="3" cols="60" class="updatecontent"
 											name="updatecontent">${cdto.commentcontent }</textarea>
 									</div>
-									<button type="submit">댓글 수정 완료</button>
+									<button type="submit" class="button">댓글 수정 완료</button>
 								</form>
 							</div>
 							<!-- 대댓글 영역 -->
@@ -144,9 +147,9 @@ if (logindto != null) {
 										name="command" value="updateanswer" /> <input type="hidden"
 										name="updatecommentno" value="${cdto.commentno }" /> <input
 										type="hidden" name="updateuserid"
-										value="${session.sessionID }" />
+										value="${sessionID }" />
 									<textarea rows="3" cols="100" name="updatecontent"></textarea>
-									<input type="submit" value="대댓글 등록">
+									<input type="submit" class="button" value="대댓글 등록">
 								</form>
 							</div>
 
@@ -162,7 +165,7 @@ if (logindto != null) {
 						<input type="hidden" name="userid" value="${sessionID }">
 						<input type="hidden" name="freeboardseq" value="${dto.freeboardseq }"> 
 						<textarea rows="3"	cols="100" name="commentcontent"></textarea>
-						<input type="submit" value="댓글 등록">
+						<input type="submit" class="button" value="댓글 등록">
 					</c:if>
 				</div>
 			</form>
