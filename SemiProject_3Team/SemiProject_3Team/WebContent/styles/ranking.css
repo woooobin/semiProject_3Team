@@ -1,0 +1,44 @@
+.rank-container{text-align: center;
+    padding: 99px 0;}
+.rank-container>h2{    font-size: 22px;
+    padding: 90px 0 0px;
+    margin-bottom: 12px;}
+.rank-container>h2:first-of-type{padding-top:0;}
+.rank-container>p{font-size:14px;padding-bottom:15px;}
+.rank-container>.chartwrap{text-align:center;}
+.chartcont-wrap{
+		display:flex; justify-content:space-between;
+	}
+	.chartcont{
+		width:300px;height:300px;
+	}
+
+.chartcont{
+	position:relative;
+}
+.firstCateName,.secondCateName{
+	  position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 27px;
+}
+.firstCateName, .firstCatePercent {color:#6481ff}
+.secondCateName , .secondCatePercent{color:#1ad8f5}
+.firstCatePercent,.secondCatePercent{
+	position: absolute;
+    top: calc(50% + 37px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+}
+
+
+
+
+
+
+
+
+
+
