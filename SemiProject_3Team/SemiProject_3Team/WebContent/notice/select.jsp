@@ -16,7 +16,7 @@
     <link href="./styles/bootstrap.min.css" rel="stylesheet" >
 <title>${dto.noticetitle }</title>
 <link href="styles/reset.css" rel="stylesheet">
-<link href="styles/layout.css" rel="stylesheet">
+<link href="styles/layout.css" rel="stylesheet"> 
 <link href="images/logo/favicon.png" rel="shortcut icon">
 <style type="text/css">
 	.title{
