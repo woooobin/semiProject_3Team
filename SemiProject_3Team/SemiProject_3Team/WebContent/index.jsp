@@ -61,44 +61,30 @@
 					<li class="main-projects-list-item"><a> <span
 							class="frame"> <img alt="like_1"
 								src="./images/mainFake/like_1.png"
-								style="width: 200px; height: 230px;"> <em></em>
-								<h3></h3>
+								style="width: 200px; height: 230px;"> 
 						</span>
 					</a>
-						<p>
-							<span></span> <span></span>
-						</p></li>
+					</li>
 					<li class="main-projects-list-item"><a> <span
 							class="frame"> <img alt="like_2"
 								src="./images/mainFake/like_2.png"
-								style="width: 200px; height: 230px;"> <em></em>
-								<h3></h3>
+								style="width: 200px; height: 230px;"> 
 						</span>
 					</a>
-						<p>
-							<span></span> <span></span>
-						</p></li>
+					</li>
 					<li class="main-projects-list-item"><a> <span
 							class="frame"> <img alt="like_3"
 								src="./images/mainFake/like_3.png"
 								style="width: 200px; height: 230px; top: 200px; left: auto">
-								<em></em>
-								<h3></h3>
+								
 						</span>
-					</a>
-						<p>
-							<span></span> <span></span>
-						</p></li>
+					</a></li>
 					<li class="main-projects-list-item"><a> <span
 							class="frame"> <img alt="like_4"
 								src="./images/mainFake/like_4.png"
-								style="width: 200px; height: 230px;"> <em></em>
-								<h3></h3>
+								style="width: 200px; height: 230px;">
 						</span>
-					</a>
-						<p>
-							<span></span> <span></span>
-						</p></li>
+					</a></li>
 				</ol>
 			</div>
 			<h2>신규 프로젝트</h2>
