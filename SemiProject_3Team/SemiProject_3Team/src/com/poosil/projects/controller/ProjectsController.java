@@ -3,6 +3,7 @@ package com.poosil.projects.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +44,9 @@ public class ProjectsController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String command = request.getParameter("command");
 		ProjectsBiz biz = new ProjectsBizImpl();
-
+		
+		
+		
 		if (command.equals("selectList")) {
 			String province = request.getParameter("province");
 			String sortOpt = request.getParameter("sortOpt");

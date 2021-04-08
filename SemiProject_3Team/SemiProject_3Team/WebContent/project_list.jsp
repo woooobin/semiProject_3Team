@@ -27,9 +27,11 @@ response.setContentType("text/html; charset=UTF-8");
 	String [] provinceArr = new String []{"전체","서울","경기","강원","충북","충남","경북","경남","전북","전남","제주" } ;
 %>
 <script>
+	var urlParams = new URLSearchParams(window.location.search);
+	const province = urlParams.get('province');
 	function onChangeOption(){
 		const sortOpt = document.getElementById("sortOpt").value;
-		location.href="project.do?command=selectList&sortOpt="+sortOpt		
+		location.href="project.do?command=selectList&sortOpt="+sortOpt+ "&province="+ (!!province ? province : "");
 	}
 </script>
 </head>
