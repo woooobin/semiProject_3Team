@@ -3,6 +3,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html; charset=UTF-8");
+	loginDto logindto = (loginDto)session.getAttribute("dto");
 %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -37,8 +38,8 @@
 						<td style="font-size: 24pt;"><a href="notice.do?command=select&noticeseq=${dto.noticeseq }">${dto.noticetitle }</a></td>
 					</tr>
 					<tr>
-					<c:out value="${dto.usernickname }"> </c:out>
-						<td style="color: #CCCCCC; font-size: 12px">${dto.usernickname }  ${dto.regdate }</td>
+						<td align="left" style="color: 	#E7A083; font-size: 12px">관리자</td>
+						<td align="right" style="color: #B49D94; font-size: 12px">${dto.regdate }</td>
 					</tr>
 					<tr><td><br/></td></tr>
 					<tr>
@@ -47,6 +48,15 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
+			<% if(logindto != null && logindto.getUserrole().equals("ADMIN")){
+				%>
+				<tr>
+					<td colspan="4" align="right">
+						<input type="button" value="글작성" onclick="location.href='notice.do?command=insertform'" >
+					</td>
+				</tr>
+				<%
+			} %>
 		</table>
 		<table>
 			<br/>
@@ -54,7 +64,6 @@
 				<li class="page-item disabled"><a class="page-link" href="#">이전</a></li>
 				<li class="page-item"><a class="page-link" href="notice.do?command=list&page=1">다음</a></li>
 			</ul>
-		</table>
-	
+	</table>
 </body>
 </html>
