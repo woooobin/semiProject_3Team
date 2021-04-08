@@ -11,7 +11,10 @@ response.setContentType("text/html; charset=UTF-8");
 
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>공지 수정하기</title>
+    <link href="styles/reset.css" rel="stylesheet">
+	<link href="styles/layout.css" rel="stylesheet">
+	<link href="images/logo/favicon.png" rel="shortcut icon">
     <!-- https://m.blog.naver.com/PostView.nhn?blogId=simpolor&logNo=220944466478&proxyReferer=https:%2F%2Fwww.google.com%2F -->
     <!-- include libraries(jQuery, bootstrap) -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -57,6 +60,17 @@ response.setContentType("text/html; charset=UTF-8");
             });
         });
     </script>
+    <style type="text/css">
+    .button {
+	border: 1px solid yellow;
+	background-color: #fff5ba;;
+	font: 15px 굴림;
+	color: black;
+	width:100px;
+	height: 30px;
+	border-radius: 5px;
+}	
+    </style>
 </head>
 
 <body>
@@ -68,17 +82,15 @@ response.setContentType("text/html; charset=UTF-8");
     	<input type="hidden" name="noticeseq" value='<jsp:getProperty property="noticeseq" name="ntdto"/>'/>
     	<table border="1" style="margin-left: auto; margin-right: auto;">
 			<tr>
-				<th>제목</th>
 				<td><input type="text" name="noticetitle" value='<jsp:getProperty property="noticetitle" name="ntdto"/>'/></td>
 			</tr>
 			<tr>
-				<th style="vertical-align: middle;">내용</th>
 				<td><textarea rows="30" cols="100" name="noticecontent" id="summernote" placeholder="write something"><jsp:getProperty property="noticecontent" name="ntdto"/></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
-					 <input type="submit" value="수정" />
-					 <input type="button" value="취소" onclick="notice.do?command=select&noticeseq=${ntdto.noticeseq}" />
+					 <input type="submit" class="button" value="수정" />
+					 <input type="button" class="button" value="취소" onclick="notice.do?command=select&noticeseq=${ntdto.noticeseq}" />
 				</td>
 			</tr>
        </table> 
