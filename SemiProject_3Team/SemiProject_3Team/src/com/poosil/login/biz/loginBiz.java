@@ -43,8 +43,6 @@ public class loginBiz {
 		return dao.insertUser(dto);
 	}
 
-	
-
 	public int updateUser(loginDto dto) {
 		return dao.updateUser(dto);
 	}
@@ -66,5 +64,9 @@ public class loginBiz {
 
 		return dao.snslogin2(useremail);
 	}
-	
+
+	public List<loginDto> userSearch(String username) {
+
+		return dao.userSearch(username);
+	}
 }
