@@ -66,11 +66,64 @@ if (logindto != null) {
 .contenttable.on {
 	dispaly: none;
 }
+
+.title{
+	font-size: 20pt;
+}
+
+textarea{
+	overflow: scroll;
+}
+
+.button {
+	border: 1px solid yellow;
+	background-color: #fff5ba;;
+	font: 15px 굴림;
+	color: black;
+	width:100px;
+	height: 30px;
+	border-radius: 5px;
+}	
+.btn-update{
+	border: 1px solid yellow;
+	background-color: #fff5ba;;
+	font: 15px 굴림;
+	color: black;
+	width:100px;
+	height: 30px;
+	border-radius: 5px;
+}
+.btn-answer{
+	border: 1px solid yellow;
+	background-color: #fff5ba;;
+	font: 15px 굴림;
+	color: black;
+	width:100px;
+	height: 30px;
+	border-radius: 5px;
+}
+
+#contenttable{
+	width:100%;
+	text-align: center;
+	margin-left:-40px;
+}
+
+.comments{
+	margin-left: -600px;
+}
+
+.container{
+	margin-left: -600px;
+}
 </style>
-<link href="./styles/reset.css" rel="stylesheet">
+<link href="styles/reset.css" rel="stylesheet">
+<link href="styles/layout.css" rel="stylesheet">
+<link href="images/logo/favicon.png" rel="shortcut icon">
 <!-- Bootstrap CSS -->
 <link href="./styles/bootstrap.min.css" rel="stylesheet">
-<title>Insert title here</title>
+<title>${dto.freeboardtitle }</title>
+
 </head>
 <body>
 	<%@ include file="../ui/header.jsp"%>
@@ -80,38 +133,39 @@ if (logindto != null) {
 	%>
 	<jsp:useBean id="ucdto" class="com.poosil.comment.dto.CommentDto"
 		scope="request"></jsp:useBean>
-	<h3 align="center">${dto.freeboardtitle }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
-
 	<table border="1" style="margin-left: auto; margin-right: auto;">
 		<tr>
-			<td>${dto.userid }&nbsp;&nbsp;&nbsp;조회수${dto.readcount }</td>
-			<td>${dto.regdate }&nbsp;&nbsp;</td>
+			<td class="title">${dto.freeboardtitle }</td>
+		</tr>
+		<tr>
+			<td>${dto.userid }</td>
+			<td align="left">${dto.regdate }</td>
 		</tr>
 
 		<tr>
-			<td><textarea rows="10" cols="60" readonly="readonly">${dto.freeboardcontent }</textarea>
+			<td><textarea rows="15" cols="100" readonly="readonly">${dto.freeboardcontent }</textarea>
 			</td>
 		</tr>
 		<c:choose>
 			<c:when test="${sessionID == dto.userid}">
 				<tr>
-					<td colspan="2" align="right"><input type="button" value="수정"
+					<td colspan="2" align="right"><input type="button" class="button" value="수정"
 						onclick="location.href='free.do?command=updateform&freeboardseq=${dto.freeboardseq}'">
-						<input type="button" value="삭제"
+						<input type="button" class="button" value="삭제"
 						onclick="location.href='free.do?command=delete&freeboardseq=${dto.freeboardseq}'">
-						<input type="button" value="목록"
+						<input type="button" class="button" value="목록"
 						onclick="location.href='free.do?command=list'"></td>
 				</tr>
 			</c:when>
 			<c:otherwise>
 				<tr>
-					<td colspan="2" align="right"><input type="button" value="목록"
+					<td colspan="2" align="right"><input type="button" class="button" value="목록"
 						onclick="location.href='free.do?command=list'"></td>
 				</tr>
 			</c:otherwise>
 		</c:choose>
 	</table>
-	<h4>&nbsp;&nbsp;Comments</h4>
+	<h4 class="comments" align="center">Comments</h4>
 
 
 	<c:choose>
@@ -120,7 +174,7 @@ if (logindto != null) {
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${clist }" var="cdto" varStatus="status">
-				<div>
+				<div class="container" align="center">
 					<c:forEach begin="1" end="${cdto.titletab }"> 
 						<span style="display:inline-block; width:20px;"></span>
 					</c:forEach>
@@ -132,9 +186,9 @@ if (logindto != null) {
 			
 						<c:if test="${userid.equals(cdto.userid)}">
 							<div class="buttonwrap">
-								<button class="btn-update"
+								<button class="btn-update" 
 									onclick="onclickUpdateComment(${status.index})">수정</button>
-								<input type="button" value="삭제"
+								<input type="button" class="button" value="삭제"
 									onclick="location.href='free.do?command=cdelete&commentno=${cdto.commentno}&freeboardseq=${dto.freeboardseq}'">
 							</div>
 						</c:if>
@@ -165,7 +219,7 @@ if (logindto != null) {
 							<textarea rows="3" cols="60" class="updatecontent"
 								name="updatecontent">${cdto.commentcontent }</textarea>
 						</div>
-						<button type="submit">댓글 수정 완료</button>
+						<button type="submit" class="button">댓글 수정 완료</button>
 					</form>
 				</div>
 				<!-- 대댓글 영역 -->
@@ -177,7 +231,7 @@ if (logindto != null) {
 						<input type="hidden" name="updatecommentno" value="${cdto.commentno }"/> 
 						<input type="hidden" name="updateuserid" value="${sessionID }"/>
 						<textarea rows="3" cols="100" name="updatecontent"></textarea>
-						<input type="submit" value="대댓글 등록">
+						<input type="submit" class="button" value="대댓글 등록">
 					</form>
 				</div>
 				
@@ -200,7 +254,7 @@ if (logindto != null) {
 							cols="100" name="commentcontent"></textarea></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="댓글 등록">&nbsp;&nbsp;</td>
+					<td align="center"><input type="submit" class="button" value="댓글 등록">&nbsp;&nbsp;</td>
 				</tr>
 			</c:if>
 			

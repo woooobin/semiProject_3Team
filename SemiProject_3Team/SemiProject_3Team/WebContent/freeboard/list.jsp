@@ -11,10 +11,11 @@ response.setContentType("text/html; charset=UTF-8");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>pagination example</title>
+<title>자유 게시판</title>
 <link href="styles/reset.css" rel="stylesheet">
 <link href="styles/layout.css" rel="stylesheet">
 <link href="styles/free-list.css" rel="stylesheet">
+<link href="images/logo/favicon.png" rel="shortcut icon">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
@@ -23,7 +24,7 @@ response.setContentType("text/html; charset=UTF-8");
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
 </head>
-
+<% String sessionID = (String)session.getAttribute("sessionID"); %>
 <body>
 	<%@ include file="/ui/header.jsp"%>
 	<h2 align="center">자유 게시판</h2>
@@ -38,10 +39,16 @@ response.setContentType("text/html; charset=UTF-8");
 		</div>
 		<div>
 			<section>
-				<div id="data-container"></div>
+				<div id="data-container"></div><br/>
+				<% if(sessionID != null){
+				%>
+			<div align="right">
+				<input type="button" class="button" value="글작성" onclick="location.href='free.do?command=insertform'" >
+			</div>
+			  <%
+			} %>
 				<div id="pagination"></div>
 			</section>
-			<button onclick="location.href='free.do?command=insertform'">글쓰기</button>
 		</div>
 	</div>
 	</div>
