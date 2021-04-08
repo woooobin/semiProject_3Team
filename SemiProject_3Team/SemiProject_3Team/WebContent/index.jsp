@@ -30,17 +30,18 @@ response.setContentType("text/html; charset=UTF-8");
 			<!-- Additional required wrapper -->
 			<div class="swiper-wrapper">
 				<!-- Slides -->
-				<div class="swiper-slide">Slide 1</div>
-				<div class="swiper-slide">Slide 2</div>
-				<div class="swiper-slide">Slide 3</div>
-				...
+				<div class="swiper-slide">
+					<h2>먼 곳의 농산물을 체험해 보세요.</h2>
+					<img src="images/slide01.jpeg"/>
+				</div>
+				<div class="swiper-slide">
+					<h2> 이웃을 응원해서 선물을 받아보세요. </h2>
+					<img src="images/slide02.jpeg"/>
+				</div>
 			</div>
 			<!-- If we need pagination -->
-			<div class="swiper-pagination"></div>
+<!-- 			<div class="swiper-pagination"></div> -->
 
-			<!-- If we need navigation buttons -->
-			<div class="swiper-button-prev"></div>
-			<div class="swiper-button-next"></div>
 
 			<!-- If we need scrollbar -->
 			<div class="swiper-scrollbar"></div>

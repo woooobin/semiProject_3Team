@@ -1,6 +1,6 @@
 package com.poosil.free.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class FreeBoardDto {
 	

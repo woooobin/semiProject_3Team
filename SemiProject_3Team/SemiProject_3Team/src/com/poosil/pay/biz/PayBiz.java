@@ -12,5 +12,5 @@ public interface PayBiz {
 	public int insertadminPayment(PayDto dto);
 	public List<PayDto> customerPaymentList(String userId);
 	public ProjectItemDto selectProjectItem(int projectItemSeq);
-	public int updateTotalPrice(String projectId , int purchasePrice);
+	public int updateTotalPrice(String projectId , int price);
 }

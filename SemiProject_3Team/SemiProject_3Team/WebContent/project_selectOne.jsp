@@ -186,7 +186,7 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 									<% 
 									if(logindto != null) {	
 									%>										
-										<a href="pay.do?command=orderpage&userid=<%=logindto.getUserid() %>&projectItemSeq=${ projectItem.projectItemSeq}&projectId=${projectItem.projectId}">
+										<a href="pay.do?command=orderpage&userid=<%=logindto.getUserid() %>&projectItemSeq=${ projectItem.projectItemSeq}&projectId=${projectDto.projectId}">
 										
 											<div class="frame">
 												<p>${projectItem.price}원 응원하기 </p>
