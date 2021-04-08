@@ -6,7 +6,6 @@
   <mapper namespace="paymapper">
   	<resultMap type="PayDto" id="PayMap">
   		<result property="orderSeq" column="ORDERSEQ"/>
-  		<result property="quantity" column="QUANTITY"/>
   		<result property="userId" column="USERID"/>
   		<result property="projectItemSeq" column="PROJECTITEMSEQ"/>
   		<result property="address" column="ADDRESS"/>
@@ -20,34 +19,35 @@
   	</resultMap>
   	
   	<select id="adminPaymentList" resultMap="PayMap">
-  		SELECT ORDERSEQ, QUANTITY, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, ORDERDATE, DELIVERYFEE, PURCHASEPRICE
+  		SELECT ORDERSEQ, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, ORDERDATE, DELIVERYFEE, PURCHASEPRICE
   		FROM ORDERPAGE 
   		ORDER BY ORDERSEQ DESC
   	</select>
   	
   	<select id="customerPaymentList" parameterType="PayDto" resultType="PayDto">
-  		SELECT ORDERSEQ, QUANTITY, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, ORDERDATE, DELIVERYFEE, PURCHASEPRICE
+  		SELECT ORDERSEQ, USERID, PROJECTITEMSEQ, ADDRESS, PHONE, TOTALPRICE, PRICE, ORDERDATE, DELIVERYFEE, PURCHASEPRICE
   		FROM ORDERPAGE
   		WHERE USERID = #{userId}
   		ORDER BY ORDERDATE DESC
   	</select>
-  	
+
   	<insert id="insertadminPayment" parameterType="PayDto">
-  		INSERT INTO ORDERPAGE
-  		VALUES(ORDERSEQ.NEXTVAL, #{quantity}, #{userId}, #{projectItemSeq}, #{address}, #{phone}, #{totalPrice}, #{price}, SYSDATE, #{deliveryFee}, #{purchasePrice})
+  		INSERT INTO ORDERPAGE (orderSeq, userId, projectItemSeq, address, phone, totalPrice, price, orderDate, DELIVERYFEE, PURCHASEPRICE)
+  		VALUES(ORDERSEQ.NEXTVAL, #{userId}, #{projectItemSeq}, #{address}, #{phone}, #{totalPrice}, #{price}, SYSDATE, #{deliveryFee}, #{purchasePrice})
   	</insert>
   	
   	<select id="selectProjectItem" parameterType="int" resultType="ProjectItemDto">
-  		SELECT PROJECTITEMSEQ, PROJECTITEMNAME, QUANTITY, PROJECTID, PRICE 
+  		SELECT PROJECTITEMSEQ, PROJECTITEMNAME, PROJECTID, PRICE 
   		FROM PROJECTITEM
   		WHERE PROJECTITEMSEQ = #{projectItemSeq}
   	</select>
-  	
   	
   	<update id="updateTotalPrice" parameterType="HashMap">
   		UPDATE PROJECTS SET TOTALPRICE = TOTALPRICE + #{price} 
         WHERE PROJECTID = #{projectId}
   	</update>
+  	
+
   	
 
   </mapper>

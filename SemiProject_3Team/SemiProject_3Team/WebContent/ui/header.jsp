@@ -55,7 +55,6 @@ String userNickname = "ADMIN";
 				<li><a href="notice.do?command=list">공지게시판</a></li>
 			</ul>
 		</div>
-		
 	</div>
 </header>
 

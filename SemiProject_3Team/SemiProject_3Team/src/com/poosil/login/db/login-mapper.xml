@@ -84,6 +84,13 @@ FROM MEMBERS
 WHERE USEREMAIL = #{useremail}
 </select>
 
+
+<select id="userSearch" resultType="loginDto">
+SELECT USERID,USEREMAIL,USERPHONE,ADDRESS,USERROLE,SELLERSOPT,AVATAR,USERNICKNAME,USERNAME,USERENABLED
+FROM MEMBERS 
+WHERE USERNAME LIKE '%' || #{username} || '%'
+</select>
+
 </mapper>
 
 

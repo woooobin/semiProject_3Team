@@ -1,8 +1,8 @@
 h1,h2,h3,h4,h5,h6,p{}
 h3{    font-size: 21px ;
     font-weight: 500;}
-.lft{width:70%;}
-.rgt{width:30%;}
+.lft{width:calc(100% - 300px);}
+.rgt{width:300px;}
 .lft>.wrapper{width:90%; margin:0 auto;}
 .rgt>.wrapper{
 	width:90%;margin: 0 auto;
@@ -11,17 +11,72 @@ h3{    font-size: 21px ;
 .graph{background-color:#eee;border-radius:6px;height:6px;}
 
 .project-detail-header{
-	padding:30px 0;
-	text-align:center;
+	padding: 80px 0;margin:20px 0;
+    text-align: center;
+    position:relative;overflow:hidden;
 }
+.project-detail-header:after{content:"";width:100%;height:100%;position:absolute;background-color:rgba(0,0,0,0.3);left:0;top:0;z-index:-1;}
+.project-detail-header h2,.project-detail-header h3{
+	white-space:nowrap;
+	text-align:center;
+	
+	color:#fff;z-index:100;
+}
+.project-detail-header h2{font-size:23px;padding:0 0 23px;}
+.project-detail-header h3{font-size:18px; font-weight:400;}
+.project-detail-header img{    position: absolute;
+    left: 50%;
+    width: 100%;
+    text-align: 0;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;}
 
-.project-detail-nav{}
 .project-detail-nav ol{display:flex;justify-content:center; align-items:center;}
 .project-detail-nav ol li{margin : 0 20px;}
 
-.project-detail-sub-nav{}
-.project-detail-sub-nav button{width:50px;height:50px;}
+.project-detail-sub-nav{
+	border-top: 1px solid #dedede;
+    margin: 20px 0;
+    border-bottom: 1px solid #dedede;
+}
+.project-detail-sub-nav a,
+.project-detail-sub-nav button{width:30%;height:50px;}
+.project-detail-sub-nav button>*{display:inline-block;vertical-align:middle;}
 .project-detail-sub-nav button>i{font-size:20px;}
+.project-detail-sub-nav button .likeCount{margin:0 10px;}
 
-.project-detail-hashtags{}
-.project-detail-hashtags a{display:inline-block; padding :0 5px; border-radius:5px; background-color:blue; color:#fff !important; font-weight:400;}
+
+.project-detail-hashtags a{
+	display: inline-block;
+    padding: 4px 13px;
+    border-radius: 5px;
+    background-color: #40a798;
+    color: #fff !important;
+    font-weight: 400;
+}
+
+.project-detail-description{padding:30px 0;}
+
+.project-detail-info{
+	
+}
+.project-detail-info > h3{
+	padding:0 5px;
+}
+.project-detail-info .graph + p,
+.project-detail-info #map + p {
+	padding:15px 0;
+}
+.project-detail-info h3,.project-detail-info p{
+	font-size: 15px;
+    font-weight: 100;
+}
+
+
+
+
+
+
+
+

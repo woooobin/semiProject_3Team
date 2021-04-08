@@ -1,0 +1,45 @@
+
+
+h2{font-size:32px;height:100px;line-height:100px;}
+
+.container .table {
+		display:flex;justify-content:space-between; width:100%;
+		font-size: 16px;
+	}
+.container .table>div{
+	
+width:100%;
+	
+}
+.notice{
+	color: #00FFCC; 
+	font-size: 12px;
+}
+
+.title{
+	font-size: 18pt;
+}
+
+.role{
+	color: 	#E7A083; font-size: 12px;
+}
+
+.date{
+	color: #B49D94; font-size: 12px;
+}
+
+.paginationjs{display:flex;justify-content:center; padding:50px 0;}
+
+.line{
+	border-bottom: 1px solid #CCCCCC;
+}
+
+.button {
+	border: 1px solid yellow;
+	background-color: #fff5ba;;
+	font: 15px 굴림;
+	color: black;
+	width:100px;
+	height: 30px;
+	border-radius: 5px;
+}

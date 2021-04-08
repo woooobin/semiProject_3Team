@@ -1,13 +1,9 @@
 
 
-	h2{font-size:14px;height:100px;line-height:100px;}
+	h2{font-size:32px;height:100px;line-height:100px;}
 	 span {
         
       }
-      
-     button{
-     	align: right;
-     }
 	
 	.table{
 		display: table;
@@ -50,3 +46,12 @@
 	
 	.paginationjs{display:flex;justify-content:center; padding:50px 0;}
 	
+.button {
+	border: 1px solid yellow;
+	background-color: #fff5ba;;
+	font: 15px 굴림;
+	color: black;
+	width:100px;
+	height: 30px;
+	border-radius: 5px;
+}	

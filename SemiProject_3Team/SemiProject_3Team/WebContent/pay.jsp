@@ -20,8 +20,6 @@
 	System.out.println("projectId = " + projectId);
 	String projectName = request.getParameter("projectName");
 	System.out.println("projectName = " + projectName);
-	int quantity = Integer.parseInt(request.getParameter("quantity"));
-	System.out.println("quantity = " + quantity);
 	int deliveryFee = Integer.parseInt(request.getParameter("deliveryFee"));
 	System.out.println("deliveryFee ="  + deliveryFee);
 	int purchasePrice = Integer.parseInt(request.getParameter("purchasePrice"));
@@ -77,7 +75,6 @@
                     imp_uid : rsp.imp_uid,
                     projectItemSeq : <%=projectItemSeq%>,
                     projectName : '<%=projectName%>',
-                    quantity : <%=quantity%>,
                     price : <%=price%>,
                     deliveryFee : <%=deliveryFee%>,
                     purchasePrice : <%=purchasePrice%>,
