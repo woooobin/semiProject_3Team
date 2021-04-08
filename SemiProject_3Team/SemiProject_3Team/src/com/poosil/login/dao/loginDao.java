@@ -302,9 +302,31 @@ public class loginDao extends SqlMapConfig {
 		return dto;
 
 	}
-
 	
 	
+	// ******관리자 페이지 회원 정보 조건 검색******
+	
+	// 이름 검색
+	public List<loginDto> userSearch(String username) {
+		
+		SqlSession session = null;
+		
+		String SQL = "SELECT * FROM MEMBERS WHERE USERNAME LIKE ?";
+		List<loginDto> list = new ArrayList<loginDto>();
+		
+		try {
+			session = getSqlSessionFactory().openSession(true);
+			list = session.selectList(namespace + "userSearch", username);
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
+		session.close();
+		
+		return list;
+		
+	}
+	
 
 }

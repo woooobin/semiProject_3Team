@@ -2,10 +2,11 @@
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("UTF-8");%>
 <% response.setContentType("text/html;charset=UTF-8");%>    
-    
+
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="css/signup.css">
 <meta charset="UTF-8">
 <title>이메일 중복 체크</title>
 
@@ -31,22 +32,18 @@
 
 
 </head>
-<body>
+<body style="background-image:url('images/signupavatar/avatar.png');background-size: 100%;">
 <%
 	String emailnotused = request.getParameter("emailnotused");
 %>
-
-	<table border="1">
-		<tr>
-			<td><input type="text" name="email" /></td>
-		</tr>
-		<tr>
-			<td><%=emailnotused.equals("true")?"email 생성 가능" : "중복된 email 존재" %></td>
-		</tr>
-		<tr>
-			<td><input type="button" value="확인" onclick="confirmemail('<%=emailnotused%>');" /></td>
-		</tr>
-	</table>
+	<br/>
+	<div align="center" style="font-style: inherit; font-weight:bold;">
+		<%=emailnotused.equals("true") ? "사용 가능한 Email" : "중복 된 Email "%>
+	</div>
+	<br/><br/><br/><br/><br/><br/><br/><br/>
+	<div align="center"><input type="button" value="확인"
+		onclick="confirmId('<%=emailnotused%>');" />
+	</div>
 
 </body>
 </html>

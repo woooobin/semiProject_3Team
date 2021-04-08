@@ -19,13 +19,14 @@
 %>
 <body>
 
+	<%@ include file="./ui/header.jsp"%>
+
 	<h1>결제 내역</h1>
 		<table border="1">
 			<tr>
 				<th>주문번호</th>
 				<th>유저id</th>
 				<th>상품번호</th>
-				<th>수량</th>
 				<th>가격</th>
 				<th>주문날짜</th>
 			</tr>
@@ -37,7 +38,6 @@ for (PayDto paydto : list) {
 				<td><%=paydto.getOrderSeq() %></td>
 				<td><%=paydto.getUserId() %></td>
 				<td><%=paydto.getProjectItemSeq() %></td>
-				<td><%=paydto.getQuantity() %></td>
 				<td><%=paydto.getPurchasePrice() %></td>
 				<td><%=paydto.getOrderDate() %></td>
 			</tr>

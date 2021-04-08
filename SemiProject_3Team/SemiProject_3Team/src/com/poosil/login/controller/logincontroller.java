@@ -64,7 +64,7 @@ public class logincontroller extends HttpServlet {
 				}
 			} else {
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('로그인 실패'); location.href='login.jsp';</script>");
+				out.println("<script>alert('다시 시도해 주세요.'); location.href='login.jsp';</script>");
 				out.flush();
 			}
 
@@ -162,7 +162,6 @@ public class logincontroller extends HttpServlet {
 			// String addresslatitude = request.getParameter("addresslatitude");
 			// String addresslongitude = request.getParameter("addresslongitude");
 			// String sellersopt = request.getParameter("sellersopt");
-			String avatar = request.getParameter("avatar");
 			// String usernickname = request.getParameter("usernickname");
 			String username = request.getParameter("username");
 			String userenabled = request.getParameter("userenabled");
@@ -174,7 +173,6 @@ public class logincontroller extends HttpServlet {
 			dto.setUseremail(useremail);
 			dto.setUserphone(userphone);
 			dto.setAddress(address);
-			dto.setAvatar(avatar);
 			dto.setUsername(username);
 			dto.setUserenabled(userenabled);
 			dto.setUsernickname(usernickname);
@@ -182,11 +180,11 @@ public class logincontroller extends HttpServlet {
 
 			if (res > 0) {
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('회원가입 성공!'); location.href='index.jsp';</script>");
+				out.println("<script>alert( '환영합니다'); location.href='index.jsp';</script>");
 				out.flush();
 			} else {
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('회원가입 실패!'); location.href='login.do?command=signupform';</script>");
+				out.println("<script>alert('다시 시도해 주세요'); location.href='login.do?command=signupform';</script>");
 				out.flush();
 			}
 

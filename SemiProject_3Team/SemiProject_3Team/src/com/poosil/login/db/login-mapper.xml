@@ -47,8 +47,8 @@ WHERE USERID = #{USERID}
 </select>
 
 <insert id="signup" parameterType="loginDto" >
-INSERT INTO MEMBERS (USERID,PASSWORD,USEREMAIL,USERPHONE,ADDRESS,USERROLE,AVATAR,USERNAME,USERENABLED,USERNICKNAME) 
-VALUES(#{userid},#{password},#{useremail},#{userphone},#{address},'USER',#{avatar}, #{username},'Y',#{usernickname})
+INSERT INTO MEMBERS (USERID,PASSWORD,USEREMAIL,USERPHONE,ADDRESS,USERROLE,USERNAME,USERENABLED,USERNICKNAME) 
+VALUES(#{userid},#{password},#{useremail},#{userphone},#{address},'USER', #{username},'Y',#{usernickname})
 
 </insert>
 
@@ -82,6 +82,13 @@ WHERE USEREMAIL = #{useremail}
 SELECT USERID,USEREMAIL,USERPHONE,ADDRESS,USERROLE,SELLERSOPT,AVATAR,USERNICKNAME,USERNAME,USERENABLED
 FROM MEMBERS
 WHERE USEREMAIL = #{useremail}
+</select>
+
+
+<select id="userSearch" resultType="loginDto">
+SELECT USERID,USEREMAIL,USERPHONE,ADDRESS,USERROLE,SELLERSOPT,AVATAR,USERNICKNAME,USERNAME,USERENABLED
+FROM MEMBERS 
+WHERE USERNAME LIKE '%' || #{username} || '%'
 </select>
 
 </mapper>

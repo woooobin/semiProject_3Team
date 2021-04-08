@@ -17,27 +17,28 @@
 %>
 <body>
 
+	<%@ include file="./ui/header.jsp"%>
+	
 	<h1>결제 내역</h1>
 		<table border="1">
 			<tr>
 				<th>주문번호</th>
 				<th>유저id</th>
 				<th>상품번호</th>
-				<th>수량</th>
 				<th>가격</th>
 				<th>주문날짜</th>
 			</tr>
 <%
-	for (PayDto dto : list) {
+	for (PayDto paydto : list) {
 %>
 			
 			<tr>
-				<td><%=dto.getOrderSeq() %></td>
-				<td><%=dto.getUserId() %></td>
-				<td><%=dto.getProjectItemSeq() %></td>
-				<td><%=dto.getQuantity() %></td>
-				<td><%=dto.getPurchasePrice() %></td>
-				<td><%=dto.getOrderDate() %></td>
+				
+				<td><%=paydto.getOrderSeq() %></td>
+				<td><%=paydto.getUserId() %></td>
+				<td><%=paydto.getProjectItemSeq() %></td>
+				<td><%=paydto.getPurchasePrice() %></td>
+				<td><%=paydto.getOrderDate() %></td>
 			</tr>
 			
 <%
