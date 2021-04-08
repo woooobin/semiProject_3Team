@@ -24,7 +24,9 @@
 <link href="./styles/layout.css" rel="stylesheet">
 <link href="./styles/main.css" rel="stylesheet">
 <link rel="stylesheet" href="styles/orderpage.css">
-<title>Insert title here</title>
+
+<link href="images/logo/favicon.png" rel="shortcut icon">
+<title>POOSIL</title>
 
  <script>
       
