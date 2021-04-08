@@ -42,8 +42,8 @@ response.setContentType("text/html; charset=UTF-8");
 				<div id="data-container"></div><br/>
 				<% if(sessionID != null){
 				%>
-			<div class="button-wrap">
-				<button onclick="location.href='free.do?command=insertform'">글쓰기</button>
+			<div class="button-wrap" align="right">
+				<button class="button" onclick="location.href='free.do?command=insertform'">글쓰기</button>
 			</div>
 			<%
 				} 
