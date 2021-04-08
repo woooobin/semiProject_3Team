@@ -20,13 +20,16 @@
 <%loginDto dto = (loginDto)session.getAttribute("dto");%>
 
 <body>
-	<h1>MyPage</h1>
+
+<div >
+	<a><img src="images/logo/logo.png" style="width: 80px; cursor: pointer;" onclick="location.href='index.jsp'"></a>
+	</button>
+	</div>
+	<h1>내 정보</h1>
 	<h2><%=dto.getUserid() %>
 	<%session.setAttribute("userid", request.getAttribute("userid"));%>
 	님, 환영합니다.</h2>
-	<div>
-	<input type="button" value="MainPage" onclick="location.href='index.jsp'"/>
-	</div>
+	
 	<table border="1">
 		</tr>
 			<tr>

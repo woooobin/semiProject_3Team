@@ -10,7 +10,7 @@
 <link href="./styles/layout.css" rel="stylesheet">
 <link href="./styles/login.css" rel="stylesheet">
 <link href="styles/project_list.css" rel="stylesheet">
- <link rel="stylesheet" href="css/signup.css">
+<link rel="stylesheet" href="css/signup.css">
     
 <title>Insert title here</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -180,7 +180,7 @@
                 <div>
                     <h3 class="join_title"><label for="address">주소</label> &nbsp;<button type="button" class="btnjuso" onClick="goPopup();">검색</button></h3>
                     <span class="box int_name">
-                    <input  type="text"  name="address" id="address" class="int"   required readonly onclick="idCheckProc();"/>
+                    <input  type="text"  name="address" id="address" class="int"  required readonly onclick="idCheckProc();"/>
                     </span>
                     <span class="error_next_box"></span>
                 </div>

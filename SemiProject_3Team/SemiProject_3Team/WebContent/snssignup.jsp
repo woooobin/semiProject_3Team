@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+	
+<%
+String userEmail = (String)request.getAttribute("userEmail");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +15,7 @@
 <link href="./styles/login.css" rel="stylesheet">
 <link href="styles/project_list.css" rel="stylesheet">
  <link rel="stylesheet" href="css/signup.css">
+    
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
@@ -103,10 +108,129 @@
 </script>
 </head>
 <body>
+
+   <!-- header -->
+        <div id="header">
+        <h1>SNS&nbsp;회원가입</h1>
+        </div>
+
 	<form action="sns.do" method="post">
 		<input type="hidden" name="command" value="insertuser" />
+		<!-- wrapper -->
+        <div id="wrapper">
 
-		<table border="1">
+            <!-- content-->
+            <div id="content">
+
+                <!-- ID -->
+                <div>
+                    <h3 class="join_title">
+                        <label for="id">아이디</label>
+                        <input type="button" value="check" class="idchk" onclick="idCheck();" /> 
+                    </h3>
+                    <span class="box int_id">
+                        <input type="text" id="userid" name="userid" class="int"required="required" maxlength="20" title="n" />
+                        <span class="step_url"></span>
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+
+                <!-- PW1 -->
+                <div>
+                    <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
+                    <span class="box int_pass">
+                        <input type="password" id="userPw" name="password" class="int" maxlength="20" onclick="idCheckProc();" />
+                        <span id="alertTxt">사용불가</span>
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+
+                <!-- PW2 -->
+                <div>
+                    <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label>&nbsp;&nbsp;<font id="chkNotice" size="2"></font></h3>
+                    <span class="box int_pass_check">
+                        <input type="password" id="userPwChk" class="int" maxlength="20" onclick="idCheckProc();"/>
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+
+                <!-- NAME -->
+                <div>
+                    <h3 class="join_title"><label for="name">이름</label></h3>
+                    <span class="box int_name">
+                        <input type="text" id="username" name="username" class="int" maxlength="20"onclick="idCheckProc();"/>
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+                
+                 <!-- NICKNAME -->
+                <div>
+                    <h3 class="join_title"><label for="nickname">닉네임</label></h3>
+                    <span class="box int_name">
+                        <input type="text" id="nickname" name="usernickname" class="int" maxlength="20"onclick="idCheckProc();"/>
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+
+                <!-- EMAIL -->
+                <div>
+                    <h3 class="join_title"><label for="useremail">이메일 &nbsp;<input type="button" value="check" class="idchk" onclick="emailCheck();" /> <span class="optional"></span></label></h3>
+                    <span class="box int_email">
+                        <input type="text"value='<%=userEmail %>'id="naveremail();"  name="useremail" class="int" maxlength="100" title="e" onclick="idCheckProc();"/>
+                    </span>
+                    <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>    
+                </div>
+
+                <!-- MOBILE -->
+                <div>
+                    <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
+                    <span class="box int_mobile">
+                        <input type="tel" id="userphone" name="userphone" class="int" maxlength="16" onclick="idCheckProc();"/>
+                    </span>
+                    <span class="error_next_box"></span>    
+                </div>
+                
+                  <!-- ADDRESS -->
+                <div>
+                    <h3 class="join_title"><label for="address">주소</label> &nbsp;<button type="button" class="btnjuso" onClick="goPopup();">검색</button></h3>
+                    <span class="box int_name">
+                    <input  type="text"  name="address" id="address" class="int"   required readonly onclick="idCheckProc();"/>
+                    </span>
+                    <span class="error_next_box"></span>
+                </div>
+        
+                <!-- JOIN BTN-->
+                <div class="btn_area">
+                    <button type="submit" id="btnJoin">
+                        <span>join</span>
+                    </button>
+                </div>
+
+                
+
+            </div> 
+            <!-- content-->
+
+        </div> 
+        </form>
+        <!-- wrapper -->
+    <script src="main.js"></script>
+    <br/><br/><br/><br/><br/><br/><br/>
+       <br/><br/><br/><br/><br/><br/><br/>   <br/><br/><br/><br/><br/><br/><br/>   <br/><br/><br/><br/><br/><br/><br/>
+       <br/><br/><br/><br/><br/><br/><br/>
+       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+ <div class="container">
+<div class="row justify-content-md-center">
+  <div class="col-md-auto">
+     
+    </div>
+  </div>
+</div>
+
+
+
+		<!--<table border="1">
 			<tr>
 				<th>아이디</th>
 				<td><input type="text" name="userid" required="required"
@@ -148,14 +272,14 @@
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td><input type="text" name="useremail" required="required" value='<%=userEmail %>'
+				<td><input type="text" name="useremail" required="required" value=
 					id="naveremail();" /></td>
 			</tr>
 			<tr>
 				<th>프로필사진</th>
 				<td>
 					<!--<input type="text" name="avatar" required="required" onclick="idCheckProc();"  />-->
-					<div>
+					<!--<div>
 						<input type="file" class="imageInput" /> <input type="text"
 							id="thumbnailImage" name="avatar" />
 					</div>
@@ -164,8 +288,8 @@
 			<tr>
 				<td colspan="2" align="right"><input type="submit" value="가입" />
 					<!-- form 태그에 버튼 태그 왠만해선 쓰지 말기. submit 이벤트 발생하기 때문에. --></td>
-			</tr>
-		</table>
+			<!-- </tr>
+		</table>-->
 	</form>
 	<script>
 	

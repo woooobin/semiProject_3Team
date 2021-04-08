@@ -60,7 +60,7 @@ VALUES('조가린','1234', 'SEMI', 004, '세미','111', '111', 'ADMIN', 'Y', '11
 
 
 
-DELETE FROM MEMBERS WHERE userid = 'test8' ;
+DELETE FROM MEMBERS WHERE userid = 'kakao2' ;
 
 
 //회갑생성
