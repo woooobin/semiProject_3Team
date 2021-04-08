@@ -50,8 +50,8 @@ response.setContentType("text/html; charset=UTF-8");
 							class="project-upload-btn">프로젝트 업로드 하기</button>
 		<c:choose>
 			<c:when test="${empty list}">
-		프로젝트 목록이 없습니다.
-	</c:when>
+				프로젝트 목록이 없습니다.
+			</c:when>
 
 			<c:otherwise>
 
@@ -69,14 +69,13 @@ response.setContentType("text/html; charset=UTF-8");
 							<a href="project.do?command=selectOne&projectId=${dto.projectId}">
 								<div class="frame">
 									<img src="${dto.thumbImage}" />
-									<h2>${dto.projectMainTitle}</h2>
-									<div class="graph">
-										<span class="graph_val"
-											style="display:inline-block;width:calc(${dto.totalPrice} / ${dto.goalPrice} * 100)%"></span>
-									</div>
 								</div>
-								<p>총 금액 :${dto.totalPrice}</p>
-								<p class="percent"></p>
+								<h2>${dto.projectMainTitle}</h2>
+								<div class="graph">
+									<span class="graph_val"	style="display:inline-block;width:calc(${dto.totalPrice} / ${dto.goalPrice} * 100)%"></span>
+								</div>
+								<p>펀딩 ${dto.totalPrice} 원 달성 !</p>
+								
 							</a>
 						</div>
 					</c:forEach>

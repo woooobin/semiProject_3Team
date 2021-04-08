@@ -46,7 +46,7 @@ String userNickname = "ADMIN";
 			<h1><a href="index.jsp">로고</a></h1>
 			
 			<ul class="gnb">
-				<li><a href="#">카테고리</a></li>
+				<li><a href="./search.jsp ">카테고리</a></li>
 				<li><a href="project.do?command=selectList">펀딩하기</a></li>
 				<li><a href="rank.do?command=selectAll">랭킹</a></li>
 				
@@ -55,7 +55,6 @@ String userNickname = "ADMIN";
 				<li><a href="notice.do?command=list">공지게시판</a></li>
 			</ul>
 		</div>
-		
 	</div>
 </header>
 

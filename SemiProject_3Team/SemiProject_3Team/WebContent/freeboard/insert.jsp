@@ -15,7 +15,10 @@ loginDto logindto = (loginDto)session.getAttribute("dto");
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>자유 게시판 글 쓰기</title>
+    <link href="styles/reset.css" rel="stylesheet">
+	<link href="styles/layout.css" rel="stylesheet">
+	<link href="images/logo/favicon.png" rel="shortcut icon">
     <!-- https://m.blog.naver.com/PostView.nhn?blogId=simpolor&logNo=220944466478&proxyReferer=https:%2F%2Fwww.google.com%2F -->
     <!-- include libraries(jQuery, bootstrap) -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -63,20 +66,20 @@ loginDto logindto = (loginDto)session.getAttribute("dto");
     </script>
 </head>
 <body>
-
+<%@ include file="../ui/header.jsp" %>
 <br>
-   	<jsp:useBean id="dto" class="com.poosil.free.dto.FreeBoardDto" scope="request"></jsp:useBean>
+  <% String sessionID = (String)session.getAttribute("sessionID"); %>
     <form action="free.do" method="post">
     	<input type="hidden" name="command" value="insertres">
-    	<input type="hidden" name="userid" value='<jsp:getProperty property="userid" name="dto"/>'>
+    	<input type="hidden" name="userid" value='<%=sessionID%>'>
     	<table border="1" style="margin-left: auto; margin-right: auto;">
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="freeboardtitle" placeholder="writer title here" /></td>
+				<td><input type="text" name="freeboardtitle" placeholder="writer title here" required /></td>
 			</tr>
 			<tr>
 				<th style="vertical-align: middle;">내용</th>
-				<td><textarea rows="30" cols="100" name="freeboardcontent" id="summernote" placeholder="write something"></textarea></td>
+				<td><textarea rows="30" cols="100" name="freeboardcontent" id="summernote" placeholder="write something" required></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">

@@ -4,8 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="search-mapper">
 
+<!-- SQL 쿼리문 작성 -->
+<!-- 
+	<insert, delete, update, select 속성="값" 속성="값", ~~>
+		- id 속성 : DAO에서 설정하 값 ▶ session.insert("memberInsert", dto);
+		- parameterType 속성 : 매개 변수 타임(클래스타입, 기본 데이터타입) :  생략가능
+		- 입력 값 표기 : dto.getName() → #{dto 안 속성명} ▶ #{name}
+		- SQL 문장의 마지막에 세미콜론(;)은 입력하지 않는다.
+		- resultType 속성 : select 쿼리를 수행했을 때 결과 타입
+	</insert, delete, update, select>
+ -->
+ <!-- id에는 DAO에서 정한 메소드 이름을 적는다. -->
 
-	<select id="searchList" resultType="ProjectSearchDto">
+	<!-- 프로젝트 조건 검색 -->
+	<!-- 가져오는 컬럼이 ProjectDto -->
+	<select id="searchList" resultType="ProjectDto">
 		SELECT PROJECTID, USERID, PROJECTMAINTITLE, PROJECTSUBTITLE,
 		THUMBIMAGE, PROJECTCATEGORY, PROJECTSTARTDATE, PROJECTENDDATE,
 		SHIPPINGSTARTDATE, DETAILDESC, CREATEDAT, UPDATEDAT, ADDRESS,
@@ -16,8 +29,8 @@
 			<when test="searchOption == 'all'">
 				WHERE PROJECTMAINTITLE LIKE '%' || #{keyword} || '%'
 				OR PROJECTSUBTITLE LIKE '%' || #{keyword} || '%'
-				OR PROJECTCATEGORY
-				LIKE '%' || #{keyword} || '%'
+				OR DETAILDESC LIKE
+				'%' || #{keyword} || '%'
 			</when>
 			<otherwise>
 				WHERE ${searchOption} LIKE '%'||#{keyword}||'%'
@@ -26,14 +39,5 @@
 		ORDER BY CREATEDAT DESC
 	</select>
 
-	<select id="hashtagList" resultType="HashtagDto">
-		SELECT H.HASHTAGNAME, P.PROJECTMAINTITLE, P.PROJECTSTARTDATE,
-		P.PROJECTENDDATE, P.GOALPRICE, P.TOTALPRICE, P.SOLDCOUNT, P.LIKECOUNT
-		FROM PROJECTS P
-		JOIN PROJECTHASHTAG G ON P.PROJECTID = G.PROJECTID
-		JOIN HASHTAG H ON G.HASHTAGSEQ = H.HASHTAGSEQ
-		WHERE H.HASHTAGNAME LIKE '%' || #{hashtag} || '%'
-		ORDER BY PROJECTENDDATE DESC
-	</select>
 
 </mapper>

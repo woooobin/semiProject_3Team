@@ -16,7 +16,6 @@ public class loginDto {
 	private String username;
 	private String userenabled;
 	
-	
 	public loginDto() {
 		
 		
@@ -40,6 +39,7 @@ public class loginDto {
 		this.usernickname = usernickname;
 		this.username = username;
 		this.userenabled = userenabled;
+
 	}
 
 
@@ -171,6 +171,6 @@ public class loginDto {
 	public void setUserenabled(String userenabled) {
 		this.userenabled = userenabled;
 	}
-	
+
 
 }

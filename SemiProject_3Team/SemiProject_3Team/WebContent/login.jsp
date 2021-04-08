@@ -19,52 +19,56 @@
 	charset="utf-8"></script>
 <script type="text/javascript"
 	src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<link href="./styles/reset.css" rel="stylesheet">
+<!--  <link href="./styles/reset.css" rel="stylesheet"> -->
+<link href="./css/logincss.css" rel="stylesheet">
 <!-- Google Login Js -->
 <!-- <meta name="google-signin-client_id"
 	content="159305129792-j29t7eunifcfaltvs3pa1o7nrir400vt.apps.googleusercontent.com"> -->
 <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
 <script src="https://apis.google.com/js/client:platform.js?onload=init" async defer></script>
-
+<link href="styles/project_list.css" rel="stylesheet">
+<%@ include file="../ui/header.jsp"%>
 <script>
 	function onSubmit(e){
 		console.log("rere")
 		e.preventDefault();
 	}
 </script>
-<title>Insert title here</title>
+<title>poosilLogin</title>
 
 </head>
 
 
 <body>
+
 	<form action="login.do" method="post" class="loginForm">
-		<h2>Login</h2>
 		<div class="idForm">
-			<input type="text" class="id" name="userid" placeholder="ID">
+			<input type="text" class="id" name="userid" placeholder="아이디" >
 		</div>
 		<div class="passForm">
-			<input type="password" name="password" class="pw" placeholder="PW">
+			<input type="password" name="password" class="pw" placeholder="비밀번호" >
 		</div>
-		<input type="hidden" name="command" value="login" /> <input
-			type="submit" class="btn" value="login" />
-
+		
+		<input type="hidden" name="command" value="login" /> 
+		<input type="submit" class="btn" value="로그인" />
+	
 		<div class="bottomText">
-			Don't you have ID? <a href="signup.jsp">sign up</a>
+		</div><br/><br/>
+		<br/>
+		<div>
+			<a><img src="images/snslogo/naver.png" style="width:80px; " id="naver_id_login" ></a>
+			<a><img src="images/snslogo/kakao.png" style="width:80px; "  id="kakao-login-btn"></a>
+			<a><img src="images/snslogo/google.png" style="width:80px; " id="glogin"></a>
 		</div>
-
-		<div id="naver_id_login"></div>
-		<a id="kakao-login-btn"> <img
-			src="kakaologoinimg/kakao_login_small.png"></a>
-		<!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
-		<a id="glogin">google</a>
-	</form>
-
+		</form>
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		
 	<!-- 네이버 로그인 -->
 	<script type="text/javascript">
 		const woobins = "LQ9oq3XCCiY1n374Y0ED";
 		const garins = "PFkl_3h_ZxfQM_35xKqR";
-		var naver_id_login = new naver_id_login(garins,
+		var naver_id_login = new naver_id_login(woobins,
 				"http://localhost:8787/SemiProject_3Team/naverlogincallback.jsp");
 		var state = naver_id_login.getUniqState();
 		naver_id_login.setButton("green", 1, 40);

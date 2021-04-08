@@ -23,7 +23,7 @@
 			%>	topLikeList.push(
 				{						
 					likeCount :	<%= dto.getLikeCount()%>,
-					mainTitle :	'<%= dto.getProjectMainTitle()%>'
+					mainTitle :	"<%= dto.getProjectMainTitle()%>"
 				}
 			);<% 
 		};
@@ -35,7 +35,7 @@
 			%>	topPriceList.push(
 					{						
 						topPrice :	<%= dto.getTotalPrice()%>,
-						mainTitle :	'<%= dto.getProjectMainTitle()%>'
+						mainTitle :	"<%= dto.getProjectMainTitle()%>"
 					}
 					
 					
