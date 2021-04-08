@@ -63,14 +63,14 @@ response.setContentType("text/html; charset=UTF-8");
         container.pagination({
             dataSource: [
             	<%List<FreeBoardDto> list = (List<FreeBoardDto>) request.getAttribute("list");
-for (int i = 0; i < list.size(); i++) {%>{
+				for (int i = 0; i < list.size(); i++) {%>{
             		freeboardseq : '<%=list.get(i).getFreeboardseq()%>',
             		freeboardtitle : '<%=list.get(i).getFreeboardtitle()%>',
             		userid : '<%=list.get(i).getUserid()%>',
             		regdate : '<%=list.get(i).getRegdate()%>',
             		readcount : '<%=list.get(i).getReadcount()%>'
             		},
-            		<%}%>
+            	<%}%>
             	
              
         	],

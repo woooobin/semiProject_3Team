@@ -183,7 +183,7 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 												<p><span>배송비 </span>
 													 ${projectItem.shippingFee}
 												</p>
-												<p>제한수량 ${projectItem.quantity}개 중 (수량-팔린갯수 )개 남음</p>
+												<p>제한수량 ${projectItem.quantity}개 남음</p>
 											</div>
 										</a>
 									</li>
