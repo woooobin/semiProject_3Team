@@ -46,13 +46,8 @@ response.setContentType("text/html; charset=UTF-8");
 			}
 			%>
 		</div>
-		<div class="project-list-btn-wrap">
-			<select id="sortOpt" onchange="onChangeOption()">
-				<option value="likecount" <%= sortOpt != null  && sortOpt.equals("likecount") ? "selected": ""%> >추천순</option>
-				<option value="totalprice" <%= sortOpt != null && sortOpt.equals("totalprice") ? "selected": ""%>>팔린 금액 높은 순</option>
-			</select>
-		<button onclick='location.href="project_upload.jsp"' class="project-upload-btn">프로젝트 업로드 하기</button>
-		</div>
+		<button onclick='location.href="project_upload.jsp"'
+							class="project-upload-btn">프로젝트 업로드 하기</button>
 		<c:choose>
 			<c:when test="${empty list}">
 				프로젝트 목록이 없습니다.
@@ -61,7 +56,13 @@ response.setContentType("text/html; charset=UTF-8");
 			<c:otherwise>
 
 				<div class="project-list-wrap">
-					
+					<div class="project-list-btn-wrap">
+						
+						<select id="sortOpt" onchange="onChangeOption()">
+							<option value="likecount" <%= sortOpt != null  && sortOpt.equals("likecount") ? "selected": ""%> >추천순</option>
+							<option value="totalprice" <%= sortOpt != null && sortOpt.equals("totalprice") ? "selected": ""%>>팔린 금액 높은 순</option>
+						</select>
+					</div>
 					<c:forEach items="${list}" var="dto">
 						<div class="project_item">
 

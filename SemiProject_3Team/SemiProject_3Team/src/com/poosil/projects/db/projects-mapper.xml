@@ -16,7 +16,8 @@
 		projectEndDate
 	FROM PROJECTS
 	WHERE PROVINCE LIKE '%'||#{province}||'%' 
-	ORDER BY #{sortOpt} ASC, CREATEDAT DESC
+	ORDER BY CREATEDAT DESC, #{sortOpt} ASC
+	
 	</select>
 	<select id="selectOne" resultType="ProjectDto" parameterType="int">
 	SELECT 

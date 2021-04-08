@@ -67,7 +67,6 @@ public class PayController extends HttpServlet {
 			System.out.println(
 					request.getParameter("projectName")
 					+request.getParameter("projectItemSeq")
-					+request.getParameter("quantity")
 					+request.getParameter("price")
 					+request.getParameter("address")
 					+request.getParameter("phone")
@@ -79,7 +78,6 @@ public class PayController extends HttpServlet {
 			System.out.println("==========================  projectitem = " + request.getParameter("projectItemSeq"));
 			int projectItemSeq = Integer.parseInt(request.getParameter("projectItemSeq"));
 			int projectId = Integer.parseInt(request.getParameter("projectId"));
-			int quantity = Integer.parseInt(request.getParameter("quantity"));
 			int price = Integer.parseInt(request.getParameter("price"));
 			String address = request.getParameter("address");
 			int phone = Integer.parseInt(request.getParameter("phone"));
@@ -88,7 +86,7 @@ public class PayController extends HttpServlet {
 			int deliveryFee = Integer.parseInt(request.getParameter("deliveryFee"));
 			int purchasePrice = Integer.parseInt(request.getParameter("purchasePrice"));
 			System.out.println("purchase price = " + purchasePrice + "projectId = " + projectId);
-			PayDto dto = new PayDto(0, quantity, userId, projectItemSeq, address, phone, totalPrice, price, deliveryFee, purchasePrice, null);
+			PayDto dto = new PayDto(0, userId, projectItemSeq, address, phone, totalPrice, price, deliveryFee, purchasePrice, null);
 			
 			int res = biz.insertadminPayment(dto);
 			System.out.println("insertadminPayment " + res);
@@ -157,10 +155,7 @@ public class PayController extends HttpServlet {
 				request.setAttribute("projectdto", projectdto);
 				
 				dispatch(request, response, "orderpage.jsp");
-				
-				
-				
-				
+						
 			} 
 				
 		}

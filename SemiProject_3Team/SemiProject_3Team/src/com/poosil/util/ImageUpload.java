@@ -32,7 +32,7 @@ public class ImageUpload extends HttpServlet {
 			throws ServletException, IOException {
 
 		// 게시글 원글 등록 처리용 컨트롤러
-		
+
 		request.setCharacterEncoding("utf-8");
 		// �뾽濡쒕뱶�븷 �뙆�씪�쓽 �슜�웾 �젣�븳 : 10Mbyte濡� �젣�븳�븳�떎硫�
 
@@ -41,40 +41,41 @@ public class ImageUpload extends HttpServlet {
 		RequestDispatcher view = null;
 
 		String root = request.getSession().getServletContext().getRealPath("/image");
-		
+
 		File file = new File(root);
-		
+
 		try {
-			if(!file.exists()) {
+			if (!file.exists()) {
 				file.mkdirs();
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		System.out.println(root);
 		// 업로드되는 파일이 저장될 폴더명과 경로 연결 처리
 
 		// web/board_upload 濡� 吏��젙�븿
-		// request 瑜� MultipartRequest 
+		// request 瑜� MultipartRequest
 
-		MultipartRequest mrequest = new MultipartRequest(request, root , maxSize, "UTF-8", new DefaultFileRenamePolicy());
-		
+		MultipartRequest mrequest = new MultipartRequest(request, root, maxSize, "UTF-8",
+				new DefaultFileRenamePolicy());
+
 		Enumeration files = mrequest.getFileNames();
-		
+
 		String str = (String) files.nextElement(); //
-		String originFileName = mrequest.getFilesystemName(str); // 
-		
-		String imagePath = "image\\" + originFileName ;
+		String originFileName = mrequest.getFilesystemName(str); //
+
+		String imagePath = "image\\" + originFileName;
 
 		JsonObject result = new JsonObject();
-		result.addProperty("url", imagePath );
+		result.addProperty("url", imagePath);
 
 		response.getWriter().append(result + "");
 
 	}
 
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		doGet(request, response);
 

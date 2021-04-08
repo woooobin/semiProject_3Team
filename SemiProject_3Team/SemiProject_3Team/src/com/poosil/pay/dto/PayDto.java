@@ -5,7 +5,6 @@ import java.util.Date;
 public class PayDto {
 	
 	private int orderSeq;
-	private int quantity;
 	private String userId;
 	private int projectItemSeq;
 	private String address;
@@ -21,11 +20,10 @@ public class PayDto {
 		
 	}
 
-	public PayDto(int orderSeq, int quantity, String userId, int projectItemSeq, String address, int phone,
+	public PayDto(int orderSeq, String userId, int projectItemSeq, String address, int phone,
 			int totalPrice, int price, int deliveryFee, int purchasePrice, Date orderDate) {
 		super();
 		this.orderSeq = orderSeq;
-		this.quantity = quantity;
 		this.userId = userId;
 		this.projectItemSeq = projectItemSeq;
 		this.address = address;
@@ -44,14 +42,6 @@ public class PayDto {
 
 	public void setOrderSeq(int orderSeq) {
 		this.orderSeq = orderSeq;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
 	}
 
 	public String getUserId() {
