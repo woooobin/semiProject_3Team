@@ -13,7 +13,6 @@
 		<typeAlias type="com.poosil.free.dto.FreeBoardDto" alias="FreeBoardDto" />
 		<typeAlias type="com.poosil.pay.dto.PayDto" alias="PayDto"/>
 		<typeAlias type="com.poosil.comment.dto.CommentDto" alias="CommentDto" />
-		<typeAlias type="com.poosil.search.ProjectSearchDto" alias="ProjectSearchDto" />
 	</typeAliases>
 
 	<environments default="development">

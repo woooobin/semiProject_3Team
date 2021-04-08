@@ -34,11 +34,11 @@
               <div class="input-field second">
                 <label>SEARCH OPTION</label>
                 <div class="input-select">
-                  <select data-trigger="" name="searchOption">
+                 <select data-trigger="" name="searchOption">
                     <option value="all" <c:out value="${map.searchOption == 'all' ? 'selectd':'' }"/>>전체</option>
                     <option value="projectMainTitle" <c:out value="${map.searchOption =='projectMainTitle'?'selectd': ''}"/>>제목</option>
                     <option value="projectSubTitle" <c:out value="${map.searchOption == 'projectSubTitle'?'selectd':'' }"/>>부제목</option>
-                    <option value="projectCategory" <c:out value="${map.searchOption == 'projectCategory'?'selectd':'' }"/>>카테고리</option>
+                    <option value="detailDesc" <c:out value="${map.searchOption == 'detailDesc'?'selectd':'' }"/>>내용</option>
                   </select>
                 </div>
               </div>

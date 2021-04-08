@@ -21,7 +21,7 @@ a:link {color:#000; text-decoration:none}a:visited {color:#000; text-decoration:
 
 h1,h2,h3,h4,h5,h6,p,a,i,em,cite,ckde,address,blockquote{font-family: 'Noto Sans KR', sans-serif;}
 
-button, html input[type="button"], /* 1 */ input[type="reset"], input[type="submit"]{margin:0;padding:0;outline:none; -webkit-appearance: button; /* 2 */ cursor: pointer; /* 3 */ }
+button, html input[type="button"], /* 1 */ input[type="reset"], input[type="submit"]{margin:0;padding:0;outline:none;border:none; -webkit-appearance: button; /* 2 */ cursor: pointer; /* 3 */ }
 
 
 

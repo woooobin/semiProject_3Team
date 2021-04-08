@@ -16,12 +16,13 @@ response.setContentType("text/html; charset=UTF-8");
 <link href="./styles/reset.css" rel="stylesheet">
 <link href="./styles/layout.css" rel="stylesheet">
 <link href="./styles/main.css" rel="stylesheet">
-
+<link href="./css/.css" rel="stylesheet">
 <title>Hello, world!</title>
 
 </head>
 <body>
 	<%@ include file="./ui/header.jsp"%>
+	
 
 	<div class="container">
 		<!-- Slider main container -->
