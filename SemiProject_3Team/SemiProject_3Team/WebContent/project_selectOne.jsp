@@ -31,9 +31,12 @@ response.setContentType("text/html; charset=UTF-8");
    height: 240px;width:240px;
 }
 </style>
-
+<!-- 
+======= 전역 변수 시작 =======
+유저가 좋아요 눌렀는지 안 눌렀는지  -->
 <%boolean isLiked = (boolean)request.getAttribute("isLiked"); %>
 <script>
+// 카카오톡 공유시 리다이렉트 링크 
 var mobileWebUrl = "http://localhost:8787/SemiProject_3Team/project.do?command=selectOne&projectId="+${projectDto.projectId};
 var webUrl = "http://localhost:8787/SemiProject_3Team/project.do?command=selectOne&projectId="+${projectDto.projectId};
 
@@ -53,13 +56,16 @@ var googlemap_lng = ${ projectDto.latitude } ;
 	<%@ include file="ui/header.jsp"%>
 	
 	<script>
+		// 페이지 로드시 설명부분은 HTML을 넣어준다. 
 		onload = function() {
 			document.querySelector(".description").innerHTML = `${projectDto.detailDesc }`;
 		}
 		
+		// 너무 여러 번 눌러지는 경우가 발생해서 한 번만 클릭될 수 있도록 해주는 키 
 		let isLikeClicked = false;
-		
+		// 좋아요 기능 
 		function handleLike(){
+			// 클릭되지 않았을 떄만 클릭될 수 있도록 
 			if(!isLikeClicked){
 				<%
 				if(isLoggedIn){
@@ -117,7 +123,6 @@ var googlemap_lng = ${ projectDto.latitude } ;
 					</div>
 					<div id="map"></div>
 					<p>${projectDto.address }</p>
-					<!-- <h3>남은 후원일<span></span></h3> -->
 					<h3>펀딩액<span>${projectDto.totalPrice }</span>원 달성!</h3>
 					<h3>발송 시작일 <span>${projectDto.shippingStartDate}</span></h3>
 					

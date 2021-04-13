@@ -21,47 +21,17 @@ response.setContentType("text/html; charset=UTF-8");
 
 	<!-- include summernote css/js -->
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+	<!-- 
+	proj4 :기상청에서 제공하는 좌표값이 위도 경도로 변환하기 까다로워서 보니까 이 라이브러리 쓰라고 되어있어서 가지고 옴
+	 -->
 	<script src="js/proj4.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+	<script src="js/summernote_upload.js"></script>
 	<script type="text/javascript">
 	
-		/* summernote에서 이미지 업로드시 실행할 함수 */
-		function sendFile(file, editor) {
-			// 파일 전송을 위한 폼생성
-			data = new FormData();
-			data.append("uploadFile", file);
-			$.ajax({ // ajax를 통해 파일 업로드 처리
-				data: data,
-				type: "POST",
-				url: "imageUpload.do",
-				cache: false,
-				contentType: false,
-				processData: false,
-				dataType : "json",
-				success: function (data) { // 처리가 성공할 경우
-					// 에디터에 이미지 출력
-					console.log("success =", data);
-					let image = $('<img>').attr('src', data.url );
-					console.log(image, "editor=", editor, "summernote", $('#summernote'));
-					// $(editor).summernote('editor.insertImage', "image/" + JSON.parse(data).url);
-					$('#summernote').summernote('insertNode', image[0]);
-				
-				}
-			});
-		}
+		
 		$(document).ready(function () {
-			$('#summernote').summernote({ // summernote를 사용하기 위한 선언
-				height: 400,
-				callbacks: { // 콜백을 사용
-					// 이미지를 업로드할 경우 이벤트를 발생
-					onImageUpload: function (files, editor, welEditable) {
-						sendFile(files[0], this);
-					}
-				}
-			});
-
-
-
+			// image input에 이미지 업로드시 해당 리스너가 호출된다. 
 			$(".imageInput").on("change", function () {
 
 				data = new FormData();
@@ -77,7 +47,6 @@ response.setContentType("text/html; charset=UTF-8");
 					processData: false,
 					success: function (data) { // 처리가 성공할 경우
 						// 에디터에 이미지 출력
-						console.log("succes =", data)
 						const url = "image/" + JSON.parse(data).url;
 						currentInput.next().val(url);
 					}
@@ -99,7 +68,7 @@ response.setContentType("text/html; charset=UTF-8");
 				}
 			});
 			
-					
+			// input에 있는 것을 전체를 가지고 와서 #에 맞춰서 잘라서 끊어 넣어줌 . 
 			const hashtags = document.getElementById("hashtags").value ? document.getElementById("hashtags").value.match(/#[^\s#]+/g).join(",") : "";
 			const data = {
 				projectMainTitle: $("#projectMainTitle").val(),
@@ -124,8 +93,7 @@ response.setContentType("text/html; charset=UTF-8");
 				dataType: "json",
 				url: "project.do",
 				success: function (resData) { // 처리가 성공할 경우
-					// 에디터에 이미지 출력
-					console.log("upload Success =", resData.result)
+					// 에디터에 이미지 출력 성공시 서버로부터 result success 인 것을 리턴 
 					if (resData.result == "success") {
 						location.href = "project.do?command=selectList";
 					}
@@ -146,8 +114,6 @@ response.setContentType("text/html; charset=UTF-8");
 		    var firstProjection = "+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs"; // from
 		    var secondProjection = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"; 
 			var lonAndLat = proj4(firstProjection, secondProjection, point1); //변환된 위도, 경도 
-			
-			//console.log(lonAndLat) //[127.25313872031843, 37.65626868953749]
 			
 			var addressEl = document.querySelector("#address").value = roadFullAddr;
 			document.querySelector("#latitude").value = lonAndLat[0];
