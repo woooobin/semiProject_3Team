@@ -1,20 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 request.setCharacterEncoding("UTF-8");
-%>
-<%
 response.setContentType("text/html; charset=UTF-8");
 %>
-<%
-loginDto logindto = (loginDto)session.getAttribute("dto"); /*  */
-boolean isLiked = (boolean)request.getAttribute("isLiked");
-%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- 카카오톡 공유시 썸네일에 보일 값들 -->
 <meta property="og:type" content="website"> 
 <meta property="og:title" content="${projectDto.projectMainTitle}">
 <meta property="og:description" content="${projectDto.projectSubTitle }">
@@ -27,73 +22,63 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 <link href="styles/reset.css" rel="stylesheet">
 <link href="styles/layout.css" rel="stylesheet">
 <link href="styles/project_selectOne.css" rel="stylesheet">
+<link href="styles/all.css" rel="stylesheet"> <!-- font awesome -->
 
-<link href="styles/all.css" rel="stylesheet"> <!--load all styles -->
-    <style type="text/css">
-      #map {
-        height: 240px;width:240px;
-      }
-    </style>
-    
+<c:set var="projectDto" value="${requestScope.projectDto}" />
+
+<style type="text/css">
+#map {
+   height: 240px;width:240px;
+}
+</style>
+
+<%boolean isLiked = (boolean)request.getAttribute("isLiked"); %>
+<script>
+var mobileWebUrl = "http://localhost:8787/SemiProject_3Team/project.do?command=selectOne&projectId="+${projectDto.projectId};
+var webUrl = "http://localhost:8787/SemiProject_3Team/project.do?command=selectOne&projectId="+${projectDto.projectId};
+
+//하단 구글맵 사용시 위도 경도 값
+var googlemap_lat = ${ projectDto.longitude } ;
+var googlemap_lng = ${ projectDto.latitude } ;
+
+</script>  
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="js/kakaoLinkShare.js"></script>
 <script src="js/project-googlemap.js"></script>
-<c:set var="projectDto" value="${requestScope.projectDto}" />
 
-<script>
-	onload = function() {
-		document.querySelector(".description").innerHTML = `${projectDto.detailDesc }`;
-	}
-	function openWin() {
-		var url = "chatting.jsp";
-		var title = "customerCenter";
-		var prop = "top=200px,left=600px,width=400px,height=400px";
-		window.open(url,"", prop);
-	}
-	
-	let isLikeClicked = false;
-	function handleLike(){
-		if(!isLikeClicked){
-			<%
-			if(logindto != null){
-				%>
-				location.href="project.do?command=projectToggleLike&projectId="+${projectDto.projectId}+"&isLiked="+<%=isLiked%>
-				<%
-			}else{
-				%>
-				return alert("로그인 한 유저만 좋아요 할 수 있습니다. ")
-				<%
-			}
-			%>
-		}
-	}
-
-    let map;
-
-    function initMap() {
-      const mapOptions = {
-        zoom: 15,
-        center:  { lat:  ${projectDto.longitude }, lng: ${projectDto.latitude } },
-        disableDefaultUI:true,
-        zoomControl: true
-      };
-      map = new google.maps.Map(document.getElementById("map"), mapOptions);
-      
-      const marker = new google.maps.Marker({
-        position: { lat: ${projectDto.longitude } , lng: ${projectDto.latitude }},
-        map: map,
-      });
-      
-      google.maps.event.addListener(marker, "click", () => {
-        infowindow.open(map, marker);
-      });
-    }
-	
-</script>
 </head>
 <body>
 	<%@ include file="ui/header.jsp"%>
+	
+	<script>
+		onload = function() {
+			document.querySelector(".description").innerHTML = `${projectDto.detailDesc }`;
+		}
+		
+		let isLikeClicked = false;
+		
+		function handleLike(){
+			if(!isLikeClicked){
+				<%
+				if(isLoggedIn){
+					%>
+					location.href="project.do?command=projectToggleLike&projectId="+${projectDto.projectId}+"&isLiked="+<%=isLiked%>
+					<%
+				}else{
+					%>
+					alert("로그인 한 유저만 좋아요 할 수 있습니다. ")
+					<%
+				}
+				%>
+			}
+		}
+	
+	    
+		
+	</script>
+	
 	<div class="project-detail-header">
 		<h2>${projectDto.projectMainTitle}</h2>
 		<h3>${projectDto.projectSubTitle }</h3>
@@ -110,8 +95,7 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${projectHashtags}" var="projectHashtag">
-								<a
-									href="project.do?command=selectWHashtag&hashtagSeq=${ projectHashtag.hashtagSeq }">${ projectHashtag.hashtagName }</a>
+								<a href="project.do?command=selectWHashtag&hashtagSeq=${ projectHashtag.hashtagSeq }">${ projectHashtag.hashtagName }</a>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
@@ -152,13 +136,12 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 							}
 %>
 
-						<span class="likeCount">${projectDto.likeCount }</span>
+							<span class="likeCount">${projectDto.likeCount }</span>
 						</button>
 						
-						<button class="btn" onclick="openWin()"><i class="far fa-comment"></i></button>
-						
 						<a id="kakao-link-btn" href="javascript:sendLink()">
-							<i class="fas fa-share-alt"></i> </a>
+							<i class="fas fa-share-alt"></i>
+						</a>
 					</div>
 				</div>
 				<!-- end detail info -->
@@ -172,9 +155,9 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 								<c:forEach items="${projectItems}" var="projectItem">
 									<li class="project-items-item">
 									<% 
-									if(logindto != null) {	
+									if(isLoggedIn) {	
 									%>										
-										<a href="pay.do?command=orderpage&userid=<%=logindto.getUserid() %>&projectItemSeq=${ projectItem.projectItemSeq}&projectId=${projectDto.projectId}">
+										<a href="pay.do?command=orderpage&userid=<%=dto.getUserid() %>&projectItemSeq=${ projectItem.projectItemSeq}&projectId=${projectDto.projectId}">
 										
 											<div class="frame">
 												<p>${projectItem.price}원 응원하기 </p>
@@ -205,41 +188,7 @@ boolean isLiked = (boolean)request.getAttribute("isLiked");
 	</div>
 
 	<div class="description"></div>
-	<script type='text/javascript'>
-  //<![CDATA[
-    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('d2cc856fd683da85b775d0d7fcce39ce');
-    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-    Kakao.Link.createDefaultButton({
-      container: '#kakao-link-btn',
-      objectType: 'feed',
-      content: {
-        title: $('meta[property="og:title"]').attr( 'content' ),
-        description: $('meta[property="og:description"]').attr( 'content' ),
-        imageUrl: $( 'meta[property="og:image"]' ).attr( 'content' ),
-        link: {
-          mobileWebUrl:"http://localhost:8787/SemiProject_3Team/project.do?command=selectOne&projectId="+${projectDto.projectId},
-          webUrl: "http://localhost:8787/SemiProject_3Team/project.do?command=selectOne&projectId="+${projectDto.projectId}
-        }
-      },
-      social: {
-        likeCount: 286,
-        commentCount: 45,
-        sharedCount: 845
-      },
-      buttons: [
-        {
-          title: '웹으로 보기',
-          link: {
-            /* webUrl: window.location.href */
-            webUrl: "http://localhost:8787/SemiProject_3Team/project.do?command=selectOne&projectId="+${projectDto.projectId}
-          }
-        }
-      ]
-    });
-  //]]>
-</script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDq0AzhkYcg-kmHAxrEjRJV7JjG5TyO6sA&callback=initMap&libraries=&v=weekly" async></script>
+	<!-- 구글 맵 넣어주기  -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDq0AzhkYcg-kmHAxrEjRJV7JjG5TyO6sA&callback=initMap&libraries=&v=weekly" async></script>
 </body>
 </html>
